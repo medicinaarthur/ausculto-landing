@@ -13731,26 +13731,25 @@ a:focus-visible,button:focus-visible,.faq__q:focus-visible{
     border-radius:0;
   }
 
-  /* Cena de luz do hero = MESMA imagem-fundo dos celulares, cobrindo o hero todo p/ os feixes
-     casarem com a cena da PNG dos celulares (sem dois padrões brigando) */
+  /* FUNDO do hero = a cena-só (sem celulares), cobrindo o BLOCO INTEIRO. A PNG dos celulares
+     é usada só pros celulares por cima — assim os feixes preenchem o hero todo (esq + dir). */
   .hero__bg::before{
     content:"";
     position:absolute;
     inset:0;
     pointer-events:none;
-    background:url("assets/landing/hero-v5/mobile-premium-preview.png") right top / cover no-repeat;
-    opacity:.5;
-    filter:blur(2px) saturate(1.05);
-    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.34) 18%,#000 46%,#000 100%);
-            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.34) 18%,#000 46%,#000 100%);
+    background:url("assets/landing/hero-v5/hero-scene-bg.webp") center top / cover no-repeat;
+    opacity:.9;
+    mix-blend-mode:screen;
   }
 
+  /* scrim só p/ legibilidade do texto à esquerda — deixa a cena aparecer no resto */
   .hero__glow{
     display:block;
     inset:-12% -18% -22%;
     background:
-      linear-gradient(90deg,rgba(2,6,21,.98) 0%,rgba(2,6,21,.88) 38%,rgba(2,6,21,.26) 70%,rgba(2,6,21,.02) 100%),
-      linear-gradient(180deg,rgba(2,6,21,.34) 0%,rgba(2,6,21,.12) 10%,transparent 24%,transparent 66%,rgba(2,6,21,.62) 100%);
+      linear-gradient(90deg,rgba(2,6,21,.8) 0%,rgba(2,6,21,.52) 34%,rgba(2,6,21,.1) 66%,transparent 100%),
+      linear-gradient(180deg,rgba(2,6,21,.22) 0%,transparent 20%,transparent 64%,rgba(2,6,21,.42) 100%);
     opacity:1;
   }
 
@@ -13922,16 +13921,19 @@ a:focus-visible,button:focus-visible,.faq__q:focus-visible{
     z-index:3;
     width:100%;
     margin:-1px auto 0;
-    padding:0 0 30px;
-    /* continua o navy do hero (topo) e dissolve no claro dos depoimentos (base) — sem corte/vão branco */
-    background:linear-gradient(180deg,#071730 0%,#060f22 34%,#0a1a34 52%,#cfdaec 90%,#f1f4fd 100%) !important;
+    padding:8px 0 30px;
+    /* CONTINUA a mesma cena de feixes do hero (não é navy aleatório) e dissolve no claro dos depoimentos */
+    background:
+      linear-gradient(180deg,rgba(4,9,26,.34) 0%,rgba(4,9,26,.12) 34%,rgba(180,196,224,.5) 82%,#f1f4fd 100%),
+      url("assets/landing/hero-v5/hero-scene-bg.webp") center top / cover no-repeat,
+      #061226 !important;
     overflow:visible;
   }
 
   .showcase-band .proof{
     width:calc(100% - 44px);
     max-width:358px;
-    margin:-10px auto 0;
+    margin:2px auto 0;
     padding:13px 12px 14px;
     border-radius:22px;
     border-color:rgba(134,178,255,.34);
