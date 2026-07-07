@@ -13708,40 +13708,41 @@ a:focus-visible,button:focus-visible,.faq__q:focus-visible{
 
 @media(max-width:760px){
   .hero{
-    width:min(100%,430px);
+    width:100%;
     min-height:452px;
     margin-inline:auto;
     padding-top:calc(var(--nav-h) + 16px);
-    padding-bottom:clamp(28px,7.5vw,44px);
-    background:#020615 !important;
+    padding-bottom:0;
+    background:#04091a !important;
     color:#f8fbff;
     overflow:visible;
-    border-radius:0 0 clamp(30px,8.5vw,44px) clamp(30px,8.5vw,44px);
-    box-shadow:0 26px 52px -34px rgba(7,12,24,.66);
+    border-radius:0;
+    box-shadow:none;
   }
 
   .hero__bg{
     z-index:-1;
     background:
-      radial-gradient(120% 42% at 26% -2%,rgba(58,108,226,.20),transparent 60%),
-      radial-gradient(92% 88% at 94% 18%,rgba(47,117,255,.20),transparent 62%),
-      radial-gradient(78% 86% at 12% 36%,rgba(26,92,240,.13),transparent 68%),
-      linear-gradient(180deg,#020615 0%,#061126 74%,#07142b 100%);
+      radial-gradient(120% 42% at 26% -2%,rgba(58,108,226,.18),transparent 60%),
+      radial-gradient(92% 88% at 94% 18%,rgba(47,117,255,.18),transparent 62%),
+      radial-gradient(78% 86% at 12% 36%,rgba(26,92,240,.12),transparent 68%),
+      linear-gradient(180deg,#04091a 0%,#061126 70%,#071730 100%);
     overflow:hidden;
-    border-radius:inherit;
+    border-radius:0;
   }
 
-  /* Cena de luz fundida no hero — feixes chegam até o topo (atrás da logo), leve */
+  /* Cena de luz do hero = MESMA imagem-fundo dos celulares, cobrindo o hero todo p/ os feixes
+     casarem com a cena da PNG dos celulares (sem dois padrões brigando) */
   .hero__bg::before{
     content:"";
     position:absolute;
     inset:0;
     pointer-events:none;
-    background:url("assets/landing/mobile-bg/streaks-bg.webp") right -6% / 128% auto no-repeat;
-    opacity:.6;
-    mix-blend-mode:screen;
-    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.42) 16%,#000 44%,#000 100%);
-            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.42) 16%,#000 44%,#000 100%);
+    background:url("assets/landing/hero-v5/mobile-premium-preview.png") right top / cover no-repeat;
+    opacity:.5;
+    filter:blur(2px) saturate(1.05);
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.34) 18%,#000 46%,#000 100%);
+            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.34) 18%,#000 46%,#000 100%);
   }
 
   .hero__glow{
@@ -13919,10 +13920,11 @@ a:focus-visible,button:focus-visible,.faq__q:focus-visible{
 
   .showcase-band{
     z-index:3;
-    width:min(100%,430px);
+    width:100%;
     margin:-1px auto 0;
-    padding:0 0 22px;
-    background:linear-gradient(180deg,rgba(238,242,247,0) 0%,#eef2f7 28%,#fff 100%) !important;
+    padding:0 0 30px;
+    /* continua o navy do hero (topo) e dissolve no claro dos depoimentos (base) — sem corte/vão branco */
+    background:linear-gradient(180deg,#071730 0%,#060f22 34%,#0a1a34 52%,#cfdaec 90%,#f1f4fd 100%) !important;
     overflow:visible;
   }
 
