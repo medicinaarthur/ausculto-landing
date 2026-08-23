@@ -1,0 +1,101 @@
+{
+  "hosting": [
+    {
+      "target": "enamed",
+      "public": "dist/enamed",
+      "ignore": [
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "cleanUrls": false,
+      "trailingSlashBehavior": "ADD",
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; media-src 'self'; font-src 'self'; connect-src 'self' https://www.facebook.com https://connect.facebook.net https://us-central1-auscultoapp-meta-staging.cloudfunctions.net; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'",
+              "_comment": "A origem das Functions de STAGING, e so aqui. Um rewrite de Hosting nao atravessa projetos Firebase: o site vive em auscultoapp, as Functions desta rodada vivem em auscultoapp-meta-staging. No preview as chamadas vao diretas, e por isso a origem precisa estar no connect-src. Em producao ela nao existe, porque la os rewrites same-origin resolvem tudo dentro do proprio projeto."
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=31536000; includeSubDomains"
+            },
+            {
+              "key": "Cross-Origin-Opener-Policy",
+              "value": "same-origin"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "**/*.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "/release-manifest.json",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(css|js)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, must-revalidate",
+              "_comment": "no-cache, nao max-age=3600. Estes arquivos carregam a logica de CONSENTIMENTO e as datas da campanha. Uma hora de cache cego significa uma hora em que uma correcao de consentimento nao chega a quem ja visitou — e foi exatamente isso que mascarou um defeito durante o QA: o navegador executava a versao antiga enquanto o servidor ja servia a nova. `no-cache` revalida sempre; o corpo so trafega se mudou. Imagens, video e fontes seguem `immutable`, que e onde o peso realmente esta (6,9 MB contra ~30 KB de JS)."
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(png|jpg|jpeg|webp|avif|gif|svg|ico|mp4)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=31536000, immutable"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(woff|woff2|ttf|otf)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=31536000, immutable"
+            }
+          ]
+        }
+      ],
+      "_comment": "CONFIGURACAO EXCLUSIVA DE PREVIEW. Deploy: `firebase hosting:channel:deploy <canal> --config firebase.preview.json --only enamed`. Ela existe por um motivo concreto: enquanto o preview usava a config de producao, o rewrite /_bridge/appstore-click RESOLVIA — devolvia 204 — e alcancava a Function recordAppStoreClick live, que ainda e a versao de 2026-07-07, sem App Check, sem consentimento e com checagem de Origin por substring. O JavaScript do preview nao a chamava, porque escolhe a URL de staging pelo hostname; mas a rota estava viva a partir daquela origem, e uma rota viva para uma Function insegura nao se justifica por ninguem estar usando."
+    }
+  ]
+}
