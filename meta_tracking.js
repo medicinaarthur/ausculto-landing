@@ -15,6 +15,8 @@
     debug: false,
     respectPrivacySignals: true,
     appHostnames: ['app.auscultoapp.com'],
+    contentName: 'landing_v14',
+    eventSource: 'landing_v14',
   };
 
   var config = Object.assign({}, defaults, window.AUSCULTO_META_CONFIG || {});
@@ -39,8 +41,93 @@
     return navigator.globalPrivacyControl === true || dnt === '1' || dnt === 'yes';
   }
 
+  // === Consent gate (opt-in) ===
+  // Ativo somente quando a pagina define window.AUSCULTO_REQUIRE_CONSENT === true
+  // antes de carregar este script (hoje: /enamed/). Sem a flag, o comportamento
+  // e identico ao de sempre nas demais paginas.
+  var CONSENT_KEY = 'ausculto_consent_v1';
+  var requireConsent = window.AUSCULTO_REQUIRE_CONSENT === true;
+  var consentDecision = 'undecided';
+
+  function readConsentDecision() {
+    try {
+      var raw = window.localStorage.getItem(CONSENT_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && (parsed.decision === 'granted' || parsed.decision === 'denied')) {
+          return parsed.decision;
+        }
+      }
+    } catch (error) { /* storage indisponivel: cai para o cookie */ }
+    var cookie = getCookie(CONSENT_KEY);
+    if (cookie) {
+      var head = cookie.split('.')[0];
+      if (head === 'granted' || head === 'denied') return head;
+    }
+    return 'undecided';
+  }
+
+  function writeConsentDecision(decision) {
+    var ts = unixTime();
+    try {
+      window.localStorage.setItem(CONSENT_KEY, JSON.stringify({ decision: decision, ts: ts, v: 1 }));
+    } catch (error) { /* segue com o cookie */ }
+    // Cookie first-party no dominio raiz: legivel pelo webapp (app.auscultoapp.com),
+    // que suprime o Pixel quando denied (propagacao ponta a ponta do consent).
+    // Fora de *.auscultoapp.com (localhost/IP), cai para cookie host-only.
+    var hostname = window.location.hostname || '';
+    var domain = /(^|\.)auscultoapp\.com$/i.test(hostname) ? '; Domain=.auscultoapp.com' : '';
+    var secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    var expires = new Date(Date.now() + 365 * 864e5).toUTCString();
+    document.cookie = CONSENT_KEY + '=' + encodeURIComponent(decision + '.' + ts) +
+      '; expires=' + expires + '; path=/; SameSite=Lax' + domain + secure;
+  }
+
   function marketingAllowed() {
-    return config.enabled !== false && !blocksMarketingSignals();
+    if (config.enabled === false || blocksMarketingSignals()) return false;
+    // Sem decisao ou com recusa: nada de Pixel/CAPI/cookies de atribuicao.
+    if (requireConsent && consentDecision !== 'granted') return false;
+    return true;
+  }
+
+  var pageViewSent = false;
+
+  function bootPageViewParams() {
+    var params = {
+      content_name: config.contentName,
+      content_category: 'page_view',
+    };
+    if (window.auscultoEnamedHeroVariant) {
+      params.hero_variant = String(window.auscultoEnamedHeroVariant);
+    }
+    return params;
+  }
+
+  function sendBootPageView() {
+    if (pageViewSent || !marketingAllowed()) return;
+    pageViewSent = true;
+    window.auscultoTrack('PageView', bootPageViewParams());
+  }
+
+  function setConsentDecision(decision) {
+    consentDecision = decision;
+    writeConsentDecision(decision);
+    if (decision === 'granted') {
+      // Bootstrap tardio: Pixel, cookies de atribuicao e o PageView que ficou
+      // suprimido enquanto nao havia decisao.
+      prepareAttributionCookies();
+      initMetaPixel();
+      sendBootPageView();
+    }
+  }
+
+  if (requireConsent) {
+    consentDecision = readConsentDecision();
+    window.auscultoConsent = {
+      state: function () { return consentDecision; },
+      grant: function () { setConsentDecision('granted'); return consentDecision; },
+      deny: function () { setConsentDecision('denied'); return consentDecision; },
+    };
   }
 
   function hasUsablePixelId() {
@@ -74,8 +161,16 @@
 
     var params = new URLSearchParams(window.location.search);
     var fbclid = params.get('fbclid');
+    // So grava quando ha um fbclid NOVO na URL. Regravar a cada chamada
+    // (a funcao roda no load, em todo auscultoTrack e no grant de consent)
+    // trocava o timestamp do clique original do visitante recorrente e podia
+    // sobrescrever o _fbc que o proprio Pixel gravou.
     if (fbclid) {
-      setCookie('_fbc', 'fb.1.' + unixTime() + '.' + fbclid, 90);
+      var currentFbc = getCookie('_fbc');
+      var sameClick = currentFbc && currentFbc.split('.').slice(3).join('.') === fbclid;
+      if (!sameClick) {
+        setCookie('_fbc', 'fb.1.' + unixTime() + '.' + fbclid, 90);
+      }
     }
 
     if (capiEndpoint && !getCookie('_fbp')) {
@@ -294,7 +389,7 @@
       event: 'meta_' + snakeCase(eventName),
       meta_event_name: eventName,
       meta_event_id: id,
-      event_source: 'landing_v14',
+      event_source: config.eventSource,
     }, eventParams));
 
     sendPixel(eventName, eventParams, id);
@@ -302,6 +397,12 @@
     debug('[Ausculto Meta] Event', eventName, id, eventParams);
     return id;
   };
+
+  // "pricing" (index) e "<pagina>_pricing" (ads-estudante/ads-medico) sao a mesma
+  // superficie de planos: precisam classificar igual, senao o PRO vira Lead generico.
+  function isPricingMedium(medium) {
+    return medium === 'pricing' || /_pricing$/.test(medium);
+  }
 
   function classifyLandingLink(link) {
     var href = link.getAttribute('href');
@@ -334,7 +435,19 @@
     var content = url.searchParams.get('landing_content') || url.searchParams.get('utm_content') || '';
     var label = cleanText(link.textContent) || link.getAttribute('aria-label') || 'Ausculto App';
 
-    if (medium === 'pricing' && content === 'pro') {
+    // Funil ENAMED (/enamed/): o clique no app com medium ads_enamed e intencao
+    // de diagnostico, nao Lead generico. Substitui o default SOMENTE aqui.
+    if (medium === 'ads_enamed') {
+      return {
+        eventName: 'enamed_diagnostic_intent',
+        params: {
+          hero_variant: String(window.auscultoEnamedHeroVariant || 'direcao'),
+          cta_position: link.getAttribute('data-cta-position') || '',
+        },
+      };
+    }
+
+    if (isPricingMedium(medium) && content === 'pro') {
       return {
         eventName: 'InitiateCheckout',
         params: {
@@ -352,7 +465,7 @@
       eventName: 'Lead',
       params: {
         content_name: content === 'free' ? 'free_plan' : 'web_app',
-        content_category: medium === 'pricing' ? 'pricing' : 'landing_to_app',
+        content_category: isPricingMedium(medium) ? 'pricing' : 'landing_to_app',
         cta: label,
         destination: url.href,
       },
@@ -421,16 +534,84 @@
     } catch (e) { /* clipboard pode ser negado; ok, Frente A cobre */ }
   }
 
+  // === Botoes rastreados (sem href, invisiveis ao fluxo de <a>) ===
+  // Allowlist explicita: so estes data-event disparam. Outros botoes com
+  // data-event (ex.: abas do index.html) seguem sem evento, como antes.
+  // Excecao de forma: `enamed_cta_click` mora em <a> reais (os CTAs da pagina
+  // /enamed/ sao links de verdade); o handler de clique consulta a mesma
+  // allowlist para links — comportamento das demais paginas inalterado porque
+  // nenhum data-event delas consta aqui.
+  var buttonEvents = {
+    cta_ver_planos_click: {
+      eventName: 'ViewContent',
+      params: { content_name: 'pricing', content_category: 'landing_section' },
+    },
+    cta_bancas_expand_click: {
+      eventName: 'ViewContent',
+      params: { content_name: 'bancas_list', content_category: 'landing_engagement' },
+    },
+    cta_demo_questao_open: {
+      eventName: 'ViewContent',
+      params: { content_name: 'questoes_demo', content_category: 'product_demo' },
+    },
+    cta_demo_treino_open: {
+      eventName: 'ViewContent',
+      params: { content_name: 'treino_demo', content_category: 'product_demo' },
+    },
+    enamed_cta_click: {
+      eventName: 'enamed_cta_click',
+      params: function (el) {
+        return {
+          cta_position: el.getAttribute('data-cta-position') || '',
+          hero_variant: String(window.auscultoEnamedHeroVariant || 'direcao'),
+        };
+      },
+    },
+  };
+
+  function classifyTrackedButton(el) {
+    var name = el.getAttribute('data-event');
+    if (!name || !buttonEvents[name]) return null;
+
+    // toggles: so contabiliza a ABERTURA (aria-expanded ainda e "false" na captura)
+    if (el.getAttribute('aria-expanded') === 'true') return null;
+
+    var tracked = buttonEvents[name];
+    var baseParams = typeof tracked.params === 'function' ? tracked.params(el) : tracked.params;
+    return {
+      eventName: tracked.eventName,
+      params: Object.assign({}, baseParams, {
+        cta: cleanText(el.textContent) || el.getAttribute('aria-label') || name,
+        landing_event: name,
+      }),
+    };
+  }
+
   document.addEventListener('click', function (event) {
-    var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
-    if (!link) return;
-    if (isAppStoreLink(link)) {
-      handleAppStoreClick();
+    var target = event.target;
+    if (!target || !target.closest) return;
+
+    var link = target.closest('a[href]');
+    if (link) {
+      if (isAppStoreLink(link)) {
+        handleAppStoreClick();
+        return;
+      }
+      mergeAppAttribution(link);
+      // UM evento por clique. Os CTAs do ENAMED satisfazem as duas
+      // classificacoes ao mesmo tempo (`data-event` e `utm_medium=ads_enamed`);
+      // emitir as duas gerava dois event_id distintos para a mesma acao, que o
+      // Meta conta como dois cliques. O `data-event` explicito vence, porque e
+      // a intencao declarada no HTML; a classificacao por URL e o fallback.
+      var linkEvent = classifyTrackedButton(link) || classifyLandingLink(link);
+      if (linkEvent) window.auscultoTrack(linkEvent.eventName, linkEvent.params);
       return;
     }
-    mergeAppAttribution(link);
-    var tracked = classifyLandingLink(link);
-    if (tracked) window.auscultoTrack(tracked.eventName, tracked.params);
+
+    var button = target.closest('button[data-event]');
+    if (!button) return;
+    var buttonTracked = classifyTrackedButton(button);
+    if (buttonTracked) window.auscultoTrack(buttonTracked.eventName, buttonTracked.params);
   }, true);
 
   prepareAttributionCookies();
@@ -441,8 +622,5 @@
   }
   window.addEventListener('pageshow', prepareAppLinks);
   initMetaPixel();
-  window.auscultoTrack('PageView', {
-    content_name: 'landing_v14',
-    content_category: 'page_view',
-  });
+  sendBootPageView();
 })();

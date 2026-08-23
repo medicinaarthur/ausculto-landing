@@ -1,0 +1,2467 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="no-js">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      // Boot inline: marca JS disponivel, configura o tracking e resolve a variante
+      // do hero (?angulo=) ANTES do meta_tracking.js. O PageView de boot ja leva
+      // content_name/hero_variant corretos. A allowlist abaixo e a mesma do
+      // dicionario HERO_VARIANTS em /assets/js/enamed.js (manter sincronizadas).
+      document.documentElement.classList.remove('no-js');
+      document.documentElement.classList.add('js');
+      window.AUSCULTO_META_CONFIG = {
+        contentName: 'landing_enamed_2026',
+        eventSource: 'landing_enamed_2026',
+      };
+      window.AUSCULTO_REQUIRE_CONSENT = true;
+      window.auscultoEnamedHeroVariant = (function () {
+        var angulo = new URLSearchParams(window.location.search).get('angulo');
+        return angulo === 'tempo' || angulo === 'erros' ? angulo : 'direcao';
+      })();
+    </script>
+    <title>Ausculto ENAMED 2026: Descubra onde focar até a prova</title>
+    <meta
+      name="description"
+      content="Diagnóstico ENAMED gratuito de 50 questões: descubra suas prioridades por área e receba uma missão de estudo diária até a prova de 13 de setembro. Sem cartão.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#000C1E">
+    <link rel="canonical" href="https://enamed.auscultoapp.com/">
+    <meta property="og:type" content="website">
+    <meta
+      property="og:title"
+      content="Ausculto ENAMED 2026: Descubra onde focar até a prova">
+    <meta
+      property="og:description"
+      content="Diagnóstico ENAMED gratuito de 50 questões: descubra suas prioridades por área e receba uma missão de estudo diária até a prova de 13 de setembro. Sem cartão.">
+    <meta property="og:url" content="https://enamed.auscultoapp.com/">
+    <meta
+      property="og:image"
+      content="https://enamed.auscultoapp.com/assets/enamed/og-enamed.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta
+      name="twitter:title"
+      content="Ausculto ENAMED 2026: Descubra onde focar até a prova">
+    <meta
+      name="twitter:description"
+      content="Diagnóstico ENAMED gratuito de 50 questões: descubra suas prioridades por área e receba uma missão de estudo diária até a prova de 13 de setembro. Sem cartão.">
+    <meta
+      name="twitter:image"
+      content="https://enamed.auscultoapp.com/assets/enamed/og-enamed.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/assets/enamed/brand-mark.png">
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/assets/fonts/enamed/instrument-serif-400-normal-latin.woff2"
+      crossorigin>
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="/assets/fonts/enamed/instrument-serif-400-italic-latin.woff2"
+      crossorigin>
+    <link rel="stylesheet" href="/assets/css/enamed.css">
+  </head>
+  <body class="enamed-page">
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+    <!-- ===== 1 · HEADER ===== -->
+    <header class="site-header" id="siteHeader">
+      <div class="wrap site-header__inner">
+        <div class="brand">
+          <a
+            class="brand__home"
+            href="/"
+            aria-label="Ausculto: ir para o site principal"
+          >
+          <span class="brand__glyph" aria-hidden="true"
+            ><img
+              class="brand__mark brand__mark--dark"
+              src="/assets/enamed/auth-logo-128.png"
+              srcset="
+                /assets/enamed/auth-logo-128.png 1x,
+                /assets/enamed/auth-logo-192.png 1.5x
+              "
+              width="26"
+              height="25"
+              alt=""><img
+              class="brand__mark brand__mark--ink"
+              src="/assets/enamed/auth-logo-ink-128.png"
+              srcset="
+                /assets/enamed/auth-logo-ink-128.png 1x,
+                /assets/enamed/auth-logo-ink-192.png 1.5x
+              "
+              width="26"
+              height="25"
+              alt=""></span>
+          <span class="brand__name">AUSCULTO</span>
+          </a>
+          <span class="brand__divider" aria-hidden="true"></span>
+          <a
+            class="brand__campaign"
+            href="#hero"
+            aria-label="ENAMED 2026: voltar ao topo"
+          >
+          <span class="wordmark" aria-hidden="true"
+            ><img
+              class="wordmark__img wordmark__img--dark"
+              src="/assets/enamed/enamed-wordmark-300.png"
+              srcset="
+                /assets/enamed/enamed-wordmark-300.webp 2x,
+                /assets/enamed/enamed-wordmark-450.webp 3x
+              "
+              width="150"
+              height="21"
+              alt=""><img
+              class="wordmark__img wordmark__img--light"
+              src="/assets/enamed/enamed-wordmark-light-300.png"
+              srcset="
+                /assets/enamed/enamed-wordmark-light-300.webp 2x,
+                /assets/enamed/enamed-wordmark-light-450.webp 3x
+              "
+              width="150"
+              height="21"
+              alt=""></span>
+          </a>
+        </div>
+        <span class="header-pill">PREPARAÇÃO ENAMED 2026</span>
+        <div class="site-header__actions">
+          <a
+            class="login-link site-header__login"
+            href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_login&utm_campaign=site_2026"
+            target="_blank"
+            rel="noopener"
+            data-cta-position="login"
+            >Já tenho conta</a
+          >
+          <a
+            class="btn btn--primary btn--sm"
+            href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_header&utm_campaign=site_2026&returnTo=enamed-diagnostico"
+            target="_blank"
+            rel="noopener"
+            data-event="enamed_cta_click"
+            data-cta-position="header"
+            data-label-default="Descobrir meu nível grátis"
+            data-label-inactive="Conhecer o Ausculto"
+            data-label-short-default="Começar grátis"
+            data-label-short-inactive="Conhecer o app"
+            ><span class="lbl-full">Descobrir meu nível grátis</span
+            ><span class="lbl-short">Começar grátis</span></a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <!-- ===== 2 · HERO ===== -->
+      <section class="hero" id="hero" aria-labelledby="heroTitle">
+        <video
+          class="bg-video bg-video--desktop"
+          aria-hidden="true"
+          tabindex="-1"
+          muted
+          loop
+          playsinline
+          preload="none"
+          disablepictureinpicture
+        >
+          <source
+            src="/assets/enamed/videos/hero-sonar-desktop.mp4"
+            type="video/mp4">
+        </video>
+        <video
+          class="bg-video bg-video--mobile"
+          aria-hidden="true"
+          tabindex="-1"
+          muted
+          loop
+          playsinline
+          preload="none"
+          disablepictureinpicture
+        >
+          <source
+            src="/assets/enamed/videos/hero-topo-mobile.mp4"
+            type="video/mp4">
+        </video>
+        <div class="wrap hero__grid">
+          <div class="hero__copy">
+            <p class="hero__eyebrow">
+              <span class="hero__eyebrow-item" data-state-base="pre"
+                ><svg
+                  class="hero__eyebrow-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3.5"
+                    y="5"
+                    width="17"
+                    height="15.5"
+                    rx="2.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M3.5 9.5h17M8 3v4M16 3v4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M7.5 13h2M11 13h2M14.5 13h2M7.5 16.5h2M11 16.5h2"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  /></svg
+                >13 de setembro · Prova oficial</span
+              ><span
+                class="hero__eyebrow-item is-pending"
+                data-state="pre"
+                data-tpl-plural="Faltam {N} dias"
+                data-tpl-singular="Falta {N} dia"
+                ><svg
+                  class="hero__eyebrow-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="8.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M12 7.5V12l3 2"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+                ><span data-tpl-word="pre">Faltam</span>
+                <strong class="hero__eyebrow-n" data-n>--</strong>
+                <span data-tpl-word="post">dias</span></span
+              ><span data-state="examday" hidden
+                >ENAMED 2026 · A PROVA É HOJE</span
+              ><span data-state="post" hidden
+                >ENAMED 2026 · PROVA APLICADA · RESULTADO EM
+                <span data-result-label>04/12/2026</span></span
+              ><span data-state="evergreen" hidden
+                >AUSCULTO · PARA ESTUDANTES DE MEDICINA</span
+              >
+            </p>
+            <h1 class="hero__title" id="heroTitle">
+              <span data-h1-part="pre">Descubra em</span>
+              <span class="hero__nowrap" data-h1-part="pre2">50 questões</span>
+              <em class="hero__accent" data-h1-part="accent"
+                ><span data-h1-accent="lead">o que você</span>
+                <span class="hero__stroke" data-h1-accent="tail"
+                  >ainda não domina</span
+                ></em
+              >
+              <span data-h1-part="post">no ENAMED.</span>
+            </h1>
+            <p class="hero__sub" id="heroSub">
+              <span data-sub-part="pre"
+                >Diagnóstico gratuito: você responde, o Ausculto mostra suas
+                prioridades por área e entrega uma missão de estudo possível
+                para hoje e para cada dia até </span
+              ><span class="hero__sub-accent" data-sub-part="accent"
+                >13 de setembro</span
+              ><span data-sub-part="post">.</span>
+            </p>
+            <p class="hero__cta-row">
+              <a
+                class="btn btn--primary btn--hero"
+                href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_hero&utm_campaign=site_2026&returnTo=enamed-diagnostico"
+                target="_blank"
+                rel="noopener"
+                data-event="enamed_cta_click"
+                data-cta-position="hero"
+                data-label-default="Descobrir meu nível grátis"
+                data-label-inactive="Conhecer o Ausculto"
+              >
+                <span class="btn__icon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="7"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                    />
+                    <path
+                      d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                    />
+                    <circle cx="12" cy="12" r="1.6" fill="currentColor" /></svg
+                ></span>
+                <span class="btn__text"
+                  ><span class="btn__title" data-label-target
+                    >Descobrir meu nível grátis</span
+                  ><span class="btn__sub">Sem cartão · Grátis · Em 1 minuto</span></span
+                >
+              </a>
+              <a
+                class="login-link login-link--ghost"
+                href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_login&utm_campaign=site_2026"
+                target="_blank"
+                rel="noopener"
+                data-cta-position="login"
+                ><svg
+                  class="login-link__icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="12"
+                    cy="8"
+                    r="4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                  <path
+                    d="M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  /></svg
+                >Já tenho conta</a
+              >
+            </p>
+            <p class="hero__micro">
+              Grátis, sem cartão. Você cria a conta (e-mail ou Google), confirma
+              o e-mail e começa o diagnóstico na hora. Pausável, no seu ritmo.
+            </p>
+          </div>
+          <div class="hero__visual">
+            <figure
+              class="hero__frame hero__frame--diag"
+              data-zoom
+              data-zoom-src="/assets/enamed/diagnostico-intro-1320.avif"
+              data-zoom-fallback="/assets/enamed/diagnostico-intro-1320.png"
+            >
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    /assets/enamed/diagnostico-intro-390.avif 390w,
+                    /assets/enamed/diagnostico-intro-768.avif 768w
+                  "
+                  sizes="(min-width: 1200px) 268px, (min-width: 1024px) 24vw, calc(100vw - 36px)">
+                <source
+                  type="image/webp"
+                  srcset="
+                    /assets/enamed/diagnostico-intro-390.webp 390w,
+                    /assets/enamed/diagnostico-intro-768.webp 768w
+                  "
+                  sizes="(min-width: 1200px) 268px, (min-width: 1024px) 24vw, calc(100vw - 36px)">
+                <img
+                  src="/assets/enamed/diagnostico-intro-768.png"
+                  srcset="
+                    /assets/enamed/diagnostico-intro-390.png 390w,
+                    /assets/enamed/diagnostico-intro-768.png 768w
+                  "
+                  sizes="(min-width: 1200px) 268px, (min-width: 1024px) 24vw, calc(100vw - 36px)"
+                  width="768"
+                  height="524"
+                  alt="Tela de introdução do diagnóstico ENAMED no Ausculto: 50 questões, 10 de cada bloco da prova, pausável, sem consumir vidas e sem gabarito durante a prova."
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+              <span class="hero__beam hero__beam--glow" aria-hidden="true"></span>
+              <span class="hero__beam" aria-hidden="true"></span>
+              <figcaption class="hero__frame-tag">01 · Diagnóstico</figcaption>
+            </figure>
+            <figure
+              class="hero__frame hero__frame--mapa"
+              data-zoom
+              data-zoom-src="/assets/enamed/mapa-1320.avif"
+              data-zoom-fallback="/assets/enamed/mapa-1320.png"
+            >
+              <div class="hero__frame-head">
+                <span class="hero__frame-icon" aria-hidden="true"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="m3.5 6.5 5.5-2.5 6 2.5 5.5-2.5v13l-5.5 2.5-6-2.5-5.5 2.5z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M9 4v13M15 6.5v13"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                    /></svg
+                ></span>
+                <span class="hero__frame-title">Mapa ENAMED</span>
+                <span class="hero__frame-sub"
+                  >Visão geral das suas áreas de conhecimento</span
+                >
+              </div>
+              <picture>
+                <source
+                  media="(max-width: 767px)"
+                  type="image/avif"
+                  srcset="/assets/enamed/mapa-mobile-390.avif 390w">
+                <source
+                  media="(max-width: 767px)"
+                  type="image/webp"
+                  srcset="/assets/enamed/mapa-mobile-390.webp 390w">
+                <source
+                  media="(max-width: 767px)"
+                  srcset="/assets/enamed/mapa-mobile-390.png 390w">
+                <source
+                  type="image/avif"
+                  srcset="
+                    /assets/enamed/mapa-390.avif 390w,
+                    /assets/enamed/mapa-768.avif 768w
+                  "
+                  sizes="(min-width: 1200px) 390px, (min-width: 1024px) 35vw, (min-width: 768px) calc(100vw - 48px), calc(100vw - 36px)">
+                <source
+                  type="image/webp"
+                  srcset="
+                    /assets/enamed/mapa-390.webp 390w,
+                    /assets/enamed/mapa-768.webp 768w
+                  "
+                  sizes="(min-width: 1200px) 390px, (min-width: 1024px) 35vw, (min-width: 768px) calc(100vw - 48px), calc(100vw - 36px)">
+                <img
+                  src="/assets/enamed/mapa-768.png"
+                  srcset="
+                    /assets/enamed/mapa-390.png 390w,
+                    /assets/enamed/mapa-768.png 768w
+                  "
+                  sizes="(min-width: 1200px) 390px, (min-width: 1024px) 35vw, (min-width: 768px) calc(100vw - 48px), calc(100vw - 36px)"
+                  width="768"
+                  height="1054"
+                  alt="Mapa ENAMED do Ausculto: cobertura do mapa de 32%, desempenho médio de cerca de 55% e prioridades de estudo por área."
+                  fetchpriority="high"
+                  decoding="async">
+              </picture>
+              <span class="hero__beam hero__beam--glow" aria-hidden="true"></span>
+              <span class="hero__beam" aria-hidden="true"></span>
+              <figcaption class="hero__frame-tag">02 · Mapa ENAMED</figcaption>
+            </figure>
+            <figure
+              class="hero__frame hero__frame--missao"
+              data-zoom
+              data-zoom-src="/assets/enamed/missao-slots-980.avif"
+              data-zoom-fallback="/assets/enamed/missao-slots-980.png"
+            >
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="
+                    /assets/enamed/missao-slots-390.avif 390w,
+                    /assets/enamed/missao-slots-768.avif 640w
+                  "
+                  sizes="(min-width: 1200px) 278px, (min-width: 1024px) 25vw, calc(100vw - 36px)">
+                <source
+                  type="image/webp"
+                  srcset="
+                    /assets/enamed/missao-slots-390.webp 390w,
+                    /assets/enamed/missao-slots-768.webp 640w
+                  "
+                  sizes="(min-width: 1200px) 278px, (min-width: 1024px) 25vw, calc(100vw - 36px)">
+                <img
+                  src="/assets/enamed/missao-slots-768.png"
+                  srcset="
+                    /assets/enamed/missao-slots-390.png 390w,
+                    /assets/enamed/missao-slots-768.png 640w
+                  "
+                  sizes="(min-width: 1200px) 278px, (min-width: 1024px) 25vw, calc(100vw - 36px)"
+                  width="640"
+                  height="414"
+                  alt="Missão diária do Ausculto: lista de tarefas de hoje, com 15 questões de Cirurgia, revisão de 5 erros e 20 flashcards de revisão, cada uma com o motivo e a estimativa de minutos."
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+              <span class="hero__beam hero__beam--glow" aria-hidden="true"></span>
+              <span class="hero__beam" aria-hidden="true"></span>
+              <figcaption class="hero__frame-tag">
+                03 · Missão diária
+              </figcaption>
+            </figure>
+            <p class="hero__progress" aria-hidden="true">
+              <span>01 · Diagnóstico</span
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              ><span
+                ><span class="lbl-full">02 · Mapa ENAMED</span
+                ><span class="lbl-short">02 · Mapa</span></span
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                /></svg
+              ><span
+                ><span class="lbl-full">03 · Missão diária</span
+                ><span class="lbl-short">03 · Missão</span></span
+              >
+            </p>
+            <p class="hero__visual-caption caption">
+              Telas reais do Ausculto com dados de demonstração.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3 · PROOF STRIP ===== -->
+      <section class="proof-strip" aria-label="O que o Ausculto oferece">
+        <div class="wrap proof-strip__grid">
+          <div class="proof-strip__item" data-reveal>
+            <svg
+              class="proof-strip__icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="8.2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="4.4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <circle cx="12" cy="12" r="1.1" fill="currentColor" />
+            </svg>
+            <p class="proof-strip__claim">Mais de 50 mil questões</p>
+            <p class="proof-strip__desc">
+              14.245 oficiais de 40 bancas (ENAMED, ENARE, USP, UNIFESP…) e as
+              autorais do Ausculto
+            </p>
+          </div>
+          <div class="proof-strip__item" data-reveal>
+            <svg
+              class="proof-strip__icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 5.5h16v10.2H9.4L4 19.5z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M8 9.3h8M8 12.3h5.4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+            <p class="proof-strip__claim">
+              Comentário por alternativa e resumo “Para Não Esquecer”
+            </p>
+            <p class="proof-strip__desc">
+              o padrão editorial das questões Ausculto
+            </p>
+          </div>
+          <div class="proof-strip__item" data-reveal>
+            <svg
+              class="proof-strip__icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 4 4.5 8 12 12l7.5-4z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="m4.5 12 7.5 4 7.5-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <path
+                d="m4.5 16 7.5 4 7.5-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <p class="proof-strip__claim">
+              Casos clínicos, questões de imagem e flashcards
+            </p>
+            <p class="proof-strip__desc">no mesmo lugar</p>
+          </div>
+          <div class="proof-strip__item" data-reveal>
+            <svg
+              class="proof-strip__icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <rect
+                x="3.2"
+                y="4.8"
+                width="12.6"
+                height="9.2"
+                rx="1.2"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <path
+                d="M7.6 18h8.4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <rect
+                x="16.8"
+                y="8.8"
+                width="4.6"
+                height="8.6"
+                rx="1.1"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+            <p class="proof-strip__claim">
+              No navegador e no app, com a mesma conta
+            </p>
+            <p class="proof-strip__desc">resultados e Mapa em qualquer tela</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 4 · DEMO DE QUESTÃO ===== -->
+      <section class="demo" id="demo" aria-labelledby="demoTitle">
+        <div class="wrap wrap--editorial">
+          <h2 class="section-title" id="demoTitle" data-reveal>
+            Experimente <em>uma questão</em>
+          </h2>
+          <p class="section-lead" data-reveal>
+            Esta é uma questão autoral do Ausculto, no formato que você encontra
+            no app. Escolha uma alternativa e veja o feedback na hora, com o
+            porquê de cada opção.
+          </p>
+          <div class="demo__card" data-reveal>
+            <p class="demo__badge">
+              <span class="lbl-full"
+                >Questão autoral do Ausculto, escrita para demonstração</span
+              ><span class="lbl-short">Questão autoral · demonstração</span>
+            </p>
+            <div class="demo__nojs">
+              <p>
+                Esta demonstração interativa precisa de JavaScript ativado. O
+                padrão editorial das questões Ausculto você encontra no
+                diagnóstico gratuito: comentário por alternativa e resumo “Para
+                Não Esquecer”.
+              </p>
+            </div>
+            <div class="demo__form" id="demoForm">
+              <p class="demo__stem" id="demoStem">
+                Gestante de 24 anos, primigesta, 36 semanas, comparece ao
+                pré-natal com cefaleia frontal intensa há 2 dias e escotomas. PA
+                em duas aferições: 160/110 mmHg. Exame: edema de membros
+                inferiores +++/4+, reflexos patelares exacerbados. Proteinúria
+                (fita): 3+. Sem sangramento vaginal. FCF 140 bpm. A conduta mais
+                adequada é:
+              </p>
+              <fieldset class="demo__fieldset" aria-describedby="demoStem">
+                <legend class="sr-only">Escolha a conduta mais adequada</legend>
+                <div class="demo__option" data-option="a">
+                  <input
+                    class="demo__input"
+                    type="radio"
+                    name="demo-questao"
+                    id="demo-opt-a"
+                    value="a">
+                  <label class="demo__label" for="demo-opt-a"
+                    ><span class="demo__letter" aria-hidden="true">A</span
+                    ><span class="demo__text"
+                      >Prescrever repouso domiciliar e retorno ao pré-natal em 1
+                      semana.</span
+                    ></label
+                  >
+                  <p class="demo__comment" hidden>
+                    <strong>Incorreta.</strong> PA ≥ 160/110 mmHg com cefaleia
+                    intensa e escotomas é pré-eclâmpsia com sinais de gravidade
+                    (iminência de eclâmpsia). Conduta ambulatorial expõe mãe e
+                    feto a convulsão, AVE e descolamento de placenta.
+                  </p>
+                </div>
+                <div class="demo__option" data-option="b">
+                  <input
+                    class="demo__input"
+                    type="radio"
+                    name="demo-questao"
+                    id="demo-opt-b"
+                    value="b">
+                  <label class="demo__label" for="demo-opt-b"
+                    ><span class="demo__letter" aria-hidden="true">B</span
+                    ><span class="demo__text"
+                      >Internar, iniciar sulfato de magnésio e
+                      anti-hipertensivo, e programar a resolução da
+                      gestação.</span
+                    ></label
+                  >
+                  <p class="demo__comment" hidden>
+                    <strong>Correta.</strong> A partir de 34 semanas com sinais
+                    de gravidade: estabilizar (sulfato de magnésio como
+                    profilaxia de eclâmpsia + controle pressórico com
+                    hidralazina, nifedipino ou metildopa) e resolver a gestação.
+                  </p>
+                </div>
+                <div class="demo__option" data-option="c">
+                  <input
+                    class="demo__input"
+                    type="radio"
+                    name="demo-questao"
+                    id="demo-opt-c"
+                    value="c">
+                  <label class="demo__label" for="demo-opt-c"
+                    ><span class="demo__letter" aria-hidden="true">C</span
+                    ><span class="demo__text"
+                      >Prescrever metildopa ambulatorial e reavaliar a pressão
+                      em 48 horas.</span
+                    ></label
+                  >
+                  <p class="demo__comment" hidden>
+                    <strong>Incorreta.</strong> Anti-hipertensivo oral
+                    ambulatorial não basta na crise hipertensiva gestacional com
+                    sinais de iminência de eclâmpsia; a vigilância deve ser
+                    hospitalar.
+                  </p>
+                </div>
+                <div class="demo__option" data-option="d">
+                  <input
+                    class="demo__input"
+                    type="radio"
+                    name="demo-questao"
+                    id="demo-opt-d"
+                    value="d">
+                  <label class="demo__label" for="demo-opt-d"
+                    ><span class="demo__letter" aria-hidden="true">D</span
+                    ><span class="demo__text"
+                      >Solicitar dopplerfluxometria de artérias uterinas e
+                      aguardar o resultado para decidir.</span
+                    ></label
+                  >
+                  <p class="demo__comment" hidden>
+                    <strong>Incorreta.</strong> O doppler de artérias uterinas é
+                    ferramenta de rastreamento, não de conduta na emergência
+                    instalada. O quadro agudo impõe ação imediata.
+                  </p>
+                </div>
+                <div class="demo__option" data-option="e">
+                  <input
+                    class="demo__input"
+                    type="radio"
+                    name="demo-questao"
+                    id="demo-opt-e"
+                    value="e">
+                  <label class="demo__label" for="demo-opt-e"
+                    ><span class="demo__letter" aria-hidden="true">E</span
+                    ><span class="demo__text"
+                      >Encaminhar para tomografia de crânio antes de qualquer
+                      intervenção.</span
+                    ></label
+                  >
+                  <p class="demo__comment" hidden>
+                    <strong>Incorreta.</strong> A cefaleia da pré-eclâmpsia
+                    grave é sinal de irritação encefálica e alerta para
+                    eclâmpsia iminente; neuroimagem não antecede a
+                    estabilização.
+                  </p>
+                </div>
+              </fieldset>
+              <div
+                class="demo__feedback"
+                id="demoFeedback"
+                role="status"
+                hidden
+              >
+                <span class="demo__feedback-icon" aria-hidden="true"></span>
+                <span class="demo__feedback-text"></span>
+              </div>
+              <div class="demo__pne" id="demoPne" hidden>
+                <p class="demo__pne-title">Para Não Esquecer</p>
+                <p>
+                  PA ≥ 160/110 mmHg na gestante é emergência hipertensiva.
+                  Sinais de gravidade (cefaleia intensa, escotomas,
+                  hiperreflexia, proteinúria maciça) marcam risco de eclâmpsia.
+                  O sulfato de magnésio é a profilaxia com melhor evidência. A
+                  partir de 34 semanas com sinais de gravidade, a resolução da
+                  gestação está indicada.
+                </p>
+              </div>
+            </div>
+            <p class="demo__cta-row">
+              <a
+                class="btn btn--primary"
+                id="demoCta"
+                href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_demo&utm_campaign=site_2026&returnTo=enamed-diagnostico"
+                target="_blank"
+                rel="noopener"
+                data-event="enamed_cta_click"
+                data-cta-position="demo"
+                data-label-default="Continuar para o diagnóstico completo"
+                data-label-inactive="Conhecer o Ausculto"
+                >Continuar para o diagnóstico completo</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 5 · DOR ===== -->
+      <section class="dor" aria-labelledby="dorTitle">
+        <div class="wrap">
+          <h2 class="section-title" id="dorTitle" data-reveal>
+            Material não falta. <em>Direção, sim.</em>
+          </h2>
+          <p class="section-lead" data-reveal>
+            Banco de questões, o Ausculto também tem, e dos grandes: mais de
+            50 mil, sendo 14.245 oficiais de 161 provas e 40 bancas, com
+            comentário
+            por alternativa como padrão editorial. O que faltava era alguém
+            dizer com clareza: “isso aqui é o que mais pesa para você. Comece
+            por aqui hoje”.
+          </p>
+          <div class="dor__grid">
+            <article class="dor__card" data-reveal>
+              <h3 class="dor__card-title">Horas de estudo, zero certeza</h3>
+              <p>
+                Você estuda o dia todo e, à noite, não sabe dizer se estudou o
+                certo.
+              </p>
+            </article>
+            <article class="dor__card" data-reveal>
+              <h3 class="dor__card-title">Erros que não viram aprendizado</h3>
+              <p>
+                Você erra, lê o gabarito e segue em frente, sem saber o que
+                aquele erro revela sobre a prova.
+              </p>
+            </article>
+            <article class="dor__card" data-reveal>
+              <h3 class="dor__card-title">A prova nova ninguém conhece</h3>
+              <p>
+                O ENAMED tem estilo próprio do Inep: casos clínicos, tomada de
+                decisão, TRI. Treinar em questão genérica não prepara para isso.
+              </p>
+            </article>
+            <article class="dor__card" data-reveal>
+              <h3 class="dor__card-title">A rotina não para</h3>
+              <p>
+                Internato, aula, plantão. O plano de estudo perfeito quebra na
+                segunda-feira. Você precisa de uma missão que caiba no dia real.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 6 · MECANISMO ===== -->
+      <section
+        class="mecanismo"
+        id="mecanismo"
+        aria-labelledby="mecanismoTitle"
+      >
+        <div class="wrap">
+          <h2 class="section-title" id="mecanismoTitle" data-reveal>
+            Do diagnóstico <em>à missão de hoje</em>
+          </h2>
+          <ol class="mecanismo__steps">
+            <li class="mecanismo__step" data-reveal>
+              <figure
+                class="mecanismo__screen"
+                data-zoom
+                data-zoom-src="/assets/enamed/diagnostico-intro-1320.avif"
+                data-zoom-fallback="/assets/enamed/diagnostico-intro-1320.png"
+              >
+                <picture>
+                  <source
+                    media="(max-width: 767px)"
+                    type="image/avif"
+                    srcset="/assets/enamed/diagnostico-intro-mobile-390.avif 390w">
+                  <source
+                    media="(max-width: 767px)"
+                    type="image/webp"
+                    srcset="/assets/enamed/diagnostico-intro-mobile-390.webp 390w">
+                  <source
+                    media="(max-width: 767px)"
+                    srcset="/assets/enamed/diagnostico-intro-mobile-390.png 390w">
+                  <source
+                    type="image/avif"
+                    srcset="
+                      /assets/enamed/diagnostico-intro-390.avif 390w,
+                      /assets/enamed/diagnostico-intro-768.avif 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)">
+                  <source
+                    type="image/webp"
+                    srcset="
+                      /assets/enamed/diagnostico-intro-390.webp 390w,
+                      /assets/enamed/diagnostico-intro-768.webp 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)">
+                  <img
+                    src="/assets/enamed/diagnostico-intro-768.png"
+                    srcset="
+                      /assets/enamed/diagnostico-intro-390.png 390w,
+                      /assets/enamed/diagnostico-intro-768.png 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)"
+                    width="768"
+                    height="524"
+                    alt="Introdução do diagnóstico ENAMED no Ausculto, com o botão Começar diagnóstico."
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </figure>
+              <p class="mecanismo__num">01</p>
+              <h3 class="mecanismo__step-title">Diagnóstico</h3>
+              <p>
+                Você responde 50 questões no estilo do ENAMED, 10 de cada bloco
+                da prova. Sem gabarito durante a prova, sem consumir vidas: é
+                medição, não treino. Pode pausar e continuar quando quiser.
+              </p>
+            </li>
+            <li class="mecanismo__step" data-reveal>
+              <figure
+                class="mecanismo__screen"
+                data-zoom
+                data-zoom-src="/assets/enamed/mapa-1320.avif"
+                data-zoom-fallback="/assets/enamed/mapa-1320.png"
+              >
+                <picture>
+                  <source
+                    media="(max-width: 767px)"
+                    type="image/avif"
+                    srcset="/assets/enamed/mapa-mobile-390.avif 390w">
+                  <source
+                    media="(max-width: 767px)"
+                    type="image/webp"
+                    srcset="/assets/enamed/mapa-mobile-390.webp 390w">
+                  <source
+                    media="(max-width: 767px)"
+                    srcset="/assets/enamed/mapa-mobile-390.png 390w">
+                  <source
+                    type="image/avif"
+                    srcset="
+                      /assets/enamed/mapa-390.avif 390w,
+                      /assets/enamed/mapa-768.avif 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)">
+                  <source
+                    type="image/webp"
+                    srcset="
+                      /assets/enamed/mapa-390.webp 390w,
+                      /assets/enamed/mapa-768.webp 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)">
+                  <img
+                    src="/assets/enamed/mapa-768.png"
+                    srcset="
+                      /assets/enamed/mapa-390.png 390w,
+                      /assets/enamed/mapa-768.png 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)"
+                    width="768"
+                    height="1054"
+                    alt="Mapa ENAMED com o desempenho por área e a prioridade de estudo do dia."
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </figure>
+              <p class="mecanismo__num">02</p>
+              <h3 class="mecanismo__step-title">Mapa ENAMED</h3>
+              <p>
+                Com o seu desempenho, o Ausculto mostra onde concentrar esforço:
+                desempenho por área, cobertura do mapa e o seu maior ganho
+                estimado de hoje. Quanto mais você pratica, mais preciso o mapa
+                fica.
+              </p>
+            </li>
+            <li class="mecanismo__step" data-reveal>
+              <figure
+                class="mecanismo__screen"
+                data-zoom
+                data-zoom-src="/assets/enamed/missao-980.avif"
+                data-zoom-fallback="/assets/enamed/missao-980.png"
+              >
+                <picture>
+                  <source
+                    media="(max-width: 767px)"
+                    type="image/avif"
+                    srcset="/assets/enamed/missao-mobile-358.avif 358w">
+                  <source
+                    media="(max-width: 767px)"
+                    type="image/webp"
+                    srcset="/assets/enamed/missao-mobile-358.webp 358w">
+                  <source
+                    media="(max-width: 767px)"
+                    srcset="/assets/enamed/missao-mobile-358.png 358w">
+                  <source
+                    type="image/avif"
+                    srcset="
+                      /assets/enamed/missao-390.avif 390w,
+                      /assets/enamed/missao-768.avif 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)">
+                  <source
+                    type="image/webp"
+                    srcset="
+                      /assets/enamed/missao-390.webp 390w,
+                      /assets/enamed/missao-768.webp 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)">
+                  <img
+                    src="/assets/enamed/missao-768.png"
+                    srcset="
+                      /assets/enamed/missao-390.png 390w,
+                      /assets/enamed/missao-768.png 768w
+                    "
+                    sizes="(min-width: 1024px) 360px, calc(100vw - 64px)"
+                    width="768"
+                    height="616"
+                    alt="Missão diária com questões-alvo, revisão de erros e flashcards que vencem hoje."
+                    loading="lazy"
+                    decoding="async">
+                </picture>
+              </figure>
+              <p class="mecanismo__num">03</p>
+              <h3 class="mecanismo__step-title">Missão diária</h3>
+              <p>
+                Todo dia, uma missão curta e possível: questões-alvo das suas
+                áreas prioritárias, revisão das questões que você errou e os
+                flashcards que vencem hoje. Em dias de checkpoint, uma nova
+                medição recalcula o mapa.
+              </p>
+            </li>
+          </ol>
+          <p class="mecanismo__cta">
+            <a
+              class="text-cta"
+              href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_mechanism&utm_campaign=site_2026&returnTo=enamed-diagnostico"
+              target="_blank"
+              rel="noopener"
+              data-event="enamed_cta_click"
+              data-cta-position="mechanism"
+              data-label-default="Descobrir meu nível grátis"
+              data-label-inactive="Conhecer o Ausculto"
+              >Descobrir meu nível grátis</a
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== 7 · MAPA ENAMED (prova) ===== -->
+      <section class="mapa" id="mapa" aria-labelledby="mapaTitle">
+        <video
+          class="bg-video bg-video--desktop"
+          aria-hidden="true"
+          tabindex="-1"
+          muted
+          loop
+          playsinline
+          preload="none"
+          disablepictureinpicture
+        >
+          <source
+            src="/assets/enamed/videos/mapa-constelacao-desktop.mp4"
+            type="video/mp4">
+        </video>
+        <video
+          class="bg-video bg-video--mobile"
+          aria-hidden="true"
+          tabindex="-1"
+          muted
+          loop
+          playsinline
+          preload="none"
+          disablepictureinpicture
+        >
+          <source
+            src="/assets/enamed/videos/mapa-constelacao-mobile.mp4"
+            type="video/mp4">
+        </video>
+        <div class="wrap mapa__grid">
+          <div class="mapa__copy">
+            <h2
+              class="section-title section-title--light"
+              id="mapaTitle"
+              data-reveal
+            >
+              Seu Mapa ENAMED:
+              <em>onde focar primeiro</em>
+            </h2>
+            <p class="mapa__body" data-reveal>
+              Depois do diagnóstico, você vê área por área, na estrutura da
+              prova: Clínica Médica, Cirurgia Geral, Ginecologia e Obstetrícia,
+              Pediatria e Medicina da Família e Comunidade/Saúde Coletiva, esta
+              última aberta em duas linhas, com Saúde Mental como linha
+              transversal. Em cada uma, o nível de evidência do seu desempenho e
+              o que virou prioridade de estudo. O mapa liga direto para a ação:
+              tocar na prioridade abre a prática correspondente.
+            </p>
+            <p class="mapa__method-note" data-reveal>
+              <strong>Transparência:</strong> o Mapa ENAMED não prevê sua nota
+              oficial. Ele organiza suas prioridades a partir do seu desempenho
+              no Ausculto.
+            </p>
+          </div>
+          <figure
+            class="mapa__figure"
+            data-reveal
+            data-zoom
+            data-zoom-src="/assets/enamed/mapa-1320.avif"
+            data-zoom-fallback="/assets/enamed/mapa-1320.png"
+          >
+            <picture>
+              <source
+                media="(max-width: 767px)"
+                type="image/avif"
+                srcset="/assets/enamed/mapa-mobile-390.avif 390w">
+              <source
+                media="(max-width: 767px)"
+                type="image/webp"
+                srcset="/assets/enamed/mapa-mobile-390.webp 390w">
+              <source
+                media="(max-width: 767px)"
+                srcset="/assets/enamed/mapa-mobile-390.png 390w">
+              <source
+                type="image/avif"
+                srcset="
+                  /assets/enamed/mapa-390.avif   390w,
+                  /assets/enamed/mapa-768.avif   768w,
+                  /assets/enamed/mapa-1320.avif 1320w
+                "
+                sizes="(min-width: 1024px) 560px, calc(100vw - 64px)">
+              <source
+                type="image/webp"
+                srcset="
+                  /assets/enamed/mapa-390.webp   390w,
+                  /assets/enamed/mapa-768.webp   768w,
+                  /assets/enamed/mapa-1320.webp 1320w
+                "
+                sizes="(min-width: 1024px) 560px, calc(100vw - 64px)">
+              <img
+                src="/assets/enamed/mapa-768.png"
+                srcset="
+                  /assets/enamed/mapa-390.png   390w,
+                  /assets/enamed/mapa-768.png   768w,
+                  /assets/enamed/mapa-1320.png 1320w
+                "
+                sizes="(min-width: 1024px) 560px, calc(100vw - 64px)"
+                width="768"
+                height="1054"
+                alt="Mapa ENAMED do Ausculto com dados de demonstração: cobertura do mapa de 32% e desempenho médio de cerca de 55% nos blocos com evidência; maior ganho estimado do dia em Cirurgia Geral (4 de 10 acertos nas últimas semanas, prioridade alta); Medicina da Família e Comunidade/Saúde Coletiva em atenção (6 de 12), aberta em Medicina da Família e Comunidade (4 de 7) e Saúde Coletiva (2 de 5, ainda sem banda); Ginecologia e Obstetrícia com dados insuficientes; Pediatria com preparação consistente (11 de 18); Clínica Médica com boa preparação (17 de 24); ao final, Saúde Mental como linha transversal (4 de 9); abaixo, temas praticados e a nota de método explicando que o mapa não estima nota nem resultado oficial."
+                loading="lazy"
+                decoding="async">
+            </picture>
+            <figcaption class="caption">
+              Tela real do Ausculto com dados de demonstração.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===== 8 · MISSÃO DE HOJE ===== -->
+      <section class="missao" id="missao" aria-labelledby="missaoTitle">
+        <div class="wrap missao__grid">
+          <figure
+            class="missao__figure"
+            data-reveal
+            data-zoom
+            data-zoom-src="/assets/enamed/missao-980.avif"
+            data-zoom-fallback="/assets/enamed/missao-980.png"
+          >
+            <picture>
+              <source
+                media="(max-width: 767px)"
+                type="image/avif"
+                srcset="/assets/enamed/missao-mobile-358.avif 358w">
+              <source
+                media="(max-width: 767px)"
+                type="image/webp"
+                srcset="/assets/enamed/missao-mobile-358.webp 358w">
+              <source
+                media="(max-width: 767px)"
+                srcset="/assets/enamed/missao-mobile-358.png 358w">
+              <source
+                type="image/avif"
+                srcset="
+                  /assets/enamed/missao-390.avif 390w,
+                  /assets/enamed/missao-768.avif 768w,
+                  /assets/enamed/missao-980.avif 980w
+                "
+                sizes="(min-width: 1024px) 520px, calc(100vw - 64px)">
+              <source
+                type="image/webp"
+                srcset="
+                  /assets/enamed/missao-390.webp 390w,
+                  /assets/enamed/missao-768.webp 768w,
+                  /assets/enamed/missao-980.webp 980w
+                "
+                sizes="(min-width: 1024px) 520px, calc(100vw - 64px)">
+              <img
+                src="/assets/enamed/missao-768.png"
+                srcset="
+                  /assets/enamed/missao-390.png 390w,
+                  /assets/enamed/missao-768.png 768w,
+                  /assets/enamed/missao-980.png 980w
+                "
+                sizes="(min-width: 1024px) 520px, calc(100vw - 64px)"
+                width="768"
+                height="616"
+                alt="Missão diária do Ausculto com dados de demonstração: 15 questões de Cirurgia (prioridade alta no mapa da semana), revisão de 5 erros do diagnóstico e 20 flashcards de revisão, cada tarefa com o motivo e a estimativa de minutos."
+                loading="lazy"
+                decoding="async">
+            </picture>
+            <figcaption class="caption">
+              Tela real do Ausculto com dados de demonstração.
+            </figcaption>
+          </figure>
+          <div class="missao__copy">
+            <h2 class="section-title" id="missaoTitle" data-reveal>
+              Uma missão <em>possível</em> para hoje
+            </h2>
+            <p data-reveal>
+              Nada de maratona de 400 aulas. A missão de hoje cabe na sua
+              rotina: um bloco de questões das suas áreas prioritárias, a
+              revisão das suas últimas questões erradas e os flashcards que
+              vencem hoje. Concluiu? Amanhã tem a próxima, recalculada com o que
+              você fez.
+            </p>
+            <ul class="missao__bullets">
+              <li data-reveal>questões-alvo</li>
+              <li data-reveal>revisão de erros</li>
+              <li data-reveal>flashcards devidos</li>
+              <li data-reveal>checkpoints de remedição</li>
+              <li data-reveal>simulado oficial ENAMED 2025 na reta final (D-3 a D-1)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 9 · PROVA VERIFICÁVEL ===== -->
+      <section class="prova" aria-labelledby="provaTitle">
+        <div class="wrap">
+          <h2 class="section-title" id="provaTitle" data-reveal>
+            Tudo nesta página <em>pode ser verificado</em>
+          </h2>
+          <div class="prova__grid">
+            <div class="prova__block" data-reveal>
+              <h3 class="prova__block-title">Números com fonte e data</h3>
+              <p>
+                14.245 questões oficiais de 161 provas e 40 bancas,
+                comentadas uma a uma. Do ENAMED, as 90 questões válidas da
+                única prova já aplicada: das 100 originais, o Inep anulou 10.
+                Com as questões autorais do Ausculto, mais de 50 mil no total.
+                Apurado em 23/08/2026.
+              </p>
+            </div>
+            <div class="prova__block" data-reveal>
+              <h3 class="prova__block-title">Compromissos</h3>
+              <ul class="prova__commitments">
+                <li>comentários editoriais com referência</li>
+                <li>sem promessa de aprovação</li>
+                <li>
+                  sem pegadinha de cobrança: o diagnóstico é gratuito e não pede
+                  cartão
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="prova__screens">
+            <figure
+              class="prova__screen"
+              data-reveal
+              data-zoom
+              data-zoom-src="/assets/enamed/resultado-1320.avif"
+              data-zoom-fallback="/assets/enamed/resultado-1320.png"
+            >
+              <picture>
+                <source
+                  media="(max-width: 767px)"
+                  type="image/avif"
+                  srcset="/assets/enamed/resultado-mobile-390.avif 390w">
+                <source
+                  media="(max-width: 767px)"
+                  type="image/webp"
+                  srcset="/assets/enamed/resultado-mobile-390.webp 390w">
+                <source
+                  media="(max-width: 767px)"
+                  srcset="/assets/enamed/resultado-mobile-390.png 390w">
+                <source
+                  type="image/avif"
+                  srcset="
+                    /assets/enamed/resultado-390.avif   390w,
+                    /assets/enamed/resultado-768.avif   668w
+                  "
+                  sizes="(min-width: 1024px) 480px, calc(100vw - 64px)">
+                <source
+                  type="image/webp"
+                  srcset="
+                    /assets/enamed/resultado-390.webp   390w,
+                    /assets/enamed/resultado-768.webp   668w
+                  "
+                  sizes="(min-width: 1024px) 480px, calc(100vw - 64px)">
+                <img
+                  src="/assets/enamed/resultado-768.png"
+                  srcset="
+                    /assets/enamed/resultado-390.png   390w,
+                    /assets/enamed/resultado-768.png   668w
+                  "
+                  sizes="(min-width: 1024px) 480px, calc(100vw - 64px)"
+                  width="668"
+                  height="542"
+                  alt="Resultado do diagnóstico com dados de demonstração: 32 de 50 questões corretas: Clínica Médica 8 de 10, Cirurgia Geral 5 de 10, Pediatria 7 de 10, Ginecologia e Obstetrícia 6 de 10, Medicina da Família e Comunidade/Saúde Coletiva 6 de 10, e Saúde Mental 2 de 4 como linha interdisciplinar já contada nos blocos; com o aviso de que o mapa mostra prioridades de estudo e não prevê a nota."
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+            <figure
+              class="prova__screen"
+              data-reveal
+              data-zoom
+              data-zoom-src="/assets/enamed/revisao-questao-1320.avif"
+              data-zoom-fallback="/assets/enamed/revisao-questao-1320.png"
+            >
+              <picture>
+                <source
+                  media="(max-width: 767px)"
+                  type="image/avif"
+                  srcset="/assets/enamed/revisao-questao-mobile-390.avif 390w">
+                <source
+                  media="(max-width: 767px)"
+                  type="image/webp"
+                  srcset="/assets/enamed/revisao-questao-mobile-390.webp 390w">
+                <source
+                  media="(max-width: 767px)"
+                  srcset="/assets/enamed/revisao-questao-mobile-390.png 390w">
+                <source
+                  type="image/avif"
+                  srcset="
+                    /assets/enamed/revisao-questao-390.avif   390w,
+                    /assets/enamed/revisao-questao-768.avif   768w,
+                    /assets/enamed/revisao-questao-1320.avif 1320w
+                  "
+                  sizes="(min-width: 1024px) 480px, calc(100vw - 64px)">
+                <source
+                  type="image/webp"
+                  srcset="
+                    /assets/enamed/revisao-questao-390.webp   390w,
+                    /assets/enamed/revisao-questao-768.webp   768w,
+                    /assets/enamed/revisao-questao-1320.webp 1320w
+                  "
+                  sizes="(min-width: 1024px) 480px, calc(100vw - 64px)">
+                <img
+                  src="/assets/enamed/revisao-questao-768.png"
+                  srcset="
+                    /assets/enamed/revisao-questao-390.png   390w,
+                    /assets/enamed/revisao-questao-768.png   768w,
+                    /assets/enamed/revisao-questao-1320.png 1320w
+                  "
+                  sizes="(min-width: 1024px) 480px, calc(100vw - 64px)"
+                  width="768"
+                  height="578"
+                  alt="Revisão de questão no Ausculto: resposta escolhida, gabarito, explicação, análise alternativa por alternativa e o resumo Para Não Esquecer."
+                  loading="lazy"
+                  decoding="async">
+              </picture>
+            </figure>
+          </div>
+          <p class="caption caption--center" data-reveal>
+            Telas reais do Ausculto com dados de demonstração.
+          </p>
+          <p class="prova__cta" data-reveal>
+            <a
+              class="text-cta"
+              href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_proof&utm_campaign=site_2026&returnTo=enamed-diagnostico"
+              target="_blank"
+              rel="noopener"
+              data-event="enamed_cta_click"
+              data-cta-position="proof"
+              data-label-default="Descobrir meu nível grátis"
+              data-label-inactive="Conhecer o Ausculto"
+              >Descobrir meu nível grátis</a
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== 10 · PARA QUEM É ===== -->
+      <section class="para-quem" aria-labelledby="paraQuemTitle">
+        <div class="wrap">
+          <h2 class="section-title section-title--sub" id="paraQuemTitle" data-reveal>
+            Para quem é o <em>Ausculto ENAMED 2026</em>
+          </h2>
+          <div class="para-quem__grid">
+            <article class="para-quem__card" data-reveal>
+              <h3 class="para-quem__card-title">
+                Estou no 4º ano (8º semestre)
+              </h3>
+              <p>
+                Sua participação é obrigatória como componente curricular, e o
+                resultado é um diagnóstico oficial do seu preparo. Não entra no
+                Conceito Enade nem vale para residência. É a melhor radiografia
+                possível do que dominar até o 6º ano.
+              </p>
+            </article>
+            <article class="para-quem__card" data-reveal>
+              <h3 class="para-quem__card-title">
+                Estou concluindo (12º semestre)
+              </h3>
+              <p>
+                Sua nota vai ao histórico, compõe a avaliação do curso e é usada
+                como prova objetiva do acesso direto do Enare, com validade de 3
+                anos. Aqui, cada dia até 13 de setembro tem que render.
+              </p>
+            </article>
+            <article class="para-quem__card" data-reveal>
+              <h3 class="para-quem__card-title">Já me formei</h3>
+              <p>
+                Você pode usar a nota do ENAMED no acesso direto do Enare
+                (participação voluntária, com inscrição pela HU Brasil). O
+                diagnóstico mostra onde seu conhecimento precisa de reforço
+                antes da prova.
+              </p>
+            </article>
+          </div>
+          <p class="para-quem__note" data-reveal>
+            Regras conforme o Edital Inep nº 71/2026 e suas republicações
+            (verificado em 21/08/2026). Confira sempre o edital oficial.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== 11 · FAQ ===== -->
+      <section class="faq" id="faq" aria-labelledby="faqTitle">
+        <div class="wrap wrap--editorial">
+          <h2 class="section-title section-title--sub" id="faqTitle" data-reveal>
+            Perguntas <em>frequentes</em>
+          </h2>
+          <div class="faq__list">
+            <div class="faq__group">
+              <h3 class="faq__group-title">A plataforma e o diagnóstico</h3>
+              <div class="faq__item is-open" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="true"
+                    aria-controls="faq-a1"
+                    id="faq-q1"
+                  >
+                    O que acontece quando eu clico em “Descobrir meu nível
+                    grátis”?<span class="faq__chev" aria-hidden="true"></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a1">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong
+                        >Você abre o Ausculto no navegador, cria sua conta
+                        gratuita com e-mail ou Google, confirma o e-mail e
+                        começa as <span class="mono">50 questões</span> na
+                        hora.</strong
+                      >
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>
+                        A primeira carga pode levar alguns segundos no 4G.
+                      </li>
+                      <li>Pode pausar e continuar de onde parou.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a3"
+                    id="faq-q3"
+                  >
+                    O diagnóstico é gratuito?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a3">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong>Sim.</strong> O diagnóstico completo e o Mapa por
+                      área são gratuitos. Basta criar uma conta gratuita.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a5"
+                    id="faq-q5"
+                  >
+                    Quantas questões são?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a5">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong
+                        ><span class="mono">50 questões</span>, 10 de cada bloco
+                        da prova:</strong
+                      >
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>Clínica Médica</li>
+                      <li>Cirurgia Geral</li>
+                      <li>Ginecologia e Obstetrícia</li>
+                      <li>Pediatria</li>
+                      <li>Medicina da Família e Comunidade/Saúde Coletiva</li>
+                    </ul>
+                    <p>
+                      Dentro do bloco de Medicina da Família e Comunidade/Saúde
+                      Coletiva, o Ausculto busca 5 questões de cada uma das duas
+                      áreas e distribui pelo menos 4 questões de Saúde Mental
+                      entre os blocos. Quando o banco não permite esse encaixe
+                      exato, o caderno mantém as 10 por bloco.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a16"
+                    id="faq-q16"
+                  >
+                    Por que 5 blocos, se a matriz do ENAMED tem 7 áreas?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a16">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong
+                        >Porque são dois documentos diferentes, e o Ausculto
+                        segue os dois.</strong
+                      >
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>
+                        A <strong>Portaria Inep nº 413/2025</strong> define como
+                        a prova é montada: 100 questões distribuídas em 5 blocos
+                        de 20, sendo o quinto "Medicina da Família e
+                        Comunidade/Saúde Coletiva", e Saúde Mental cobrada de
+                        maneira interdisciplinar, sem bloco próprio. Na nossa
+                        leitura da prova de 2025, 10 das 100 questões eram de
+                        Saúde Mental, espalhadas pelos blocos.
+                      </li>
+                      <li>
+                        A <strong>Portaria Inep nº 478/2025</strong> institui a
+                        Matriz de Referência Comum e nomeia 7 áreas: Clínica
+                        Médica, Cirurgia Geral, Ginecologia e Obstetrícia,
+                        Pediatria, Medicina da Família e Comunidade, Saúde
+                        Mental e Saúde Coletiva.
+                      </li>
+                      <li>
+                        No Ausculto, o diagnóstico respeita os blocos (10 por
+                        bloco, como a prova distribui) e o Mapa mostra as 7
+                        áreas: o quinto bloco abre em duas linhas e Saúde Mental
+                        aparece como linha transversal, somada a partir das
+                        questões de qualquer bloco.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a6"
+                    id="faq-q6"
+                  >
+                    Quanto tempo leva?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a6">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong
+                        >Reserve cerca de
+                        <span class="mono">1 hora</span>.</strong
+                      >
+                      Não há cronômetro: você pode pausar e continuar de onde
+                      parou no mesmo dispositivo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a7"
+                    id="faq-q7"
+                  >
+                    Posso parar e continuar depois?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a7">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead"><strong>Sim.</strong></p>
+                    <ul class="faq__bullets">
+                      <li>
+                        O progresso do diagnóstico fica salvo no dispositivo,
+                        com retomada nativa (“Continuar de onde parou”).
+                      </li>
+                      <li>
+                        Seus resultados e seu Mapa ficam na sua conta,
+                        acessíveis em qualquer tela.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a9"
+                    id="faq-q9"
+                  >
+                    Como a missão diária é definida?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a9">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong>A partir do seu desempenho.</strong>
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>
+                        As áreas prioritárias do Mapa viram questões-alvo.
+                      </li>
+                      <li>Suas questões erradas entram como revisão.</li>
+                      <li>
+                        Os flashcards com revisão vencida completam o dia.
+                      </li>
+                      <li>
+                        Nas datas de checkpoint (<span class="mono">27/08</span
+                        >, <span class="mono">03/09</span> e
+                        <span class="mono">09/09</span>), uma nova medição
+                        recalcula tudo.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a8"
+                    id="faq-q8"
+                  >
+                    O Mapa prevê minha nota oficial?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a8">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead"><strong>Não.</strong></p>
+                    <p class="faq__callout">
+                      O Mapa ENAMED é um sinal interno de prontidão calculado do
+                      seu desempenho no Ausculto: ele organiza prioridades de
+                      estudo. Não estima nota, conceito nem resultado oficial do
+                      ENAMED, que é calculado pelo Inep por TRI.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a12"
+                    id="faq-q12"
+                  >
+                    Posso acessar no celular e no computador?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a12">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong>Sim.</strong> O Ausculto roda no navegador
+                      (app.auscultoapp.com) e nos apps iOS e Android, com a
+                      mesma conta.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="faq__group">
+              <h3 class="faq__group-title">A prova e o Ausculto ENAMED</h3>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a2"
+                    id="faq-q2"
+                  >
+                    O que é o Ausculto ENAMED?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a2">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong
+                        >Uma camada de preparação para o ENAMED 2026 dentro do
+                        app Ausculto.</strong
+                      >
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>
+                        Diagnóstico de <span class="mono">50 questões</span>,
+                        Mapa ENAMED com suas prioridades e uma missão de estudo
+                        diária até a prova.
+                      </li>
+                      <li>Não é um curso nem uma mentoria.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a11"
+                    id="faq-q11"
+                  >
+                    Quais áreas e tipos de conteúdo aparecem?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a11">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong
+                        >Os 5 blocos da prova e as 7 áreas da matriz do
+                        ENAMED.</strong
+                      >
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>
+                        Questões objetivas no estilo do Inep, revisão de erros e
+                        flashcards.
+                      </li>
+                      <li>No plano PRO, casos clínicos.</li>
+                      <li>
+                        Na reta final (<span class="mono">D-3</span> a
+                        <span class="mono">D-1</span>), o simulado oficial
+                        ENAMED 2025 fica disponível para todos.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a10"
+                    id="faq-q10"
+                  >
+                    Quem escreve as questões?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a10">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong
+                        >14.245 questões oficiais de 161 provas e 40 bancas
+                        (ENAMED, ENARE, USP, UNIFESP…), mais as questões
+                        autorais do Ausculto, escritas no padrão do
+                        exame.</strong
+                      >
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>
+                        Do ENAMED estão as 90 questões válidas da única prova já
+                        aplicada: das 100 originais, 10 foram anuladas pelo Inep.
+                      </li>
+                      <li>
+                        Padrão editorial único: comentário por alternativa,
+                        resumo “Para Não Esquecer” e referências.
+                      </li>
+                      <li>
+                        A questão da demonstração desta página é autoral do
+                        Ausculto, um exemplo do formato que você encontra no
+                        app.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a14"
+                    id="faq-q14"
+                  >
+                    O que acontece depois da prova?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a14">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong
+                        >A campanha ENAMED 2026 é uma camada temporária e se
+                        encerra após a prova.</strong
+                      >
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>
+                        Resultado individual previsto pelo edital para
+                        <span class="mono">04/12/2026</span>.
+                      </li>
+                      <li>
+                        Sua conta, seu histórico e todo o restante do Ausculto
+                        continuam disponíveis normalmente.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a13"
+                    id="faq-q13"
+                  >
+                    O Ausculto é vinculado ao MEC ou ao Inep?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a13">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong>Não.</strong> O Ausculto é uma plataforma
+                      educacional independente, sem vínculo institucional com o
+                      MEC, o Inep, a Empresa HU Brasil ou o ENAMED.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="faq__group">
+              <h3 class="faq__group-title">Conta, gratuidade e PRO</h3>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a4"
+                    id="faq-q4"
+                  >
+                    Preciso inserir cartão?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a4">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead">
+                      <strong>Não.</strong> Nenhuma etapa gratuita pede cartão.
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>
+                        O teste do plano PRO, se você encontrar dentro do app,
+                        também não pede cartão nem tem renovação automática.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__item" data-reveal>
+                <h3 class="faq__q-row">
+                  <button
+                    class="faq__q"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-a15"
+                    id="faq-q15"
+                  >
+                    O que é gratuito e o que pode exigir PRO?<span
+                      class="faq__chev"
+                      aria-hidden="true"
+                    ></span>
+                  </button>
+                </h3>
+                <div class="faq__a" id="faq-a15">
+                  <div class="faq__a-inner">
+                    <p class="faq__lead"><strong>Grátis:</strong></p>
+                    <ul class="faq__bullets">
+                      <li>Diagnóstico completo e Mapa por área.</li>
+                      <li>
+                        Missão diária com
+                        <span class="mono">10 questões/dia</span>.
+                      </li>
+                      <li>
+                        <span class="mono">1</span> revisão de erros por dia e
+                        <span class="mono">1</span> checkpoint.
+                      </li>
+                      <li>O simulado oficial na reta final.</li>
+                    </ul>
+                    <p class="faq__lead faq__lead--gap">
+                      <strong>PRO (opcional, dentro do app):</strong>
+                    </p>
+                    <ul class="faq__bullets">
+                      <li>Mapa detalhado por tema.</li>
+                      <li>
+                        <span class="mono">30 questões/dia</span> e mais
+                        revisões de erros.
+                      </li>
+                      <li>
+                        <span class="mono">3</span> checkpoints e casos clínicos
+                        na missão.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 12 · CTA FINAL ===== -->
+      <section class="final" id="final" aria-labelledby="finalTitle">
+        <video
+          class="bg-video bg-video--desktop"
+          aria-hidden="true"
+          tabindex="-1"
+          muted
+          loop
+          playsinline
+          preload="none"
+          disablepictureinpicture
+        >
+          <source
+            src="/assets/enamed/videos/hero-sonar-desktop.mp4"
+            type="video/mp4">
+        </video>
+        <video
+          class="bg-video bg-video--mobile"
+          aria-hidden="true"
+          tabindex="-1"
+          muted
+          loop
+          playsinline
+          preload="none"
+          disablepictureinpicture
+        >
+          <source
+            src="/assets/enamed/videos/hero-sonar-mobile.mp4"
+            type="video/mp4">
+        </video>
+        <div class="wrap final__inner">
+          <h2 class="final__title" id="finalTitle" data-reveal>
+            Pare de estudar <em>no escuro.</em>
+          </h2>
+          <p class="final__lead" data-reveal>
+            <span
+              data-state="pre"
+              data-tpl-plural="Faltam {N} dias. "
+              data-tpl-singular="Falta 1 dia. "
+              hidden
+            ></span
+            ><span data-state="examday" hidden>A prova é hoje. </span
+            ><span data-state="post" hidden
+              >Prova aplicada. Resultado individual previsto para
+              <span data-result-label>04/12/2026</span>. </span
+            ><span data-state-base="pre examday post evergreen"
+              >Descubra hoje onde o seu esforço rende mais.</span
+            >
+          </p>
+          <p class="final__cta-row" data-reveal>
+            <a
+              class="btn btn--primary btn--hero"
+              href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_final&utm_campaign=site_2026&returnTo=enamed-diagnostico"
+              target="_blank"
+              rel="noopener"
+              data-event="enamed_cta_click"
+              data-cta-position="final"
+              data-label-default="Descobrir meu nível grátis"
+              data-label-inactive="Conhecer o Ausculto"
+            >
+              <span class="btn__icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="7"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                  />
+                  <path
+                    d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                  />
+                  <circle cx="12" cy="12" r="1.6" fill="currentColor" /></svg
+              ></span>
+              <span class="btn__text"
+                ><span class="btn__title" data-label-target
+                  >Descobrir meu nível grátis</span
+                ><span class="btn__sub">Sem cartão · Grátis · Em 1 minuto</span></span
+              >
+            </a>
+            <a
+              class="login-link login-link--ghost"
+              href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_login&utm_campaign=site_2026"
+              target="_blank"
+              rel="noopener"
+              data-cta-position="login"
+              ><svg
+                class="login-link__icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="8"
+                  r="4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path
+                  d="M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                /></svg
+              >Já tenho conta</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <p class="site-footer__brand">
+          <span class="brand__glyph" aria-hidden="true"
+            ><img
+              class="brand__mark"
+              src="/assets/enamed/auth-logo-128.png"
+              srcset="
+                /assets/enamed/auth-logo-128.png 1x,
+                /assets/enamed/auth-logo-192.png 1.5x
+              "
+              width="26"
+              height="25"
+              alt=""
+              loading="lazy"
+              decoding="async"></span>
+          <span class="brand__name">AUSCULTO</span>
+          <span class="wordmark"
+            ><img
+              class="wordmark__img"
+              src="/assets/enamed/enamed-wordmark-300.png"
+              srcset="
+                /assets/enamed/enamed-wordmark-300.webp 2x,
+                /assets/enamed/enamed-wordmark-450.webp 3x
+              "
+              width="150"
+              height="21"
+              alt="ENAMED 2026"
+              loading="lazy"
+              decoding="async"></span>
+        </p>
+        <p class="site-footer__disclaimer">
+          O Ausculto é uma plataforma educacional independente e não possui
+          vínculo institucional com o MEC, o Inep, a Empresa HU Brasil ou o
+          ENAMED. Informações sobre o exame conforme o Edital Inep nº 71/2026 e
+          suas republicações (verificado em 21/08/2026). Confira sempre no site
+          oficial do Inep. O Mapa ENAMED é um sinal interno de prontidão e não
+          prevê nota nem resultado oficial.
+        </p>
+        <nav class="site-footer__links" aria-label="Links legais e contato">
+          <a href="/politica-de-privacidade.html">Política de Privacidade</a>
+          <a href="/termos-de-uso.html">Termos de Uso</a>
+          <a href="mailto:suporte@auscultoapp.com">suporte@auscultoapp.com</a>
+        </nav>
+        <a class="footer-home" href="/">
+          <span class="footer-home__glyph" aria-hidden="true"
+            ><img
+              src="/assets/enamed/auth-logo-128.png"
+              srcset="
+                /assets/enamed/auth-logo-128.png 1x,
+                /assets/enamed/auth-logo-192.png 1.5x
+              "
+              width="28"
+              height="27"
+              alt=""
+              loading="lazy"
+              decoding="async"></span>
+          <span class="footer-home__text"
+            ><span class="footer-home__title">Conheça o Ausculto completo</span
+            ><span class="footer-home__sub"
+              >Plantão e prova no mesmo app</span
+            ></span
+          ><svg class="footer-home__arrow" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+          ></a>
+      </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX (ampliacao das telas reais; controlado pelo enamed.js) ===== -->
+    <div class="lightbox" id="lightbox" hidden>
+      <div class="lightbox__backdrop" data-lightbox-close></div>
+      <figure
+        class="lightbox__figure"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lightboxCaption"
+      >
+        <button
+          class="lightbox__close"
+          id="lightboxClose"
+          type="button"
+          aria-label="Fechar imagem ampliada"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18">
+            <path
+              d="M6 6l12 12M18 6L6 18"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+        <picture>
+          <source id="lightboxSource" type="image/avif">
+          <img
+            class="lightbox__img"
+            id="lightboxImg"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+            alt="">
+        </picture>
+        <figcaption class="lightbox__caption" id="lightboxCaption"></figcaption>
+      </figure>
+    </div>
+
+    <!-- ===== STICKY CTA (mobile; controlado pelo enamed.js) ===== -->
+    <div class="sticky-cta" id="stickyCta" hidden>
+      <span class="sticky-cta__micro">GRÁTIS · SEM CARTÃO</span>
+      <a
+        class="btn btn--primary btn--lg sticky-cta__btn"
+        href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_sticky&utm_campaign=site_2026&returnTo=enamed-diagnostico"
+        target="_blank"
+        rel="noopener"
+        data-event="enamed_cta_click"
+        data-cta-position="sticky"
+        data-label-default="Descobrir meu nível grátis"
+        data-label-inactive="Conhecer o Ausculto"
+        >Descobrir meu nível grátis</a
+      >
+    </div>
+
+    <!-- ===== CONSENTIMENTO (LGPD; controlado pelo enamed.js) ===== -->
+    <section
+      class="consent"
+      id="consentBanner"
+      aria-label="Preferências de cookies"
+      hidden
+    >
+      <div class="consent__inner">
+        <p class="consent__text">
+          Usamos cookies de medição (Meta Pixel) para avaliar a eficácia dos
+          nossos anúncios, apenas com o seu consentimento. Os cookies essenciais
+          ao funcionamento da página permanecem ativos. Saiba mais na
+          <a href="/politica-de-privacidade.html">Política de Privacidade</a>.
+        </p>
+        <div class="consent__actions">
+          <button
+            class="btn btn--primary btn--sm"
+            type="button"
+            id="consentAccept"
+          >
+            Aceitar
+          </button>
+          <button
+            class="btn btn--ghost btn--sm"
+            type="button"
+            id="consentEssential"
+          >
+            Somente essenciais
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="/meta_tracking.js" defer></script>
+    <script src="/assets/js/enamed.js" defer></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "O que acontece quando eu clico em “Descobrir meu nível grátis”?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Você abre o Ausculto no navegador, cria sua conta gratuita com e-mail ou Google, confirma o e-mail e começa as 50 questões na hora. A primeira carga pode levar alguns segundos no 4G. Pode pausar e continuar de onde parou."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O diagnóstico é gratuito?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. O diagnóstico completo e o Mapa por área são gratuitos. Basta criar uma conta gratuita."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quantas questões são?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "50 questões, 10 de cada bloco da prova: Clínica Médica, Cirurgia Geral, Ginecologia e Obstetrícia, Pediatria e Medicina da Família e Comunidade/Saúde Coletiva. Dentro do bloco de Medicina da Família e Comunidade/Saúde Coletiva, o Ausculto busca 5 questões de cada uma das duas áreas e distribui pelo menos 4 questões de Saúde Mental entre os blocos. Quando o banco não permite esse encaixe exato, o caderno mantém as 10 por bloco."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Por que 5 blocos, se a matriz do ENAMED tem 7 áreas?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Porque são dois documentos diferentes, e o Ausculto segue os dois. A Portaria Inep nº 413/2025 define como a prova é montada: 100 questões distribuídas em 5 blocos de 20, sendo o quinto Medicina da Família e Comunidade/Saúde Coletiva, e Saúde Mental cobrada de maneira interdisciplinar, sem bloco próprio; na nossa leitura da prova de 2025, 10 das 100 questões eram de Saúde Mental, espalhadas pelos blocos. A Portaria Inep nº 478/2025 institui a Matriz de Referência Comum e nomeia 7 áreas: Clínica Médica, Cirurgia Geral, Ginecologia e Obstetrícia, Pediatria, Medicina da Família e Comunidade, Saúde Mental e Saúde Coletiva. No Ausculto, o diagnóstico respeita os blocos e o Mapa mostra as 7 áreas: o quinto bloco abre em duas linhas e Saúde Mental aparece como linha transversal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quanto tempo leva?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Reserve cerca de 1 hora. Não há cronômetro: você pode pausar e continuar de onde parou no mesmo dispositivo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso parar e continuar depois?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. O progresso do diagnóstico fica salvo no dispositivo, com retomada nativa (“Continuar de onde parou”). Seus resultados e seu Mapa ficam na sua conta, acessíveis em qualquer tela."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Como a missão diária é definida?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A partir do seu desempenho: as áreas prioritárias do Mapa viram questões-alvo; suas questões erradas entram como revisão; os flashcards com revisão vencida completam o dia; nas datas de checkpoint (27/08, 03/09 e 09/09), uma nova medição recalcula tudo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O Mapa prevê minha nota oficial?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. O Mapa ENAMED é um sinal interno de prontidão calculado do seu desempenho no Ausculto: ele organiza prioridades de estudo. Não estima nota, conceito nem resultado oficial do ENAMED, que é calculado pelo Inep por TRI."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso acessar no celular e no computador?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sim. O Ausculto roda no navegador (app.auscultoapp.com) e nos apps iOS e Android, com a mesma conta."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que é o Ausculto ENAMED?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Uma camada de preparação para o ENAMED 2026 dentro do app Ausculto: diagnóstico de 50 questões, Mapa ENAMED com suas prioridades e uma missão de estudo diária até a prova. Não é um curso nem uma mentoria."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quais áreas e tipos de conteúdo aparecem?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Os 5 blocos da prova e as 7 áreas da matriz do ENAMED: questões objetivas no estilo do Inep, revisão de erros e flashcards; no plano PRO, casos clínicos. Na reta final (D-3 a D-1), o simulado oficial ENAMED 2025 fica disponível para todos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Quem escreve as questões?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "14.245 questões oficiais de 161 provas e 40 bancas (ENAMED, ENARE, USP, UNIFESP…), mais as questões autorais do Ausculto, escritas no padrão do exame. Do ENAMED estão as 90 questões válidas da única prova já aplicada: das 100 originais, 10 foram anuladas pelo Inep. Padrão editorial único: comentário por alternativa, resumo “Para Não Esquecer” e referências. A questão da demonstração desta página é autoral do Ausculto, um exemplo do formato que você encontra no app."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que acontece depois da prova?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A campanha ENAMED 2026 é uma camada temporária e se encerra após a prova: resultado individual previsto pelo edital para 04/12/2026. Sua conta, seu histórico e todo o restante do Ausculto continuam disponíveis normalmente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O Ausculto é vinculado ao MEC ou ao Inep?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. O Ausculto é uma plataforma educacional independente, sem vínculo institucional com o MEC, o Inep, a Empresa HU Brasil ou o ENAMED."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Preciso inserir cartão?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Não. Nenhuma etapa gratuita pede cartão. O teste do plano PRO, se você encontrar dentro do app, também não pede cartão nem tem renovação automática."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "O que é gratuito e o que pode exigir PRO?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Grátis: diagnóstico completo e Mapa por área; missão diária com 10 questões/dia; 1 revisão de erros por dia e 1 checkpoint; o simulado oficial na reta final. PRO (opcional, dentro do app): Mapa detalhado por tema; 30 questões/dia e mais revisões de erros; 3 checkpoints e casos clínicos na missão."
+            }
+          }
+        ]
+      }
+    </script>
+  </body>
+</html>

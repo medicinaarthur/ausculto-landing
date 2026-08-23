@@ -1,0 +1,5 @@
+# enamed.auscultoapp.com — landing da campanha ENAMED 2026
+User-agent: *
+Allow: /
+
+Sitemap: https://enamed.auscultoapp.com/sitemap.xml

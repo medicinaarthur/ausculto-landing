@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Página não encontrada — Ausculto ENAMED 2026</title>
+    <meta name="description" content="Esta página não existe no site do Ausculto ENAMED 2026.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#000C1E">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/assets/enamed/brand-mark.png">
+    <!--
+      Página autônoma de propósito: um 404 não pode depender do CSS de 70 KB da
+      landing nem das fontes self-hosted, porque o motivo mais comum de cair
+      aqui é justamente um caminho de asset errado. Só os tokens que importam,
+      inline, com as mesmas famílias de fallback do site.
+    -->
+    <style>
+      :root {
+        --paper: #f7f4ec;
+        --ink: #14110b;
+        --mut: #6f6858;
+        --line: rgba(20, 17, 11, 0.12);
+        --deep-navy: #000c1e;
+        --champagne: #d4af37;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 32px 20px;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
+      main { max-width: 34rem; text-align: center; }
+      .code {
+        font-family: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--mut);
+        margin: 0 0 14px;
+      }
+      h1 {
+        font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+        font-weight: 400;
+        font-size: clamp(2rem, 7vw, 2.9rem);
+        line-height: 1.1;
+        margin: 0 0 14px;
+      }
+      h1 em { font-style: italic; color: var(--deep-navy); }
+      p { margin: 0 auto 26px; color: var(--mut); max-width: 30rem; }
+      .cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 26px;
+        border-radius: 14px;
+        background: var(--deep-navy);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        border: 1px solid var(--deep-navy);
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+      .cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(0, 12, 30, 0.18); }
+      .cta:focus-visible { outline: 3px solid var(--champagne); outline-offset: 3px; }
+      .rule { width: 56px; height: 1px; background: var(--champagne); margin: 0 auto 22px; }
+      .foot { margin: 30px 0 0; font-size: 0.82rem; color: var(--mut); border-top: 1px solid var(--line); padding-top: 18px; }
+      .foot a { color: inherit; }
+      @media (prefers-reduced-motion: reduce) {
+        .cta { transition: none; }
+        .cta:hover { transform: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="code">Erro 404</p>
+      <div class="rule"></div>
+      <h1>Esta página <em>não existe</em></h1>
+      <p>
+        O endereço que você abriu não faz parte do site do ENAMED 2026. O
+        diagnóstico gratuito e o Mapa continuam disponíveis na página inicial.
+      </p>
+      <a class="cta" href="/">Voltar para o início</a>
+      <p class="foot">
+        O Ausculto é uma plataforma educacional independente e não possui
+        vínculo institucional com o MEC, o Inep, a Empresa HU Brasil ou o
+        ENAMED. <a href="https://auscultoapp.com/politica-de-privacidade.html">Política de Privacidade</a>
+      </p>
+    </main>
+  </body>
+</html>
