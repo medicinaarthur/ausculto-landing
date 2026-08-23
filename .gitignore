@@ -1,0 +1,23 @@
+# Logs de ferramenta. O firebase-debug.log tem 1,2 MB e carrega o inventario
+# completo de Cloud Functions, o appId do projeto, e-mails de service account e
+# os NOMES dos secrets do Secret Manager. Ele nunca pode ser versionado nem
+# publicado (ver tambem o "ignore" do firebase.json).
+*.log
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Artefato de build: gerado por scripts/build-enamed.mjs, nunca editado a mao.
+dist/
+
+# Dependencias e caches
+node_modules/
+.cache/
+.parcel-cache/
+
+# Ferramental de agente (nao faz parte do site publicado)
+.impeccable/
+
+# Sistema
+.DS_Store
+Thumbs.db
