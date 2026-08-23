@@ -109,9 +109,101 @@
     window.auscultoTrack('PageView', bootPageViewParams());
   }
 
+  // === Endpoints, resolvidos em RUNTIME pelo hostname ======================
+  //
+  // O mesmo artefato roda no preview e em producao. A diferenca nao pode estar
+  // no build — senao o que for aprovado no preview nao e o que vai para o ar.
+  //
+  // Por que o preview precisa de endpoints diferentes: um rewrite de Hosting
+  // so alcanca Functions do MESMO projeto Firebase. O site do ENAMED vive em
+  // `auscultoapp`; as Functions desta rodada vivem em
+  // `auscultoapp-meta-staging`. Nenhum rewrite atravessa essa fronteira. No
+  // preview, portanto, as chamadas vao direto para a URL HTTPS das Functions
+  // de staging; em producao, elas voltam a ser same-origin, e o rewrite as
+  // resolve sem CORS e sem terceiro dominio no CSP.
+  var STAGING_PREVIEW_HOSTS = [
+    'auscultoapp-enamed--qa-3tldakhp.web.app',
+  ];
+  var STAGING_FUNCTIONS_BASE =
+    'https://us-central1-auscultoapp-meta-staging.cloudfunctions.net';
+
+  function resolveEndpoints() {
+    var host = String(window.location.hostname || '').toLowerCase();
+    if (STAGING_PREVIEW_HOSTS.indexOf(host) !== -1) {
+      return {
+        environment: 'staging',
+        consentReference: STAGING_FUNCTIONS_BASE + '/issueMarketingConsentReference',
+        appStoreBridge: STAGING_FUNCTIONS_BASE + '/recordAppStoreClick',
+      };
+    }
+    // Producao e qualquer outro host: same-origin. O default e o caminho que
+    // NAO fala com um projeto de teste.
+    return {
+      environment: 'production',
+      consentReference: '/_consent/reference',
+      appStoreBridge: '/_bridge/appstore-click',
+    };
+  }
+
+  var endpoints = resolveEndpoints();
+
+  // === Referencia assinada do consentimento ================================
+  //
+  // A decisao tomada aqui acontece ANTES de existir um usuario. Ela atravessa
+  // para o app por uma referencia assinada pelo servidor, de uso unico e com
+  // dez minutos de validade — e nao por cookie, query string ou clipboard, que
+  // sao escritos pelo proprio cliente e nao provam nada. Um consentimento
+  // forjado e pior do que consentimento nenhum.
+  //
+  // A referencia nao carrega identidade: nem uid, nem e-mail, nem telefone.
+  // Ela afirma "uma decisao X, para a finalidade P, sob as versoes V/PV, no
+  // ambiente E, no instante T". Quem a liga a uma pessoa e o app, depois do
+  // Auth, chamando uma callable protegida por App Check.
+  var consentReference = '';
+
+  function requestConsentReference(decision) {
+    if (!requireConsent) return;
+    try {
+      window.fetch(endpoints.consentReference, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // Sem cookies: este endpoint nao autentica ninguem e nao deve receber
+        // sessao. `omit` tambem evita preflight com credenciais.
+        credentials: 'omit',
+        body: JSON.stringify({ decision: decision }),
+      }).then(function (response) {
+        return response.ok ? response.json() : null;
+      }).then(function (data) {
+        if (!data || data.ok !== true || !data.reference) return;
+        consentReference = String(data.reference);
+        // Os links ja renderizados precisam receber a referencia agora: quem
+        // consentiu no banner costuma clicar no CTA em seguida.
+        prepareAppLinks();
+      }).catch(function () {
+        // Falhar aqui NAO pode custar produto. Sem referencia, o app
+        // simplesmente pergunta de novo depois do cadastro.
+      });
+    } catch (error) { /* idem */ }
+  }
+
+  // Anexa a referencia a um link para o app. `ac_ref` e transporte, nao
+  // autoridade — o servidor confere assinatura, ambiente, finalidade, versoes,
+  // validade e o nonce de uso unico. O script do webapp a remove da barra de
+  // endereco no primeiro boot, para que ela nao fique no historico nem no
+  // `Referer`.
+  function attachConsentReference(url) {
+    if (!consentReference) return;
+    url.searchParams.set('ac_ref', consentReference);
+  }
+
   function setConsentDecision(decision) {
     consentDecision = decision;
     writeConsentDecision(decision);
+    // A referencia e pedida para GRANTED e para DENIED. Registrar uma recusa
+    // vale tanto quanto registrar um aceite: sem isso, a pessoa que recusou na
+    // landing chega ao app como "sem decisao" e e perguntada de novo, o que e
+    // uma forma educada de ignorar o que ela disse.
+    requestConsentReference(decision);
     if (decision === 'granted') {
       // Bootstrap tardio: Pixel, cookies de atribuicao e o PageView que ficou
       // suprimido enquanto nao havia decisao.
@@ -243,19 +335,37 @@
 
     var incoming = currentMarketingParams();
     var hasIncomingAttribution = Object.keys(incoming).length > 0;
-    if (!hasIncomingAttribution) return url;
+    if (!hasIncomingAttribution) {
+      // Sem parametros de campanha na entrada nao ha o que propagar — mas a
+      // referencia de consentimento nao depende de campanha nenhuma, e quem
+      // chegou organicamente e consentiu tem o mesmo direito de atravessar
+      // com a decisao dele.
+      attachConsentReference(url);
+      link.setAttribute('href', url.href);
+      return url;
+    }
 
-    var landingMedium = cleanText(url.searchParams.get('utm_medium'));
-    var landingContent = cleanText(url.searchParams.get('utm_content'));
-    var landingCampaign = cleanText(url.searchParams.get('utm_campaign'));
-    if (landingMedium) url.searchParams.set('landing_cta', landingMedium);
-    if (landingContent) url.searchParams.set('landing_content', landingContent);
-    if (landingCampaign) url.searchParams.set('landing_campaign', landingCampaign);
+    // IDEMPOTENTE. Esta funcao roda no load (prepareAppLinks), de novo em
+    // `pageshow`, de novo quando a referencia de consentimento chega, e mais
+    // uma vez no proprio clique. Na segunda passada `utm_campaign` ja e a da
+    // campanha PAGA — e sem esta guarda, `landing_campaign` era sobrescrito
+    // com ela, apagando a unica copia da UTM propria da landing.
+    //
+    // A primeira gravacao vence: ela e a que viu os valores originais.
+    var preserve = function (target, source) {
+      if (url.searchParams.get(target)) return;
+      var value = cleanText(url.searchParams.get(source));
+      if (value) url.searchParams.set(target, value);
+    };
+    preserve('landing_cta', 'utm_medium');
+    preserve('landing_content', 'utm_content');
+    preserve('landing_campaign', 'utm_campaign');
 
     Object.keys(incoming).forEach(function (key) {
       url.searchParams.set(key, incoming[key]);
     });
 
+    attachConsentReference(url);
     link.setAttribute('href', url.href);
     return url;
   }
@@ -268,11 +378,42 @@
       .toLowerCase();
   }
 
+  // Hosts cujo caminho pode ser reportado. Qualquer outro vira string vazia.
+  var URL_HOSTS = [
+    'auscultoapp.com',
+    'www.auscultoapp.com',
+    'enamed.auscultoapp.com',
+    'app.auscultoapp.com',
+  ];
+
+  // Esquema + host allowlisted + caminho. A QUERY NUNCA ENTRA.
+  //
+  // `window.location.href` arrasta a query string inteira para dentro do
+  // evento: UTMs, fbclid, e o que a proxima feature acrescentar sem se lembrar
+  // disto. Os parametros que importam ja viajam em campos proprios e
+  // allowlisted; repeti-los dentro da URL entrega um blob que ninguem revisou.
+  function sanitizedUrl(raw) {
+    var value = String(raw || '').trim();
+    if (!value) return '';
+    try {
+      var parsed = new URL(value, window.location.origin);
+      if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') return '';
+      if (URL_HOSTS.indexOf(parsed.hostname) === -1) return '';
+      return parsed.protocol + '//' + parsed.hostname + parsed.pathname;
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function currentPageUrl() {
+    return sanitizedUrl(window.location.href);
+  }
+
   function normalizeParams(params) {
     var out = {
       page_title: document.title,
       page_path: window.location.pathname,
-      source_url: window.location.href,
+      source_url: currentPageUrl(),
     };
 
     Object.keys(params || {}).forEach(function (key) {
@@ -345,7 +486,7 @@
       event_time: unixTime(),
       event_id: id,
       action_source: 'website',
-      event_source_url: window.location.href,
+      event_source_url: currentPageUrl(),
       user_data: {
         client_user_agent: navigator.userAgent,
         fbc: getCookie('_fbc'),
@@ -447,27 +588,37 @@
       };
     }
 
-    if (isPricingMedium(medium) && content === 'pro') {
+    // CLIQUE NAO E CONVERSAO.
+    //
+    // Este bloco emitia `InitiateCheckout` quando alguem clicava no botao do
+    // plano PRO, e `Lead` em qualquer outro clique para o app. Nenhum dos dois
+    // era verdade: `InitiateCheckout` significa "checkout iniciado", e a
+    // autoridade dele e o backend, quando um pedido e criado de verdade;
+    // `Lead` significa que existe um lead qualificado, e um clique num link
+    // nao qualifica ninguem.
+    //
+    // O custo disso nao era so semantico: eram os DOIS eventos padrao da Meta
+    // mais proximos de compra sendo alimentados com cliques, o que treina a
+    // otimizacao a buscar quem clica em vez de quem paga.
+    //
+    // O que sobra sao eventos PROPRIOS, que descrevem o que de fato
+    // aconteceu — um clique — e que nao podem ser confundidos com conversao
+    // por nenhum painel.
+    if (isPricingMedium(medium)) {
       return {
-        eventName: 'InitiateCheckout',
+        eventName: 'pricing_cta_click',
         params: {
-          content_name: 'pro_plan',
-          content_category: 'subscription',
-          currency: 'BRL',
-          cta: label,
-          destination: url.href,
-          plan_period: url.searchParams.get('utm_term') || 'annual',
+          plan: content === 'pro' ? 'pro' : (content === 'free' ? 'free' : 'unknown'),
+          cta_position: link.getAttribute('data-cta-position') || '',
         },
       };
     }
 
     return {
-      eventName: 'Lead',
+      eventName: 'app_cta_click',
       params: {
-        content_name: content === 'free' ? 'free_plan' : 'web_app',
-        content_category: isPricingMedium(medium) ? 'pricing' : 'landing_to_app',
-        cta: label,
-        destination: url.href,
+        surface: content === 'free' ? 'free_plan' : 'web_app',
+        cta_position: link.getAttribute('data-cta-position') || '',
       },
     };
   }
@@ -481,7 +632,7 @@
 
   // === Ponte de atribuicao App Store -> cadastro ===
   // Endpoint same-origin (rewrite de hosting -> Cloud Function recordAppStoreClick).
-  var APP_STORE_BRIDGE_ENDPOINT = '/_bridge/appstore-click';
+  // Resolvido em runtime junto com os demais (ver resolveEndpoints).
 
   function isAppStoreLink(link) {
     if (link.getAttribute('data-event') === 'app_store_click') return true;
@@ -492,6 +643,9 @@
   function appStoreBridgePayload() {
     var params = currentMarketingParams();
     return {
+      // A ponte SO grava com referencia assinada e concedida. Sem ela o
+      // servidor recusa — cookie e query string nao provam consentimento.
+      consentReference: consentReference,
       fbc: getCookie('_fbc'),
       fbp: getCookie('_fbp'),
       utm_source: params.utm_source || '',
@@ -512,9 +666,9 @@
     try {
       var body = JSON.stringify(payload);
       if (navigator.sendBeacon) {
-        navigator.sendBeacon(APP_STORE_BRIDGE_ENDPOINT, body);
+        navigator.sendBeacon(endpoints.appStoreBridge, body);
       } else {
-        window.fetch(APP_STORE_BRIDGE_ENDPOINT, {
+        window.fetch(endpoints.appStoreBridge, {
           method: 'POST',
           body: body,
           keepalive: true,

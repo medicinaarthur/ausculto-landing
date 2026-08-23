@@ -5,7 +5,7 @@
   "description": "Ausculto marketing site (auscultoapp.com) — static hosting mirror. QA tooling only; all tools run via npx --yes, no installed dependencies.",
   "scripts": {
     "serve": "npx --yes serve .",
-    "check:js": "node --check meta_tracking.js && node --check assets/js/main.js && node --check assets/js/enamed.js && node --check scripts/build-enamed.mjs && node --check scripts/guard-site-deploy.mjs",
+    "check:js": "node --check meta_tracking.js && node --check assets/js/main.js && node --check assets/js/enamed.js && node --check scripts/build-enamed.mjs && node --check scripts/guard-site-deploy.mjs && node --check scripts/test-tracking-contract.mjs",
     "check:html": "npx --yes html-validate \"**/*.html\"",
     "check:format": "npx --yes prettier --check \"**/*.{html,css,js,json,md}\"",
     "qa:links": "npx --yes broken-link-checker http://localhost:3000 -ro",
@@ -14,7 +14,8 @@
     "qa:shots": "npx --yes playwright screenshot --viewport-size=1280,800 http://localhost:3000 qa-home.png",
     "build:enamed": "node scripts/build-enamed.mjs",
     "verify:enamed": "node scripts/build-enamed.mjs --verify",
-    "deploy:enamed:preview": "npm run build:enamed && firebase hosting:channel:deploy qa --only enamed --project auscultoapp",
-    "serve:enamed": "npm run build:enamed && npx --yes serve dist/enamed"
+    "deploy:enamed:preview": "npm run test:tracking && npm run build:enamed && firebase hosting:channel:deploy qa --only enamed --project auscultoapp",
+    "serve:enamed": "npm run build:enamed && npx --yes serve dist/enamed",
+    "test:tracking": "node scripts/test-tracking-contract.mjs"
   }
 }

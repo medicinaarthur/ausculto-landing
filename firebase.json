@@ -84,7 +84,8 @@
           "headers": [
             {
               "key": "Content-Security-Policy",
-              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; media-src 'self'; font-src 'self'; connect-src 'self' https://www.facebook.com https://connect.facebook.net; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'"
+              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; media-src 'self'; font-src 'self'; connect-src 'self' https://www.facebook.com https://connect.facebook.net https://us-central1-auscultoapp-meta-staging.cloudfunctions.net; frame-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'",
+              "_comment_csp": "A origem `us-central1-auscultoapp-meta-staging.cloudfunctions.net` existe SOMENTE para o preview poder falar com as Functions de staging: um rewrite nao atravessa projetos. Ela TEM DE SAIR antes do release live, quando os rewrites same-origin passam a resolver tudo dentro de auscultoapp. Item explicito do lote de aprovacao."
             },
             {
               "key": "X-Content-Type-Options",
@@ -160,6 +161,17 @@
               "value": "public, max-age=31536000, immutable"
             }
           ]
+        }
+      ],
+      "_comment": "Rewrites same-origin para as Functions de PRODUCAO. Um rewrite de Hosting so alcanca Functions do MESMO projeto Firebase (auscultoapp), por isso o preview NAO os usa: la o script chama as URLs HTTPS diretas do projeto de staging, escolhidas em runtime pelo hostname (ver resolveEndpoints em meta_tracking.js). Em producao estes rewrites eliminam CORS e mantem o connect-src restrito ao proprio dominio.",
+      "rewrites": [
+        {
+          "source": "/_consent/reference",
+          "function": "issueMarketingConsentReference"
+        },
+        {
+          "source": "/_bridge/appstore-click",
+          "function": "recordAppStoreClick"
         }
       ]
     }
