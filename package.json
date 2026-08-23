@@ -14,7 +14,7 @@
     "qa:shots": "npx --yes playwright screenshot --viewport-size=1280,800 http://localhost:3000 qa-home.png",
     "build:enamed": "node scripts/build-enamed.mjs",
     "verify:enamed": "node scripts/build-enamed.mjs --verify",
-    "deploy:enamed:preview": "npm run test:tracking && npm run build:enamed && firebase hosting:channel:deploy qa --only enamed --project auscultoapp",
+    "deploy:enamed:preview": "npm run test:tracking && npm run build:enamed && firebase hosting:channel:deploy qa --config firebase.preview.json --only enamed --project auscultoapp --expires 7d",
     "serve:enamed": "npm run build:enamed && npx --yes serve dist/enamed",
     "test:tracking": "node scripts/test-tracking-contract.mjs"
   }
