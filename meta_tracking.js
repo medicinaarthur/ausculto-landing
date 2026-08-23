@@ -25,9 +25,11 @@
 
   var pixelId = String(config.pixelId || '').trim();
   var capiEndpoint = String(config.capiEndpoint || '').trim();
-  var appHostnames = Array.isArray(config.appHostnames) && config.appHostnames.length
+  // O host do preview entra na lista de hosts "do app" para que os CTAs sejam
+  // classificados e receberem atribuicao igual aos de producao.
+  var appHostnames = (Array.isArray(config.appHostnames) && config.appHostnames.length
     ? config.appHostnames
-    : defaults.appHostnames;
+    : defaults.appHostnames).concat(['auscultoapp-webapp--gate-c-mcyyb19w.web.app']);
   var pixelInitialized = false;
 
   function debug() {
@@ -127,6 +129,15 @@
   var STAGING_FUNCTIONS_BASE =
     'https://us-central1-auscultoapp-meta-staging.cloudfunctions.net';
 
+  // O webapp de destino, tambem por hostname. Num preview da landing, os CTAs
+  // tem de levar ao PREVIEW do webapp: apontar para producao faria o QA testar
+  // um bundle que nao tem nada do que esta sendo validado — o `returnTo`, o
+  // resgate da referencia, a interface de consentimento. E o clique cairia
+  // numa home generica, que e exatamente o beco sem saida que esta rodada
+  // existe para nao criar.
+  var STAGING_APP_HOST = 'auscultoapp-webapp--gate-c-mcyyb19w.web.app';
+  var PRODUCTION_APP_HOST = 'app.auscultoapp.com';
+
   function resolveEndpoints() {
     var host = String(window.location.hostname || '').toLowerCase();
     if (STAGING_PREVIEW_HOSTS.indexOf(host) !== -1) {
@@ -134,6 +145,7 @@
         environment: 'staging',
         consentReference: STAGING_FUNCTIONS_BASE + '/issueMarketingConsentReference',
         appStoreBridge: STAGING_FUNCTIONS_BASE + '/recordAppStoreClick',
+        appHost: STAGING_APP_HOST,
       };
     }
     // Producao e qualquer outro host: same-origin. O default e o caminho que
@@ -142,6 +154,7 @@
       environment: 'production',
       consentReference: '/_consent/reference',
       appStoreBridge: '/_bridge/appstore-click',
+      appHost: PRODUCTION_APP_HOST,
     };
   }
 
@@ -332,6 +345,12 @@
     }
 
     if (appHostnames.indexOf(url.hostname) === -1) return null;
+
+    // Reescreve o host para o do ambiente. O HTML sempre traz o host de
+    // producao; num preview, o clique tem de ir ao preview.
+    if (url.hostname !== endpoints.appHost) {
+      url.hostname = endpoints.appHost;
+    }
 
     var incoming = currentMarketingParams();
     var hasIncomingAttribution = Object.keys(incoming).length > 0;

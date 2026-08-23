@@ -321,6 +321,39 @@ async function testReferenceReachesAppLinks() {
       "e returnTo continua intacto");
 }
 
+// ── 9. O CTA aponta para o webapp do AMBIENTE ────────────────────────────
+function testAppHostFollowsEnvironment() {
+  const fazerLink = () => makeLink(
+      "https://app.auscultoapp.com/?utm_medium=ads_enamed" +
+      "&returnTo=enamed-diagnostico",
+      {"data-event": "enamed_cta_click"});
+
+  // Producao: o host do HTML permanece.
+  const prodLink = fazerLink();
+  const prod = makeEnv({
+    consent: "granted", url: "https://enamed.auscultoapp.com/",
+    links: [prodLink],
+  });
+  prod.click(prodLink);
+  assert.equal(new URL(prodLink._map.href).hostname, "app.auscultoapp.com",
+      "em producao o CTA vai para o webapp de producao");
+
+  // Preview: o CTA tem de ir ao PREVIEW do webapp. Apontar para producao
+  // faria o QA validar um bundle que nao tem o Gate C.
+  const previewLink = fazerLink();
+  const preview = makeEnv({
+    consent: "granted",
+    url: "https://auscultoapp-enamed--qa-3tldakhp.web.app/",
+    links: [previewLink],
+  });
+  preview.click(previewLink);
+  const destino = new URL(previewLink._map.href);
+  assert.equal(destino.hostname, "auscultoapp-webapp--gate-c-mcyyb19w.web.app",
+      "no preview o CTA vai para o preview do webapp");
+  assert.equal(destino.searchParams.get("returnTo"), "enamed-diagnostico",
+      "e returnTo sobrevive a reescrita do host");
+}
+
 const main = async () => {
   testClicksAreNotConversions();
   testDenyByDefault();
@@ -330,6 +363,7 @@ const main = async () => {
   testBridgeCarriesConsentReference();
   testLandingUtmDoesNotOverwritePaid();
   await testReferenceReachesAppLinks();
+  testAppHostFollowsEnvironment();
   console.log("test-tracking-contract: OK");
 };
 
