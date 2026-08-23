@@ -54,7 +54,8 @@ function makeEnv({
   links = [],
 } = {}) {
   const log = {
-    fbq: [], fetch: [], beacon: [], cookies: [], dataLayer: [],
+    fbq: [], fetch: [], beacon: [], cookies: [], cookieWrites: [],
+    cookieDeletes: [], dataLayer: [],
   };
   const cookies = new Map();
   const storage = new Map();
@@ -108,9 +109,17 @@ function makeEnv({
     set cookie(raw) {
       const [pair] = String(raw).split(";");
       const idx = pair.indexOf("=");
-      log.cookies.push({name: pair.slice(0, idx).trim(),
-        value: pair.slice(idx + 1)});
-      cookies.set(pair.slice(0, idx).trim(), pair.slice(idx + 1));
+      const nome = pair.slice(0, idx).trim();
+      const valor = pair.slice(idx + 1);
+      log.cookies.push({name: nome, value: valor});
+      // `Max-Age=0` e como um navegador apaga um cookie.
+      if (/Max-Age=0/i.test(raw)) {
+        log.cookieDeletes.push(nome);
+        cookies.delete(nome);
+        return;
+      }
+      log.cookieWrites.push({name: nome, value: valor});
+      cookies.set(nome, valor);
     },
     addEventListener: (name, fn) => {
       docListeners[name] = fn;
@@ -192,7 +201,7 @@ function testDenyByDefault() {
         {"data-event": "enamed_cta_click"}));
     assert.equal(log.fbq.length, 0,
         `consent=${consent}: nenhum evento pode ser disparado`);
-    const fbCookies = log.cookies.filter((c) => c.name === "_fbc" ||
+    const fbCookies = log.cookieWrites.filter((c) => c.name === "_fbc" ||
       c.name === "_fbp");
     assert.equal(fbCookies.length, 0,
         `consent=${consent}: nenhum cookie de atribuicao`);
@@ -354,6 +363,35 @@ function testAppHostFollowsEnvironment() {
       "e returnTo sobrevive a reescrita do host");
 }
 
+// ── 10. Recusar DEPOIS de conceder apaga o que ficou ─────────────────────
+//
+// Encontrado no QA em navegador real. O teste anterior nunca exercitou a
+// sequencia conceder→recusar na landing, e `deny()` apenas parava de
+// escrever: o `_fbp` ja gravado permanecia, e o script do Pixel continuava
+// carregado. Parar de chamar `track` nao e revogar.
+function testDenyAfterGrantPurges() {
+  // Com um `fbclid` na URL, conceder escreve `_fbc` — e `_fbp` quem escreve e
+  // o proprio script do Pixel, nao o nosso. Por isso a purga precisa APAGAR os
+  // dois, e nao apenas deixar de escreve-los.
+  const {win, log} = makeEnv({
+    consent: null,
+    url: "https://enamed.auscultoapp.com/?fbclid=CLIQUE123",
+  });
+
+  win.auscultoConsent.grant();
+  const escritos = log.cookieWrites.map((c) => c.name);
+  assert.ok(escritos.includes("_fbc"),
+      `conceder escreve _fbc a partir do fbclid (escreveu: ${escritos})`);
+
+  win.auscultoConsent.deny();
+  assert.ok(log.cookieDeletes.includes("_fbp"),
+      "recusar tem de APAGAR _fbp, nao so parar de escrever");
+  assert.ok(log.cookieDeletes.includes("_fbc"), "e _fbc tambem");
+  // E o Pixel recebe a revogacao — o script ja carregado continuaria vivo.
+  assert.ok(log.fbq.some((a) => a[0] === "consent" && a[1] === "revoke"),
+      "o Pixel tem de receber consent/revoke");
+}
+
 const main = async () => {
   testClicksAreNotConversions();
   testDenyByDefault();
@@ -364,6 +402,7 @@ const main = async () => {
   testLandingUtmDoesNotOverwritePaid();
   await testReferenceReachesAppLinks();
   testAppHostFollowsEnvironment();
+  testDenyAfterGrantPurges();
   console.log("test-tracking-contract: OK");
 };
 

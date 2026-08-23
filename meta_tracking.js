@@ -209,9 +209,41 @@
     url.searchParams.set('ac_ref', consentReference);
   }
 
+  // Apaga o que o marketing deixou. Espelha `purgeMarketingState` do webapp.
+  //
+  // Encontrado no QA em navegador real, e nao pelo teste no DOM sintetico —
+  // que nunca exercitou conceder-e-depois-recusar na landing. Ate aqui,
+  // `deny()` so parava de escrever: o `_fbp` ja gravado permanecia no
+  // navegador e o script do Pixel, ja carregado, continuava vivo. Parar de
+  // chamar `track` nao e o mesmo que revogar.
+  var MARKETING_COOKIES = ['_fbp', '_fbc'];
+
+  function purgeMarketingCookies() {
+    var hostname = window.location.hostname || '';
+    var dominios = [''];
+    if (/(^|\.)auscultoapp\.com$/i.test(hostname)) {
+      dominios.push('.auscultoapp.com');
+    }
+    for (var i = 0; i < MARKETING_COOKIES.length; i += 1) {
+      for (var j = 0; j < dominios.length; j += 1) {
+        document.cookie = MARKETING_COOKIES[i] +
+          '=; Max-Age=0; path=/' +
+          (dominios[j] ? '; Domain=' + dominios[j] : '');
+      }
+    }
+    // O Pixel tem revogacao propria: o script carregado continua ativo se
+    // apenas pararmos de chamar `track`.
+    if (typeof window.fbq === 'function') {
+      try { window.fbq('consent', 'revoke'); } catch (e) { /* estado parcial */ }
+    }
+    pixelInitialized = false;
+    pageViewSent = false;
+  }
+
   function setConsentDecision(decision) {
     consentDecision = decision;
     writeConsentDecision(decision);
+    if (decision !== 'granted') purgeMarketingCookies();
     // A referencia e pedida para GRANTED e para DENIED. Registrar uma recusa
     // vale tanto quanto registrar um aceite: sem isso, a pessoa que recusou na
     // landing chega ao app como "sem decisao" e e perguntada de novo, o que e
