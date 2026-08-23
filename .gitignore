@@ -21,3 +21,14 @@ node_modules/
 # Sistema
 .DS_Store
 Thumbs.db
+
+# Cache do Firebase CLI. `.firebase/hosting.*.cache` guarda o inventario de
+# arquivos do ultimo deploy — e regenerado a cada publicacao e nao descreve o
+# site, descreve a maquina que publicou.
+.firebase/
+
+# Ferramental de agente. Nao faz parte do site, e o `ignore` do firebase.json
+# ja o exclui do deploy; faltava exclui-lo do git.
+.agents/
+.claude/
+skills-lock.json
