@@ -218,23 +218,43 @@
   // chamar `track` nao e o mesmo que revogar.
   var MARKETING_COOKIES = ['_fbp', '_fbc'];
 
-  function purgeMarketingCookies() {
-    var hostname = window.location.hostname || '';
-    var dominios = [''];
-    if (/(^|\.)auscultoapp\.com$/i.test(hostname)) {
-      dominios.push('.auscultoapp.com');
+  // Os escopos de dominio em que um cookie de marketing pode ter sido gravado.
+  //
+  // Apagar um cookie exige casar o Domain com que ele foi criado. O `_fbc` e
+  // nosso e e host-only, entao `path=/` sem Domain basta — mas o `_fbp` e
+  // gravado pelo PROPRIO script do Pixel, com Domain explicito, e uma delecao
+  // host-only simplesmente nao o alcanca. Foi assim que ele sobreviveu a
+  // recusa no QA: a purga rodava e nao apagava nada.
+  //
+  // A escada cobre: host-only, o host exato, o host com ponto, e cada dominio
+  // pai ate o registravel.
+  function cookieDomainScopes() {
+    var host = String(window.location.hostname || '');
+    var escopos = ['', host, '.' + host];
+    var partes = host.split('.');
+    for (var i = 1; i < partes.length - 1; i += 1) {
+      escopos.push('.' + partes.slice(i).join('.'));
     }
+    return escopos;
+  }
+
+  function purgeMarketingCookies() {
+    // A ORDEM IMPORTA, e foi medida. Revogar PRIMEIRO, apagar DEPOIS.
+    //
+    // O Pixel tem revogacao propria — o script ja carregado continua ativo se
+    // apenas pararmos de chamar `track`. E enquanto ele estiver ativo, ele
+    // REESCREVE o `_fbp` que acabamos de apagar: no QA, a purga rodava, o
+    // cookie sumia, e ele reaparecia antes da proxima leitura.
+    if (typeof window.fbq === 'function') {
+      try { window.fbq('consent', 'revoke'); } catch (e) { /* estado parcial */ }
+    }
+    var dominios = cookieDomainScopes();
     for (var i = 0; i < MARKETING_COOKIES.length; i += 1) {
       for (var j = 0; j < dominios.length; j += 1) {
         document.cookie = MARKETING_COOKIES[i] +
           '=; Max-Age=0; path=/' +
           (dominios[j] ? '; Domain=' + dominios[j] : '');
       }
-    }
-    // O Pixel tem revogacao propria: o script carregado continua ativo se
-    // apenas pararmos de chamar `track`.
-    if (typeof window.fbq === 'function') {
-      try { window.fbq('consent', 'revoke'); } catch (e) { /* estado parcial */ }
     }
     pixelInitialized = false;
     pageViewSent = false;
