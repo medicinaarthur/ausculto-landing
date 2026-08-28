@@ -8,7 +8,7 @@
  * inventario de Cloud Functions, o appId, e-mails de service account e os
  * nomes dos secrets. Os targets explicitos resolvem metade do problema; esta
  * trava resolve a outra metade, porque um `firebase deploy` sem `--only`
- * ainda alcancaria os dois sites.
+ * ainda alcancaria os tres sites.
  *
  * Como e um `predeploy` do bloco "site", ele roda ANTES da publicacao e um
  * exit diferente de zero aborta o deploy inteiro. O deploy do target `enamed`

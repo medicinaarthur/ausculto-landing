@@ -1,5 +1,5 @@
 {
-  "_comment": "Dois sites, dois targets EXPLICITOS. 'site' e a landing principal existente (auscultoapp.com) e permanece byte a byte com o comportamento observado ao vivo em 2026-08-21 — a unica mudanca e o 'ignore' endurecido e o predeploy de guarda, ambos estritamente para impedir publicacao acidental. 'enamed' e o site novo e isolado, que publica SOMENTE o artefato gerado por scripts/build-enamed.mjs. Nenhum dos dois blocos faz deploy de Cloud Functions: o rewrite de /_bridge/appstore-click apenas CONSOME a function recordAppStoreClick, administrada pelo repositorio do app.",
+  "_comment": "Tres sites, tres targets EXPLICITOS. 'site' preserva a landing principal, 'enamed' publica somente dist/enamed e 'parceiros' publica somente parceiros/public. Nenhum bloco faz deploy de Cloud Functions; os rewrites apenas consomem Functions administradas pelo repositorio do app.",
   "hosting": [
     {
       "target": "site",
@@ -22,6 +22,7 @@
         "dist/**",
         "scripts/**",
         "enamed/**",
+        "parceiros/**",
         "qa-*.png"
       ],
       "rewrites": [
@@ -173,6 +174,71 @@
         {
           "source": "/_bridge/appstore-click",
           "function": "recordAppStoreClick"
+        }
+      ]
+    },
+    {
+      "target": "parceiros",
+      "public": "parceiros/public",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "/r/**",
+          "function": "partnerLinkRedirect",
+          "region": "us-central1"
+        },
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "X-Frame-Options",
+              "value": "DENY"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "camera=(), microphone=(), geolocation=()"
+            },
+            {
+              "key": "X-Robots-Tag",
+              "value": "noindex, nofollow, noarchive"
+            }
+          ]
+        },
+        {
+          "source": "@(index.html|app.js|config.js|coupon_ui.js|styles.css)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(png|jpg|jpeg|svg|webp|woff|woff2)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=86400, must-revalidate"
+            }
+          ]
         }
       ]
     }

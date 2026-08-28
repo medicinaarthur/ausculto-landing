@@ -1,0 +1,16 @@
+{
+  "name": "parceiros-ausculto-portal",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portal do Embaixador do Ausculto (parceiros.auscultoapp.com)",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate:repo": "node scripts/validate_repository.cjs",
+    "test:coupon-ui": "node scripts/test_coupon_ui.mjs",
+    "verify:qr": "node scripts/verify_qr.mjs",
+    "serve:local": "node scripts/serve_local.cjs"
+  }
+}

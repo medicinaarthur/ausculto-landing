@@ -5,7 +5,7 @@
   "description": "Ausculto marketing site (auscultoapp.com) — static hosting mirror. QA tooling only; all tools run via npx --yes, no installed dependencies.",
   "scripts": {
     "serve": "npx --yes serve .",
-    "check:js": "node --check meta_tracking.js && node --check assets/js/main.js && node --check assets/js/enamed.js && node --check scripts/build-enamed.mjs && node --check scripts/guard-site-deploy.mjs && node --check scripts/test-tracking-contract.mjs",
+    "check:js": "node --check meta_tracking.js && node --check assets/js/main.js && node --check assets/js/enamed.js && node --check scripts/build-enamed.mjs && node --check scripts/guard-site-deploy.mjs && node --check scripts/test-tracking-contract.mjs && node --check parceiros/public/app.js && node --check parceiros/public/coupon_ui.js && node --check parceiros/scripts/validate_repository.cjs && node --check parceiros/scripts/test_coupon_ui.mjs",
     "check:html": "npx --yes html-validate \"**/*.html\"",
     "check:format": "npx --yes prettier --check \"**/*.{html,css,js,json,md}\"",
     "qa:links": "npx --yes broken-link-checker http://localhost:3000 -ro",
@@ -16,6 +16,9 @@
     "verify:enamed": "node scripts/build-enamed.mjs --verify",
     "deploy:enamed:preview": "npm run test:tracking && npm run build:enamed && firebase hosting:channel:deploy qa --config firebase.preview.json --only enamed --project auscultoapp --expires 7d",
     "serve:enamed": "npm run build:enamed && npx --yes serve dist/enamed",
+    "serve:parceiros": "node parceiros/scripts/serve_local.cjs",
+    "verify:parceiros": "node parceiros/scripts/validate_repository.cjs && node parceiros/scripts/test_coupon_ui.mjs",
+    "verify:partner-qr": "npm --prefix parceiros run verify:qr",
     "test:tracking": "node scripts/test-tracking-contract.mjs"
   }
 }

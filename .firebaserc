@@ -1,5 +1,4 @@
 {
-  "_comment": "Targets EXPLICITOS. Sem eles, 'firebase deploy' publica no site default do projeto (auscultoapp = auscultoapp.com, producao). Com eles, todo deploy exige --only hosting:<target> e nao ha caminho acidental para producao. O bloco 'projects' foi reconstruido em 2026-08-21 a partir do comportamento observado ao vivo; os targets foram adicionados em 2026-08-23 e conferidos contra 'firebase hosting:sites:list --project auscultoapp'.",
   "projects": {
     "default": "auscultoapp"
   },
@@ -11,8 +10,13 @@
         ],
         "enamed": [
           "auscultoapp-enamed"
+        ],
+        "parceiros": [
+          "auscultoapp-parceiros"
         ]
       }
     }
-  }
+  },
+  "etags": {},
+  "_comment": "Targets EXPLICITOS. Sem eles, 'firebase deploy' publica no site default do projeto (auscultoapp = auscultoapp.com, producao). Com eles, cada site pode ser publicado isoladamente com --only hosting:<target>. O target parceiros aponta somente para auscultoapp-parceiros."
 }
