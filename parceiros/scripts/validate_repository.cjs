@@ -104,7 +104,9 @@ assert(!/getFirestore|collection\(/.test(appJs),
 assert(appJs.includes("initializeAppCheck"),
     "o App Check é obrigatório no portal");
 assert(appJs.includes("coupon.shareable === true") &&
-  appJs.includes('$("qr-block").classList.toggle("hidden", unavailable)'),
+  appJs.includes('$("link-block").classList.toggle("hidden", !shareable)') &&
+  appJs.includes("function resetQr()") &&
+  appJs.includes('if (!activeLink) return;'),
 "QR e divulgação precisam ficar ocultos quando o cupom não estiver disponível");
 assert(!appJs.includes("ganhe PRO grátis") &&
   couponUiJs.includes("couponBenefitLabel"),

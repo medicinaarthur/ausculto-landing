@@ -1,9 +1,5 @@
-// Portal do Embaixador — lógica do cliente.
-//
-// Tudo aparece a partir de callables com App Check + assertPartner no
-// servidor. O cliente não lê Firestore (as regras negam) e nunca envia o
-// código do cupom: o servidor o deriva do e-mail autenticado. Não há aqui
-// nada que valha a pena adulterar.
+// Portal do Embaixador — cliente sem acesso direto ao Firestore. Código,
+// métricas e extrato sempre são derivados da identidade autenticada no backend.
 
 import {initializeApp} from
   "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -28,37 +24,42 @@ import {couponBenefitLabel, couponShareText} from "/coupon_ui.js";
 
 const CONFIG = window.AUSCULTO_PARTNER_CONFIG || {};
 const EMAIL_KEY = "ausculto_partner_email";
-
 const $ = (id) => document.getElementById(id);
 
+const money = (value) => {
+  const number = Number(value);
+  return Number.isFinite(number) ?
+    number.toLocaleString("pt-BR", {style: "currency", currency: "BRL"}) :
+    "—";
+};
+
+const count = (value) => {
+  if (value === null || value === undefined) return "—";
+  const number = Number(value);
+  return Number.isFinite(number) ? number.toLocaleString("pt-BR") : "—";
+};
+
 function view(id) {
-  for (const v of ["view-gate", "view-finishing", "view-dash"]) {
-    $(v).classList.toggle("hidden", v !== id);
+  for (const candidate of ["view-gate", "view-finishing", "view-dash"]) {
+    $(candidate).classList.toggle("hidden", candidate !== id);
   }
 }
 
-function say(el, text, kind) {
-  el.textContent = text;
-  el.className = `note note--${kind}`;
+function notice(element, text, kind = "bad") {
+  element.textContent = text;
+  element.className = `notice notice--${kind}`;
 }
 
-const money = (v) => {
-  const n = Number(v);
-  if (!Number.isFinite(n)) return "—";
-  return n.toLocaleString("pt-BR", {style: "currency", currency: "BRL"});
-};
+let toastTimer = null;
+function toast(text) {
+  const element = $("toast");
+  element.textContent = text;
+  element.classList.remove("hidden");
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => element.classList.add("hidden"), 1800);
+}
 
-const count = (v) => {
-  if (v === null || v === undefined) return null;
-  const n = Number(v);
-  return Number.isFinite(n) ? n.toLocaleString("pt-BR") : null;
-};
-
-const pct = (v) => (v === null || v === undefined ? null : `${v}%`);
-
-// ── Arranque ────────────────────────────────────────────────────────────
 const app = initializeApp(CONFIG.firebase || {});
-
 let appCheckOk = false;
 if (CONFIG.recaptchaSiteKey) {
   try {
@@ -73,56 +74,53 @@ if (CONFIG.recaptchaSiteKey) {
 }
 
 const auth = getAuth(app);
-const fns = getFunctions(app, CONFIG.functionsRegion || "us-central1");
-const call = (name) => httpsCallable(fns, name);
+const functions = getFunctions(app, CONFIG.functionsRegion || "us-central1");
+const call = (name) => httpsCallable(functions, name);
 
-// ── Entrada ─────────────────────────────────────────────────────────────
-const form = $("login-form");
-const msg = $("login-msg");
-const submit = $("login-submit");
+// Entrada por link de e-mail.
+const loginForm = $("login-form");
+const loginMessage = $("login-msg");
+const loginSubmit = $("login-submit");
 
-form.addEventListener("submit", async (event) => {
+loginForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const email = $("email").value.trim().toLowerCase();
   if (!email || !email.includes("@")) {
-    say(msg, "Digite um e-mail válido.", "bad");
+    notice(loginMessage, "Digite um e-mail válido.", "bad");
     return;
   }
 
-  submit.disabled = true;
-  submit.textContent = "Enviando…";
+  loginSubmit.disabled = true;
+  loginSubmit.textContent = "Enviando…";
   try {
     await call("partnerRequestLoginLink")({email});
     try {
       localStorage.setItem(EMAIL_KEY, email);
-    } catch (error) {
-      // Navegação privada pode bloquear; pedimos o e-mail de novo depois.
+    } catch (_) {
+      // O fluxo pede o e-mail novamente se o armazenamento estiver bloqueado.
     }
-    // Resposta idêntica para e-mail cadastrado ou não: o portal não serve
-    // para descobrir quem é embaixador do programa.
-    say(msg, "Se este e-mail estiver no programa, o link chega em " +
-      "instantes. Confira também o spam.", "ok");
-    form.reset();
+    notice(loginMessage,
+        "Se este e-mail estiver no programa, o link chega em instantes. Confira também o spam.",
+        "ok");
+    loginForm.reset();
   } catch (error) {
-    say(msg, "Não conseguimos enviar agora. Tente de novo em alguns " +
-      "minutos.", "bad");
+    notice(loginMessage,
+        "Não conseguimos enviar o link agora. Aguarde alguns minutos e tente novamente.",
+        "bad");
     console.error(error);
   } finally {
-    submit.disabled = false;
-    submit.textContent = "Receber link de acesso";
+    loginSubmit.disabled = false;
+    loginSubmit.textContent = "Receber link de acesso";
   }
 });
 
-// ── Conclusão do login pelo link ────────────────────────────────────────
 async function finishSignIn(email, link) {
   await signInWithEmailLink(auth, email, link);
   try {
     localStorage.removeItem(EMAIL_KEY);
-  } catch (error) {
-    // sem problema
+  } catch (_) {
+    // Sem impacto no login concluído.
   }
-  // Tira os parâmetros da barra de endereços para o link, ainda válido,
-  // não ser recompartilhado sem querer.
   window.history.replaceState({}, document.title, "/");
 }
 
@@ -132,7 +130,7 @@ async function handleLink() {
   let email = "";
   try {
     email = localStorage.getItem(EMAIL_KEY) || "";
-  } catch (error) {
+  } catch (_) {
     email = "";
   }
 
@@ -142,14 +140,13 @@ async function handleLink() {
     $("finishing-extra").classList.remove("hidden");
     $("confirm-submit").addEventListener("click", async () => {
       const typed = $("confirm-email").value.trim().toLowerCase();
-      if (!typed) return;
+      if (!typed || !typed.includes("@")) return;
       try {
         await finishSignIn(typed, href);
       } catch (error) {
-        say($("finishing-error"),
-            "Não foi possível entrar com este link. Peça um novo acesso.",
+        notice($("finishing-error"),
+            "Não foi possível entrar com este link. Solicite um novo acesso.",
             "bad");
-        $("finishing-error").classList.remove("hidden");
         console.error(error);
       }
     });
@@ -159,22 +156,72 @@ async function handleLink() {
   try {
     await finishSignIn(email, href);
   } catch (error) {
-    say($("finishing-error"),
-        "Este link expirou ou já foi usado. Peça um novo acesso.", "bad");
-    $("finishing-error").classList.remove("hidden");
+    notice($("finishing-error"),
+        "Este link expirou ou já foi usado. Solicite um novo acesso.", "bad");
     console.error(error);
   }
 }
 
-// ── Painel ──────────────────────────────────────────────────────────────
+let selectedPeriod = 30;
+let currentDashboard = null;
+let dashboardRequest = 0;
+let activeLink = "";
+
+function setPrimaryError(text, showRetry = true) {
+  $("dash-status-text").textContent = text;
+  $("retry-dashboard").classList.toggle("hidden", !showRetry);
+  $("dash-status").className = "notice notice--bad";
+}
+
+function clearPrimaryError() {
+  $("dash-status").classList.add("hidden");
+}
+
+function setLoading(initial) {
+  $("dash-loading").classList.toggle("hidden", !initial);
+  $("dash-loading").setAttribute("aria-busy", initial ? "true" : "false");
+  document.querySelectorAll("[data-period]").forEach((button) => {
+    button.disabled = true;
+  });
+}
+
+function finishLoading() {
+  $("dash-loading").classList.add("hidden");
+  $("dash-loading").setAttribute("aria-busy", "false");
+  document.querySelectorAll("[data-period]").forEach((button) => {
+    button.disabled = false;
+  });
+}
+
 function renderIdentity(data) {
   $("who-name").textContent = data.partner?.name || "Embaixador(a)";
+  const plan = data.compensationPlan || {};
+  $("plan-label").textContent = plan.kind === "commission" ?
+    `Plano com comissão${plan.ratePercent ? ` · ${plan.ratePercent}%` : ""}` :
+    "Benefícios do programa";
+
   const tier = data.tier?.tier;
-  if (!tier) return;
   const medal = $("medal");
-  $("medal-label").textContent = tier.label;
-  medal.classList.remove("hidden");
-  medal.classList.toggle("medal--ouro", tier.id === "ouro");
+  medal.classList.toggle("hidden", !tier);
+  if (tier) {
+    $("medal-label").textContent = tier.label;
+    medal.classList.toggle("level-badge--gold", tier.id === "ouro");
+  }
+}
+
+function resetQr() {
+  activeLink = "";
+  $("qr-mount").replaceChildren();
+  $("qr-panel").classList.add("hidden");
+  $("show-qr").textContent = "Gerar QR code";
+  const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  icon.setAttribute("class", "icon");
+  icon.setAttribute("viewBox", "0 0 24 24");
+  icon.setAttribute("aria-hidden", "true");
+  const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttribute("href", "#i-qr");
+  icon.appendChild(use);
+  $("show-qr").prepend(icon);
 }
 
 function renderCredential(data) {
@@ -184,24 +231,25 @@ function renderCredential(data) {
   const link = shareable ?
     (data.partner?.trackedLink || data.partner?.link || "") : "";
   $("code").textContent = code || "—";
+  $("code").dataset.value = code;
   $("coupon-benefit").textContent = couponBenefitLabel(coupon);
-  const url = $("link");
-  url.textContent = link || "—";
-  url.title = link || "";
-  url.dataset.value = link;
+  $("share-summary").textContent = shareable ?
+    `${couponBenefitLabel(coupon)} para quem usar o seu código.` :
+    "Seu histórico permanece disponível, mas este cupom não pode ser divulgado agora.";
 
+  const linkElement = $("link");
+  linkElement.textContent = link || "—";
+  linkElement.title = link;
+  linkElement.dataset.value = link;
   const warning = $("coupon-warning");
-  const unavailable = !shareable;
-  warning.classList.toggle("hidden", !unavailable);
-  warning.textContent = unavailable ?
-    `${coupon.message || "Este cupom não está disponível."} ` +
-      "O seu histórico continua visível, mas a divulgação está bloqueada." :
-    "";
-  $("code-copy").classList.toggle("hidden", unavailable);
-  $("link-block").classList.toggle("hidden", unavailable);
-  $("qr-block").classList.toggle("hidden", unavailable);
-
-  if (link) drawQr($("qr"), link);
+  warning.classList.toggle("hidden", shareable);
+  if (!shareable) {
+    warning.textContent = `${coupon.message || "Este cupom não está disponível."} A cópia, o compartilhamento e o QR code foram bloqueados.`;
+  }
+  $("code-copy").classList.toggle("hidden", !shareable);
+  $("link-block").classList.toggle("hidden", !shareable);
+  resetQr();
+  activeLink = link;
 
   const share = $("share");
   share.classList.add("hidden");
@@ -209,360 +257,422 @@ function renderCredential(data) {
   const shareText = couponShareText(coupon, code);
   if (navigator.share && link && shareText) {
     share.classList.remove("hidden");
-    share.onclick = () => {
-      navigator.share({
-        title: "Ausculto",
-        text: shareText,
-        url: link,
-      }).catch(() => {});
-    };
+    share.onclick = () => navigator.share({
+      title: "Ausculto",
+      text: shareText,
+      url: link,
+    }).catch(() => {});
   }
 }
 
-// O funil é o coração do painel. Barras proporcionais mostram onde perde;
-// quatro placas de tamanho igual esconderiam exatamente isso.
+$("show-qr").addEventListener("click", () => {
+  if (!activeLink) return;
+  const panel = $("qr-panel");
+  if (!panel.classList.contains("hidden")) {
+    panel.classList.add("hidden");
+    return;
+  }
+  const mount = $("qr-mount");
+  if (!mount.firstChild) {
+    const canvas = document.createElement("canvas");
+    canvas.width = 150;
+    canvas.height = 150;
+    canvas.setAttribute("aria-label", "QR code do seu link de divulgação");
+    mount.appendChild(canvas);
+    drawQr(canvas, activeLink);
+  }
+  panel.classList.remove("hidden");
+});
+
+function renderMetrics(data) {
+  const funnel = data.funnel || {};
+  $("k-clicks").textContent = funnel.clicksAvailable === true ?
+    count(funnel.clicks || 0) : "Indisponível";
+  $("k-clicks-note").textContent = funnel.clicksAvailable === true ?
+    "aberturas do seu link rastreado" :
+    "a medição desta seção falhou";
+  $("k-signups").textContent = data.availability?.signups === false ?
+    "Indisponível" : count(funnel.signupsAttributed || 0);
+  $("k-redemptions").textContent = count(funnel.redemptions || 0);
+  $("k-paid").textContent = count(funnel.paidCustomers || 0);
+  const conversion = funnel.redemptionToPaidPct ?? data.couponConversionPct;
+  $("k-conversion").textContent = funnel.redemptions > 0 ?
+    `${Number(conversion || 0).toLocaleString("pt-BR")}% dos resgates pagaram` :
+    "a conversão começa no primeiro resgate";
+  $("range-note").textContent =
+    `Indicadores dos últimos ${data.dateRange?.windowDays || selectedPeriod} dias.`;
+  if (data.dataAsOf) {
+    const date = new Date(data.dataAsOf);
+    $("data-as-of").textContent = Number.isNaN(date.getTime()) ? "" :
+      `Atualizado às ${date.toLocaleTimeString("pt-BR", {hour: "2-digit", minute: "2-digit"})}`;
+  }
+}
+
 function renderFunnel(data) {
-  const f = data.funnel || {};
-  const box = $("funnel");
-  box.textContent = "";
-
-  const clicksKnown = f.clicksAvailable === true;
+  const funnel = data.funnel || {};
   const stages = [
-    {
-      key: "clicks",
-      name: "Cliques no seu link",
-      sub: clicksKnown ? "abriram o seu link" :
-        "medição indisponível no momento",
-      value: clicksKnown ? Number(f.clicks) || 0 : null,
-    },
-    {
-      key: "signups",
-      name: "Cadastros pelo link",
-      sub: "chegaram e criaram conta",
-      value: Number(f.signupsAttributed) || 0,
-      dropFrom: clicksKnown && Number(f.clicks) > 0 ?
-        `${f.clickToSignupPct}% dos cliques` : null,
-    },
-    {
-      key: "redemptions",
-      name: "Resgates do cupom",
-      sub: "digitaram o seu código",
-      value: Number(f.redemptions) || 0,
-    },
-    {
-      key: "paid",
-      name: "Assinantes PRO",
-      sub: "viraram clientes pagos",
-      value: Number(f.paidCustomers) || 0,
-      paid: true,
-      dropFrom: f.signupToPaidPct === null || f.signupToPaidPct === undefined ?
-        null : `${f.signupToPaidPct}% de quem você trouxe`,
-    },
+    ["Visitas", funnel.clicksAvailable ? Number(funnel.clicks) || 0 : null,
+      "alcance pelo link"],
+    ["Cadastros", data.availability?.signups === false ? null :
+      Number(funnel.signupsAttributed) || 0, "aquisição pelo link"],
+    ["Resgates", Number(funnel.redemptions) || 0,
+      "uso efetivo do cupom"],
+    ["Assinantes pagos", Number(funnel.paidCustomers) || 0,
+      "assinatura após o resgate"],
   ];
-
-  const max = Math.max(1, ...stages.map((s) => s.value || 0));
-
-  for (const stage of stages) {
-    if (stage.dropFrom) {
-      const drop = document.createElement("p");
-      drop.className = "drop";
-      drop.textContent = stage.dropFrom;
-      box.appendChild(drop);
-    }
-
+  const maximum = Math.max(1, ...stages.map((stage) => stage[1] || 0));
+  const box = $("funnel");
+  box.replaceChildren();
+  stages.forEach(([label, value, description], index) => {
     const row = document.createElement("div");
-    row.className = stage.paid ? "stage stage--paid" : "stage";
-
+    row.className = index === stages.length - 1 ?
+      "funnel-row funnel-row--paid" : "funnel-row";
     const fill = document.createElement("span");
-    fill.className = "stage__fill";
-    row.appendChild(fill);
-
-    const label = document.createElement("div");
-    label.className = "stage__name";
-    label.textContent = stage.name;
-    if (stage.sub) {
-      const sub = document.createElement("span");
-      sub.className = "stage__sub";
-      sub.textContent = stage.sub;
-      label.appendChild(sub);
-    }
-    row.appendChild(label);
-
-    const figure = document.createElement("div");
-    if (stage.value === null) {
-      figure.className = "stage__unknown";
-      figure.textContent = "indisponível";
-    } else {
-      figure.className = "stage__figure tnum";
-      figure.textContent = count(stage.value);
-    }
-    row.appendChild(figure);
+    fill.className = "funnel-row__fill";
+    fill.style.setProperty("--fill", value === null ? "0%" :
+      `${Math.max(2, (value / maximum) * 100)}%`);
+    const text = document.createElement("span");
+    text.className = "funnel-row__text";
+    text.textContent = label;
+    const small = document.createElement("small");
+    small.textContent = description;
+    text.appendChild(small);
+    const figure = document.createElement("strong");
+    figure.className = value === null ?
+      "funnel-row__value funnel-row__value--unknown" :
+      "funnel-row__value";
+    figure.textContent = value === null ? "indisponível" : count(value);
+    row.append(fill, text, figure);
     box.appendChild(row);
-
-    // Único momento de movimento do painel: as barras crescem até o valor
-    // medido. Conta um estado, não decora. A largura final é estática; o
-    // que anima é a escala, que ao repouso vale 1.
-    fill.style.width = stage.value === null ?
-      "0%" :
-      `${Math.max(2, (stage.value / max) * 100)}%`;
-    requestAnimationFrame(() => {
-      fill.style.transform = "scaleX(1)";
-    });
-  }
-
-  const range = data.dateRange || {};
-  $("range-note").textContent = range.windowDays ?
-    `Números dos últimos ${range.windowDays} dias.` : "";
-}
-
-function renderMoney(data, statement) {
-  const e = data.earnings || {};
-  $("m-revenue").textContent = money(e.attributedRevenueBrl);
-  $("m-mrr").textContent = money(e.attributedMrrBrl);
-  $("m-commission").textContent = money(e.commissionDueBrl);
-  $("m-open").textContent = money(statement?.totals?.openBrl || 0);
-
-  const paid = Number(data.funnel?.paidCustomers) || 0;
-  $("m-revenue-note").textContent = paid > 0 ?
-    `De ${count(paid)} ${paid === 1 ? "assinante" : "assinantes"} que ` +
-      "vieram por você." :
-    "Ainda não houve assinatura atribuída ao seu código no período.";
-
-  const rate = Number(e.commissionRatePercent) || 0;
-  $("commission-note").textContent = rate > 0 ?
-    `Comissão de ${rate}% sobre a receita atribuída no período.` :
-    "A comissão do programa ainda não está ativa para o seu código. Os " +
-    "resultados seguem sendo contados normalmente.";
+    requestAnimationFrame(() => { fill.style.transform = "scaleX(1)"; });
+  });
 }
 
 function renderTier(data) {
-  const t = data.tier;
-  if (!t) return;
-  $("tier-now").textContent = t.tier?.label || "—";
-
-  const nomes = {redemptions: "resgates", paidCustomers: "assinantes"};
-  const falta = (Array.isArray(t.missing) ? t.missing : [])
-      .map((m) => `${m.need} ${nomes[m.metric] || m.metric}`)
+  const tier = data.tier;
+  if (!tier) {
+    $("tier-now").textContent = "Sem nível definido";
+    $("tier-gap").textContent = "A progressão ainda não foi configurada.";
+    return;
+  }
+  $("tier-now").textContent = tier.tier?.label || "—";
+  const metricNames = {redemptions: "resgates", paidCustomers: "assinantes"};
+  const missing = (tier.missing || [])
+      .map((item) => `${item.need} ${metricNames[item.metric] || item.metric}`)
       .join(" e ");
-  $("tier-gap").textContent = t.nextTier ?
-    `faltam ${falta} para ${t.nextTier.label}` :
-    "nível máximo alcançado";
-
+  $("tier-gap").textContent = tier.nextTier ?
+    `Faltam ${missing} para ${tier.nextTier.label}.` :
+    "Nível máximo alcançado.";
   const fill = $("tier-fill");
-  const gold = t.nextTier?.id === "ouro" || t.tier?.id === "ouro";
-  fill.classList.toggle("track__fill--gold", gold);
-  fill.style.width = `${t.progressPct || 0}%`;
-  requestAnimationFrame(() => {
-    fill.style.transform = "scaleX(1)";
-  });
-
+  const progress = Math.max(0, Math.min(100, Number(tier.progressPct) || 0));
+  fill.style.transform = `scaleX(${progress / 100})`;
+  fill.classList.toggle("gold", tier.nextTier?.id === "ouro" || tier.tier?.id === "ouro");
   const rungs = $("rungs");
-  rungs.textContent = "";
-  for (const entry of t.tiers || []) {
-    const chip = document.createElement("span");
-    chip.className = "medal";
-    // Dourado é dinheiro e código. Um nível alcançado que não seja o Ouro
-    // usa azul; só o Ouro é dourado.
-    if (entry.reached) {
-      chip.classList.add(entry.id === "ouro" ? "medal--ouro" : "medal--on");
+  rungs.replaceChildren();
+  for (const entry of tier.tiers || []) {
+    const item = document.createElement("span");
+    item.className = "rung";
+    if (entry.reached) item.classList.add("reached");
+    if (entry.reached && entry.id === "ouro") item.classList.add("gold");
+    item.textContent = entry.label;
+    rungs.appendChild(item);
+  }
+}
+
+function renderResults(data) {
+  const earnings = data.earnings || {};
+  const couponRevenue = earnings.couponRevenueBrl ??
+    earnings.attributedRevenueBrl;
+  $("m-revenue").textContent = money(couponRevenue);
+  $("m-mrr").textContent = money(earnings.attributedMrrBrl);
+  const paid = Number(data.funnel?.paidCustomers) || 0;
+  $("m-revenue-note").textContent = paid > 0 ?
+    `Resultado de ${count(paid)} ${paid === 1 ? "assinante" : "assinantes"} que resgataram o cupom e pagaram uma assinatura.` :
+    "Nenhuma assinatura paga foi atribuída ao cupom neste período.";
+}
+
+function sumStatementByStatus(rows, status) {
+  return (rows || []).filter((row) => row.status === status)
+      .reduce((sum, row) => sum + (Number(row.amountDueBrl) || 0), 0);
+}
+
+function renderFinance(data, statementResult) {
+  const plan = data.compensationPlan || {};
+  const program = data.commissionProgram || {};
+  const hasFinancialAccess = plan.kind === "commission" ||
+    program.hasHistory === true || program.planEnded === true;
+  $("sec-finance").classList.toggle("hidden", !hasFinancialAccess);
+  if (!hasFinancialAccess) return;
+
+  if (!statementResult.ok) {
+    $("statement-error").textContent =
+      "Não foi possível carregar o extrato. Os indicadores acima continuam válidos; tente atualizar a página para consultar pagamentos.";
+    $("statement-error").classList.remove("hidden");
+    $("statement-wrap").classList.add("hidden");
+    $("statement-empty").classList.add("hidden");
+    for (const id of ["m-pending", "m-review", "m-approved", "m-paid"]) {
+      $(id).textContent = "—";
     }
-    const dot = document.createElement("span");
-    dot.className = "medal__dot";
-    chip.appendChild(dot);
-    chip.appendChild(document.createTextNode(entry.label));
-    rungs.appendChild(chip);
-  }
-}
-
-function renderChart(series) {
-  const rows = Array.isArray(series) ? series : [];
-  if (!rows.length) {
-    $("sec-chart").classList.add("hidden");
     return;
   }
-  const box = $("chart");
-  box.textContent = "";
-  const max = Math.max(1, ...rows.map((r) => Number(r.redemptions) || 0));
-  rows.forEach((row, i) => {
-    const value = Number(row.redemptions) || 0;
-    const bar = document.createElement("div");
-    bar.className = value > 0 ? "chart__bar" : "chart__bar chart__bar--zero";
-    bar.title = `${row.day}: ${value} resgate(s)`;
-    bar.style.height = `${Math.max(4, (value / max) * 100)}%`;
-    bar.style.transitionDelay = `${Math.min(i * 12, 260)}ms`;
-    box.appendChild(bar);
-    requestAnimationFrame(() => {
-      bar.style.transform = "scaleY(1)";
-    });
-  });
-  const total = rows.reduce((n, r) => n + (Number(r.redemptions) || 0), 0);
-  $("chart-note").textContent =
-    `${count(total)} resgates nos últimos ${rows.length} dias.`;
-}
 
-function renderStatement(statement) {
+  $("statement-error").classList.add("hidden");
+  const statement = statementResult.value || {};
+  const rows = statement.commissions || [];
+  const totals = statement.totals || {};
+  $("m-pending").textContent = money(totals.pendingBrl ??
+    sumStatementByStatus(rows, "pending"));
+  $("m-review").textContent = money(totals.provisionalBrl || 0);
+  $("m-approved").textContent = money(totals.approvedBrl ??
+    sumStatementByStatus(rows, "approved"));
+  $("m-paid").textContent = money(totals.paidBrl ??
+    sumStatementByStatus(rows, "paid"));
+
+  if (program.planEnded || (plan.kind !== "commission" && rows.length)) {
+    $("commission-note").textContent =
+      "O plano financeiro foi encerrado. Novas cobranças não acumulam comissão; o histórico permanece disponível.";
+  } else if (program.engineEnabled !== true) {
+    $("commission-note").textContent =
+      "O motor financeiro está temporariamente pausado. Nenhum novo valor será acumulado enquanto estiver desligado.";
+  } else {
+    $("commission-note").textContent =
+      `Plano ativo a ${Number(plan.ratePercent || 0).toLocaleString("pt-BR")}% · retenção mínima de ${program.holdbackDays || 30} dias · aprovação manual.`;
+  }
+
   const body = $("statement");
-  body.textContent = "";
-  const rows = statement?.commissions || [];
+  body.replaceChildren();
+  $("statement-wrap").classList.toggle("hidden", rows.length === 0);
+  $("statement-empty").classList.toggle("hidden", rows.length > 0);
   if (!rows.length) {
-    $("sec-statement").querySelector(".scroller").classList.add("hidden");
     $("statement-empty").textContent =
-      "Ainda não há período apurado. Quando houver receita atribuída ao " +
-      "seu código, o extrato aparece aqui.";
+      "Ainda não há períodos financeiros apurados. Eles aparecem após uma cobrança elegível e o fechamento mensal.";
     return;
   }
+
   for (const row of rows) {
     const tr = document.createElement("tr");
-    const cells = [
-      [row.periodKey, ""],
-      [money(row.basisRevenueBrl), "num tnum"],
-      [`${row.ratePercent}%`, "num tnum"],
-      [money(row.amountDueBrl), "num tnum"],
-      [null, ""],
+    const values = [
+      row.periodKey,
+      money(row.basisRevenueBrl),
+      row.ratePercent ? `${row.ratePercent}%` : "Taxas variadas",
+      money(row.amountDueBrl),
     ];
-    cells.forEach(([text, cls], i) => {
+    values.forEach((value) => {
       const td = document.createElement("td");
-      if (cls) td.className = cls;
-      if (i === 4) {
-        const pill = document.createElement("span");
-        pill.className = row.status === "paid" ? "pill pill--paid" : "pill";
-        pill.textContent = row.statusLabel;
-        td.appendChild(pill);
-      } else {
-        td.textContent = text;
-      }
+      td.textContent = value;
       tr.appendChild(td);
     });
+    const statusCell = document.createElement("td");
+    const pill = document.createElement("span");
+    pill.className = row.status === "paid" ?
+      "status-pill status-pill--paid" : "status-pill";
+    pill.textContent = row.statusLabel || row.status;
+    statusCell.appendChild(pill);
+    tr.appendChild(statusCell);
     body.appendChild(tr);
   }
 }
 
-function renderKit(assets) {
-  const box = $("kit");
-  box.textContent = "";
-  const rows = Array.isArray(assets) ? assets : [];
-  if (!rows.length) {
-    $("kit-empty").textContent =
-      "As artes de divulgação chegam por aqui em breve. Enquanto isso, " +
-      "chame a gente no Instagram que enviamos.";
+function renderChart(seriesResult) {
+  const error = $("chart-error");
+  const wrap = $("chart-wrap");
+  if (!seriesResult.ok) {
+    error.textContent =
+      "O histórico diário não pôde ser carregado agora. Isso não transforma os resgates em zero.";
+    error.classList.remove("hidden");
+    wrap.classList.add("hidden");
     return;
   }
-  for (const asset of rows) {
-    const item = document.createElement("a");
-    item.className = "kit__item";
-    item.href = asset.url;
-    item.target = "_blank";
-    item.rel = "noopener";
+  error.classList.add("hidden");
+  wrap.classList.remove("hidden");
+  const rows = Array.isArray(seriesResult.value?.series) ?
+    seriesResult.value.series : [];
+  const chart = $("chart");
+  chart.replaceChildren();
+  const total = rows.reduce((sum, row) => sum + (Number(row.redemptions) || 0), 0);
+  if (!rows.length || total === 0) {
+    const empty = document.createElement("div");
+    empty.className = "chart-empty";
+    empty.textContent = "Ainda não houve resgates neste período.";
+    chart.appendChild(empty);
+    $("chart-note").textContent = "O gráfico começa a ser desenhado no primeiro uso do cupom.";
+    return;
+  }
+  const maximum = Math.max(...rows.map((row) => Number(row.redemptions) || 0));
+  rows.forEach((row) => {
+    const value = Number(row.redemptions) || 0;
+    const bar = document.createElement("span");
+    bar.className = value > 0 ? "chart-bar" : "chart-bar zero";
+    bar.style.setProperty("--height", `${Math.max(3, (value / maximum) * 100)}%`);
+    bar.title = `${row.day}: ${value} resgate(s)`;
+    chart.appendChild(bar);
+    requestAnimationFrame(() => { bar.style.transform = "scaleY(1)"; });
+  });
+  $("chart-note").textContent =
+    `${count(total)} resgates distribuídos em ${rows.length} dias.`;
+}
 
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("class", "icon");
-    svg.setAttribute("viewBox", "0 0 24 24");
-    svg.setAttribute("aria-hidden", "true");
+function renderAssets(assetsResult) {
+  const error = $("kit-error");
+  const empty = $("kit-empty");
+  const box = $("kit");
+  box.replaceChildren();
+  if (!assetsResult.ok) {
+    error.textContent =
+      "Os materiais não puderam ser carregados. Seu código e link continuam prontos para divulgação.";
+    error.classList.remove("hidden");
+    empty.classList.add("hidden");
+    return;
+  }
+  error.classList.add("hidden");
+  const assets = Array.isArray(assetsResult.value?.assets) ?
+    assetsResult.value.assets : [];
+  empty.classList.toggle("hidden", assets.length > 0);
+  if (!assets.length) {
+    empty.textContent =
+      "Ainda não há artes oficiais publicadas. Você já pode divulgar o código e o link acima; para uma peça específica, fale com o suporte.";
+    return;
+  }
+  for (const asset of assets) {
+    const link = document.createElement("a");
+    link.className = "kit-item";
+    link.href = asset.url;
+    link.target = "_blank";
+    link.rel = "noopener";
+    const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    icon.setAttribute("class", "icon");
+    icon.setAttribute("viewBox", "0 0 24 24");
+    icon.setAttribute("aria-hidden", "true");
     const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
     use.setAttribute("href", "#i-open");
-    svg.appendChild(use);
-    item.appendChild(svg);
-
-    const text = document.createElement("div");
-    const title = document.createElement("div");
-    title.className = "kit__title";
+    icon.appendChild(use);
+    const text = document.createElement("span");
+    const title = document.createElement("strong");
     title.textContent = asset.title;
     text.appendChild(title);
     if (asset.description) {
-      const desc = document.createElement("div");
-      desc.className = "kit__desc";
-      desc.textContent = asset.description;
-      text.appendChild(desc);
+      const description = document.createElement("small");
+      description.textContent = asset.description;
+      text.appendChild(description);
     }
-    item.appendChild(text);
-    box.appendChild(item);
+    link.append(icon, text);
+    box.appendChild(link);
   }
 }
 
 function renderRules(scope) {
   const box = $("rules");
-  box.textContent = "";
-  const ordem = ["paidCustomerRule", "attributionRule", "clicksRule",
-    "mrrRule", "privacyNote", "historyNote"];
-  for (const key of ordem) {
-    const text = scope?.[key];
-    if (!text) continue;
-    const p = document.createElement("p");
-    p.className = "rule";
-    p.textContent = text;
-    box.appendChild(p);
+  box.replaceChildren();
+  for (const key of ["paidCustomerRule", "attributionRule", "commissionRule",
+    "clicksRule", "mrrRule", "privacyNote", "historyNote"]) {
+    if (!scope?.[key]) continue;
+    const paragraph = document.createElement("p");
+    paragraph.textContent = scope[key];
+    box.appendChild(paragraph);
   }
 }
 
-async function loadDashboard() {
+function settledResult(result) {
+  return result.status === "fulfilled" ?
+    {ok: true, value: result.value.data} :
+    {ok: false, error: result.reason};
+}
+
+async function loadDashboard({initial = currentDashboard === null} = {}) {
+  const requestId = ++dashboardRequest;
   view("view-dash");
+  clearPrimaryError();
+  setLoading(initial);
+  if (initial) {
+    $("dash-body").classList.add("hidden");
+    $("pending").classList.add("hidden");
+  }
 
   if (!appCheckOk) {
-    say($("dash-error"), "Configuração de segurança incompleta neste " +
-      "endereço. Avise o time do Ausculto: nenhum dado foi carregado.",
-    "warn");
-    $("dash-error").classList.remove("hidden");
+    finishLoading();
+    setPrimaryError(
+        "A proteção deste endereço não foi inicializada. Nenhum dado foi carregado; avise o suporte do Ausculto.",
+        false);
     return;
   }
 
   let data;
   try {
-    data = (await call("partnerGetDashboard")({})).data;
+    data = (await call("partnerGetDashboard")({
+      dateRange: {windowDays: selectedPeriod},
+    })).data;
   } catch (error) {
-    const negado = error?.code === "functions/permission-denied";
-    say($("dash-error"), negado ?
-      "Esta conta não tem acesso ao portal de parceiros. Se você acha que " +
-        "é engano, fale com a gente." :
-      "Não conseguimos carregar seus dados agora. Tente de novo em " +
-        "instantes.", "bad");
-    $("dash-error").classList.remove("hidden");
+    if (requestId !== dashboardRequest) return;
+    finishLoading();
+    const denied = error?.code === "functions/permission-denied";
+    setPrimaryError(denied ?
+      "Esta conta não tem acesso ao portal de embaixadores. Confira se entrou com o e-mail cadastrado." :
+      "Não conseguimos carregar o painel agora. Seus dados não foram convertidos em zero; tente novamente.",
+    true);
     console.error(error);
     return;
   }
 
+  if (requestId !== dashboardRequest) return;
+  currentDashboard = data;
   renderIdentity(data);
   renderRules(data.scope);
-
+  finishLoading();
   if (data.pendingCode) {
     $("pending").classList.remove("hidden");
     $("dash-body").classList.add("hidden");
     return;
   }
 
+  $("pending").classList.add("hidden");
+  $("dash-body").classList.remove("hidden");
   renderCredential(data);
+  renderMetrics(data);
   renderFunnel(data);
   renderTier(data);
+  renderResults(data);
 
-  // Complementares: se uma falhar, o painel principal continua de pé.
-  const [statement, series, assets] = await Promise.all([
-    call("partnerGetStatement")({}).then((r) => r.data).catch(() => null),
-    call("partnerGetTimeseries")({days: 30}).then((r) => r.data)
-        .catch(() => null),
-    call("partnerGetAssets")({}).then((r) => r.data).catch(() => null),
+  const companionResults = await Promise.allSettled([
+    call("partnerGetStatement")({}),
+    call("partnerGetTimeseries")({days: selectedPeriod}),
+    call("partnerGetAssets")({}),
   ]);
-
-  renderMoney(data, statement);
-  renderStatement(statement);
-  renderChart(series?.series);
-  renderKit(assets?.assets);
+  if (requestId !== dashboardRequest) return;
+  const [statement, series, assets] = companionResults.map(settledResult);
+  renderFinance(data, statement);
+  renderChart(series);
+  renderAssets(assets);
 }
 
-// ── Copiar ──────────────────────────────────────────────────────────────
+document.querySelectorAll("[data-period]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const next = Number(button.dataset.period);
+    if (![30, 90].includes(next) || next === selectedPeriod) return;
+    selectedPeriod = next;
+    document.querySelectorAll("[data-period]").forEach((candidate) => {
+      candidate.setAttribute("aria-pressed",
+          candidate === button ? "true" : "false");
+    });
+    loadDashboard({initial: false});
+  });
+});
+
+$("retry-dashboard").addEventListener("click", () => {
+  loadDashboard({initial: currentDashboard === null});
+});
+
 document.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-copy]");
   if (!button) return;
-  const el = $(button.dataset.copy);
-  const value = el?.dataset?.value || el?.textContent || "";
+  const element = $(button.dataset.copy);
+  const value = element?.dataset?.value || element?.textContent || "";
   if (!value || value === "—") return;
   try {
     await navigator.clipboard.writeText(value);
-    const original = button.innerHTML;
-    button.textContent = "Copiado";
-    setTimeout(() => {
-      button.innerHTML = original;
-    }, 1600);
+    toast(button.dataset.copy === "code" ? "Código copiado" : "Link copiado");
   } catch (error) {
-    console.warn("Não foi possível copiar", error);
+    toast("Não foi possível copiar automaticamente");
+    console.warn(error);
   }
 });
 
@@ -571,14 +681,13 @@ $("logout").addEventListener("click", async () => {
   window.location.href = "/";
 });
 
-// ── Estado ──────────────────────────────────────────────────────────────
-const chegouPorLink = isSignInWithEmailLink(auth, window.location.href);
-if (chegouPorLink) handleLink();
+const arrivedByLink = isSignInWithEmailLink(auth, window.location.href);
+if (arrivedByLink) handleLink();
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    loadDashboard();
-  } else if (!chegouPorLink) {
+    loadDashboard({initial: true});
+  } else if (!arrivedByLink) {
     view("view-gate");
   }
 });
