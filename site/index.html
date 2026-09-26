@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-os="android">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ausculto | App médico para o plantão e a prova</title>
+<meta name="description" content="Atendimento, estudo e referência clínica em um só lugar. O Ausculto é o ecossistema completo para o médico e o estudante de medicina. Web, iPhone e Android, um só login. Comece grátis, sem cartão.">
+<script>
+/* js + ordem dos selos das lojas por sistema, antes da 1.ª pintura (sem CLS); ?os=ios|android força para conferência */
+(function (d) {
+  var h = d.documentElement, ua = navigator.userAgent, os = 'android';
+  if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) os = 'ios';
+  try { var force = new URLSearchParams(location.search).get('os'); if (force === 'ios' || force === 'android') os = force; } catch (e) {}
+  h.setAttribute('data-os', os);
+  h.classList.add('js');
+})(document);
+</script>
+<meta name="theme-color" content="#FDFAF7">
+<link rel="stylesheet" href="/assets/css/home-connected.css">
+<script src="/assets/js/home-routine.js" defer></script>
+<script src="/assets/js/home-mobile-refresh.js" defer></script>
+<meta name="apple-itunes-app" content="app-id=6760672276">
+<link rel="canonical" href="https://www.auscultoapp.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.auscultoapp.com/">
+<meta property="og:site_name" content="Ausculto">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Ausculto | O plantão e a prova no mesmo app">
+<meta property="og:description" content="Atendimento, estudo e referência clínica em um só lugar. O ecossistema completo para o médico e o estudante de medicina. Comece grátis, sem cartão.">
+<meta property="og:image" content="https://www.auscultoapp.com/assets/home/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ausculto | O plantão e a prova no mesmo app">
+<meta name="twitter:description" content="Atendimento, estudo e referência clínica em um só lugar. Comece grátis, sem cartão.">
+<meta name="twitter:image" content="https://www.auscultoapp.com/assets/home/og-home.jpg">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260917">
+<link rel="icon" href="/favicon.ico?v=20260917" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/home/icon-192.png?v=20260917">
+<link rel="apple-touch-icon" href="/assets/home/icon-180.png?v=20260917">
+<style>@media not all and (min-width: 1024px){.v-desk{display:none!important}}@media (min-width: 1024px){.v-mob{display:none!important}}</style>
+<link rel="preload" href="/assets/fonts/home/roboto-serif-cond-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/enamed/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" media="(min-width: 1024px)" imagesrcset="/assets/home/hero-plate-v4-1440.webp 1440w, /assets/home/hero-plate-v4-2880.webp 2880w" imagesizes="(min-width: 1921px) 1920px, 100vw" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" media="(max-width: 600px)" imagesrcset="/assets/home/m/hero-m.avif 780w, /assets/home/m/hero-m-1170.avif 1170w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" media="(min-width: 601px) and (max-width: 1023.98px)" href="/assets/home/m/hero-t.avif" fetchpriority="high">
+<link rel="preload" as="image" media="(min-width: 1024px)" imagesrcset="/assets/home/notebook-900.webp 900w, /assets/home/notebook-1400.webp 1400w" imagesizes="(min-width: 1921px) 1100px, (min-width: 1024px) 56vw, 66vw" fetchpriority="high">
+<script>
+/* CSS + JS de cada vista só baixam na faixa em que ela aparece: desktop >= 1024 px (home.css/home.js), mobile < 1024 px (home-m.css/home-m.js).
+   Na carga, document.write insere o mesmo <link media> + <script defer> do HTML estático (a folha continua bloqueando a render: sem FOUC).
+   Se a janela cruzar 1024 px depois (resize, rotação), a outra vista é injetada no 'change'. Em aparelho de toque cuja tela gira
+   através de 1024 px (tablet), a outra vista é pré-buscada depois do load, para a rotação não piscar (não com economia de dados ou 2G). */
+(function (d, w) {
+  var screenCrosses = navigator.maxTouchPoints > 0 && Math.min(screen.width, screen.height) < 1024 && Math.max(screen.width, screen.height) >= 1024;
+  var conn = navigator.connection, saveData = !!(conn && (conn.saveData || /2g/.test(conn.effectiveType || '')));
+  function view(q, css, js) {
+    var mq = w.matchMedia(q), done = false;
+    if (mq.matches) { d.write('<link rel="stylesheet" href="' + css + '" media="' + q + '"><script src="' + js + '" defer><\/script>'); return; }
+    function late(e) {
+      if (!e.matches || done) return; done = true;
+      var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = css; l.media = q; d.head.appendChild(l);
+      var s = d.createElement('script'); s.src = js; d.head.appendChild(s);
+    }
+    if (mq.addEventListener) mq.addEventListener('change', late); else if (mq.addListener) mq.addListener(late);
+    if (screenCrosses && !saveData) w.addEventListener('load', function () {
+      setTimeout(function () { if (done) return; [css, js].forEach(function (u) { var p = d.createElement('link'); p.rel = 'prefetch'; p.href = u; d.head.appendChild(p); }); }, 1500);
+    });
+  }
+  view('(min-width: 1024px)', '/assets/css/home.css?v=20260919b', '/assets/js/home.js');
+  view('not all and (min-width: 1024px)', '/assets/css/home-m.css', '/assets/js/home-m.js?v=20260919');
+})(document, window);
+</script>
+<noscript><link rel="stylesheet" href="/assets/css/home.css?v=20260919b" media="(min-width: 1024px)"><link rel="stylesheet" href="/assets/css/home-m.css" media="not all and (min-width: 1024px)"></noscript>
+<link rel="stylesheet" href="/assets/css/home-mobile-refresh.css?v=20260919b" media="(max-width: 1023px)">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebSite","name":"Ausculto","alternateName":["Ausculto App","auscultoapp"],"url":"https://www.auscultoapp.com/","inLanguage":"pt-BR"},
+{"@type":"Organization","name":"Ausculto","legalName":"AUSCULTO PLATAFORMA MEDICA LTDA","url":"https://www.auscultoapp.com/","logo":"https://www.auscultoapp.com/assets/home/icon-512.png","sameAs":["https://www.instagram.com/auscultoapp"],"contactPoint":{"@type":"ContactPoint","email":"suporte@auscultoapp.com","contactType":"customer support","availableLanguage":"pt-BR"}},
+{"@type":"SoftwareApplication","name":"Ausculto","applicationCategory":"MedicalApplication","operatingSystem":"Web, iOS, Android","url":"https://www.auscultoapp.com/","offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"O Ausculto substitui a decisão médica?","acceptedAnswer":{"@type":"Answer","text":"Não. O Ausculto é uma ferramenta de apoio informacional: organiza o plantão e aproxima protocolos, bulas e escores. A avaliação do paciente, a checagem das diretrizes vigentes e a decisão final são sempre do médico assistente."}},
+{"@type":"Question","name":"Sou estudante. O Ausculto serve para mim?","acceptedAnswer":{"@type":"Answer","text":"Sim. A Academy reúne questões comentadas, casos clínicos, flashcards e o Raio-X Acadêmico. Quando você avançar na formação, o mesmo app acompanha o plantão: basta alternar para o modo médico."}},
+{"@type":"Question","name":"O Meu Plantão é um prontuário?","acceptedAnswer":{"@type":"Answer","text":"Não. É a sua ferramenta pessoal de organização do plantão: pacientes, pendências, timers, registros e passagem. Ele não substitui o prontuário oficial do serviço."}},
+{"@type":"Question","name":"Como funcionam os dados que eu insiro?","acceptedAnswer":{"@type":"Answer","text":"Os dados ficam associados à sua conta e são tratados conforme a Política de Privacidade e a LGPD. O fluxo incentiva identificadores internos (como PCT-008) em vez de dados que identifiquem o paciente."}},
+{"@type":"Question","name":"O que está incluído gratuitamente?","acceptedAnswer":{"@type":"Answer","text":"Criar conta é grátis e não pede cartão. Você conhece o Meu Plantão e o essencial das ferramentas clínicas, com limites de uso nos módulos avançados. O PRO remove os limites e dá 7 dias para testar tudo."}},
+{"@type":"Question","name":"Em quais plataformas funciona?","acceptedAnswer":{"@type":"Answer","text":"Na web (qualquer navegador, inclusive o computador do hospital), no iPhone e no Android, com o mesmo login e os mesmos dados."}},
+{"@type":"Question","name":"Como funciona o PRO?","acceptedAnswer":{"@type":"Answer","text":"O PRO libera o ecossistema completo: Meu Plantão sem limites, documentos com o seu timbrado, protocolos, SmartBulas, interações, calculadoras, o AusMind IA e os módulos de estudo. Planos mensal, semestral e anual; os valores são confirmados no checkout, e você começa com 7 dias grátis."}},
+{"@type":"Question","name":"Como cancelo se não gostar?","acceptedAnswer":{"@type":"Answer","text":"Pelo próprio canal onde assinou, a qualquer momento e sem fidelidade. Cancelando, você mantém o acesso até o fim do período já pago."}}
+]}]}
+</script>
+</head>
+<body>
+<a class="skip-link v-desk" href="#top">Ir para o conteúdo</a>
+
+<!-- ============ SPRITE ============ -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-ctx-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7.95" stroke-width="2.1"/><path d="M5.9 9.1l2.1 2.1 4.1-4.3" stroke-width="1.8"/></symbol>
+  <symbol id="i-cf-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.5 1.3 6.6L12 17.2l-5.9 3.3 1.3-6.6-4.9-4.5 6.6-.8z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-play-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.1" fill="none" stroke="currentColor" stroke-width="1.9"/><path fill="currentColor" d="M10.2 8.75v6.5c0 .45.45.7.8.45l5.05-3.25a.55.55 0 0 0 0-.9l-5.05-3.25c-.35-.25-.8 0-.8.45z"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24" fill="currentColor"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></symbol>
+  <symbol id="i-android" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M7.9 1.3l1.3 2.1a6.7 6.7 0 0 1 5.6 0l1.3-2.1a.45.45 0 1 1 .77.47L15.6 3.8A6.4 6.4 0 0 1 18.3 7.4H5.7a6.4 6.4 0 0 1 2.7-3.6L7.13 1.77a.45.45 0 1 1 .77-.47zM9.3 5.6a.8.8 0 1 0 0-.01zm5.4 0a.8.8 0 1 0 0-.01z"/><path d="M5.7 8.3h12.6v9.2c0 .8-.7 1.5-1.5 1.5H7.2c-.8 0-1.5-.7-1.5-1.5zM3.1 8.3c.7 0 1.3.6 1.3 1.3v5.8a1.3 1.3 0 0 1-2.6 0V9.6c0-.7.6-1.3 1.3-1.3zm17.8 0c.7 0 1.3.6 1.3 1.3v5.8a1.3 1.3 0 0 1-2.6 0V9.6c0-.7.6-1.3 1.3-1.3zM8.2 18.6h2.6v3.6a1.3 1.3 0 0 1-2.6 0zm5 0h2.6v3.6a1.3 1.3 0 0 1-2.6 0z"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-monitor-gold" viewBox="0 0 26 25" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1.8" y="3.1" width="21.4" height="15.9" rx="2.4"/><path d="M12.5 19v3M8.3 23.3h8.4"/></symbol>
+  <symbol id="i-shield-check" viewBox="0 0 24 30" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="currentColor" stroke-width="2.3" d="M12 1.9l9.25 3.1v10.5c0 6-3.75 9.8-9.25 12.1C6.5 25.3 2.75 21.5 2.75 15.5V5z"/><path stroke="#84683C" stroke-width="2.2" d="M7.6 14.6l3.9 3.4 6.1-8"/></symbol>
+  <symbol id="i-badge-shield" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2l7.6 2.6v6.3c0 5-3.2 8.6-7.6 10.7C7.6 19.7 4.4 16.1 4.4 11.1V4.8z"/><path fill="none" stroke="#0B1A2E" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" d="M8.4 12.1l2.5 2.4 4.9-5.1"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.3L21 9l-5.2 4.3L17.5 20 12 16.5 6.5 20l1.7-6.7L3 9l6.6-.7z"/></symbol>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header class="nav nav--m v-desk" id="nav">
+  <div class="navm__in">
+    <a class="navm__brand" href="#top" aria-label="Ausculto, início"><img class="navm__mark" src="/assets/brand/ausculto-a.svg" width="24" height="24" alt=""><span class="navm__name">Ausculto</span></a>
+    <nav class="nav__links navm__links" aria-label="Principal">
+      <a href="/ads-medico.html">Para médicos</a>
+      <a href="/estudantes/">Para estudantes</a>
+      <a href="#ferramentas">Ferramentas</a>
+      <a href="#planos">Preços</a>
+    </nav>
+    <div class="navm__actions">
+      <a class="navm__login" href="https://app.auscultoapp.com/" target="_blank" rel="noopener">Entrar</a>
+      <a class="navm__cta" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=nav_start&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu v-desk" id="mmenu" aria-hidden="true">
+  <button class="mmenu__close" id="mclose" type="button" aria-label="Fechar menu"><svg><use href="#i-x"/></svg></button>
+  <a href="/ads-medico.html">Para médicos</a>
+  <a href="/estudantes/">Para estudantes</a>
+  <a href="#ferramentas">Ferramentas</a>
+  <a href="#planos">Preços</a>
+  <span class="mmenu__sep">Conta</span>
+  <a href="https://app.auscultoapp.com/" target="_blank" rel="noopener">Entrar</a>
+  <a class="btn btn--gold" href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=site&utm_content=mmenu_start&utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis — sem cartão <svg><use href="#i-arrow"/></svg></a>
+</div>
+
+<main class="v-desk" id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__in">
+    <div class="hero__copy">
+      <span class="eyebrow hero__eyebrow rv">Conhecimento que acompanha<br>em cada etapa.</span>
+      <h1 class="h1 rv rv-d1" id="hero-title">O plantão e a prova.<br><span class="gold">No mesmo app.</span></h1>
+      <p class="hero__sub rv rv-d2">Atendimento, estudo e referência clínica em um só lugar. <br>O Ausculto é o ecossistema completo para o médico <br>e o estudante de medicina.</p>
+      <div class="hero__cta rv rv-d2">
+        <a class="btn btn--gold" href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=site&utm_content=hero_start&utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis — sem cartão <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--ghost" href="#contextos"><svg aria-hidden="true"><use href="#i-play-circle"/></svg>Ver a plataforma</a>
+      </div>
+      <p class="hero__platforms rv rv-d3">
+        <a class="pf-ios" href="https://apps.apple.com/br/app/ausculto/id6760672276" target="_blank" rel="noopener" aria-label="Ausculto para iPhone na App Store"><svg aria-hidden="true"><use href="#i-apple"/></svg>iPhone</a>
+        <a class="pf-android" href="https://play.google.com/store/apps/details?id=br.com.ausculto.app" target="_blank" rel="noopener" aria-label="Ausculto para Android no Google Play"><svg aria-hidden="true"><use href="#i-android"/></svg>Android</a>
+        <a class="pf-web" href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=site&utm_content=hero_web&utm_campaign=site_2026" target="_blank" rel="noopener" aria-label="Ausculto na web"><svg aria-hidden="true"><use href="#i-monitor-gold"/></svg>Web</a>
+      </p>
+      <div class="hero__note rv rv-d3">
+        <svg aria-hidden="true"><use href="#i-shield-check"/></svg>
+        <p><span class="hero__note-l1">Conteúdo baseado em diretrizes oficiais e literatura de referência.</span> <span class="hero__note-l2">Dados fictícios nas demonstrações.</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="hero__media">
+    <div class="hero__crop">
+      <picture>
+        <source media="not all and (min-width: 1024px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1">
+        <img class="hero__plate" src="/assets/home/hero-plate-v4-1440.webp" srcset="/assets/home/hero-plate-v4-1440.webp 1440w, /assets/home/hero-plate-v4-2880.webp 2880w" sizes="(min-width: 1921px) 1920px, 100vw" width="1440" height="618" fetchpriority="high" alt="Médica sorrindo à mesa, digitando no notebook, num ambiente claro">
+      </picture>
+      <div class="hero__devices">
+        <picture><source media="not all and (min-width: 1024px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1"><img src="/assets/home/notebook-1400.webp" srcset="/assets/home/notebook-900.webp 900w, /assets/home/notebook-1400.webp 1400w" sizes="(min-width: 1921px) 1100px, (min-width: 1024px) 56vw, 66vw" width="1400" height="1026" fetchpriority="high" alt="O Ausculto aberto no notebook e no iPhone, com as telas reais do app"></picture>
+      </div>
+    </div>
+    <div class="hero__hand" aria-hidden="true">
+      <p class="hero__hand-text"><span>Mais tempo</span><span>para o que</span><span>realmente importa.</span></p>
+      <svg class="hero__hand-arrow" viewBox="0 0 60 66" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M44.55 10C48.3 26.5 32.05 48.2 10.55 53.8"/><path d="M41.8 23.5Q39 31 34.8 37.2"/><path d="M16.75 46.6 10.55 53.8 21.3 55.7"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NÚMEROS ============ -->
+<section class="evidence-band" aria-label="O ecossistema Ausculto e suas referências">
+  <div class="evidence-band__inner">
+    <p class="evidence-band__intro">Tudo o que você precisa.<strong>Em um só ecossistema.</strong></p>
+    <ul class="evidence-metrics" aria-label="Números do Ausculto">
+      <li><b>14 mil+</b><span>questões oficiais</span></li>
+      <li><b>250+</b><span>calculadoras e escores</span></li>
+      <li><b>5.255</b><span>bulas atualizadas</span></li>
+      <li><b>4.700+</b><span>patologias</span></li>
+      <li><b>18</b><span>ferramentas integradas</span></li>
+    </ul>
+    <div class="evidence-references" aria-label="Referências nacionais e internacionais">
+      <p>Fundamentado em referências<strong>nacionais e mundiais.</strong></p>
+      <ul><li><img src="/assets/home/references/guideline_aha.png" alt="American Heart Association" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_atls.png" alt="Advanced Trauma Life Support" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_ms.png" alt="Ministério da Saúde" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_sbc.png" alt="Sociedade Brasileira de Cardiologia" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_sbp.png" alt="Sociedade Brasileira de Pediatria" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_febrasgo.png" alt="FEBRASGO" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_sbcm.png" alt="Sociedade Brasileira de Clínica Médica" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_sbr.png" alt="Sociedade Brasileira de Reumatologia" loading="lazy" decoding="async" width="140" height="48"></li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTEXTOS ============ -->
+<section id="contextos" class="routine-section" aria-labelledby="contextos-title">
+  <div class="home-block-wrap">
+    <header class="home-block-head">
+      <div><p class="home-block-label">Uma plataforma. Diversos caminhos.</p><h2 id="contextos-title">Como o Ausculto se encaixa na sua rotina?</h2></div>
+      <p class="routine-section__hint">Escolha seu contexto <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></p>
+    </header>
+    <div class="routine-grid">
+      <a class="routine-card" href="/ads-medico.html">
+        <img src="/assets/home/routine/clinica.webp" width="768" height="512" loading="lazy" decoding="async" alt="Médica consultando um tablet no hospital">
+        <div class="routine-card__body"><span class="routine-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a5 5 0 0 0 10 0V3M4 3h4M14 3h4M11 14v3a4 4 0 0 0 8 0v-3"/><circle cx="19" cy="11" r="3"/></svg></span><div><h3>Na prática clínica</h3><p>Pacientes e protocolos para apoiar suas decisões.</p></div><span class="routine-card__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="routine-card" href="/estudantes/">
+        <img src="/assets/home/routine/estudos.webp" width="768" height="512" loading="lazy" decoding="async" alt="Estudante de Medicina revisando conteúdo à mesa">
+        <div class="routine-card__body"><span class="routine-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m2 8 10-5 10 5-10 5-10-5Zm4 3v6c4 3 8 3 12 0v-6M22 8v8"/></svg></span><div><h3>Nos estudos</h3><p>Questões, flashcards e casos para aprender no seu ritmo.</p></div><span class="routine-card__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="routine-card" href="/estudantes/#residencia">
+        <img src="/assets/home/routine/residencia.webp" width="768" height="512" loading="lazy" decoding="async" alt="Residentes discutindo um caso clínico">
+        <div class="routine-card__body"><span class="routine-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="19" rx="2"/><path d="M9 7h6M12 4v6M9 14h1m4 0h1m-6 4h1m4 0h1"/></svg></span><div><h3>Na residência</h3><p>Casos clínicos e revisão para aprofundar seu raciocínio.</p></div><span class="routine-card__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="routine-card" href="https://enamed.auscultoapp.com/">
+        <img src="/assets/home/routine/enamed.webp" width="768" height="512" loading="lazy" decoding="async" alt="Estudante se preparando para uma prova de Medicina">
+        <div class="routine-card__body"><span class="routine-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2M8 10l2 2 4-4M8 17h8"/></svg></span><div><h3>Para o ENAMED</h3><p>Sua preparação começa aqui.</p><span class="routine-card__cta">Explorar o ENAMED</span></div><span class="routine-card__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FERRAMENTAS ============ -->
+<section id="ferramentas" class="tools" aria-labelledby="tools-title">
+  <div class="tools__wrap">
+    <header class="tools-head rv">
+      <div class="tools-head__main">
+        <p class="tools-head__eyebrow">18 ferramentas. Infinitas possibilidades.</p>
+        <h2 class="tools-head__title" id="tools-title">Tudo o que você precisa,<br> em um só lugar.</h2>
+      </div>
+      <div class="tools-head__aside">
+        <p class="tools-head__lead">Do plantão ao estudo, o Ausculto integra ferramentas essenciais<br class="tools-head__br"> para a sua rotina, com conteúdo confiável e sempre atualizado.</p>
+        <a class="tools-head__link" id="allToolsLink" href="#todas-ferramentas" aria-controls="todas-ferramentas">Conheça todas as ferramentas<svg class="tools-head__arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.75 8h12.45M8.9 2.55 14.2 8l-5.3 5.45"/></svg></a>
+      </div>
+    </header>
+
+    <div class="tb rv">
+      <article class="tl-plantao">
+        <img class="tl-plantao__photo" src="/assets/home/blocks/plantao-student.webp" width="1100" height="818" loading="lazy" decoding="async" alt="Estudante de medicina de scrubs azul-marinho fazendo anotações ao lado do notebook">
+        <div class="tl-plantao__head">
+          <svg class="tl-plantao__icon" viewBox="0 0 23.8 27.9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.95 8.9V4.3a2.8 2.8 0 0 1 2.8-2.8h8.8a2.8 2.8 0 0 1 2.8 2.8v4.6"/><rect x="1.05" y="8.9" width="21.7" height="17.95" rx="3"/><path stroke-width="2.5" d="M6.9 14h.9M6.9 19.1h.9"/></svg>
+          <h3 class="tl-plantao__title">Meu Plantão</h3>
+          <p class="tl-plantao__desc">Organize seus pacientes, evoluções <br>e pendências, com mais segurança <br>e praticidade.</p>
+        </div>
+        <figure class="tl-plantao__quote">
+          <blockquote><p class="tl-plantao__text">O Ausculto virou meu <br>companheiro de plantão.&rdquo;</p></blockquote>
+          <figcaption class="tl-plantao__who"><span class="tl-plantao__name"><img class="tl-plantao__avatar" src="/assets/home/people/loren-160.webp" width="160" height="160" alt="" loading="lazy" decoding="async">Loren Ferrarezi</span><span class="tl-plantao__role">Estudante de Medicina</span><span class="tl-plantao__school">6.º ano</span></figcaption>
+        </figure>
+        <a class="tl-plantao__link" href="/ads-medico.html" aria-label="Conhecer o Meu Plantão"></a>
+      </article>
+
+      <article class="tcard tcard--ausmind">
+        <svg class="tcard__deco" viewBox="0 0 96 70" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M50 8C38 4 22 6 13 15 5 23 3 35 7 46c4 10 13 17 25 19 8 1 14-1 18-4"/><path d="M16 20c5-5 12-6 17-2 4 3 9 3 13-1"/><path d="M9 32c6-4 11-3 15 1s10 5 15 1 8-4 11-1"/><path d="M8 44c5 2 10 1 14-3s9-4 13 0 9 4 14 1"/><path d="M15 55c5-3 10-3 14 1s9 4 14 0"/><path d="M26 12c1 5 5 8 10 8"/><path d="M30 28c-2 4-1 8 3 10"/><path d="M40 46c3-3 7-3 10 0"/><path d="M22 38c0 4 3 7 7 7"/><path d="M52 6h36v50H60"/><path d="M60 6v24M68 12v36M76 6v22m0 8v20M84 14v34"/><circle cx="68" cy="48" r="1.6"/><circle cx="76" cy="32" r="1.6"/><circle cx="60" cy="32" r="1.6"/></g></svg>
+        <svg class="tcard__ic" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><path d="M18 .8Q19.7 16.3 34.4 18 19.7 19.7 18 35.4 16.3 19.7 1.6 18 16.3 16.3 18 .8Z" fill="none" stroke="currentColor" stroke-width="2.15" stroke-linejoin="round"/><g fill="currentColor"><circle cx="18.1" cy="18.3" r="1.35"/><circle cx="27.3" cy="8.8" r="1.1"/><circle cx="9.2" cy="26.9" r="1.1"/><circle cx="26.8" cy="26.4" r="1.1"/></g></svg>
+        <h3 class="tcard__title">AusMind IA</h3>
+        <p class="tcard__text">Respostas baseadas em evidências,<br> com fontes. Pergunte, estude, revise.</p>
+        <span class="tcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.65" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <p class="tcard__chip" aria-hidden="true"><span class="tcard__chip-ic"><svg viewBox="0 0 14 14" focusable="false"><path d="M7 1.8 12.2 7 7 12.2 1.8 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span><span class="tcard__chip-q">Qual o manejo da sepse<br> no pronto-socorro?</span></p>
+        <a class="tcard__cover" href="/ads-medico.html" aria-label="Conhecer o AusMind IA"></a>
+      </article>
+
+      <article class="tcard tcard--academy">
+        <picture class="tcard__photo">
+          <img src="/assets/home/blocks/academy-student.webp" width="700" height="520" loading="lazy" decoding="async" alt="Estudante de medicina com fones de ouvido estudando pelo tablet">
+        </picture>
+        <span class="tcard__ic tcard__ic--academy" aria-hidden="true"><img src="/assets/academy/academy-app-icon-96.webp" srcset="/assets/academy/academy-app-icon-72.webp 72w, /assets/academy/academy-app-icon-96.webp 96w, /assets/academy/academy-app-icon-144.webp 144w" sizes="(min-width: 1921px) 48px, 2.9vw" width="96" height="96" alt="" loading="lazy" decoding="async"></span>
+        <h3 class="tcard__title">Academy</h3>
+        <span class="tcard__badge">Novo</span>
+        <p class="tcard__text">Trilhas de estudo, questões e<br> casos clínicos comentados.</p>
+        <ul class="tcard__list">
+          <li><svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><circle cx="6" cy="6" r="5" fill="none" stroke="currentColor" stroke-width="1.35"/><circle cx="6" cy="6" r="1.7" fill="currentColor"/></svg>Trilhas por especialidade</li>
+          <li><svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><circle cx="6" cy="6" r="5" fill="none" stroke="currentColor" stroke-width="1.35"/><path d="M4.9 3.8v4.4L8.3 6Z" fill="currentColor"/></svg>Questões e simulados comentados</li>
+          <li><svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><circle cx="6" cy="6" r="5" fill="none" stroke="currentColor" stroke-width="1.35"/><rect x="4.3" y="4.3" width="3.4" height="3.4" rx=".8" fill="currentColor"/></svg>Casos clínicos</li>
+          <li><svg viewBox="0 0 12 12" aria-hidden="true" focusable="false"><circle cx="6" cy="6" r="5" fill="none" stroke="currentColor" stroke-width="1.35"/><path d="M6 3.6 8.4 6 6 8.4 3.6 6Z" fill="currentColor"/></svg>Leitura por tema e flashcards</li>
+        </ul>
+        <a class="tcard__cover" href="/estudantes/" aria-label="Conhecer a Academy"></a>
+      </article>
+
+      <article class="tl-mini tl-mini--bulas">
+        <span class="tl-mini__ic" aria-hidden="true"><svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path class="tl-mini__halo" d="M6.1 4.7h13.4l4.9 4.9v17.6a3 3 0 0 1-3 3H6.1a3 3 0 0 1-3-3V7.7a3 3 0 0 1 3-3z"/><path fill="#FCF9F0" d="M6.1 4.7h13.4l4.9 4.9v17.6a3 3 0 0 1-3 3H6.1a3 3 0 0 1-3-3V7.7a3 3 0 0 1 3-3z"/><path d="M18.1 5.2v5a2 2 0 0 0 2 2h4.1M8.1 12.55h3.8M8.1 17.7h6.1"/></svg></span>
+        <h3 class="tl-mini__title">SmartBulas</h3>
+        <p class="tl-mini__desc">5.255 bulas atualizadas<br> com busca inteligente.</p>
+        <a class="tl-mini__link" href="/ads-medico.html" aria-label="Conhecer o SmartBulas"></a>
+        <span class="tl-mini__go" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M1 6h10M6.2 1.2 11 6l-4.8 4.8"/></svg></span>
+        <div class="tl-chip tl-chip--bula" aria-hidden="true">
+          <b>Paracetamol</b><span>750 mg</span><span>Comprimido</span>
+          <img class="tl-chip__pill" src="/assets/home/blocks/pillbox-chip.webp" width="152" height="142" alt="" loading="lazy" decoding="async">
+        </div>
+      </article>
+
+      <article class="tl-mini tl-mini--calc">
+        <span class="tl-mini__ic" aria-hidden="true"><svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect class="tl-mini__halo" x="3.7" y="6.3" width="22.2" height="24.7" rx="3"/><rect x="3.7" y="6.3" width="22.2" height="24.7" rx="3" fill="#FCF9F0"/><path d="M3.7 12.65h22.2M9.3 3.4v5.1M20.7 3.4v5.1"/><g fill="currentColor" stroke="none"><circle cx="11.2" cy="18.7" r="1.7"/><circle cx="18.3" cy="18.7" r="1.7"/><circle cx="11.2" cy="24.1" r="1.7"/><circle cx="18.3" cy="24.1" r="1.7"/></g></svg></span>
+        <h3 class="tl-mini__title">Calculadoras</h3>
+        <p class="tl-mini__desc">250+ escores e índices<br> para a prática clínica.</p>
+        <a class="tl-mini__link" href="/ads-medico.html" aria-label="Conhecer as Calculadoras"></a>
+        <span class="tl-mini__go" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M1 6h10M6.2 1.2 11 6l-4.8 4.8"/></svg></span>
+        <div class="tl-chip tl-chip--calc" aria-hidden="true">
+          <b>Score de Wells</b><span>TVP</span>
+          <i class="tl-chip__btn"><svg viewBox="0 0 12 12"><path d="M1 6h10M6.2 1.2 11 6l-4.8 4.8"/></svg></i>
+        </div>
+      </article>
+
+      <article class="tl-mini tl-mini--quest">
+        <span class="tl-mini__ic" aria-hidden="true"><svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path class="tl-mini__halo" d="M3.9 12.2C4.3 9.8 6.4 8.1 10 6.1l5 4.5 4.8-4.5c3.6 2 5.8 3.5 6.5 5.9l-1.5 4.2 1 4.1-10.9 11.1L5.8 23l.4-3"/><path d="M3.9 12.2C4.3 9.8 6.4 8.1 10 6.1l5 4.5 4.8-4.5c3.6 2 5.8 3.5 6.5 5.9l-1.5 4.2 1 4.1-10.9 11.1L5.8 23l.4-3M15 10.6l1.3 2.4"/><path fill="#9A7F4E" stroke-width="2" d="m16.6 12.8 4.7 5.8-5.9 6.8-4.5-6.2z"/><circle cx="15" cy="4.7" r="1.5" fill="currentColor" stroke="none"/></svg></span>
+        <h3 class="tl-mini__title">Banco de Questões</h3>
+        <p class="tl-mini__desc">14 mil+ questões oficiais de 160+ provas<br> com filtros e métricas de desempenho.</p>
+        <a class="tl-mini__link" href="/estudantes/" aria-label="Conhecer o Banco de Questões"></a>
+        <span class="tl-mini__go" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M1 6h10M6.2 1.2 11 6l-4.8 4.8"/></svg></span>
+        <div class="tl-chip tl-chip--quest" aria-hidden="true">
+          <span>Questão 1 de 10</span>
+          <span class="tl-chip__tags"><i>Clínica Médica</i><i>Difícil</i></span>
+        </div>
+      </article>
+    </div>
+
+    <details class="alltools" id="todas-ferramentas">
+      <summary>Todas as 18 ferramentas do Ausculto <span class="alltools__fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary>
+      <div class="alltools__grid">
+        <div class="alltools__group"><h3>Plantão e decisão</h3><ul>
+          <li><b>Meu Plantão</b><span>Pacientes, pendências, registros, passagem e documentos</span></li>
+          <li><b>Protocolos</b><span>Diretrizes brasileiras com fonte e vigência</span></li>
+          <li><b>Calculadoras</b><span>250+ escores e índices clínicos</span></li>
+          <li><b>AusMind IA</b><span>Respostas com fontes e limites explícitos</span></li>
+        </ul></div>
+        <div class="alltools__group"><h3>Prescrição e segurança</h3><ul>
+          <li><b>SmartBulas</b><span>5.255 bulas atualizadas</span></li>
+          <li><b>Interações</b><span>24.145 interações mapeadas</span></li>
+          <li><b>Vacinação</b><span>Calendário e esquemas vacinais</span></li>
+          <li><b>CID-10/11</b><span>Classificação e codificação</span></li>
+          <li><b>Exames complementares</b><span>Interpretação de exames</span></li>
+        </ul></div>
+        <div class="alltools__group"><h3>Especialidades e revisão</h3><ul>
+          <li><b>Semiologia</b><span>Exame físico e raciocínio clínico</span></li>
+          <li><b>AusPed</b><span>Pediatria prática e objetiva</span></li>
+          <li><b>AusObs</b><span>Obstetrícia essencial</span></li>
+          <li><b>Resumaker</b><span>Resumos prontos e personalizados</span></li>
+        </ul></div>
+        <div class="alltools__group"><h3>Estudo · Academy</h3><ul>
+          <li><b>Banco de Questões</b><span>14 mil+ questões oficiais de 160+ provas</span></li>
+          <li><b>Casos clínicos</b><span>Por especialidade, com raciocínio</span></li>
+          <li><b>Biblioteca clínica</b><span>4.700+ patologias</span></li>
+          <li><b>AusAnatomy 3D</b><span>3.603 estruturas anatômicas</span></li>
+          <li><b>Preparação para residência</b><span>Treino por banca, flashcards e Raio-X Acadêmico</span></li>
+        </ul></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ CONFIANÇA ============ -->
+<section id="confianca" class="cf" aria-labelledby="trust-title">
+  <div class="cf__wrap">
+    <div class="cf__head rv">
+      <p class="cf__eyebrow">Confiança <span>em cada detalhe.</span></p>
+      <h2 class="cf__title" id="trust-title"><span class="cf__title-l1">Conteúdo clínico com fonte.</span><br>Ferramentas feitas para a rotina real.</h2>
+    </div>
+    <ul class="cf__items rv rv-d1">
+      <li class="cf-item">
+        <svg class="cf-item__ic" viewBox="0 0 24 24" aria-hidden="true"><g transform="translate(0 .8)"><path d="M3.7 4C3.7 3.5 4 3.2 4.5 3.2C7.3 3 9.8 2.4 12 1.4C14.2 2.4 16.7 3 19.5 3.2C20 3.2 20.3 3.5 20.3 4V14.6C20.3 18.2 16.6 20.4 12 22C7.4 20.4 3.7 18.2 3.7 14.6Z"/><path d="M5.6 5.8C5.6 5.4 5.9 5.2 6.3 5.1C8.4 4.9 10.3 4.4 12 3.7C13.7 4.4 15.6 4.9 17.7 5.1C18.1 5.2 18.4 5.4 18.4 5.8V14.4C18.4 16.9 15.7 18.4 12 19.5C8.3 18.4 5.6 16.9 5.6 14.4Z"/><path d="M12 9.1C13.5 10.3 14.3 11.3 14.3 12.4C14.3 13.6 13.3 14.4 12 14.4S9.7 13.6 9.7 12.4C9.7 11.3 10.5 10.3 12 9.1Z"/></g></svg>
+        <h3 class="cf-item__t">Protocolos brasileiros</h3>
+        <p class="cf-item__s">Diretrizes das principais sociedades médicas</p>
+      </li>
+      <li class="cf-item">
+        <svg class="cf-item__ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.1 2.3V7.1Q9.1 9.1 7.1 9.1H2.3M14.9 2.3V7.1Q14.9 9.1 16.9 9.1H21.7M2.3 14.9H7.1Q9.1 14.9 9.1 16.9V21.7M21.7 14.9H16.9Q14.9 14.9 14.9 16.9V21.7M12 10V14M10 12H14"/></svg>
+        <h3 class="cf-item__t">Base ANVISA</h3>
+        <p class="cf-item__s">Bulas oficiais organizadas para consulta</p>
+      </li>
+      <li class="cf-item">
+        <svg class="cf-item__ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 3.7C2.6 3.2 2.9 2.9 3.4 2.8C5.6 2.5 7.6 2.1 9.3 1.6C10.5 1.2 10.9 0 12 0S13.5 1.2 14.7 1.6C16.4 2.1 18.4 2.5 20.6 2.8C21.1 2.9 21.4 3.2 21.4 3.7V16.4C21.4 19.1 16.2 21 12 21.9C7.8 21 2.6 19.1 2.6 16.4Z"/><circle cx="12" cy="11.9" r="6.7"/><circle cx="12" cy="11.9" r="4.2"/><path d="M12 10.3C12.9 11 13.4 11.7 13.4 12.5C13.4 13.3 12.8 13.8 12 13.8S10.6 13.3 10.6 12.5C10.6 11.7 11.1 11 12 10.3Z"/></svg>
+        <h3 class="cf-item__t">Referências exibidas</h3>
+        <p class="cf-item__s">Fontes e links para aprofundar seu estudo</p>
+      </li>
+    </ul>
+    <span class="cf__rule" aria-hidden="true"></span>
+    <figure class="cf-quote rv rv-d2">
+      <img class="cf-quote__photo" src="/assets/home/blocks/trust-maria-julia.webp" width="400" height="394" alt="Dra. Maria Júlia Gomes Ferreira Santos, médica de família, de jaleco e estetoscópio no consultório" loading="lazy" decoding="async">
+      <blockquote class="cf-quote__body">
+        <svg class="cf-quote__mark" viewBox="0 0 12 10" aria-hidden="true"><path d="M4.9.5C2.3 1.5.4 3.8.4 6.8c0 1.7 1 2.8 2.3 2.8 1.3 0 2.3-1 2.3-2.2S4.1 5.2 3 5.2h-.5C2.9 3.8 4 2.6 5.4 1.8zm6.2 0C8.5 1.5 6.6 3.8 6.6 6.8c0 1.7 1 2.8 2.3 2.8 1.3 0 2.3-1 2.3-2.2s-.9-2.2-2-2.2h-.5c.4-1.4 1.5-2.6 2.9-3.4z"/></svg>
+        <p>Interface limpa, rápida e prática<br> na rotina. Recomendo para<br> todos os colegas.</p>
+      </blockquote>
+      <figcaption class="cf-quote__who"><b>Dra. Maria Júlia Gomes Ferreira Santos</b><span>Medicina de Família | CRM-SP 258613</span></figcaption>
+      <span class="cf-quote__stars" role="img" aria-label="Avaliação 5 de 5"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cf-star"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cf-star"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cf-star"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cf-star"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cf-star"/></svg></span>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ PLANOS ============ -->
+<section id="planos" class="pr" aria-labelledby="plans-title">
+  <div class="bk-wrap">
+    <header class="bk-head rv">
+      <div class="bk-head__main">
+        <p class="bk-eyebrow">Planos</p>
+        <h2 class="bk-title" id="plans-title">Comece grátis.<br> Evolua quando fizer sentido.</h2>
+      </div>
+      <div class="bk-head__aside">
+        <p class="bk-lead">Criar conta é grátis e não pede cartão. O PRO libera todo<br class="bk-br"> o ecossistema, com 7 dias para testar.</p>
+        <div class="periods" role="group" aria-label="Período de cobrança">
+          <button type="button" data-period="monthly" aria-pressed="false">Mensal</button>
+          <button type="button" data-period="semiannual" aria-pressed="false">Semestral</button>
+          <button type="button" data-period="annual" aria-pressed="true">Anual <em>−33%</em></button>
+        </div>
+      </div>
+    </header>
+    <div class="plans">
+      <article class="plan rv">
+        <p class="plan__name"><svg aria-hidden="true"><use href="#i-monitor"/></svg>Grátis</p>
+        <p class="plan__desc">Para conhecer o Ausculto: o Meu Plantão e o essencial das ferramentas clínicas, com limites nos módulos avançados.</p>
+        <div class="plan__price"><strong>R$ 0</strong><small>para sempre</small></div>
+        <p class="plan__note">Sem cartão de crédito.</p>
+        <ul class="plan__feats">
+          <li><svg aria-hidden="true"><use href="#i-ctx-check"/></svg>Conhecer o Meu Plantão e o fluxo de trabalho</li>
+          <li><svg aria-hidden="true"><use href="#i-ctx-check"/></svg>Essencial das ferramentas clínicas</li>
+          <li><svg aria-hidden="true"><use href="#i-ctx-check"/></svg>Web, iPhone e Android, mesmo login</li>
+        </ul>
+        <a class="plan__btn plan__btn--ghost" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site_pricing&amp;utm_content=free&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Criar conta grátis</a>
+        <p class="plan__foot">Comece em minutos, direto no navegador.</p>
+      </article>
+      <article class="plan plan--pro rv rv-d1">
+        <span class="plan__badge" id="proBadge">Mais escolhido</span>
+        <p class="plan__name"><svg aria-hidden="true"><use href="#i-star"/></svg>Ausculto PRO</p>
+        <p class="plan__desc">O ecossistema completo para a rotina do médico e do estudante: plantão, documentos, apoio clínico e estudo sem limite.</p>
+        <div class="plan__price"><strong id="proPrice">R$ 239,90</strong><small id="proLabel">/ ano</small></div>
+        <p class="plan__note" id="proNote">Equivalente a R$ 19,99/mês — 33% de economia.</p>
+        <ul class="plan__feats">
+          <li><svg aria-hidden="true"><use href="#i-ctx-check"/></svg>Meu Plantão completo: pacientes, vitais, passagem e checklists</li>
+          <li><svg aria-hidden="true"><use href="#i-ctx-check"/></svg>Todos os recursos clínicos: protocolos, SmartBulas, interações e 250+ calculadoras</li>
+          <li><svg aria-hidden="true"><use href="#i-ctx-check"/></svg>AusMind IA com prioridade de uso</li>
+          <li><svg aria-hidden="true"><use href="#i-ctx-check"/></svg>Documentos com identidade profissional e papel timbrado</li>
+          <li><svg aria-hidden="true"><use href="#i-ctx-check"/></svg>Todos os recursos de estudo da Academy</li>
+        </ul>
+        <a class="plan__btn plan__btn--gold" id="proCta" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site_pricing&amp;utm_content=pro_annual&amp;utm_campaign=site_2026" target="_blank" rel="noopener"><span id="proCtaText">Escolher PRO anual</span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2.4 8h11.2M8.1 2.55 13.6 8l-5.5 5.45"/></svg></a>
+        <p class="plan__foot">7 dias para testar. Valores confirmados no checkout. Cancele quando quiser, sem fidelidade.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="fq" aria-labelledby="faq-title">
+  <div class="bk-wrap fq__grid">
+    <div class="fq__intro rv">
+      <p class="bk-eyebrow">Dúvidas frequentes</p>
+      <h2 class="bk-title" id="faq-title">O que perguntam<br> antes de assinar.</h2>
+      <p class="bk-lead">Se ficou alguma dúvida, o caminho mais rápido é criar a conta grátis e ver o app por dentro.</p>
+      <a class="bk-link" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=faq_start&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.75 8h12.45M8.9 2.55 14.2 8l-5.3 5.45"/></svg></a>
+    </div>
+    <div class="faqlist rv rv-d1">
+      <details name="faq"><summary>O&nbsp;Ausculto substitui a decisão médica?<span class="fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary><div class="fa">Não, e não tenta. O Ausculto é uma ferramenta de apoio informacional: organiza o plantão e aproxima protocolos, bulas e escores. A avaliação do paciente, a checagem das diretrizes vigentes e a decisão final são sempre do médico assistente.</div></details>
+      <details name="faq"><summary>Sou estudante. O&nbsp;Ausculto serve para mim?<span class="fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary><div class="fa">Sim. A Academy reúne questões comentadas, casos clínicos, flashcards e o Raio-X Acadêmico do seu desempenho. Quando você avançar na formação, o mesmo app acompanha o plantão: basta alternar para o modo médico.</div></details>
+      <details name="faq"><summary>O Meu Plantão é um prontuário?<span class="fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary><div class="fa">Não. É a sua ferramenta pessoal de organização do plantão: pacientes, pendências, timers, registros e passagem. Ele não substitui o prontuário oficial do serviço; o registro institucional continua sendo feito no sistema do hospital.</div></details>
+      <details name="faq"><summary>Como funcionam os dados que eu insiro?<span class="fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary><div class="fa">Os dados ficam associados à sua conta e são tratados conforme a nossa Política de Privacidade e a LGPD. O fluxo incentiva o uso de identificadores internos (como PCT-008) em vez de dados que identifiquem o paciente.</div></details>
+      <details name="faq"><summary>O que está incluído gratuitamente?<span class="fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary><div class="fa">Criar conta é grátis e não pede cartão. Você conhece o Meu Plantão e o essencial das ferramentas clínicas, com limites de uso nos módulos avançados. O PRO remove os limites e dá 7 dias para testar tudo.</div></details>
+      <details name="faq"><summary>Em quais plataformas funciona?<span class="fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary><div class="fa">Na web (qualquer navegador, inclusive o computador do hospital), no iPhone e no Android, com o mesmo login e os mesmos dados.</div></details>
+      <details name="faq"><summary>Como funciona o PRO?<span class="fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary><div class="fa">O PRO libera o ecossistema completo: Meu Plantão sem limites, documentos com o seu timbrado, protocolos, SmartBulas, interações, calculadoras, o AusMind IA e os módulos de estudo. Planos mensal, semestral e anual; os valores são confirmados no checkout, e você começa com 7 dias grátis.</div></details>
+      <details name="faq"><summary>Como cancelo se não gostar?<span class="fi" aria-hidden="true"><svg><use href="#i-plus"/></svg></span></summary><div class="fa">Pelo próprio canal onde assinou (conta no app ou loja), a qualquer momento e sem fidelidade. Cancelando, você mantém o acesso até o fim do período já pago.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section id="cta" class="cta" aria-labelledby="cta-title">
+  <div class="cta__in">
+    <div class="cta__copy rv">
+      <p class="cta__eyebrow">Ausculto</p>
+      <h2 class="cta__title" id="cta-title"><span>Menos abas.</span> <span>Mais contexto para decidir e estudar.</span></h2>
+    </div>
+    <div class="cta__action rv rv-d1">
+      <a class="cta__btn" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=final_start&amp;utm_campaign=site_2026" target="_blank" rel="noopener"><span class="cta__label">Começar grátis <span class="cta__dash">—</span> sem cartão</span><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M2.4 8h11.2M8.1 2.55 13.6 8l-5.5 5.45"/></svg></a>
+      <p class="cta__proof">Médicos e estudantes de medicina já usam o Ausculto no plantão e na preparação para a prova.</p>
+    </div>
+    <span class="cta__rule" aria-hidden="true"></span>
+    <p class="cta__motto rv rv-d2">Conhecimento<br>para um cuidado melhor.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot v-desk">
+  <div class="foot__row">
+    <div class="foot__brand">
+      <a class="foot__word foot__word--logo" href="#top" aria-label="Ausculto, voltar ao início"><img class="foot__mark" src="/assets/brand/ausculto-a.svg" width="32" height="32" alt="" loading="lazy"><span class="foot__wordmark foot__wordmark--light" aria-hidden="true">Ausculto</span></a>
+      <p class="foot__tag">O ecossistema completo para o médico e o estudante de medicina.</p>
+    </div>
+    <nav class="foot__nav" aria-label="Rodapé">
+      <a href="#contextos">Sobre</a>
+      <a href="#planos">Planos</a>
+      <a href="#faq">Ajuda</a>
+      <a href="mailto:suporte@auscultoapp.com">Contato</a>
+    </nav>
+    <span class="foot__sep" aria-hidden="true"></span>
+    <ul class="foot__social" aria-label="Ausculto nas redes sociais">
+      <li><a href="https://www.instagram.com/auscultoapp" target="_blank" rel="noopener" aria-label="Instagram do Ausculto"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M7.85 2.55h8.3a5.3 5.3 0 0 1 5.3 5.3v8.3a5.3 5.3 0 0 1-5.3 5.3h-8.3a5.3 5.3 0 0 1-5.3-5.3v-8.3a5.3 5.3 0 0 1 5.3-5.3ZM7.85 4.25a3.6 3.6 0 0 0-3.6 3.6v8.3a3.6 3.6 0 0 0 3.6 3.6h8.3a3.6 3.6 0 0 0 3.6-3.6v-8.3a3.6 3.6 0 0 0-3.6-3.6ZM12 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 1.65a2.85 2.85 0 1 0 0 5.7 2.85 2.85 0 0 0 0-5.7ZM17.1 5.8a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></svg></a></li>
+    </ul>
+  </div>
+  <div class="foot__legal">
+    <p>© 2026 Ausculto — AUSCULTO PLATAFORMA MEDICA LTDA — CNPJ 67.097.849/0001-04 · <a href="/politica-de-privacidade.html">Privacidade</a> · <a href="/termos-de-uso.html">Termos</a> · <a href="/excluir-conta.html">Excluir conta</a></p>
+    <p><a href="/ads-medico.html">Para médicos</a> · <a href="/estudantes/">Para estudantes</a> · <a href="/conteudos/">Conteúdos de medicina</a> · Ferramenta de apoio informacional e educacional; não substitui o julgamento médico. Telas de demonstração com dados fictícios.</p>
+  </div>
+</footer>
+
+<div class="sticky v-desk" id="sticky" aria-hidden="true">
+  <a class="btn btn--gold" href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=site&utm_content=sticky_start&utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis — sem cartão <svg><use href="#i-arrow"/></svg></a>
+</div>
+
+<!-- ================================================================
+     VISTA MOBILE (< 1024 px) · protótipo A aprovado. Estilos: /assets/css/home-m.css;
+     comportamento: /assets/js/home-m.js. ids com prefixo m-. Escondida no desktop por .v-mob.
+     ================================================================ -->
+<svg class="sprite v-mob" aria-hidden="true" focusable="false">
+  <symbol id="m-i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="m-i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="m-i-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="m-i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="m-i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="m-i-check" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7.95" stroke-width="1.8"/><path d="M5.9 9.1l2.1 2.1 4.1-4.3" stroke-width="1.8"/></symbol>
+  <symbol id="m-i-tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="m-i-shield" viewBox="0 0 24 30" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="currentColor" stroke-width="2.3" d="M12 1.9l9.25 3.1v10.5c0 6-3.75 9.8-9.25 12.1C6.5 25.3 2.75 21.5 2.75 15.5V5z"/><path stroke="#8A681F" stroke-width="2.2" d="M7.6 14.6l3.9 3.4 6.1-8"/></symbol>
+  <symbol id="m-i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="m-i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.3L21 9l-5.2 4.3L17.5 20 12 16.5 6.5 20l1.7-6.7L3 9l6.6-.7z"/></symbol>
+  <symbol id="m-i-quote" viewBox="0 0 12 10" fill="currentColor"><path d="M4.9.5C2.3 1.5.4 3.8.4 6.8c0 1.7 1 2.8 2.3 2.8 1.3 0 2.3-1 2.3-2.2S4.1 5.2 3 5.2h-.5C2.9 3.8 4 2.6 5.4 1.8zm6.2 0C8.5 1.5 6.6 3.8 6.6 6.8c0 1.7 1 2.8 2.3 2.8 1.3 0 2.3-1 2.3-2.2s-.9-2.2-2-2.2h-.5c.4-1.4 1.5-2.6 2.9-3.4z"/></symbol>
+  <symbol id="m-i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.5M12 7.6v.1"/></symbol>
+  <symbol id="m-i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></symbol>
+  <symbol id="m-i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.8" y="5.2" width="18.4" height="13.6" rx="2.4"/><path d="M2.8 9.6h18.4M6.6 15h3.6"/></symbol>
+  <symbol id="m-i-insta" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M7.85 2.55h8.3a5.3 5.3 0 0 1 5.3 5.3v8.3a5.3 5.3 0 0 1-5.3 5.3h-8.3a5.3 5.3 0 0 1-5.3-5.3v-8.3a5.3 5.3 0 0 1 5.3-5.3ZM7.85 4.25a3.6 3.6 0 0 0-3.6 3.6v8.3a3.6 3.6 0 0 0 3.6 3.6h8.3a3.6 3.6 0 0 0 3.6-3.6v-8.3a3.6 3.6 0 0 0-3.6-3.6ZM12 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 1.65a2.85 2.85 0 1 0 0 5.7 2.85 2.85 0 0 0 0-5.7ZM17.1 5.8a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z"/></symbol>
+  <!-- ícones das ferramentas (mesmos traços do desktop) -->
+  <symbol id="m-t-plantao" viewBox="0 0 23.8 27.9" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4.95 8.9V4.3a2.8 2.8 0 0 1 2.8-2.8h8.8a2.8 2.8 0 0 1 2.8 2.8v4.6"/><rect x="1.05" y="8.9" width="21.7" height="17.95" rx="3"/><path stroke-width="2.5" d="M6.9 14h.9M6.9 19.1h.9"/></symbol>
+  <symbol id="m-t-ausmind" viewBox="0 0 36 36"><path d="M18 .8Q19.7 16.3 34.4 18 19.7 19.7 18 35.4 16.3 19.7 1.6 18 16.3 16.3 18 .8Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/><g fill="currentColor"><circle cx="18.1" cy="18.3" r="1.5"/><circle cx="27.3" cy="8.8" r="1.3"/><circle cx="9.2" cy="26.9" r="1.3"/><circle cx="26.8" cy="26.4" r="1.3"/></g></symbol>
+  <symbol id="m-t-bulas" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6.1 4.7h13.4l4.9 4.9v17.6a3 3 0 0 1-3 3H6.1a3 3 0 0 1-3-3V7.7a3 3 0 0 1 3-3z"/><path d="M18.1 5.2v5a2 2 0 0 0 2 2h4.1M8.1 12.55h3.8M8.1 17.7h6.1"/></symbol>
+  <symbol id="m-t-calc" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3.7" y="6.3" width="22.2" height="24.7" rx="3"/><path d="M3.7 12.65h22.2M9.3 3.4v5.1M20.7 3.4v5.1"/><g fill="currentColor" stroke="none"><circle cx="11.2" cy="18.7" r="1.7"/><circle cx="18.3" cy="18.7" r="1.7"/><circle cx="11.2" cy="24.1" r="1.7"/><circle cx="18.3" cy="24.1" r="1.7"/></g></symbol>
+  <symbol id="m-t-quest" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3.9 12.2C4.3 9.8 6.4 8.1 10 6.1l5 4.5 4.8-4.5c3.6 2 5.8 3.5 6.5 5.9l-1.5 4.2 1 4.1-10.9 11.1L5.8 23l.4-3M15 10.6l1.3 2.4"/><path fill="currentColor" stroke-width="2" d="m16.6 12.8 4.7 5.8-5.9 6.8-4.5-6.2z"/><circle cx="15" cy="4.7" r="1.5" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="m-t-academy" viewBox="0 0 32 26" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M15.8 3 30 9.6 15.8 16 1.6 9.6Z"/><path d="M6.5 12.4v7.4c0 2.5 4.1 4.5 9.3 4.5s9.3-2 9.3-4.5v-7.4"/><path d="M27.3 10.4v8.2"/></symbol>
+  <!-- confiança -->
+  <symbol id="m-c-proto" viewBox="0 0 24 24"><g transform="translate(0 .8)"><path d="M3.7 4C3.7 3.5 4 3.2 4.5 3.2C7.3 3 9.8 2.4 12 1.4C14.2 2.4 16.7 3 19.5 3.2C20 3.2 20.3 3.5 20.3 4V14.6C20.3 18.2 16.6 20.4 12 22C7.4 20.4 3.7 18.2 3.7 14.6Z"/><path d="M5.6 5.8C5.6 5.4 5.9 5.2 6.3 5.1C8.4 4.9 10.3 4.4 12 3.7C13.7 4.4 15.6 4.9 17.7 5.1C18.1 5.2 18.4 5.4 18.4 5.8V14.4C18.4 16.9 15.7 18.4 12 19.5C8.3 18.4 5.6 16.9 5.6 14.4Z"/><path d="M12 9.1C13.5 10.3 14.3 11.3 14.3 12.4C14.3 13.6 13.3 14.4 12 14.4S9.7 13.6 9.7 12.4C9.7 11.3 10.5 10.3 12 9.1Z"/></g></symbol>
+  <symbol id="m-c-anvisa" viewBox="0 0 24 24"><path d="M9.1 2.3V7.1Q9.1 9.1 7.1 9.1H2.3M14.9 2.3V7.1Q14.9 9.1 16.9 9.1H21.7M2.3 14.9H7.1Q9.1 14.9 9.1 16.9V21.7M21.7 14.9H16.9Q14.9 14.9 14.9 16.9V21.7M12 10V14M10 12H14"/></symbol>
+  <symbol id="m-c-refs" viewBox="0 0 24 24"><path d="M2.6 3.7C2.6 3.2 2.9 2.9 3.4 2.8C5.6 2.5 7.6 2.1 9.3 1.6C10.5 1.2 10.9 0 12 0S13.5 1.2 14.7 1.6C16.4 2.1 18.4 2.5 20.6 2.8C21.1 2.9 21.4 3.2 21.4 3.7V16.4C21.4 19.1 16.2 21 12 21.9C7.8 21 2.6 19.1 2.6 16.4Z"/><circle cx="12" cy="11.9" r="6.7"/><circle cx="12" cy="11.9" r="4.2"/><path d="M12 10.3C12.9 11 13.4 11.7 13.4 12.5C13.4 13.3 12.8 13.8 12 13.8S10.6 13.3 10.6 12.5C10.6 11.7 11.1 11 12 10.3Z"/></symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr v-mob" id="m-hdr">
+  <a class="skip-link" href="#m-conteudo">Ir para o conteúdo</a>
+  <div class="hdr__in">
+    <a class="brand" href="#m-conteudo" aria-label="Ausculto, início"><picture><source media="(min-width: 1024px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1"><source srcset="/assets/brand/ausculto-a.svg"><img class="brand__mark" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="28" height="28" alt=""></picture><span class="brand__word brand__word--light" aria-hidden="true">Ausculto</span></a>
+    <div class="hdr__actions">
+      <a class="hdr__login" href="https://app.auscultoapp.com/" target="_blank" rel="noopener">Entrar</a>
+      <button class="hdr__menu" id="m-menu-open" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="m-menu"><svg aria-hidden="true"><use href="#m-i-menu"/></svg><span class="sr-only">Abrir menu</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MENU (folha cheia) ============ -->
+<dialog class="sheet v-mob" id="m-menu" aria-label="Menu">
+  <div class="sheet__top">
+    <a class="brand" href="#m-conteudo" data-close aria-label="Ausculto, início"><img class="brand__mark" src="/assets/brand/ausculto-a.svg" width="28" height="28" alt="" loading="lazy" decoding="async"><img class="brand__word" src="/assets/home/wordmark-ausculto.svg" width="104" height="20" alt="" loading="lazy" decoding="async"></a>
+    <button class="sheet__close" type="button" data-close><svg aria-hidden="true"><use href="#m-i-x"/></svg><span class="sr-only">Fechar menu</span></button>
+  </div>
+  <div class="sheet__cta">
+    <a class="btn btn--gold btn--block btn--xl" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=m_menu_start&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis — sem cartão <svg aria-hidden="true"><use href="#m-i-arrow"/></svg></a>
+    <a class="btn btn--line btn--block" href="https://app.auscultoapp.com/" target="_blank" rel="noopener">Entrar</a>
+  </div>
+  <nav class="sheet__nav" aria-label="Principal">
+    <a href="/ads-medico.html" data-close>Para médicos<svg aria-hidden="true"><use href="#m-i-chev"/></svg></a>
+    <a href="/estudantes/" data-close>Para estudantes<svg aria-hidden="true"><use href="#m-i-chev"/></svg></a>
+    <a href="#m-ferramentas" data-close>Ferramentas<svg aria-hidden="true"><use href="#m-i-chev"/></svg></a>
+    <a href="#m-planos" data-close>Planos<svg aria-hidden="true"><use href="#m-i-chev"/></svg></a>
+    <a href="#m-faq" data-close>Dúvidas frequentes<svg aria-hidden="true"><use href="#m-i-chev"/></svg></a>
+  </nav>
+  <div class="sheet__stores">
+    <p class="label-caps">Baixe o app</p>
+    <div class="stores">
+      <a class="store store--gp" href="https://play.google.com/store/apps/details?id=br.com.ausculto.app" target="_blank" rel="noopener"><img src="/assets/home/m/badge-googleplay.webp" width="135" height="40" alt="Disponível no Google Play" loading="lazy" decoding="async"></a>
+      <a class="store store--as" href="https://apps.apple.com/br/app/id6760672276" target="_blank" rel="noopener"><img src="/assets/home/m/badge-appstore.svg" width="120" height="40" alt="Baixar na App Store" loading="lazy" decoding="async"></a>
+    </div>
+    <script>(function (s) { if (document.documentElement.getAttribute('data-os') === 'ios') s.insertBefore(s.querySelector('.store--as'), s.firstElementChild); })(document.currentScript.previousElementSibling);</script>
+  </div>
+</dialog>
+
+<main class="v-mob" id="m-conteudo" tabindex="-1">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="m-hero-title">
+  <div class="wrap hero__copy">
+    <h1 class="hero__title" id="m-hero-title">O plantão e a prova.<br><span>No mesmo app.</span></h1>
+    <p class="hero__sub">Atendimento, estudo e referência clínica em um só lugar. O&nbsp;ecossistema completo para o&nbsp;médico e o estudante de medicina.</p>
+    <a class="btn btn--gold btn--block btn--xl hero__cta" id="m-hero-cta" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=m_hero_start&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis — sem cartão <svg aria-hidden="true"><use href="#m-i-arrow"/></svg></a>
+  </div>
+
+  <figure class="hero__visual">
+    <picture>
+      <source media="(min-width: 1024px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1">
+      <source media="(min-width: 601px)" type="image/avif" srcset="/assets/home/m/hero-t.avif" width="1200" height="675">
+      <source media="(min-width: 601px)" type="image/webp" srcset="/assets/home/m/hero-t.webp" width="1200" height="675">
+      <source type="image/avif" srcset="/assets/home/m/hero-m.avif 780w, /assets/home/m/hero-m-1170.avif 1170w" sizes="100vw" width="780" height="585">
+      <source type="image/webp" srcset="/assets/home/m/hero-m.webp 780w, /assets/home/m/hero-m-1170.webp 1170w" sizes="100vw" width="780" height="585">
+      <img class="hero__img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="780" height="585" fetchpriority="high" decoding="async" alt="Médica sorrindo no consultório, com o Ausculto aberto no notebook e no iPhone">
+    </picture>
+
+    <figcaption class="hero__caption">Telas de demonstração com dados fictícios.</figcaption>
+  </figure>
+
+  <div class="wrap hero__after">
+    <a class="tlink hero__tour" href="#m-contextos"><svg class="i-down" aria-hidden="true"><use href="#m-i-arrow"/></svg>Ver a plataforma</a>
+    <nav class="hero__platforms" aria-label="Onde usar o Ausculto"><a href="https://apps.apple.com/br/app/id6760672276" target="_blank" rel="noopener">iPhone</a><a href="https://play.google.com/store/apps/details?id=br.com.ausculto.app" target="_blank" rel="noopener">Android</a><a href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=m_hero_web&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Web</a></nav>
+  </div>
+</section>
+
+<!-- ============ NÚMEROS ============ -->
+<section class="metric-ticker" aria-label="O Ausculto em números">
+  <div class="metric-ticker__viewport" tabindex="0" aria-label="Indicadores do Ausculto; role para explorar"><div class="metric-ticker__track"><ul class="metric-ticker__items" aria-label="Números do Ausculto">
+      <li><b>14 mil+</b><span>questões oficiais</span></li>
+      <li><b>250+</b><span>calculadoras e escores</span></li>
+      <li><b>5.255</b><span>bulas atualizadas</span></li>
+      <li><b>4.700+</b><span>patologias</span></li>
+      <li><b>18</b><span>ferramentas integradas</span></li>
+    </ul></div></div>
+  <button class="metric-ticker__toggle" type="button" aria-label="Pausar indicadores" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg></button>
+</section>
+
+<!-- ============ CONTEXTOS ============ -->
+<section id="m-contextos" class="routine-section" aria-labelledby="m-contextos-title">
+  <div class="home-block-wrap">
+    <header class="home-block-head">
+      <div><h2 id="m-contextos-title">Como o Ausculto se encaixa na sua rotina?</h2></div>
+    </header>
+    <div class="routine-grid" id="m-routine-list" aria-label="Contextos do Ausculto">
+      <a class="routine-card" href="/ads-medico.html">
+        <img src="/assets/home/routine/clinica.webp" width="768" height="512" loading="lazy" decoding="async" alt="Médica consultando um tablet no hospital">
+        <div class="routine-card__body"><span class="routine-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a5 5 0 0 0 10 0V3M4 3h4M14 3h4M11 14v3a4 4 0 0 0 8 0v-3"/><circle cx="19" cy="11" r="3"/></svg></span><div><h3>Na prática clínica</h3><p>Pacientes e protocolos para apoiar suas decisões.</p></div><span class="routine-card__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="routine-card" href="/estudantes/">
+        <img src="/assets/home/routine/estudos.webp" width="768" height="512" loading="lazy" decoding="async" alt="Estudante de Medicina revisando conteúdo à mesa">
+        <div class="routine-card__body"><span class="routine-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m2 8 10-5 10 5-10 5-10-5Zm4 3v6c4 3 8 3 12 0v-6M22 8v8"/></svg></span><div><h3>Nos estudos</h3><p>Questões, flashcards e casos para aprender no seu ritmo.</p></div><span class="routine-card__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="routine-card" href="/estudantes/#residencia">
+        <img src="/assets/home/routine/residencia.webp" width="768" height="512" loading="lazy" decoding="async" alt="Residentes discutindo um caso clínico">
+        <div class="routine-card__body"><span class="routine-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="19" rx="2"/><path d="M9 7h6M12 4v6M9 14h1m4 0h1m-6 4h1m4 0h1"/></svg></span><div><h3>Na residência</h3><p>Casos clínicos e revisão para aprofundar seu raciocínio.</p></div><span class="routine-card__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="routine-card" href="https://enamed.auscultoapp.com/">
+        <img src="/assets/home/routine/enamed.webp" width="768" height="512" loading="lazy" decoding="async" alt="Estudante se preparando para uma prova de Medicina">
+        <div class="routine-card__body"><span class="routine-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2M8 10l2 2 4-4M8 17h8"/></svg></span><div><h3>Para o ENAMED</h3><p>Sua preparação começa aqui.</p><span class="routine-card__cta">Explorar o ENAMED</span></div><span class="routine-card__go"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></span></div>
+      </a>
+    </div>
+    <div class="routine-controls" hidden>
+      <p class="routine-controls__count" aria-live="polite" aria-atomic="true"><span data-routine-index>1</span> de 4</p>
+      <div class="routine-controls__buttons">
+        <button type="button" data-routine-prev aria-label="Contexto anterior" aria-controls="m-routine-list" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg></button>
+        <button type="button" data-routine-next aria-label="Próximo contexto" aria-controls="m-routine-list"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FERRAMENTAS ============ -->
+<section class="tools" id="m-ferramentas" data-bg aria-labelledby="m-tools-title">
+  <div class="wrap">
+
+    <h2 class="h2" id="m-tools-title">Tudo o que você precisa, em um só lugar.</h2>
+    <p class="lead hide-m">Do plantão ao estudo, o Ausculto integra ferramentas essenciais para a sua rotina, com conteúdo confiável e sempre atualizado.</p>
+    <a class="tlink tlink--gold hide-m" id="m-all-tools-link" href="#m-todas-ferramentas" aria-controls="m-todas-ferramentas">Conheça todas as ferramentas<svg aria-hidden="true"><use href="#m-i-arrow"/></svg></a>
+
+    <article class="feat" id="m-meu-plantao">
+      <img class="feat__photo" src="/assets/home/m/plantao-m-21.webp" srcset="/assets/home/m/plantao-m-21-560.webp 560w, /assets/home/m/plantao-m-21.webp 780w" sizes="(min-width: 601px) 780px, (max-width: 359px) calc(100vw - 34px), calc(100vw - 42px)" width="780" height="390" loading="lazy" decoding="async" alt="Médica de scrubs azul-marinho consultando o Ausculto no celular durante o plantão, com a enfermaria ao fundo">
+      <div class="feat__body">
+        <h3 class="feat__title"><span class="ic"><svg aria-hidden="true"><use href="#m-t-plantao"/></svg></span><a class="feat__a" href="/ads-medico.html">Meu Plantão</a><svg class="feat__go" aria-hidden="true"><use href="#m-i-arrow"/></svg></h3>
+        <p class="feat__desc">Organize seus pacientes, evoluções e pendências, com mais segurança e praticidade.</p>
+
+        <span class="feature-discover" aria-hidden="true">Conhecer o Meu Plantão <svg><use href="#m-i-arrow"/></svg></span>
+      </div>
+    </article>
+
+    <a class="ausmind-feature" href="/ads-medico.html"><img src="/assets/landing/icons/ausmind.png" width="56" height="56" loading="lazy" alt=""><strong>AusMind IA</strong><span class="ausmind-feature__description">Respostas baseadas em evidências, com fontes. Pergunte, estude, revise.</span><span class="ausmind-capabilities"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Leitura de ECG</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 3 4-5 4 7"/></svg>Imagens médicas</span></span><span class="feature-discover">Conhecer o AusMind <svg aria-hidden="true"><use href="#m-i-arrow"/></svg></span></a>
+    <article class="feat feat--academy feat--highlight" id="m-academy">
+      <img class="feat__photo" src="/assets/home/m/academy-m-21.webp" srcset="/assets/home/m/academy-m-21-560.webp 560w, /assets/home/m/academy-m-21.webp 780w" sizes="(min-width: 601px) 780px, (max-width: 359px) calc(100vw - 34px), calc(100vw - 42px)" width="780" height="390" loading="lazy" decoding="async" alt="Dois estudantes de medicina estudando juntos no notebook, numa biblioteca">
+      <div class="feat__body">
+        <h3 class="feat__title"><span class="ic ic--academy"><img src="/assets/academy/academy-app-icon-72.webp" srcset="/assets/academy/academy-app-icon-72.webp 1x, /assets/academy/academy-app-icon-144.webp 2x" width="96" height="96" alt="" loading="lazy" decoding="async"></span><a class="feat__a" href="/estudantes/">Academy</a> <span class="badge">Novo</span><svg class="feat__go" aria-hidden="true"><use href="#m-i-arrow"/></svg></h3>
+        <p class="feat__desc">Trilhas de estudo, questões e casos clínicos comentados.</p>
+        <ul class="dots">
+          <li>Trilhas por especialidade</li>
+          <li>Questões e simulados comentados</li>
+          <li>Casos clínicos</li>
+          <li>Leitura por tema e flashcards</li>
+        </ul>
+        <span class="feature-discover" aria-hidden="true">Explorar a Academy <svg><use href="#m-i-arrow"/></svg></span>
+      </div>
+    </article>
+
+    <ul class="tiles" aria-label="Ferramentas em destaque">
+
+      <li><a class="tile" href="/ads-medico.html"><span class="ic"><svg aria-hidden="true"><use href="#m-t-bulas"/></svg></span><b class="tile__name">SmartBulas</b><span class="tile__line"><b>5.255</b> bulas</span></a></li>
+      <li><a class="tile" href="/ads-medico.html"><span class="ic"><svg aria-hidden="true"><use href="#m-t-calc"/></svg></span><b class="tile__name">Calculadoras</b><span class="tile__line"><b>250+</b> escores</span></a></li>
+      <li><a class="tile" href="/estudantes/"><span class="ic"><svg aria-hidden="true"><use href="#m-t-quest"/></svg></span><b class="tile__name">Banco de Questões</b><span class="tile__line"><b>14 mil+</b> questões oficiais</span></a></li>
+    </ul>
+
+
+
+    <details class="acc alltools" id="m-todas-ferramentas">
+      <summary>Ver as 18 ferramentas<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary>
+      <div class="alltools__grid">
+        <div class="alltools__group"><h3>Plantão e decisão</h3><ul>
+          <li><b>Meu Plantão</b><span>Pacientes, pendências, registros, passagem e documentos</span></li>
+          <li><b>Protocolos</b><span>Diretrizes brasileiras com fonte e vigência</span></li>
+          <li><b>Calculadoras</b><span>250+ escores e índices clínicos</span></li>
+          <li><b>AusMind IA</b><span>Respostas com fontes e limites explícitos</span></li>
+        </ul></div>
+        <div class="alltools__group"><h3>Prescrição e segurança</h3><ul>
+          <li><b>SmartBulas</b><span>5.255 bulas atualizadas</span></li>
+          <li><b>Interações</b><span>24.145 interações mapeadas</span></li>
+          <li><b>Vacinação</b><span>Calendário e esquemas vacinais</span></li>
+          <li><b>CID-10/11</b><span>Classificação e codificação</span></li>
+          <li><b>Exames complementares</b><span>Interpretação de exames</span></li>
+        </ul></div>
+        <div class="alltools__group"><h3>Especialidades e revisão</h3><ul>
+          <li><b>Semiologia</b><span>Exame físico e raciocínio clínico</span></li>
+          <li><b>AusPed</b><span>Pediatria prática e objetiva</span></li>
+          <li><b>AusObs</b><span>Obstetrícia essencial</span></li>
+          <li><b>Resumaker</b><span>Resumos prontos e personalizados</span></li>
+        </ul></div>
+        <div class="alltools__group"><h3>Estudo · Academy</h3><ul>
+          <li><b>Banco de Questões</b><span>14 mil+ questões oficiais de 160+ provas</span></li>
+          <li><b>Casos clínicos</b><span>Por especialidade, com raciocínio</span></li>
+          <li><b>Biblioteca clínica</b><span>4.700+ patologias</span></li>
+          <li><b>AusAnatomy 3D</b><span>3.603 estruturas anatômicas</span></li>
+          <li><b>Preparação para residência</b><span>Treino por banca, flashcards e Raio-X Acadêmico</span></li>
+        </ul></div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ CONFIANÇA ============ -->
+<section class="trust sec-open" id="m-confianca" data-bg aria-labelledby="m-trust-title">
+  <div class="wrap">
+
+    <h2 class="h2 h2--lines" id="m-trust-title"><span>Conteúdo clínico com fonte.</span> <span>Ferramentas feitas para a rotina real.</span></h2>
+    <ul class="trust__items">
+      <li><svg class="trust__ic" aria-hidden="true"><use href="#m-c-proto"/></svg><div><h3>Protocolos brasileiros</h3><p>Diretrizes das principais sociedades médicas</p></div></li>
+      <li><svg class="trust__ic" aria-hidden="true"><use href="#m-c-anvisa"/></svg><div><h3>Base ANVISA</h3><p>Bulas oficiais organizadas para consulta</p></div></li>
+      <li><svg class="trust__ic" aria-hidden="true"><use href="#m-c-refs"/></svg><div><h3>Referências exibidas</h3><p>Fontes e links para aprofundar seu estudo</p></div></li>
+    </ul>
+    <p class="trust__source">Conteúdo baseado em diretrizes oficiais e literatura de referência.</p>
+    <div class="evidence-references" aria-label="Referências nacionais e internacionais">
+      <p>Fundamentado em referências<strong>nacionais e mundiais.</strong></p>
+      <ul><li><img src="/assets/home/references/guideline_aha.png" alt="American Heart Association" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_atls.png" alt="Advanced Trauma Life Support" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_ms.png" alt="Ministério da Saúde" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_sbc.png" alt="Sociedade Brasileira de Cardiologia" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_sbp.png" alt="Sociedade Brasileira de Pediatria" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_febrasgo.png" alt="FEBRASGO" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_sbcm.png" alt="Sociedade Brasileira de Clínica Médica" loading="lazy" decoding="async" width="140" height="48"></li>
+        <li><img src="/assets/home/references/guideline_sbr.png" alt="Sociedade Brasileira de Reumatologia" loading="lazy" decoding="async" width="140" height="48"></li></ul>
+    </div>
+    <div class="trust__testimonials">
+        <figure class="say say--card">
+          <img class="say__avatar" src="/assets/home/m/loren-144.webp" width="44" height="44" loading="lazy" decoding="async" alt="Foto de Loren Ferrarezi">
+          <figcaption><b>Loren Ferrarezi</b> <span>Estudante de Medicina&nbsp;· 6.º&nbsp;ano</span></figcaption>
+          <blockquote><p>“O Ausculto virou meu companheiro de plantão. Tenho todos os protocolos na palma da mão e a IA me ajuda a pensar nos casos difíceis.”</p></blockquote>
+        </figure>
+    <figure class="say say--card">
+      <img class="say__avatar" src="/assets/home/m/maria-julia-96.webp" width="48" height="48" loading="lazy" decoding="async" alt="Dra. Maria Júlia Gomes Ferreira Santos, médica de família">
+      <figcaption><b>Dra. Maria Júlia Gomes Ferreira Santos</b> <span>Medicina de Família&nbsp;· CRM-SP&nbsp;258613</span></figcaption>
+      <span class="say__stars" aria-hidden="true"><svg><use href="#m-i-star"/></svg><svg><use href="#m-i-star"/></svg><svg><use href="#m-i-star"/></svg><svg><use href="#m-i-star"/></svg><svg><use href="#m-i-star"/></svg></span>
+      <blockquote><p>“Interface limpa, rápida e prática na rotina. Recomendo para todos os colegas.”</p></blockquote>
+    </figure>
+    </div>
+    <p class="trust__disc"><svg aria-hidden="true"><use href="#m-i-info"/></svg><span>Ferramenta de apoio informacional e educacional. Não substitui o julgamento médico.</span></p>
+  </div>
+</section>
+
+<!-- ============ PLANOS ============ -->
+<section class="plans sec-open" id="m-planos" data-bg aria-labelledby="m-plans-title">
+  <div class="wrap">
+
+    <h2 class="h2" id="m-plans-title">Comece grátis. Evolua quando fizer sentido.</h2>
+    <p class="lead hide-m">Criar conta é grátis e não pede cartão. O PRO libera todo o ecossistema, com 7 dias para testar.</p>
+
+    <fieldset class="seg seg--3 plans__period">
+      <legend class="sr-only">Período de cobrança</legend>
+      <label class="seg__opt"><input type="radio" name="m-period" value="monthly"><span>Mensal</span></label>
+      <label class="seg__opt"><input type="radio" name="m-period" value="semiannual"><span>Semestral</span></label>
+      <label class="seg__opt"><input type="radio" name="m-period" value="annual" checked><span>Anual <em>−33%</em></span></label>
+    </fieldset>
+
+    <div class="plans__list">
+      <article class="plan plan--pro" aria-labelledby="m-pro-name">
+        <span class="plan__badge" id="m-pro-badge">Mais escolhido</span>
+        <h3 class="plan__name" id="m-pro-name"><svg aria-hidden="true"><use href="#m-i-star"/></svg>Ausculto PRO</h3>
+        <p class="plan__desc hide-m">O ecossistema completo para a rotina do médico e do estudante: plantão, documentos, apoio clínico e estudo sem limite.</p>
+        <div class="plan__price" aria-live="polite"><strong id="m-pro-price">R$ 239,90</strong><small id="m-pro-label">/ ano</small></div>
+        <p class="plan__note" id="m-pro-note">Equivalente a R$ 19,99/mês — 33% de economia.</p>
+        <ul class="plan__feats">
+          <li><svg aria-hidden="true"><use href="#m-i-check"/></svg>Meu Plantão completo: pacientes, vitais, passagem e checklists</li>
+          <li><svg aria-hidden="true"><use href="#m-i-check"/></svg>Todos os recursos clínicos: protocolos, SmartBulas, interações e 250+ calculadoras</li>
+          <li><svg aria-hidden="true"><use href="#m-i-check"/></svg>AusMind IA com prioridade de uso</li>
+          <li><svg aria-hidden="true"><use href="#m-i-check"/></svg>Documentos com identidade profissional e papel timbrado</li>
+          <li><svg aria-hidden="true"><use href="#m-i-check"/></svg>Todos os recursos de estudo da Academy</li>
+        </ul>
+        <a class="btn btn--gold btn--block btn--xl" id="m-pro-cta" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site_pricing&amp;utm_content=m_pro_annual&amp;utm_campaign=site_2026" target="_blank" rel="noopener"><span id="m-pro-cta-text">Escolher PRO anual</span><svg aria-hidden="true"><use href="#m-i-arrow"/></svg></a>
+        <p class="plan__micro">7 dias para testar. Valores confirmados no checkout.</p>
+        <ul class="plan__terms">
+          <li><svg aria-hidden="true"><use href="#m-i-refresh"/></svg>Cancele quando quiser, sem fidelidade.</li>
+          <li><svg aria-hidden="true"><use href="#m-i-card"/></svg>Assine pela web, App Store ou Google Play.</li>
+          <li><svg aria-hidden="true"><use href="#m-i-shield"/></svg>Arrependimento em até 7 dias (CDC, art. 49).</li>
+        </ul>
+      </article>
+
+      <article class="plan plan--free" aria-labelledby="m-free-name">
+        <div class="plan__row">
+          <h3 class="plan__name" id="m-free-name"><svg aria-hidden="true"><use href="#m-i-monitor"/></svg>Grátis</h3>
+          <p class="plan__price plan__price--sm"><strong>R$ 0</strong><small>para sempre, sem cartão</small></p>
+        </div>
+        <p class="plan__desc">Para conhecer o Ausculto: o Meu Plantão e o essencial das ferramentas clínicas.</p>
+        <a class="btn btn--line btn--block" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site_pricing&amp;utm_content=m_free&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Criar conta grátis</a>
+        <details class="acc acc--inline">
+          <summary>Ver o que inclui<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary>
+          <ul class="plan__feats">
+            <li><svg aria-hidden="true"><use href="#m-i-check"/></svg>Conhecer o Meu Plantão e o fluxo de trabalho</li>
+            <li><svg aria-hidden="true"><use href="#m-i-check"/></svg>Essencial das ferramentas clínicas, com limites nos módulos avançados</li>
+            <li><svg aria-hidden="true"><use href="#m-i-check"/></svg>Web, iPhone e Android, mesmo login</li>
+          </ul>
+          <p class="plan__foot">Comece em minutos, direto no navegador.</p>
+        </details>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq sec-open" id="m-faq" aria-labelledby="m-faq-title">
+  <div class="wrap">
+
+    <h2 class="h2" id="m-faq-title">O que perguntam antes de assinar.</h2>
+    <div class="faq__list">
+      <details class="acc" name="m-faq"><summary>O Ausculto substitui a decisão médica?<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary><div class="acc__a">Não, e não tenta. O Ausculto é uma ferramenta de apoio informacional: organiza o plantão e aproxima protocolos, bulas e escores. A avaliação do paciente, a checagem das diretrizes vigentes e a decisão final são sempre do médico assistente.</div></details>
+      <details class="acc" name="m-faq"><summary>Sou estudante. O Ausculto serve para mim?<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary><div class="acc__a">Sim. A Academy reúne questões comentadas, casos clínicos, flashcards e o Raio-X Acadêmico do seu desempenho. Quando você avançar na formação, o mesmo app acompanha o plantão: basta alternar para o modo médico.</div></details>
+      <details class="acc" name="m-faq"><summary>O Meu Plantão é um prontuário?<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary><div class="acc__a">Não. É a sua ferramenta pessoal de organização do plantão: pacientes, pendências, timers, registros e passagem. Ele não substitui o prontuário oficial do serviço; o registro institucional continua sendo feito no sistema do hospital.</div></details>
+      <details class="acc" name="m-faq"><summary>Como funcionam os dados que eu insiro?<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary><div class="acc__a">Os dados ficam associados à sua conta e são tratados conforme a nossa Política de Privacidade e a LGPD. O fluxo incentiva o uso de identificadores internos (como PCT-008) em vez de dados que identifiquem o paciente.</div></details>
+      <details class="acc" name="m-faq"><summary>O que está incluído gratuitamente?<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary><div class="acc__a">Criar conta é grátis e não pede cartão. Você conhece o Meu Plantão e o essencial das ferramentas clínicas, com limites de uso nos módulos avançados. O PRO remove os limites e dá 7 dias para testar tudo.</div></details>
+      <details class="acc" name="m-faq"><summary>Em quais plataformas funciona?<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary><div class="acc__a">Na web (qualquer navegador, inclusive o computador do hospital), no iPhone e no Android, com o mesmo login e os mesmos dados.</div></details>
+      <details class="acc" name="m-faq"><summary>Como funciona o PRO?<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary><div class="acc__a">O PRO libera o ecossistema completo: Meu Plantão sem limites, documentos com o seu timbrado, protocolos, SmartBulas, interações, calculadoras, o AusMind IA e os módulos de estudo. Planos mensal, semestral e anual; os valores são confirmados no checkout, e você começa com 7 dias grátis.</div></details>
+      <details class="acc" name="m-faq"><summary>Como cancelo se não gostar?<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary><div class="acc__a">Pelo próprio canal onde assinou (conta no app ou loja), a qualquer momento e sem fidelidade. Cancelando, você mantém o acesso até o fim do período já pago.</div></details>
+    </div>
+    <p class="faq__more hide-m">Se ficou alguma dúvida, o caminho mais rápido é criar a conta grátis e ver o app por dentro. <a class="tlink tlink--gold tlink--inline" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=m_faq_start&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis<svg aria-hidden="true"><use href="#m-i-arrow"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta" id="m-cta" aria-labelledby="m-cta-title">
+  <img class="cta__bg" src="/assets/home/m/bg/cta-mountains-navy.webp" width="780" height="382" loading="lazy" decoding="async" alt="">
+  <div class="wrap cta__in">
+
+    <h2 class="h2 h2--navy cta__title" id="m-cta-title"><span>Menos abas.</span> <span>Mais contexto para decidir e estudar.</span></h2>
+    <a class="btn btn--gold btn--block btn--xl" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=m_final_start&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis — sem cartão <svg aria-hidden="true"><use href="#m-i-arrow"/></svg></a>
+    <p class="cta__proof">Médicos e estudantes de medicina já usam o Ausculto no plantão e na preparação para a prova.</p>
+
+    <p class="cta__motto">Conhecimento para um cuidado melhor.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ RODAPÉ ============ -->
+<footer class="foot v-mob">
+  <div class="wrap">
+    <div class="foot__brand">
+      <a class="brand" href="#m-conteudo" aria-label="Ausculto, voltar ao início"><img class="brand__mark" src="/assets/brand/ausculto-a.svg" width="28" height="28" alt="" loading="lazy"><span class="brand__word brand__word--light" aria-hidden="true">Ausculto</span></a>
+      <p class="foot__tag">O ecossistema completo para o médico e o estudante de medicina.</p>
+    </div>
+    <div class="foot__nav">
+      <details class="acc foot__acc">
+        <summary>Produto<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary>
+        <nav aria-label="Produto">
+          <a href="/ads-medico.html">Para médicos</a>
+          <a href="/estudantes/">Para estudantes</a>
+          <a href="#m-ferramentas">Ferramentas</a>
+          <a href="#m-planos">Planos</a>
+        </nav>
+      </details>
+      <details class="acc foot__acc">
+        <summary>Institucional<svg aria-hidden="true"><use href="#m-i-caret"/></svg></summary>
+        <nav aria-label="Institucional">
+          <a href="#m-contextos">Sobre</a>
+          <a href="#m-faq">Ajuda</a>
+          <a href="mailto:suporte@auscultoapp.com">Contato</a>
+          <a href="/conteudos/">Conteúdos de medicina</a>
+        </nav>
+      </details>
+    </div>
+    <div class="foot__apps">
+      <p class="label-caps">Baixe o app</p>
+      <div class="stores">
+        <a class="store store--gp" href="https://play.google.com/store/apps/details?id=br.com.ausculto.app" target="_blank" rel="noopener"><img src="/assets/home/m/badge-googleplay.webp" width="135" height="40" alt="Disponível no Google Play" loading="lazy" decoding="async"></a>
+        <a class="store store--as" href="https://apps.apple.com/br/app/id6760672276" target="_blank" rel="noopener"><img src="/assets/home/m/badge-appstore.svg" width="120" height="40" alt="Baixar na App Store" loading="lazy" decoding="async"></a>
+      </div>
+      <script>(function (s) { if (document.documentElement.getAttribute('data-os') === 'ios') s.insertBefore(s.querySelector('.store--as'), s.firstElementChild); })(document.currentScript.previousElementSibling);</script>
+    </div>
+    <div class="foot__legal">
+      <div class="foot__links">
+        <p><a href="/politica-de-privacidade.html">Privacidade</a> · <a href="/termos-de-uso.html">Termos</a> · <a href="/excluir-conta.html">Excluir conta</a></p>
+        <a class="foot__social" href="https://www.instagram.com/auscultoapp" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#m-i-insta"/></svg><span class="sr-only">Instagram do Ausculto</span></a>
+      </div>
+      <p>© 2026 Ausculto — AUSCULTO PLATAFORMA MEDICA LTDA — CNPJ 67.097.849/0001-04. Ferramenta de apoio informacional e educacional; não substitui o julgamento médico. Telas de demonstração com dados fictícios.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CTA FIXO ============ -->
+<div class="sticky v-mob" id="m-sticky" aria-hidden="true" inert>
+  <a class="btn btn--gold btn--block" href="https://app.auscultoapp.com/?utm_source=landing&amp;utm_medium=site&amp;utm_content=m_sticky_start&amp;utm_campaign=site_2026" target="_blank" rel="noopener">Começar grátis — sem cartão <svg aria-hidden="true"><use href="#m-i-arrow"/></svg></a>
+</div>
+
+</body>
+</html>
