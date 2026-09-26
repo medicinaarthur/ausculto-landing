@@ -888,7 +888,7 @@
 @media (max-width: 1000px) { .academy-students .about-logo--tile { width: 68px; height: 68px; } }
 @media (max-width: 600px) { .academy-students .about-logo--tile { width: 58px; height: 58px; } }
 
-/* Trilha clínica: quarto card de "Qual é seu objetivo?" (26/09/2026). Vertical no desktop largo e no celular; horizontal entre 601 e 1200 px. */
+/* Trilha clínica: card 07 de "Recursos da Academy" (26/09/2026), no lugar do card antigo. Ocupa a coluna do card largo no desktop e vira um item do carrossel no celular. */
 .academy-students .trail-card { position:relative; isolation:isolate; display:flex; flex-direction:column; min-width:0; overflow:hidden; border:1px solid #eadfcb; border-radius:22px; background:#fbf8f2; color:var(--navy); box-shadow:0 18px 44px #07182f14; }
 .academy-students .trail-media { position:relative; aspect-ratio:1200/640; overflow:hidden; background:#dfe9f3; }
 .academy-students .trail-media img { display:block; width:100%; height:100%; object-fit:cover; object-position:30% 32%; }
@@ -918,36 +918,6 @@
 .academy-students .trail-footer::before, .academy-students .trail-footer::after { content:''; flex:0 1 44px; min-width:14px; height:1px; background:#c39a55; }
 .academy-students .trail-footer i { font-style:normal; color:#8a93a3; letter-spacing:0; }
 
-@media(min-width:1201px) {
-  .academy-students .path-grid { grid-template-columns:repeat(6,minmax(0,1fr)); }
-  .academy-students .path-card--residency, .academy-students .path-card--enamed { grid-column:span 3; }
-  .academy-students .path-card.enamed-download { grid-column:1 / span 4; grid-row:2; grid-template-columns:minmax(0,1fr) 40%; grid-template-rows:auto auto 1fr; align-content:start; gap:26px 32px; padding:44px 44px 40px; }
-  .academy-students .path-card.enamed-download .download-copy { grid-column:1; grid-row:1; }
-  .academy-students .path-card.enamed-download .download-action { grid-column:1; grid-row:2; margin-top:-6px; }
-  .academy-students .path-card.enamed-download .download-benefits { grid-column:1; grid-row:3; align-self:end; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
-  .academy-students .path-card.enamed-download .download-benefits li { flex-direction:column; align-items:flex-start; gap:10px; }
-  .academy-students .path-card.enamed-download .download-icon { flex-basis:auto; width:44px; height:44px; }
-  .academy-students .enamed-download::after { background:linear-gradient(90deg,#061a33 0%,#061a33f5 46%,#061a3399 62%,transparent 82%); }
-  .academy-students .trail-card { grid-column:5 / span 2; grid-row:2; }
-  .academy-students .trail-media { flex:1 1 auto; aspect-ratio:auto; min-height:230px; }
-  .academy-students .trail-media img { object-position:0% 38%; }
-  .academy-students .trail-actions { margin-top:0; }
-  .academy-students .trail-body { padding:0 22px 20px; }
-  .academy-students .trail-medal { width:84px; height:84px; }
-  .academy-students .trail-medal > span { width:68px; height:68px; }
-  .academy-students .trail-lead { margin-left:calc(84px + 18px); }
-  .academy-students .trail-btn { gap:10px; font-size:1rem; }
-  .academy-students .trail-footer { letter-spacing:.14em; font-size:10px; gap:7px; }
-  .academy-students .trail-footer::before, .academy-students .trail-footer::after { flex-basis:22px; }
-}
-
-@media(min-width:601px) and (max-width:1200px) {
-  .academy-students .trail-card { grid-column:1 / -1; flex-direction:row; min-height:360px; }
-  .academy-students .trail-media { flex:0 0 44%; aspect-ratio:auto; }
-  .academy-students .trail-body { margin-top:0; padding:30px 32px 24px; border-radius:0; justify-content:center; }
-  .academy-students .trail-medal { margin-top:0; }
-}
-
 @media(max-width:600px) {
   .academy-students .trail-card { border-radius:18px; box-shadow:0 10px 26px #07182f12; }
   .academy-students .trail-body { margin-top:-22px; padding:0 18px 18px; border-top-right-radius:26px; }
@@ -967,4 +937,67 @@
   .academy-students .trail-btn svg { width:20px; height:20px; }
   .academy-students .trail-footer { margin-top:18px; padding-top:14px; font-size:9px; letter-spacing:.14em; gap:6px; }
   .academy-students .trail-footer::before, .academy-students .trail-footer::after { flex-basis:18px; }
+}
+
+/* Encaixe do card da Trilha na grade de recursos */
+.academy-students .resource-grid > .trail-card { grid-column:span 4; grid-row:span 3; border-color:#e4dccd; border-radius:18px; box-shadow:0 14px 34px #07182f0d; }
+@media(min-width:1001px) {
+  .academy-students .resource-grid > .trail-card .trail-media { flex:1 1 auto; aspect-ratio:auto; min-height:150px; }
+  .academy-students .resource-grid > .trail-card .trail-media img { object-position:0% 38%; }
+  .academy-students .resource-grid > .trail-card .trail-body { margin-top:-22px; padding:0 18px 18px; border-top-right-radius:24px; }
+  .academy-students .resource-grid > .trail-card .trail-head { gap:12px; }
+  .academy-students .resource-grid > .trail-card .trail-medal { width:66px; height:66px; margin-top:-26px; }
+  .academy-students .resource-grid > .trail-card .trail-medal > span { width:53px; height:53px; }
+  .academy-students .resource-grid > .trail-card .trail-medal img { width:25px; height:25px; }
+  .academy-students .resource-grid > .trail-card .trail-title { padding-top:10px; }
+  .academy-students .resource-grid > .trail-card .trail-kicker { font-size:9.5px; margin-bottom:3px; }
+  .academy-students .resource-grid > .trail-card h3 { font-size:1.35rem; }
+  .academy-students .resource-grid > .trail-card .trail-lead { margin:8px 0 14px calc(66px + 12px); font-size:.82rem; }
+  .academy-students .resource-grid > .trail-card .trail-count { font-size:.8rem; margin-bottom:8px; }
+  .academy-students .resource-grid > .trail-card .trail-bar { gap:4px; margin-bottom:14px; }
+  .academy-students .resource-grid > .trail-card .trail-bar li { height:7px; }
+  .academy-students .resource-grid > .trail-card .trail-actions { gap:8px; margin-top:0; }
+  .academy-students .resource-grid > .trail-card .trail-btn { min-height:44px; gap:6px; padding:0 8px; border-radius:11px; font-size:.8rem; }
+  .academy-students .resource-grid > .trail-card .trail-btn svg { width:17px; height:17px; }
+  .academy-students .resource-grid > .trail-card .trail-btn--start { box-shadow:0 3px 0 #cf973a, inset 0 1px 0 #ffffff66; }
+  .academy-students .resource-grid > .trail-card .trail-footer { margin-top:14px; padding-top:12px; font-size:7.5px; letter-spacing:.1em; gap:4px; }
+  .academy-students .resource-grid > .trail-card .trail-footer::before, .academy-students .resource-grid > .trail-card .trail-footer::after { flex-basis:10px; min-width:8px; }
+}
+@media(max-width:1000px) {
+  .academy-students .resource-grid > .trail-card { flex:0 0 min(84vw,360px); scroll-snap-align:center; }
+  .academy-students .resource-grid > .trail-card .trail-media { flex:1 0 auto; }
+  .academy-students .resource-grid > .trail-card .trail-media img { object-position:0% 38%; }
+  .academy-students .resource-grid > .trail-card .trail-actions { margin-top:0; }
+}
+@media(max-width:600px) {
+  .academy-students .resource-grid > .trail-card { flex-basis:min(80vw,316px); }
+  .academy-students .resource-grid > .trail-card .trail-lead { font-size:.86rem; }
+  .academy-students .resource-grid > .trail-card .trail-btn { font-size:.86rem; min-height:48px; }
+  .academy-students .resource-grid > .trail-card .trail-footer { font-size:8px; letter-spacing:.1em; }
+}
+@media(max-width:359px) { .academy-students .resource-grid > .trail-card { flex-basis:88vw; } }
+@media(min-width:1201px) {
+  .academy-students .resource-grid > .trail-card .trail-lead { font-size:.86rem; }
+  .academy-students .resource-grid > .trail-card .trail-btn { font-size:.86rem; }
+  .academy-students .resource-grid > .trail-card .trail-footer { font-size:8.5px; letter-spacing:.14em; gap:6px; }
+  .academy-students .resource-grid > .trail-card .trail-footer::before, .academy-students .resource-grid > .trail-card .trail-footer::after { flex-basis:18px; }
+}
+@media(min-width:601px) and (max-width:1000px) {
+  .academy-students .resource-grid > .trail-card .trail-body { margin-top:-22px; padding:0 18px 18px; border-top-right-radius:26px; }
+  .academy-students .resource-grid > .trail-card .trail-head { gap:14px; }
+  .academy-students .resource-grid > .trail-card .trail-medal { width:76px; height:76px; margin-top:-28px; }
+  .academy-students .resource-grid > .trail-card .trail-medal > span { width:62px; height:62px; }
+  .academy-students .resource-grid > .trail-card .trail-medal img { width:28px; height:28px; }
+  .academy-students .resource-grid > .trail-card .trail-title { padding-top:12px; }
+  .academy-students .resource-grid > .trail-card .trail-kicker { font-size:10.5px; margin-bottom:4px; }
+  .academy-students .resource-grid > .trail-card h3 { font-size:1.6rem; }
+  .academy-students .resource-grid > .trail-card .trail-lead { margin:8px 0 18px calc(76px + 14px); font-size:.9rem; }
+  .academy-students .resource-grid > .trail-card .trail-count { font-size:.9rem; }
+  .academy-students .resource-grid > .trail-card .trail-bar { gap:5px; margin-bottom:18px; }
+  .academy-students .resource-grid > .trail-card .trail-bar li { height:8px; }
+  .academy-students .resource-grid > .trail-card .trail-actions { gap:10px; }
+  .academy-students .resource-grid > .trail-card .trail-btn { min-height:50px; gap:8px; padding:0 10px; font-size:.9rem; border-radius:12px; }
+  .academy-students .resource-grid > .trail-card .trail-btn svg { width:20px; height:20px; }
+  .academy-students .resource-grid > .trail-card .trail-footer { margin-top:18px; padding-top:14px; font-size:8.5px; letter-spacing:.12em; gap:6px; }
+  .academy-students .resource-grid > .trail-card .trail-footer::before, .academy-students .resource-grid > .trail-card .trail-footer::after { flex-basis:16px; }
 }

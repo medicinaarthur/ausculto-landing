@@ -105,9 +105,11 @@ test("student landing preserves the brand and advertises only available study re
   assert.match(html, /enamed-commented\.webp/);
   assert.strictEqual((html.match(/data-book data-book-name=/g) || []).length, 3);
   assert.match(html, /data-book-name="Gasometria"/);
-  assert.strictEqual((html.match(/class="resource-card/g) || []).length, 7);
+  // Sete ferramentas: seis cards de recurso e o card da Trilha clínica (card 07 desde 26/09/2026).
+  assert.strictEqual((html.match(/class="resource-card/g) || []).length, 6);
+  assert.strictEqual((html.match(/class="trail-card"/g) || []).length, 1);
   assert.match(html, /quiz-torax\.webp/);
-  assert.match(html, /trilha-clinica\.webp/);
+  assert.match(html, /trilha-clinica-card\.webp/);
   assert.match(html, /class="reading-dialog"/);
   assert.match(html, /pro-student.png/);
   assert.match(html, /pro-screen\.png/);

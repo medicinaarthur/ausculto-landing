@@ -33,7 +33,7 @@ export function productHero() { return academyHero(); }
 export function objectivesSection() {
   return `<section class="section academy-paths" id="caminhos"><div class="wrap">
     <div class="paths-heading">
-      <div><p class="kicker paths-kicker">ESCOLHA POR ONDE COMEÇAR</p><h2>Qual é <em>seu objetivo?</em></h2><p>Residência, ENAMED, Trilha clínica ou o PDF gratuito: <strong>todos abrem no mesmo app.</strong></p></div>
+      <div><p class="kicker paths-kicker">ESCOLHA POR ONDE COMEÇAR</p><h2>Qual é <em>seu objetivo?</em></h2><p>Residência, ENAMED ou o PDF gratuito: <strong>os três abrem no mesmo app.</strong></p></div>
       
     </div>
     <div class="path-grid">
@@ -47,16 +47,6 @@ export function objectivesSection() {
         <div class="path-copy"><span class="path-icon path-icon--light">${icon("note-pencil")}</span><span class="path-kicker">ENAMED</span><h3>ENAMED</h3><p>Leitura por tema, com imagens <br>e questões <strong>no formato da prova.</strong></p><span class="path-action path-action--outline">Explorar ENAMED →</span></div>
         <picture><source type="image/webp" srcset="/assets/academy/notebook-enamed.webp"><img class="path-figure path-figure--notebook" src="/assets/academy/notebook-enamed.png" alt="Caderno ENAMED: temas e subtemas" width="1024" height="1536" loading="lazy"></picture>
       </a>
-      <article class="trail-card" id="trilha-clinica">
-        <div class="trail-media"><img src="/assets/academy/trilha-clinica-card.webp" srcset="/assets/academy/trilha-clinica-card-720.webp 720w, /assets/academy/trilha-clinica-card.webp 1200w" sizes="(max-width: 600px) 100vw, (max-width: 1200px) 44vw, 400px" alt="Mascote do Ausculto de jaleco apresentando uma clínica: prevenção, diagnóstico, tratamento e acompanhamento" width="1200" height="671" loading="lazy"></div>
-        <div class="trail-body">
-          <div class="trail-head"><span class="trail-medal" aria-hidden="true"><span>${icon("stethoscope", 34)}</span></span><div class="trail-title"><p class="trail-kicker">MÓDULO</p><h3>Trilha clínica</h3></div></div>
-          <p class="trail-lead">Aprenda por capítulos, casos‑chefe e questões autorais.</p>
-          <div class="trail-progress"><p class="trail-count">0 de 12 capítulos</p><ol class="trail-bar" aria-hidden="true">${Array.from({ length: 12 }, (_, i) => `<li${i === 0 ? ' class="is-current"' : ""}></li>`).join("")}</ol></div>
-          <div class="trail-actions"><a class="trail-btn trail-btn--start" href="${app}">${svg.play}Começar</a><a class="trail-btn trail-btn--guide" href="#plataforma">${svg.bookOpen}Guia da trilha</a></div>
-          <p class="trail-footer"><span>ESTUDO</span><i aria-hidden="true">•</i><span>PRÁTICA</span><i aria-hidden="true">•</i><span>DECISÃO</span><i aria-hidden="true">•</i><span>MELHOR CUIDADO</span></p>
-        </div>
-      </article>
       <article class="path-card enamed-download" id="enamed-comentado">
         <picture><img class="download-art" src="/assets/academy/enamed-commented.webp" alt="" width="1800" height="600" loading="lazy"></picture>
         <div class="download-copy">
@@ -78,6 +68,19 @@ export function objectivesSection() {
   </div></section>`;
 }
 
+const trailCard = `
+<article class="trail-card" id="trilha-clinica" aria-label="Trilha clínica">
+  <div class="trail-media"><img src="/assets/academy/trilha-clinica-card.webp" srcset="/assets/academy/trilha-clinica-card-720.webp 720w, /assets/academy/trilha-clinica-card.webp 1200w" sizes="(max-width: 1000px) 84vw, 320px" alt="Mascote do Ausculto de jaleco apresentando uma clínica: prevenção, diagnóstico, tratamento e acompanhamento" width="1200" height="671" loading="lazy"></div>
+  <div class="trail-body">
+    <div class="trail-head"><span class="trail-medal" aria-hidden="true"><span>${icon("stethoscope", 34)}</span></span><div class="trail-title"><p class="trail-kicker">MÓDULO</p><h3>Trilha clínica</h3></div></div>
+    <p class="trail-lead">Aprenda por capítulos, casos‑chefe e questões autorais.</p>
+    <div class="trail-progress"><p class="trail-count">0 de 12 capítulos</p><ol class="trail-bar" aria-hidden="true">${Array.from({ length: 12 }, (_, i) => `<li${i === 0 ? ' class="is-current"' : ""}></li>`).join("")}</ol></div>
+    <div class="trail-actions"><a class="trail-btn trail-btn--start" href="${app}">${svg.play}Começar</a><a class="trail-btn trail-btn--guide" href="${app}">${svg.bookOpen}Guia da trilha</a></div>
+    <p class="trail-footer"><span>ESTUDO</span><i aria-hidden="true">•</i><span>PRÁTICA</span><i aria-hidden="true">•</i><span>DECISÃO</span><i aria-hidden="true">•</i><span>MELHOR CUIDADO</span></p>
+  </div>
+</article>
+`;
+
 export function resourcesSection() {
   const cards = [
     { n: 1, name: "files", title: "Questões e simulados", text: "Pratique com provas reais de 40 bancas e entenda o raciocínio alternativa por alternativa.", demo: demos.question, action: "Explorar questões" },
@@ -86,11 +89,10 @@ export function resourcesSection() {
     { n: 4, name: "image", title: "Quiz de imagens", text: "Exercite sua interpretação com imagens reais e aprenda a reconhecer os achados que fazem a diferença.", demo: demos.quiz, action: "Explorar quiz de imagens" },
     { n: 5, name: "chart-bar", title: "Desempenho", text: "Veja acurácia, volume e tempo por tema e descubra onde você ainda perde ponto.", demo: demos.performance, action: "Explorar desempenho", wide: true },
     { n: 6, name: "timer", title: "Plano de estudos", text: "Estude de forma direcionada com um plano personalizado, baseado nas suas metas, disponibilidade e desempenho.", demo: demos.plan, action: "Explorar plano de estudos", wide: true },
-    { n: 7, name: "books", title: "Trilha Clínica", text: "Percorra os temas essenciais numa ordem que faz sentido clínico, do conceito ao caso.", demo: demos.trail, action: "Explorar trilha clínica", wide: true },
   ];
   return `<section class="section academy-toolbox" id="plataforma"><div class="wrap">
     <div class="toolbox-heading"><p class="kicker toolbox-kicker">RECURSOS DA ACADEMY</p><h2>Para aprender de <em>verdade.</em></h2><p><strong>Sete ferramentas no mesmo app</strong>, para aprender, fixar e aplicar.</p></div>
-    <div class="resource-grid" data-rail>${cards.map(resource).join("")}</div><div class="resource-dots" data-rail-dots aria-hidden="true"></div>
+    <div class="resource-grid" data-rail>${cards.map(resource).join("")}${trailCard}</div><div class="resource-dots" data-rail-dots aria-hidden="true"></div>
     <div class="toolbox-footer"><span class="toolbox-line"></span><div class="toolbox-steps"><span>${icon("graduation-cap")}APRENDER</span><span>${svg.brain}FIXAR</span><span>${icon("chart-bar")}APLICAR</span></div><span class="toolbox-line"></span></div>
   </div></section>`;
 }
