@@ -185,12 +185,12 @@ export function aboutSection() {
         <div class="showcase-hero__copy">
           <p class="showcase-label">Questões de residência</p>
           <h3 class="showcase-number"><strong>70 mil+</strong><span>questões no banco</span></h3>
-          <p class="showcase-hero__text">Provas reais de residência, atualizadas e <span class="acad-accent">comentadas alternativa por alternativa</span>, para você entender o raciocínio de cada questão.</p>
-          <ul class="about-checks"><li>Comentário em cada alternativa</li><li>Pontos-chave para revisar</li><li>Provas reais, sempre atualizadas</li></ul>
+          <p class="showcase-hero__text"><span class="acad-accent">${aboutNumber(product.commentedResidencyQuestions)} questões oficiais</span>, de provas reais de residência, comentadas alternativa por alternativa. O restante do banco é autoral: questões inéditas, construídas sobre a matriz e as métricas de cada banca para cobrar o que a sua prova cobra.</p>
+          <ul class="about-checks"><li>Oficiais identificadas por banca e ano</li><li>Autorais no padrão da sua prova</li><li>Comentário em cada alternativa</li></ul>
         </div>
         <div class="showcase-hero__demo">${aboutQuestion}</div>
         <div class="showcase-hero__foot">
-          <ul class="showcase-stats"><li><strong>${aboutNumber(product.commentedResidencyQuestions)}</strong><span>questões comentadas</span></li><li><strong>${product.residencyExamsMinimum}+</strong><span>provas de residência</span></li><li><strong>${product.residencyBoards}</strong><span>bancas de residência</span></li></ul>
+          <ul class="showcase-stats"><li><strong>${aboutNumber(product.commentedResidencyQuestions)}</strong><span>oficiais comentadas</span></li><li><strong>${product.residencyExamsMinimum}+</strong><span>provas de residência</span></li><li><strong>${product.residencyBoards}</strong><span>bancas de residência</span></li></ul>
           <a class="showcase-link" href="${app}">Explorar questões ${aboutArrow}</a>
         </div>
       </article>
