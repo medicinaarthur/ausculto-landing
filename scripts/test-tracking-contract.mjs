@@ -257,6 +257,39 @@ function testEndpointsResolveByHostname() {
       "host desconhecido nunca aponta para staging");
 }
 
+function testGrantedReferenceCarriesAttributionAfterCookies() {
+  const {win, log} = makeEnv({
+    consent: null,
+    url: "https://enamed.auscultoapp.com/diagnostico" +
+      "?utm_source=meta&utm_medium=paid_social" +
+      "&utm_campaign=enamed_2026_launch&campaign_id=120247802060210560" +
+      "&adset_id=120247802143580560&ad_id=120000000000000001" +
+      "&fbclid=CLIQUE_ASSINADO&email=nao%40pode.test",
+  });
+
+  win.auscultoConsent.grant();
+  const body = JSON.parse(log.fetch[0].init.body);
+  assert.equal(body.decision, "granted");
+  assert.equal(body.attribution.url,
+      "https://enamed.auscultoapp.com/diagnostico");
+  assert.equal(body.attribution.query.utm_campaign, "enamed_2026_launch");
+  assert.equal(body.attribution.query.ad_id, "120000000000000001");
+  assert.match(body.attribution.fbc, /^fb\.1\.\d+\.CLIQUE_ASSINADO$/,
+      "o fbc precisa existir antes de a referencia ser solicitada");
+  assert.ok(!JSON.stringify(body).includes("nao@pode.test"),
+      "query nao allowlisted nao atravessa");
+
+  const denied = makeEnv({
+    consent: null,
+    url: "https://enamed.auscultoapp.com/?utm_source=meta&fbclid=NEGADO",
+  });
+  denied.win.auscultoConsent.deny();
+  const deniedBody = JSON.parse(denied.log.fetch[0].init.body);
+  assert.equal(deniedBody.decision, "denied");
+  assert.equal(deniedBody.attribution, undefined,
+      "recusa nunca transporta atribuicao");
+}
+
 // ── 5. A recusa TAMBEM viaja ─────────────────────────────────────────────
 function testDenialAlsoRequestsReference() {
   const {win, log} = makeEnv({consent: null});
@@ -397,6 +430,7 @@ const main = async () => {
   testDenyByDefault();
   testSourceUrlHasNoQuery();
   testEndpointsResolveByHostname();
+  testGrantedReferenceCarriesAttributionAfterCookies();
   testDenialAlsoRequestsReference();
   testBridgeCarriesConsentReference();
   testLandingUtmDoesNotOverwritePaid();

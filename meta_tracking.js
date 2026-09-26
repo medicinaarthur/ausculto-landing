@@ -174,7 +174,7 @@
   // Auth, chamando uma callable protegida por App Check.
   var consentReference = '';
 
-  function requestConsentReference(decision) {
+  function requestConsentReference(decision, attribution) {
     if (!requireConsent) return;
     try {
       window.fetch(endpoints.consentReference, {
@@ -183,7 +183,12 @@
         // Sem cookies: este endpoint nao autentica ninguem e nao deve receber
         // sessao. `omit` tambem evita preflight com credenciais.
         credentials: 'omit',
-        body: JSON.stringify({ decision: decision }),
+        body: JSON.stringify({
+          decision: decision,
+          // Atribuicao so atravessa depois do aceite e dentro da assinatura.
+          // O servidor reaplica uma allowlist fechada antes de assinar.
+          attribution: decision === 'granted' ? attribution : undefined,
+        }),
       }).then(function (response) {
         return response.ok ? response.json() : null;
       }).then(function (data) {
@@ -263,19 +268,19 @@
   function setConsentDecision(decision) {
     consentDecision = decision;
     writeConsentDecision(decision);
-    if (decision !== 'granted') purgeMarketingCookies();
-    // A referencia e pedida para GRANTED e para DENIED. Registrar uma recusa
-    // vale tanto quanto registrar um aceite: sem isso, a pessoa que recusou na
-    // landing chega ao app como "sem decisao" e e perguntada de novo, o que e
-    // uma forma educada de ignorar o que ela disse.
-    requestConsentReference(decision);
     if (decision === 'granted') {
-      // Bootstrap tardio: Pixel, cookies de atribuicao e o PageView que ficou
-      // suprimido enquanto nao havia decisao.
+      // A ordem e contratual: primeiro materializa os identificadores do clique,
+      // depois pede a referencia que os assina. Pedir antes produzia uma
+      // referencia valida, mas vazia, e o cadastro virava falsamente "nativo".
       prepareAttributionCookies();
+      requestConsentReference(decision, consentReferenceAttribution());
       initMetaPixel();
       sendBootPageView();
+      return;
     }
+    purgeMarketingCookies();
+    // Uma recusa tambem atravessa, mas jamais leva atribuicao junto.
+    requestConsentReference(decision);
   }
 
   if (requireConsent) {
@@ -383,6 +388,15 @@
     });
 
     return out;
+  }
+
+  function consentReferenceAttribution() {
+    return {
+      url: sanitizedUrl(window.location.href),
+      query: currentMarketingParams(),
+      fbc: getCookie('_fbc'),
+      fbp: getCookie('_fbp'),
+    };
   }
 
   function mergeAppAttribution(link) {
