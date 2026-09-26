@@ -3,9 +3,10 @@
   "hosting": [
     {
       "target": "site",
-      "public": ".",
+      "public": "dist/site",
       "predeploy": [
-        "node scripts/guard-site-deploy.mjs"
+        "node scripts/guard-site-deploy.mjs",
+        "node scripts/build-site.mjs --verify"
       ],
       "ignore": [
         "firebase.json",
@@ -27,6 +28,10 @@
       ],
       "rewrites": [
         {
+          "source": "/_consent/reference",
+          "function": "issueMarketingConsentReference"
+        },
+        {
           "source": "/_bridge/appstore-click",
           "function": "recordAppStoreClick"
         }
@@ -38,6 +43,15 @@
             {
               "key": "Cache-Control",
               "value": "no-cache, no-store, must-revalidate"
+            }
+          ]
+        },
+        {
+          "regex": "^(?:/.*)?/$",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, max-age=0, must-revalidate"
             }
           ]
         },

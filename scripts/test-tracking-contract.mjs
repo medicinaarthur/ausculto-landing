@@ -361,6 +361,29 @@ function testEndpointsResolveByHostname() {
   assert.equal(prod.log.fetch[0].endpoint, "/_consent/reference",
       "em producao a chamada e same-origin");
 
+  // Site principal: tambem same-origin, resolvido pelo rewrite do target site.
+  for (const host of ["auscultoapp.com", "www.auscultoapp.com"]) {
+    const site = makeEnv({url: `https://${host}/estudantes/`, consent: null});
+    site.win.auscultoConsent.grant();
+    assert.equal(site.log.fetch[0].endpoint, "/_consent/reference",
+        `${host}: a referencia e pedida same-origin`);
+  }
+
+  // E o rewrite existe no target `site` das DUAS configs, apontando para a
+  // mesma Function (e regiao) do target enamed.
+  const enamedRewrite = JSON.parse(fs.readFileSync(
+      path.join(ROOT, "firebase.json"), "utf8")).hosting
+      .find((h) => h.target === "enamed").rewrites
+      .find((r) => r.source === "/_consent/reference");
+  for (const config of ["firebase.json", "firebase.site-release.json"]) {
+    const siteTarget = JSON.parse(fs.readFileSync(path.join(ROOT, config), "utf8"))
+        .hosting.find((h) => h.target === "site");
+    const rewrite = (siteTarget.rewrites || [])
+        .find((r) => r.source === "/_consent/reference");
+    assert.deepEqual(rewrite, enamedRewrite,
+        `${config}: target site reescreve /_consent/reference para a mesma Function`);
+  }
+
   // Host desconhecido cai no caminho que NAO fala com o projeto de teste.
   const outro = makeEnv({url: "https://exemplo.test/", consent: null});
   outro.win.auscultoConsent.grant();

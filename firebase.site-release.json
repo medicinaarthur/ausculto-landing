@@ -1,0 +1,83 @@
+{
+  "_comment": "Release 2026-09-17 of the main site (auscultoapp.com / www). Same public dir, predeploy guard and ignore list as firebase.json, but the hosting config mirrors the CURRENT production config (versions caabb4cf… and 5a56d3f4…: three header rules, no rewrites), so this deploy changes page content only. 2026-09-17: added no-cache for directory index URLs (/, /estudantes/, /conteudos/…), which Firebase otherwise serves with max-age=3600, so browsers stopped reusing an old homepage for an hour. 2026-09-26: added ONE rewrite, /_consent/reference -> issueMarketingConsentReference (same function as the enamed target), so the signed consent reference works on auscultoapp.com; requires the Function's origin allowlist to include https://auscultoapp.com and https://www.auscultoapp.com.",
+  "hosting": [
+    {
+      "target": "site",
+      "public": "dist/site",
+      "predeploy": [
+        "node scripts/guard-site-deploy.mjs",
+        "node scripts/build-site.mjs --verify"
+      ],
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**",
+        "package.json",
+        "package-lock.json",
+        "DEPLOY-CONFIG-README.md",
+        "*.log",
+        "firebase-debug.log",
+        "firestore-debug.log",
+        "ui-debug.log",
+        "skills-lock.json",
+        "dist/**",
+        "scripts/**",
+        "enamed/**",
+        "parceiros/**",
+        "qa-*.png"
+      ],
+      "rewrites": [
+        {
+          "source": "/_consent/reference",
+          "function": "issueMarketingConsentReference"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**/*.html",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, max-age=0, must-revalidate"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            }
+          ]
+        },
+        {
+          "regex": "^(?:/.*)?/$",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, max-age=0, must-revalidate"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(webp|jpg|jpeg|png|gif|svg|ico|mp4)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=3600, must-revalidate"
+            }
+          ]
+        },
+        {
+          "source": "**/*.@(js|css|woff|woff2)",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=3600, must-revalidate"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
