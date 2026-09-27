@@ -1,0 +1,45 @@
+{
+  "description": "Original poses, sequence requested by user. Lossy WebP export only; source pixels and alpha retained. Color matching is applied non-destructively with CSS.",
+  "poses": [
+    {
+      "order": 1,
+      "source": "C:\\Users\\medic\\Downloads\\1.png",
+      "edit": "None",
+      "holdMs": 1600,
+      "sha256": "9a07c93b482725ffcffa03c144cdc9ba8683edb5474867ec5ba65a3fb9b7e56d",
+      "width": 1086,
+      "height": 1448,
+      "alpha": true
+    },
+    {
+      "order": 2,
+      "source": "C:\\Users\\medic\\Downloads\\3.png",
+      "edit": "None",
+      "holdMs": 220,
+      "sha256": "4451de8f72c24b9bb2e5175bce87cb7d75feeb0d8c84142f1f1322b635c4df45",
+      "width": 1086,
+      "height": 1448,
+      "alpha": true
+    },
+    {
+      "order": 3,
+      "source": "C:\\Users\\medic\\Downloads\\4.png",
+      "edit": "None",
+      "holdMs": 220,
+      "sha256": "f8332a6d9702d4da416adf7e1d7235e9b996ba26b40a8a76432a23e6dd88dbdd",
+      "width": 1086,
+      "height": 1448,
+      "alpha": true
+    },
+    {
+      "order": 4,
+      "source": "C:\\Users\\medic\\Downloads\\5 (2).png",
+      "edit": "None",
+      "holdMs": 2400,
+      "sha256": "664069024dd0f8530ac09bc1feef1bf4fe43a2c0f43101f90d3db08fe58a5727",
+      "width": 1086,
+      "height": 1448,
+      "alpha": true
+    }
+  ]
+}

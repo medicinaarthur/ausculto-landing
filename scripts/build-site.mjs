@@ -1,3 +1,5 @@
+import {figureOverrides} from './academy-figure-overrides.mjs';
+import {updateMedicoCopy} from "./medico-copy.mjs";
 import {
   cpSync,
   existsSync,
@@ -20,10 +22,12 @@ import {
 } from "./academy-articles.mjs";
 
 import { studentLanding } from "./academy-landing.mjs";
+import { product } from './academy-product.mjs';
 import {
   presentation,
   areas,
   renderPresentationArticles,
+  renderPresentationIndex,
 } from "./academy-presentation.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -41,6 +45,7 @@ const allowed = new Set([
   ".ico",
   ".svg",
   ".mp4",
+  ".webm",
   ".woff",
   ".woff2",
   ".txt",
@@ -175,6 +180,7 @@ if (process.argv.includes("--verify")) {
   if (existsSync(out)) rmSync(out, { recursive: true });
   mkdirSync(out, { recursive: true });
   for (const p of sourceFiles) {
+    if(figureOverrides.retiredPublicAssets.includes("/"+relative(source,p).replaceAll("\\","/")))continue;
     const target = join(out, relative(source, p));
     mkdirSync(dirname(target), { recursive: true });
     cpSync(p, target);
@@ -253,6 +259,21 @@ if (process.argv.includes("--verify")) {
       }
     }
   }
+  // The maintained source contains a precompiled doctor page (no JSX source locally).
+  // Copy changes stay deterministic, versioned and limited to this route's bundle.
+  const doctorPage=join(out,'ads-medico.html');
+  if(existsSync(doctorPage)) {
+    let html=readFileSync(doctorPage,'utf8');
+    const match=html.match(/src="\.\/ads-medico-assets\/([^"/]+\.js)"/);
+    if(match) {
+      const original=join(out,'ads-medico-assets',match[1]);
+      const facts=JSON.parse(readFileSync(join(root,'scripts/data/academy-product.json'),'utf8'));
+      const updated=updateMedicoCopy(readFileSync(original,'utf8'),facts);
+      const name='ads-medico-copy-'+hash(updated).slice(0,12)+'.js';
+      writeFileSync(join(out,'ads-medico-assets',name),updated);
+      html=html.replace(match[1],name);writeFileSync(doctorPage,html);
+    }
+  }
   const save = (name, html) => {
     const target = join(out, name);
     mkdirSync(dirname(target), { recursive: true });
@@ -261,22 +282,23 @@ if (process.argv.includes("--verify")) {
   for (const a of articles) save(a.path, a.html);
   save(
     "conteudos/index.html",
-    renderIndex(
-      release?.summaries ??
+    release ? renderIndex(
+      release.summaries ??
         presentation.articles.map((a) => ({
           ...a,
           displayArea: areas[a.largeArea],
         })),
-    ),
+    ) : renderPresentationIndex(),
   );
   save(
     "estudantes/index.html",
     page({
       title: "Ausculto Academy | Residência, ENAMED e questões comentadas",
       description:
-        "40 bancas, 160+ provas, 14.345 questões de residência comentadas e mais de 70 mil questões. ENAMED, flashcards e casos clínicos reais na Ausculto Academy.",
+        `${product.residencyBoards} bancas, ${product.residencyExamsMinimum}+ provas, ${product.commentedResidencyQuestions.toLocaleString('pt-BR')} questões oficiais de residência comentadas e ${product.questionBankMinimum / 1000} mil+ questões no banco. ENAMED, flashcards e casos clínicos na Ausculto Academy.`,
       path: "/estudantes/",
       body: studentLanding(),
+      features: {books:true},
     }),
   );
   const studentsPage = join(out, "estudantes", "index.html");
@@ -287,7 +309,15 @@ if (process.argv.includes("--verify")) {
       "",
     ),
   );
-  const index = readFileSync(join(out, "index.html"), "utf8");
+  const index = readFileSync(join(out, "index.html"), "utf8").replace(
+    /(<(?:b|span)\b[^>]*data-product-fact="([^"]+)"[^>]*>)[^<]*(<\/(?:b|span)>)/g,
+    (_,open,key,close)=>{
+      const value=product[key];
+      if(!Number.isFinite(value))throw new Error(`Unknown Home product fact: ${key}`);
+      const label=value>=10000?`${value/1000} mil+`:value.toLocaleString('pt-BR')+(key.endsWith('Minimum')?'+':'');
+      return `${open}${label}${close}`;
+    },
+  );
   const canonical = /<link\b[^>]*rel=["']canonical["']/i.test(index)
     ? index
     : index.replace(
@@ -335,7 +365,7 @@ if (process.argv.includes("--verify")) {
     if (extname(p) !== ".html" || rel.startsWith("embaixadores/")) continue;
     const text = readFileSync(p, "utf8");
     const next = text.replace(
-      /(["'])(\/assets\/(?:css|js)\/[\w.-]+\.(?:css|js))\1/g,
+      /(["'])(\/assets\/(?:css|js)\/[\w.-]+\.(?:css|js))(?:\?v=[\w.-]+)?\1/g,
       (whole, q, ref) => {
         const v = versionOf(ref);
         return v ? `${q}${ref}?v=${v}${q}` : whole;
@@ -359,7 +389,8 @@ if (process.argv.includes("--verify")) {
   }
   const manifest = {
     schemaVersion: 1,
-    releaseId: release?.releaseId ?? null,
+    releaseId: release?.releaseId ?? presentation.source.releaseId,
+    editorialSource: release ? null : presentation.source,
     releaseSha256: release ? releaseHash(release) : null,
     files: {},
     sources: {},
@@ -372,15 +403,48 @@ if (process.argv.includes("--verify")) {
     ...visited,
     ...[
       "build-site.mjs",
+      "medico-copy.mjs",
       "academy-articles.mjs",
+      "academy-account.mjs",
       "academy-landing.mjs",
       "academy-presentation.mjs",
+      "academy-illustrations.mjs",
       "academy-markdown.mjs",
       "academy-product.mjs",
+      "academy-resources.mjs",
+      "academy-testimonials.mjs",
+      "data/academy-testimonials.json",
+      "prepare-academy-resources.mjs",
+      "export-academy-resource-samples.cjs",
+      "data/academy-resources.json",
+      "data/academy-resource-compositions.json",
+      "data/academy-resource-questions.json",
+      "data/academy-resource-flashcards.json",
+      "data/academy-resource-quiz-provenance.json",
+      "academy-hero.mjs",
+      "prepare-academy-mascot.py",
+      "prepare-academy-practice.mjs",
+      "prepare-academy-dossier-assets.mjs",
+      "prepare-academy-dossier-prints.mjs",
+      "data/academy-dossier-prints.json",
+      "data/academy-dossiers.json",
+      "data/academy-practice-provenance.json",
+      "academy-sim-demo.mjs",
+      "academy-books.mjs",
+      "academy-figure-overrides.mjs",
+      "package-academy-figures.mjs",
+      "export-sim-preview.mjs",
+      "export-sim-preview_test.dart",
+      "data/academy-correction-assets.json",
+      "data/academy-figure-overrides.json",
       "data/academy-presentation.json",
+      "data/academy-illustrations.json",
       "data/academy-product.json",
+      "data/academy-qdemo.html",
+      "data/academy-sim-demo.json",
     ].map((f) => join(root, "scripts", f)),
     join(root, "package-lock.json"),
+    join(root, "package.json"),
     trackingSource,
   ]))
     manifest.sources[relative(root, p).replaceAll("\\", "/")] = hash(

@@ -1,0 +1,120 @@
+{
+  "filter": "chromakey=0x38ef05:0.14:0.07,despill=type=green,format=rgba",
+  "audio": false,
+  "crf": 22,
+  "fps": 24,
+  "finishing": {
+    "highlightCompression": 0.045,
+    "rightWarmth": 0.012,
+    "bridgeFrames": 2,
+    "continuationFrames": 6,
+    "alpha": "linear-premultiplied"
+  },
+  "clips": {
+    "idle": {
+      "source": "Mascot_character_idle_loop_1080p_20260927151203.mp4",
+      "sourceSha256": "7e53a7bd2e4dbf3cf5ce0ff9de4b2656540b150f5dca6e83a5a36e4ecf623275",
+      "variants": [
+        {
+          "file": "idle.webm",
+          "width": 180,
+          "height": 320,
+          "sha256": "1b40e82ec4ab2f4169dbe55259373620d026935e070347e1879c95b7ebb9cf72",
+          "bytes": 147153
+        },
+        {
+          "file": "idle-2x.webm",
+          "width": 360,
+          "height": 640,
+          "sha256": "4e24a6fa1f972736b8e21cbb6f91401e2dc04a5898b30960bf5275d9f82a506b",
+          "bytes": 452325
+        },
+        {
+          "file": "idle-3x.webm",
+          "width": 540,
+          "height": 960,
+          "sha256": "ff325a0ec674c1d925bd07c1cd90ac53ad8dbac81ce3c7129c26092e739d8ee9",
+          "bytes": 839366
+        }
+      ]
+    },
+    "look": {
+      "source": "Mascot_reacts_to_UI_change_20260927152217.mp4",
+      "sourceSha256": "e9779f1ca6a489ee0cf303c38198d8ea3276dae938beb789b2bd93fce515e81b",
+      "variants": [
+        {
+          "file": "look.webm",
+          "width": 180,
+          "height": 320,
+          "sha256": "6423d99df38df644c7b53f2b40ad751d5d3d55a8c12bb69eddb0d7b9a1484b63",
+          "bytes": 205445
+        },
+        {
+          "file": "look-2x.webm",
+          "width": 360,
+          "height": 640,
+          "sha256": "2e85b1b52376392df4a0a4c24a97dae7f090aeb05f1df7b366babe7c00f83559",
+          "bytes": 621240
+        },
+        {
+          "file": "look-3x.webm",
+          "width": 540,
+          "height": 960,
+          "sha256": "f0adf8da32a9f9c2ddc00f5e3d3e1de4f31db284b8f7ca5deee0800202a4bdc5",
+          "bytes": 1174880
+        }
+      ],
+      "transition": {
+        "idleAnchorFrame": 62,
+        "idleEntryFrame": 69,
+        "idleEntryTime": 2.875,
+        "bridgeStartFrame": 94,
+        "scale": 1.0,
+        "translate": [
+          0.0,
+          0.0
+        ],
+        "matchMae": 11.002458169222605
+      }
+    },
+    "surprise": {
+      "source": "Mascot_showing_subtle_surprise_1080p_20260927151542.mp4",
+      "sourceSha256": "3c775cb1e66d6211cf47cb12facd61ef26537adc0bcd30f9ae7009e9451fcd12",
+      "variants": [
+        {
+          "file": "surprise.webm",
+          "width": 180,
+          "height": 320,
+          "sha256": "61c46e2ece41df92d3debdf9ea018947a9f3d024525534f1befe89e1ef35e523",
+          "bytes": 205866
+        },
+        {
+          "file": "surprise-2x.webm",
+          "width": 360,
+          "height": 640,
+          "sha256": "ca376403c073390cad7dde6f27040aa66485f0282750774464d5d50c195f6b3e",
+          "bytes": 609769
+        },
+        {
+          "file": "surprise-3x.webm",
+          "width": 540,
+          "height": 960,
+          "sha256": "0fbd604cca31295ce07b555c976069072d4f92eb352307a26ff9f8c58b1868af",
+          "bytes": 1138504
+        }
+      ],
+      "transition": {
+        "idleAnchorFrame": 71,
+        "idleEntryFrame": 78,
+        "idleEntryTime": 3.25,
+        "bridgeStartFrame": 94,
+        "scale": 1.0,
+        "translate": [
+          0.0,
+          0.0
+        ],
+        "matchMae": 5.0483632817941215
+      }
+    }
+  }
+}

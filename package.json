@@ -2,7 +2,7 @@
   "name": "ausculto-landing",
   "version": "1.0.0",
   "private": true,
-  "description": "Ausculto marketing site (auscultoapp.com) — static hosting mirror. QA tooling only; all tools run via npx --yes, no installed dependencies.",
+  "description": "Ausculto marketing site — static Academy, ENAMED and public content builds.",
   "scripts": {
     "serve": "npx --yes serve .",
     "check:js": "node --check meta_tracking.js && node --check assets/js/main.js && node --check assets/js/enamed.js && node --check scripts/build-enamed.mjs && node --check scripts/guard-site-deploy.mjs && node --check scripts/test-tracking-contract.mjs && node --check parceiros/public/app.js && node --check parceiros/public/coupon_ui.js && node --check parceiros/scripts/validate_repository.cjs && node --check parceiros/scripts/test_coupon_ui.mjs",
@@ -19,6 +19,37 @@
     "serve:parceiros": "node parceiros/scripts/serve_local.cjs",
     "verify:parceiros": "node parceiros/scripts/validate_repository.cjs && node parceiros/scripts/test_coupon_ui.mjs",
     "verify:partner-qr": "npm --prefix parceiros run verify:qr",
-    "test:tracking": "node scripts/test-tracking-contract.mjs"
+    "test:tracking": "node scripts/test-tracking-contract.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "verify:site": "node scripts/build-site.mjs --verify",
+    "test:academy-content": "node --test scripts/test-academy-articles.mjs",
+    "build:enamed-continuous": "node scripts/build-enamed-continuous.mjs",
+    "verify:enamed-continuous": "node scripts/build-enamed-continuous.mjs --verify",
+    "test:enamed-continuous": "node scripts/test-enamed-continuous.mjs",
+    "export:academy-presentation": "node scripts/export-academy-presentation.mjs",
+    "build:academy-preview": "node scripts/render-enamed-source.mjs && node scripts/build-site.mjs && node scripts/build-enamed-continuous.mjs && node scripts/build-academy-preview.mjs",
+    "test:academy-presentation": "node --test scripts/test-academy-presentation.mjs",
+    "test:site-lapidacao": "node --test scripts/test-academy-export.mjs scripts/test-site-facts.mjs scripts/test-academy-catalogue.mjs scripts/test-academy-reader.mjs scripts/test-academy-sim-demo.mjs scripts/test-academy-presentation.mjs scripts/test-academy-illustrations.mjs scripts/test-site-artifact.mjs",
+    "test:site-runtime": "node scripts/test-site-runtime.mjs",
+    "test:site-correction": "node --test scripts/test-academy-sim-demo.mjs scripts/test-academy-corrections.mjs scripts/test-academy-study.mjs scripts/test-academy-figure-correction.mjs scripts/test-home-correction.mjs",
+    "test:site-correction-runtime": "node scripts/test-site-correction-runtime.mjs",
+    "prepare:home-hero": "node scripts/prepare-home-hero-assets.mjs",
+    "test:home-hero": "node --test scripts/test-home-hero.mjs",
+    "test:home-hero-runtime": "node scripts/test-home-hero-runtime.mjs",
+    "test:academy-dossier": "node --test scripts/test-academy-dossier.mjs",
+    "test:academy-dossier-runtime": "node scripts/test-academy-dossier-runtime.mjs",
+    "prepare:academy-dossier-assets": "node scripts/prepare-academy-dossier-assets.mjs",
+    "prepare:academy-practice": "node scripts/prepare-academy-practice.mjs",
+    "prepare:academy-dossier-prints": "node scripts/prepare-academy-dossier-prints.mjs"
+  },
+  "dependencies": {
+    "@phosphor-icons/core": "2.1.1",
+    "markdown-it": "15.0.2"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "lighthouse": "^13.5.0",
+    "playwright": "1.63.0",
+    "sharp": "^0.35.4"
   }
 }

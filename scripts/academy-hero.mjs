@@ -1,56 +1,39 @@
-// The photographs, the supplied backdrop and the interface share a 1672 × 941 canvas. People stand in front of the desk.
-// The hero is clipped by a curve (objectBoundingBox clipPath) so the next block's background shows through — no filled wave, no seam.
-// Phones get WebP variants (~900 px) through <picture>; desktop keeps the original PNGs.
-const icon = name => `<img src="/assets/academy/icons/${name}.svg" alt="" width="24" height="24">`;
-const items = values => `<ul class="ah-benefit-items">${values.map(([name, label]) => `<li><span class="ah-icon">${icon(name)}</span><span>${label}</span></li>`).join("")}</ul>`;
-const picture = (base, attrs) => `<picture><source media="(max-width:1000px)" type="image/webp" srcset="/assets/academy/${base}-m.webp"><source type="image/webp" srcset="/assets/academy/${base}.webp"><img src="/assets/academy/${base}.png" ${attrs}></picture>`;
-
-export function academyHero() {
-  return `<div class="ah-frame">
-  <section class="academy-hero" aria-label="Ausculto Academy">
-    <div class="ah-background" aria-hidden="true"><picture><source media="(max-width:600px)" type="image/webp" srcset="/assets/academy/academy-hero-backdrop-mobile.webp"><source media="(max-width:1000px)" type="image/webp" srcset="/assets/academy/academy-hero-background-m.webp"><source type="image/webp" srcset="/assets/academy/academy-hero-background.webp"><img src="/assets/academy/academy-hero-background.png" alt="" width="1672" height="941" fetchpriority="high"></picture></div>
-    <div class="ah-scene" data-people-campaign aria-hidden="true">
-      <div class="ah-person ah-person--couple is-active" data-people-pair>${picture("academy-hero-people-01", 'class="campaign-person" alt="" width="1122" height="1402" fetchpriority="high"')}</div>
-      <div class="ah-person ah-person--doctor" data-people-pair>${picture("academy-hero-doctor", 'class="campaign-person" alt="" width="1069" height="1471" decoding="async"')}</div>
-    </div>
-    <div class="ah-copy">
-      <p class="ah-eyebrow">CONHECIMENTO TRANSFORMA</p>
-      <h1><span>Seu próximo</span><span>passo na</span><em>medicina.</em></h1>
-      <p class="ah-subtitle"><span class="acad-accent">14.345 questões</span> de residência comentadas,<br> ENAMED e a biblioteca por tema no mesmo app.</p>
-      <a class="ah-cta ah-cta--2l" href="#caminhos"><span class="ah-cta__main">Explorar a Academy <span aria-hidden="true">→</span></span><span class="ah-cta__sub">Residência · ENAMED · PDF gratuito</span></a>
-      <p class="ah-stores"><span>Também no celular:</span><a class="ah-store" href="https://play.google.com/store/apps/details?id=br.com.ausculto.app" target="_blank" rel="noopener" data-cta-position="estudantes_hero" aria-label="Ausculto para Android no Google Play">Google Play</a><a class="ah-store" href="https://apps.apple.com/br/app/ausculto/id6760672276" target="_blank" rel="noopener" data-cta-position="estudantes_hero" aria-label="Ausculto para iPhone na App Store">App Store</a></p>
-    </div>
-    <div class="ah-benefits" aria-label="O que você encontra no Ausculto">
-      <div class="ah-indicators" aria-hidden="true"><span class="is-active" data-hero-indicator></span><span data-hero-indicator></span></div>
-      <strong class="ah-benefit-title">O que você encontra no Ausculto.</strong>
-      <div class="ah-benefit-stack">
-        <div class="ah-benefit-panel is-active" data-benefit-panel>${items([["files", "Provas<br>por banca"], ["note-pencil", "Questões<br>comentadas"], ["chart-line-up", "Acompanhamento<br>do desempenho"]])}</div>
-        <div class="ah-benefit-panel" data-benefit-panel aria-hidden="true">${items([["books", "ENAMED<br>por tema"], ["cards", "Flashcards"], ["stethoscope", "Casos<br>clínicos"]])}</div>
-      </div>
-    </div>
-    <p class="ah-signature">MAIS MÉDICOS<br>PARA UM AMANHÃ MELHOR</p>
-  </section>
-  <svg class="ah-wave" viewBox="0 0 1672 210" preserveAspectRatio="none" aria-hidden="true">
-    <defs><linearGradient id="ah-wave-gold" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#c9a45e"/><stop offset=".55" stop-color="#e9d3a4"/><stop offset="1" stop-color="#b8924c"/></linearGradient></defs>
-    <path d="M0 78 C300 20 560 200 960 196 C1240 193 1470 150 1672 122" fill="none" stroke="url(#ah-wave-gold)" stroke-width="2.4" vector-effect="non-scaling-stroke"/>
-  </svg>
-  <svg class="ah-clip-defs" width="0" height="0" aria-hidden="true" focusable="false">
-    <defs>
-      <clipPath id="ah-clip" clipPathUnits="objectBoundingBox"><path d="M0 0H1V.9065C.8792 .9362 .7416 .982 .5742 .9851C.3349 .9894 .1794 .7981 0 .8597Z"/></clipPath>
-      <clipPath id="ah-clip-mobile" clipPathUnits="objectBoundingBox"><path d="M0 0H1V.962C.78 .984 .42 .996 0 .972Z"/></clipPath>
-    </defs>
-  </svg>
-  </div>`;
+import {readFileSync} from 'node:fs';
+import dossiers from './data/academy-dossiers.json' with {type:'json'};
+import facts from './data/academy-product.json' with {type:'json'};
+import {bankHeroMark} from './academy-bank-marks.mjs';
+const e=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const icon=name=>readFileSync(new URL(`../node_modules/@phosphor-icons/core/assets/regular/${name}.svg`,import.meta.url),'utf8').replace('<svg ','<svg aria-hidden="true" focusable="false" ').replace('fill="#000000"','fill="currentColor"');
+const arrow=icon('arrow-right');
+const bankLogos=Object.fromEntries(dossiers.banks.map(b=>[b.id,bankHeroMark(b.id)]));
+const logoFilters=`<svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><filter id="dossier-logo-neutral" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="linear" slope="-.6" intercept=".85"/><feFuncG type="linear" slope="-.6" intercept=".89"/><feFuncB type="linear" slope="-.6" intercept=".93"/></feComponentTransfer></filter><filter id="dossier-logo-gold" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="linear" slope="-.65" intercept=".94"/><feFuncG type="linear" slope="-.55" intercept=".78"/><feFuncB type="linear" slope="-.33" intercept=".46"/></feComponentTransfer></filter></defs></svg>`;
+const percentage=n=>new Intl.NumberFormat('pt-BR',{maximumFractionDigits:1}).format(n)+'%';
+function distribution(bank,visual=false){const d=bank.distribution;if(!d)return '';return `<div class="${visual?'dossier-chart':'dossier-distribution-text'}"><p class="dossier-chart-label">${e(d.label)}</p><ul>${d.areas.map(a=>`<li><span>${e(a.label === "Ginecologia e Obstetrícia" ? "Ginecologia / Obst." : a.label)}</span><i aria-hidden="true" style="--share:${a.percent}%"></i><b>${percentage(a.percent)}</b></li>`).join('')}</ul>${visual?'':`<p>${e(d.note)}</p><small>Percentuais arredondados; a soma pode variar em 0,1 ponto.</small>`}</div>`;}
+function panelText(bank,i){return `<div class="dossier-reading visually-hidden" data-dossier-reading>
+ <div class="dossier-text-page dossier-text-page--left">
+  <div class="dossier-imprint">AUSCULTO ACADEMY <span>${String(i+1).padStart(2,'0')} / 05</span></div>
+  <header class="dossier-heading"><h2 id="dossier-title-${bank.id}" tabindex="-1">${bank.name}</h2><p>Dossiê da prova</p></header>
+  <section class="dossier-section"><h3><span>01</span> Perfil da prova</h3><p class="dossier-profile">${e(bank.description)}</p><dl class="dossier-facts">${bank.facts.map(f=>`<div><dt>${e(f.label)}</dt><dd>${e(f.value)}</dd></div>`).join('')}</dl></section>
+  <section class="dossier-section dossier-how"><h3><span>02</span> Como cobra</h3>${distribution(bank)}<p class="dossier-section-note">Orientações para a leitura das questões</p><ul>${bank.insights.map(x=>`<li><strong>${e(x.title)}</strong><p>${e(x.text)}</p></li>`).join('')}</ul></section>
+ </div>
+ <div class="dossier-text-page dossier-text-page--right">
+  <section class="dossier-section dossier-start"><h3><span>03</span> Comece por</h3><p class="dossier-section-note">Um percurso para iniciar sua revisão.</p><ol>${bank.themes.map(x=>`<li><div><strong>${e(x.title)}</strong><p>${e(x.text)}</p></div></li>`).join('')}</ol></section>
+  <p class="dossier-quote">${e(bank.quote)}</p>
+  <div class="dossier-colophon"><span>${e(bank.institution)} · ${bank.edition}</span><noscript><a href="${bank.sources[0].url}">Consultar fonte</a></noscript></div>
+ </div>
+ </div>`;}
+const emptyImage='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+function panel(bank,i){
+ const desktop='/assets/academy/dossier/print-'+bank.id+'-desktop.webp',mobile='/assets/academy/dossier/print-'+bank.id+'-mobile.webp';
+ const face=side=>`<div class="dossier-page dossier-page--${side}"><picture><source media="(max-width:767px)" srcset="${i===0&&side==='left'?mobile:emptyImage}" data-print-mobile="${side==='left'?mobile:emptyImage}"><img src="${i===0?desktop:emptyImage}" data-print-desktop="${desktop}" width="1495" height="1052" alt="" decoding="async"${i===0?' fetchpriority="high"':''}></picture>${side==='left'?distribution(bank,true):''}</div>`;
+ return `<div class="dossier-panel" id="dossier-${bank.id}" data-dossier-panel="${bank.id}" data-bank-name="${bank.name}" aria-labelledby="dossier-title-${bank.id}"><div class="dossier-spread" aria-hidden="true" data-print-desktop="${desktop}" data-print-mobile="${mobile}">${face('left')}${face('right')}</div>${panelText(bank,i)}</div>`;
 }
-
-export function academyBridge() {
-  return `<section class="academy-bridge" aria-label="A Academy em números">
-    <p>A ACADEMY EM NÚMEROS</p>
-    <div class="ab-metrics">
-      <div>${icon("note-pencil")}<strong>14.345</strong><span>questões comentadas</span></div>
-      <div>${icon("files")}<strong>70 mil+</strong><span>questões no banco</span></div>
-      <div>${icon("users-three")}<strong>160+</strong><span>provas de residência</span></div>
-      <div>${icon("graduation-cap")}<strong>40</strong><span>bancas de residência</span></div>
-    </div>
-  </section>`;
-}
+function dialogs(){return `<dialog class="dossier-dialog dossier-sources" id="dossier-sources" aria-labelledby="dossier-sources-title"><div class="dossier-dialog__bar"><span>DOSSIÊ DA PROVA</span><button type="button" data-dossier-close aria-label="Fechar fontes">${icon('x')}</button></div><div class="dossier-dialog__body"><h2 id="dossier-sources-title">Fontes e edição</h2>${dossiers.banks.map(b=>`<section data-source-bank="${b.id}" hidden><h3>${b.name} · ${b.edition}</h3><p>${e(b.sourceNote)}</p><p>${e(b.distribution.note)}</p>${b.studyEvidence?`<h4>Base das orientações de estudo</h4><ul>${b.studyEvidence.map(x=>`<li><strong>${e(x.title)}</strong><br>${e(x.references.join('; '))}</li>`).join('')}</ul>`:''}<p>${e(dossiers.editorialNote)}</p><ul>${b.sources.map(s=>`<li><a href="${s.url}" target="_blank" rel="noopener">${e(s.label)} ${icon('arrow-up-right')}</a></li>`).join('')}</ul><small>Conferência: 27 de setembro de 2026.</small></section>`).join('')}</div></dialog>
+ <dialog class="dossier-dialog dossier-practice" id="dossier-practice" aria-labelledby="dossier-practice-title"><div class="dossier-dialog__bar"><span data-practice-bank>PRÁTICA AUSCULTO</span><button type="button" data-dossier-close aria-label="Fechar prática">${icon('x')}</button></div><div class="dossier-dialog__body" data-practice-body><h2 id="dossier-practice-title" tabindex="-1">Praticar 3 questões</h2><div data-practice-content></div></div></dialog>`;}
+export function academyHero(){return `<noscript><style>.dossier-book{display:block!important;aspect-ratio:auto!important;background:none!important}.dossier-hero:not(.is-enhanced) .dossier-panel{position:relative!important;inset:auto!important;width:auto!important;height:auto!important;transform:none!important;visibility:visible!important;content-visibility:visible!important;margin-bottom:35px!important;background:#eee5d5;padding:15px}.dossier-spread{display:none!important}.dossier-reading{position:static!important;width:auto!important;height:auto!important;clip:auto!important;clip-path:none!important;overflow:visible!important;white-space:normal!important}.dossier-tab{color:#f3e2c1}</style></noscript><section class="academy-hero dossier-hero" aria-label="Ausculto Academy: dossiê da prova" data-dossier>
+ ${logoFilters}<picture class="dossier-backdrop" aria-hidden="true"><source media="(max-width:767px)" type="image/avif" srcset="/assets/academy/dossier/mobile-540.avif 540w, /assets/academy/dossier/mobile-780.avif 780w, /assets/academy/dossier/mobile-941.avif 941w" sizes="100vw"><source media="(max-width:767px)" type="image/webp" srcset="/assets/academy/dossier/mobile-540.webp 540w, /assets/academy/dossier/mobile-780.webp 780w, /assets/academy/dossier/mobile-941.webp 941w" sizes="100vw"><source type="image/avif" srcset="/assets/academy/dossier/desktop-1280.avif 1280w, /assets/academy/dossier/desktop-1586.avif 1586w" sizes="100vw"><img src="/assets/academy/dossier/desktop-1586.webp" srcset="/assets/academy/dossier/desktop-1280.webp 1280w, /assets/academy/dossier/desktop-1586.webp 1586w" sizes="100vw" alt="" width="1586" height="992" fetchpriority="high"></picture>
+ <div class="dossier-layout"><div class="dossier-copy"><p class="dossier-eyebrow">Dossiê da prova</p><h1><span class="dossier-title-desktop">Sua prova exige<br>estratégia.<em>Seu estudo<br>também.</em></span><span class="dossier-title-mobile">Informação clara.<em>Escolhas mais<br>inteligentes.</em></span></h1><p class="dossier-subtitle">Conheça o perfil da prova, entenda como ela cobra e descubra por onde começar.</p><div class="dossier-copy-actions"><a class="dossier-button" href="#dossie" data-dossier-explore>Explorar dossiê ${arrow}</a><a class="dossier-button dossier-button--outline" href="https://app.auscultoapp.com/" data-dossier-practice>${icon('play-circle')} Praticar 3 questões</a></div><p class="dossier-signature">Informação clara.<br>Escolhas mais inteligentes.</p></div>
+ <div class="dossier-stage" id="dossie"><p class="dossier-handwritten" aria-hidden="true">Mais direção<br>para o seu futuro.</p><nav class="dossier-tabs" aria-label="Escolher uma prova" data-dossier-tabs>${dossiers.banks.map((b,i)=>`<a href="#dossier-${b.id}" class="dossier-tab${i===0?' is-selected':''}" data-dossier-tab="${b.id}" id="dossier-tab-${b.id}"><span class="dossier-bank-logo dossier-bank-logo--${b.id}"><img src="/assets/academy/banks/${bankLogos[b.id]}" alt="" width="80" height="40"></span><span>${b.name}</span></a>`).join('')}</nav><div class="dossier-object"><div class="dossier-book" data-dossier-book>${dossiers.banks.map(panel).join('')}</div></div><div class="dossier-edition-controls"><button type="button" data-dossier-source-current>Fontes e edi&#231;&#227;o</button><span aria-hidden="true">&#183;</span><button type="button" data-dossier-text>Vers&#227;o em texto</button></div><div class="dossier-mobile-actions"><a class="dossier-button" href="https://app.auscultoapp.com/" data-dossier-practice>Praticar 3 questões ${arrow}</a><a class="dossier-button dossier-button--outline" href="https://app.auscultoapp.com/#/signup" data-cta-position="dossier_mobile_signup">Criar conta grátis ${icon('arrow-up-right')}</a></div><div class="dossier-pagination" hidden data-dossier-pagination><button type="button" data-dossier-prev aria-label="Banca anterior">${icon('arrow-left')}</button><span data-dossier-counter>1 / 5</span><button type="button" data-dossier-next aria-label="Próxima banca">${arrow}</button></div><p class="dossier-live visually-hidden" role="status" aria-live="polite" data-dossier-live></p></div></div>
+ <svg class="dossier-wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C330 -38 530 150 1440 48 L1440 100 H0Z" fill="#fff"/><path d="M0 20 C330 -38 530 150 1440 48" fill="none" stroke="#d4ad63" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>
+ </section>${dialogs()}`;}
+export function academyBridge(){return `<section class="academy-bridge dossier-metrics" aria-label="A Academy em números"><p>A Academy em números</p><div class="ab-metrics"><div>${icon('note-pencil')}<strong>${facts.commentedResidencyQuestionsMinimum?`${facts.commentedResidencyQuestionsMinimum/1000} mil+`:facts.commentedResidencyQuestions.toLocaleString('pt-BR')}</strong><span>questões comentadas</span></div><div>${icon('files')}<strong>${facts.residencyExamsMinimum}+</strong><span>provas de residência</span></div><div>${icon('graduation-cap')}<strong>${facts.residencyBoards}</strong><span>bancas de residência</span></div><div>${icon('books')}<strong>${facts.questionBankMinimum/1000} mil+</strong><span>questões no banco</span></div></div></section>`;}

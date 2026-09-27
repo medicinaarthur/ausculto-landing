@@ -1,0 +1,35 @@
+{
+  "file": "hcpa-2024-74__390x1200_light__free.png",
+  "screen_id": "hcpa-2024-74",
+  "screen_name": "HCPA 2024 â€” QuestÃ£o 74",
+  "domain": "residency",
+  "viewport": "390x1200",
+  "theme": "light",
+  "plan": "free",
+  "persona": "student-demo",
+  "primary_file": "lib/features/residency_questions/presentation/residency_question_session_page.dart",
+  "capture_strategy": "widget-test",
+  "text_scale": 1.0,
+  "font_profile": "Ausculto bundled fonts + Montserrat/Inter/Noto Sans real TTF cache",
+  "fixture_status": "real-catalog",
+  "notes": "Frozen Firestore question; original wording; read-only answered state. App shuffles option presentation. No remote writes. Full reader capture for continuous crop.",
+  "device_pixel_ratio": 3.0,
+  "physical_width": 1170,
+  "physical_height": 3600,
+  "png_bytes": 491331,
+  "sha256": "fc4b1b3add65a03aa9225ec00db1e825ce58e022cfd17d82b53f87bfdcfe92b5",
+  "capture_head": "46602081",
+  "capture_branch": "release/mobile-1.0.31-integrated",
+  "captured_at": "2026-09-27T08:28:34.567272Z",
+  "source_files": [
+    "lib/features/residency_questions/presentation/residency_question_session_page.dart"
+  ],
+  "source_sha256": {
+    "lib/features/residency_questions/presentation/residency_question_session_page.dart": "08ae494c1c5b6e32c5fea7c0a62ef34248dee5684c3509884c5566ca46492b36"
+  },
+  "source_fingerprint": "6c77ee53ade5025e89d07dd24efce5a797ecd9bab257ce30f32421eb1371252f",
+  "capture_head_clean": false,
+  "workspace_dirty": true,
+  "mapped_dirty_files": [],
+  "workspace_snapshot_id": "8338ae04fd08e2d194212aadf3e4bf161785338c5c15999a9c3d65443f16fb02"
+}

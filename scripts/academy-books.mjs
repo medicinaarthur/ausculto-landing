@@ -1,0 +1,3 @@
+import {escapeHtml as e} from './academy-articles.mjs';
+const keys={'abdome-agudo':'abdome','disturbios-eletroliticos-e-acido-base':'gasometria','estudos-epidemiologicos':'epidemiologia'};
+export function book(a){if(!keys[a.summaryId])throw Error('No approved book for '+a.summaryId);return `<button class="ausculto-book" type="button" data-book data-book-name="${e(a.title)}" aria-label="Abrir a apresentação em livro de ${e(a.title)}" aria-pressed="false">${['closed','half','open'].map((state,i)=>`<img src="/assets/academy/book-${keys[a.summaryId]}-${state}.webp"${i===0?' class="is-active"':''} alt="" width="1200" height="900" loading="lazy" draggable="false">`).join('')}</button>`;}

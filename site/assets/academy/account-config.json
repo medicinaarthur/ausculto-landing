@@ -1,0 +1,13 @@
+{
+  "firebase": {
+    "apiKey": "AIzaSyC1H6p7M1rPTL5LmlSlK8Ie9_tOy_e4CD0",
+    "appId": "1:510161004194:web:d4c7de819ca0426aa019fb",
+    "projectId": "auscultoapp",
+    "authDomain": "auscultoapp.firebaseapp.com",
+    "storageBucket": "auscultoapp.firebasestorage.app",
+    "messagingSenderId": "510161004194"
+  },
+  "recaptchaSiteKey": "6LdcZcgsAAAAAF7zkepCt93xUaV9omYRgjrAgm5E",
+  "functionsRegion": "us-central1",
+  "materialId": "enamed-2026-comentado"
+}

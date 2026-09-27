@@ -1,0 +1,1222 @@
+{
+  "schemaVersion": 1,
+  "cards": [
+    {
+      "id": "trilha-clinica",
+      "group": "Trilha clínica",
+      "title": "Aprenda por capítulos",
+      "description": "O card da Trilha: capítulos, progresso e próximas atividades.",
+      "family": "academy",
+      "type": "ui",
+      "accent": "#ba8730",
+      "rect": [
+        0.054,
+        0.074,
+        0.895,
+        0.344
+      ],
+      "badge": "stethoscope",
+      "presentation": "module",
+      "recreated": false,
+      "reference": "Downloads/ChatGPT Image Sep 26, 2026, 03_38_33 PM.png",
+      "ui": {
+        "kind": "trailmodule",
+        "tone": "cream",
+        "eyebrow": ""
+      },
+      "provenance": {
+        "root": "downloads",
+        "file": "ChatGPT Image Sep 26, 2026, 03_38_33 PM.png",
+        "sha256": "dc72ebeb787cdd25e52e40aa54f78f54056e6d646de4e758aeea2d09fad3fad7",
+        "nativeWidth": 1122,
+        "nativeHeight": 1402,
+        "crop": {
+          "left": 61,
+          "top": 104,
+          "width": 1004,
+          "height": 482
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/trilha-clinica-456.webp",
+          "width": 456,
+          "height": 219,
+          "sha256": "cc346ba3eeced032eff365de34bd0f1f0fbc7a40d379e47bcb8470fd1b2feafe"
+        },
+        {
+          "url": "/assets/academy/resources/trilha-clinica-912.webp",
+          "width": 912,
+          "height": 438,
+          "sha256": "6db23ec61900f63528b19f17b8bb71aced2c855b6a2c4f766e6d853996ede604"
+        }
+      ]
+    },
+    {
+      "id": "quiz-histologia",
+      "group": "Quiz de imagens",
+      "title": "Histologia",
+      "description": "Observe estruturas, reconheça tecidos e compare sua interpretação.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#9a3566",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "provenance": {
+        "root": "site",
+        "file": "assets/academy/quiz-histologia.webp",
+        "sha256": "3b7d2e1c819c6f8fc826b3fa2e5658720202c44a841154d0a1ef539988cfba61",
+        "nativeWidth": 354,
+        "nativeHeight": 266,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 354,
+          "height": 266
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/quiz-histologia-354.webp",
+          "width": 354,
+          "height": 266,
+          "sha256": "17ce25978832d887aaeba759104c74ad651ce9caa983daa61a2b4c28c3ecb0e2"
+        }
+      ]
+    },
+    {
+      "id": "questao",
+      "group": "Questões e simulados",
+      "title": "USP-SP 2026",
+      "description": "Treine com questões do acervo e acompanhe a resolução.",
+      "family": "academy",
+      "type": "question",
+      "accent": "#305780",
+      "rect": [
+        0.035,
+        0.11,
+        0.93,
+        0.345
+      ],
+      "demo": false,
+      "presentation": "exam",
+      "ui": {
+        "kind": "exam",
+        "tone": "cream",
+        "question": {
+          "documentId": "usp_sp_2026_q034",
+          "collection": "questions",
+          "bank": "USP-SP",
+          "year": "2026",
+          "number": 34,
+          "examFolder": "USP_SP_2026",
+          "statement": "Durante um checklist pré-operatório de retossigmoidectomia para o tratamento de adenocarcinoma de cólon esquerdo, em um paciente de 64 anos de idade com diabetes controlado, o anestesista pergunta ao cirurgião qual é o antibiótico preconizado neste momento. Qual é a melhor opção?",
+          "options": {
+            "A": "Cefoxitina.",
+            "B": "Cefuroxima.",
+            "C": "Cefazolina.",
+            "D": "Ceftriaxona."
+          },
+          "answer": "A",
+          "comment": "Em síntese, a Cefoxitina é uma cefalosporina de 2ª geração do subgrupo das cefamicinas. Diferente da Cefuroxima (também de 2ª geração), a Cefoxitina possui excelente atividade contra bactérias anaeróbias, além de cobrir os Gram-negativos entéricos. Por ser capaz de cobrir sozinha a flora mista do cólon, é a droga de escolha em monoterapia para cirurgias colorretais e apendicectomias.",
+          "sourceLabel": "USP-SP 2026",
+          "sha256": "22072ea80ae5ef547116ca54dd0fa440a7243f3c86ecb350eb9b46d015e302d6"
+        },
+        "commentExcerpt": "Diferente da Cefuroxima (também de 2ª geração), a Cefoxitina possui excelente atividade contra bactérias anaeróbias, além de cobrir os Gram-negativos entéricos.",
+        "showOptions": false,
+        "highlights": [
+          "retossigmoidectomia",
+          "antibiótico preconizado"
+        ]
+      },
+      "recreated": false,
+      "provenance": {
+        "root": "atlas",
+        "file": "mobile/academy/praticar-questao-resolucao__light.png",
+        "sha256": "66c0a025a60d66bd7c122c48cf48079c20458a1be41d3c88365ef33fb246e086",
+        "nativeWidth": 1170,
+        "nativeHeight": 2532,
+        "crop": {
+          "left": 41,
+          "top": 279,
+          "width": 1088,
+          "height": 874
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/questao-456.webp",
+          "width": 456,
+          "height": 366,
+          "sha256": "1e1ff2067c44db544c5bc7c37125156224d05432b9c1b2d5d77dad04b2fb073b"
+        },
+        {
+          "url": "/assets/academy/resources/questao-912.webp",
+          "width": 912,
+          "height": 733,
+          "sha256": "5affc58cbc6117145cad31ecdd47a7317179b4c0f327c0b301219143df471d5a"
+        }
+      ]
+    },
+    {
+      "id": "quiz-retina",
+      "group": "Quiz de imagens",
+      "title": "Retinografia",
+      "description": "Treine seu olhar para os detalhes do fundo de olho.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#9c5527",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "fit": "cover",
+      "provenance": {
+        "root": "remote",
+        "file": "retina.png",
+        "sha256": "a7f7465d0e7c151e90668b9dfd42ff70fa46beadd3cba1da5f2d86eb63be058e",
+        "nativeWidth": 1024,
+        "nativeHeight": 861,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 1024,
+          "height": 861
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/quiz-retina-456.webp",
+          "width": 456,
+          "height": 383,
+          "sha256": "39f34da1c9425c39200d1d41a62fe4c85d5dc4eb5c1c2b6c8ed6dc92257b298f"
+        },
+        {
+          "url": "/assets/academy/resources/quiz-retina-912.webp",
+          "width": 912,
+          "height": 767,
+          "sha256": "93ea3f3764c8a1454efa69e840741e68ab7324c848db5bb756fff03cc038bde6"
+        }
+      ]
+    },
+    {
+      "id": "flash-dermatologia",
+      "group": "Flashcards",
+      "title": "Dermatologia",
+      "description": "Uma pergunta real do acervo. Abra, pense e revele a resposta.",
+      "family": "academy",
+      "type": "flash",
+      "accent": "#814361",
+      "source": null,
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "flashcard": {
+        "id": "anki_000c4f3da5d5161f",
+        "question": "O que é úlcera de Marjolin?",
+        "answer": "Câncer de pele\nCarcinoma espinocelular que surge\nsobre úlcera crônica.",
+        "specialty": "Dermatologia",
+        "topic": "Oncologia Cutânea (Câncer de Pele)",
+        "source": "curated_flashcards_import_v1",
+        "isCustom": false,
+        "sha256": "5e8b353c0c4dfa64c416ce44534f2465d1ecc9f36539d9d1158cee9c21c9eb9f"
+      },
+      "tone": "rose",
+      "badge": "cards"
+    },
+    {
+      "id": "trilha-helena",
+      "group": "Trilha clínica",
+      "title": "Revise com a preceptora",
+      "description": "Personagens e feedback ajudam a retomar o raciocínio.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#cb706b",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "presentation": "game",
+      "recreated": true,
+      "reference": "assets/characters_hd/preceptora_helena/idle_happy_tablet_hd.webp",
+      "provenance": {
+        "root": "generated",
+        "file": "helena-ui.png",
+        "sha256": "83f96b2ff1cbbb5a461b9319070a8e4cc59f42be211c88ef8a8f475e2b98f85d",
+        "nativeWidth": 1448,
+        "nativeHeight": 1086,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 1448,
+          "height": 1086
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/trilha-helena-456.webp",
+          "width": 456,
+          "height": 342,
+          "sha256": "c5ece1ee4e43039c944030d50c84b7c5b596f4f9fc3df7ea4e7e812c1ce5b32e"
+        },
+        {
+          "url": "/assets/academy/resources/trilha-helena-912.webp",
+          "width": 912,
+          "height": 684,
+          "sha256": "a0274f6b7c215526aff35143159c9cdd3ea249d8a0a37c0d19a808ea38633239"
+        }
+      ]
+    },
+    {
+      "id": "trilha-caio",
+      "group": "Trilha clínica",
+      "title": "Qual é o ritmo?",
+      "description": "O Enf. Caio acompanha a leitura dos sinais e as perguntas da trilha.",
+      "family": "academy",
+      "type": "question",
+      "accent": "#287c65",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "presentation": "caio",
+      "recreated": false,
+      "reference": "Downloads/app.auscultoapp.com(Pixel 9)2.png",
+      "demo": false,
+      "ui": {
+        "kind": "caio",
+        "tone": "cream",
+        "excerpt": "Durante RCP, o paciente não tem pulso. O monitor mostra traçado caótico e irregular, sem complexos QRS identificáveis, com ondas de amplitude e frequência variáveis.",
+        "highlights": [
+          "não tem pulso",
+          "sem complexos QRS identificáveis"
+        ],
+        "question": {
+          "statement": "Durante RCP em uma sala de emergência, o monitor mostra traçado caótico e irregular, sem complexos QRS identificáveis, com ondas de amplitude e frequência variáveis. O paciente não tem pulso. Qual é o ritmo?",
+          "options": {
+            "A": "Assistolia.",
+            "B": "Atividade elétrica sem pulso.",
+            "C": "Taquicardia ventricular monomórfica.",
+            "D": "Fibrilação ventricular."
+          },
+          "answer": "D",
+          "source": "Downloads/app.auscultoapp.com(Pixel 9)2.png"
+        }
+      },
+      "provenance": {
+        "root": "app",
+        "file": "assets/characters_hd/enf_caio/pointing_serious_checklist_hd.webp",
+        "sha256": "686e87fa970e442090c0fe449b6369d9766676e8d4ffd5cb3cdf72fabb848021",
+        "nativeWidth": 590,
+        "nativeHeight": 1024,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 590,
+          "height": 1024
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/trilha-caio-456.webp",
+          "width": 456,
+          "height": 791,
+          "sha256": "5151dc135fc9d56f75041f7ce48b43689631a452797dd8220a8455518da252ec"
+        },
+        {
+          "url": "/assets/academy/resources/trilha-caio-590.webp",
+          "width": 590,
+          "height": 1024,
+          "sha256": "2a52681369abc74d64b05d02571ad6ae37df3c5cee85e280f029df9bd483d3c5"
+        }
+      ]
+    },
+    {
+      "id": "quiz-neuro",
+      "group": "Quiz de imagens",
+      "title": "Ressonância magnética",
+      "description": "Exercite o reconhecimento de estruturas e achados em neuroimagem.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#626489",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "fit": "cover",
+      "presentation": "scan",
+      "position": "50% 0%",
+      "provenance": {
+        "root": "remote",
+        "file": "neuro.jpg",
+        "sha256": "2597450f93f5f21dbd723a0f5fa304e02ceba919368f71b4f634bcacc28b4ec0",
+        "nativeWidth": 512,
+        "nativeHeight": 512,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 512,
+          "height": 512
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/quiz-neuro-456.webp",
+          "width": 456,
+          "height": 456,
+          "sha256": "1d89207adfcab8e05d97aa3d8abd9b2fc86092f3940011fbfb330e70969ec55f"
+        },
+        {
+          "url": "/assets/academy/resources/quiz-neuro-512.webp",
+          "width": 512,
+          "height": 512,
+          "sha256": "b4f90202a3310ab1e40674ed18fc5303a55cf5ed91abd225c354db8a62145b04"
+        }
+      ]
+    },
+    {
+      "id": "plano-hoje",
+      "group": "Plano de estudos",
+      "title": "Um próximo passo claro",
+      "description": "Organize as atividades de hoje e retome seu estudo.",
+      "family": "academy",
+      "type": "ui",
+      "accent": "#8b7441",
+      "rect": [
+        0.035,
+        0.092,
+        0.93,
+        0.35
+      ],
+      "demo": true,
+      "presentation": "compact",
+      "ui": {
+        "kind": "plan",
+        "tone": "blue",
+        "eyebrow": "HOJE · 22 MIN PLANEJADOS",
+        "heading": "Um passo de cada vez.",
+        "rows": [
+          "Missão do dia",
+          "Reforçar G.O.",
+          "Iniciar Trilha Clínica"
+        ],
+        "durations": [
+          "Concluído",
+          "12 min",
+          "10 min"
+        ],
+        "foot": "1 de 3 atividades",
+        "source": "atlas/desktop/academy/plano__light.png"
+      },
+      "provenance": {
+        "root": "atlas",
+        "file": "mobile/academy/plano__light.png",
+        "sha256": "9e8a6a10f5653f6878ac8bd1f3346c626596664b3b25552a37ace5d7ac7fed5b",
+        "nativeWidth": 1170,
+        "nativeHeight": 2532,
+        "crop": {
+          "left": 41,
+          "top": 233,
+          "width": 1088,
+          "height": 886
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/plano-hoje-456.webp",
+          "width": 456,
+          "height": 371,
+          "sha256": "384a5152fc60c9fca4c5dbbe61e3ea4aad83c10575e7c15cee2af0daae378e56"
+        },
+        {
+          "url": "/assets/academy/resources/plano-hoje-912.webp",
+          "width": 912,
+          "height": 743,
+          "sha256": "5e6f3c6bd56fac696178d3bdff635b7d633f57c70ff189e81981764268beed5c"
+        }
+      ]
+    },
+    {
+      "id": "flash-semiologia",
+      "group": "Flashcards",
+      "title": "Semiologia",
+      "description": "Reconheça as manobras e revise o que precisa de reforço.",
+      "family": "academy",
+      "type": "flash",
+      "accent": "#286954",
+      "source": null,
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "flashcard": {
+        "id": "anki_000a693e8f31e765",
+        "question": "Rotura tendinosa de manguito rotador\nManobras de exame físico? (3)",
+        "answer": "1. Teste de Gerber;\n2. Teste de Patte;\n3. Teste de Jobe.",
+        "specialty": "Semiologia",
+        "topic": "Osteoarticular",
+        "source": "curated_flashcards_import_v1",
+        "isCustom": false,
+        "sha256": "88b08a134e85ca17c68bf3e42ba725e4e8290abcb31d6e6f60652b0e6a5a3c79"
+      },
+      "tone": "sage"
+    },
+    {
+      "id": "casos-arte",
+      "group": "Casos clínicos",
+      "title": "Edema agudo de pulmão",
+      "description": "Explore dados, exames e decisões em cenários clínicos.",
+      "family": "academy",
+      "type": "ui",
+      "accent": "#23415e",
+      "rect": [
+        0.46,
+        0.072,
+        0.48,
+        0.46
+      ],
+      "badge": "stethoscope",
+      "presentation": "compact",
+      "ui": {
+        "kind": "dossier",
+        "tone": "cream",
+        "heading": "Edema agudo de pulmão",
+        "eyebrow": "APRESENTAÇÃO DO CASO",
+        "text": "Paciente masculino, 68 anos, hipertenso e diabético, trazido pelo SAMU com dispneia súbita em repouso, tosse com escarro róseo e ortopneia.",
+        "highlights": [
+          "dispneia súbita",
+          "escarro róseo",
+          "ortopneia"
+        ],
+        "foot": "Trecho do caso · Cardiologia",
+        "source": "atlas/desktop/academy/praticar-caso-sessao__light.png"
+      },
+      "demo": true,
+      "provenance": {
+        "root": "atlas",
+        "file": "desktop/pratica/casos__light.png",
+        "sha256": "b1eacf6754bab5c890e659b5e462bc868bff0213769e75e91a3c6e09d29d268e",
+        "nativeWidth": 2880,
+        "nativeHeight": 1800,
+        "crop": {
+          "left": 1325,
+          "top": 130,
+          "width": 1382,
+          "height": 828
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/casos-arte-456.webp",
+          "width": 456,
+          "height": 273,
+          "sha256": "3f92425a3fbe9af58b5ad440ef31003433c1ae547202b0dbd3cee94963f14cf0"
+        },
+        {
+          "url": "/assets/academy/resources/casos-arte-912.webp",
+          "width": 912,
+          "height": 546,
+          "sha256": "8054ef80a2de5be76c41af5b77b9af02b333b8f8ed7563cf0a67e2ff6cce9493"
+        }
+      ]
+    },
+    {
+      "id": "ausanatomy",
+      "group": "AusAnatomy",
+      "title": "Anatomia em camadas",
+      "description": "Explore o atlas anatômico interativo no Ausculto.",
+      "family": "ausculto",
+      "type": "image",
+      "accent": "#995958",
+      "rect": [
+        0.1,
+        0.15,
+        0.8,
+        0.277
+      ],
+      "fit": "cover",
+      "badge": "books",
+      "presentation": "anatomy",
+      "provenance": {
+        "root": "downloads",
+        "file": "app.auscultoapp.com_(iPhone 14 Pro Max) (15).png",
+        "sha256": "0a0501630356ebe743b2d5d386357a58e7f6b13c3b95d9f8cc4f5e8bd3e0c27d",
+        "nativeWidth": 1290,
+        "nativeHeight": 2796,
+        "crop": {
+          "left": 129,
+          "top": 419,
+          "width": 1032,
+          "height": 774
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/ausanatomy-456.webp",
+          "width": 456,
+          "height": 342,
+          "sha256": "f548bd26d3cf7140e5024f9ac0e43e9118642672670528a6be6902311eae08e1"
+        },
+        {
+          "url": "/assets/academy/resources/ausanatomy-912.webp",
+          "width": 912,
+          "height": 684,
+          "sha256": "4340db0a51201168a3b515f0e31a2d41bd99a01bb3d0c4aa3df44d89bfcdfea2"
+        }
+      ]
+    },
+    {
+      "id": "quiz-ecg",
+      "group": "Quiz de imagens",
+      "title": "Leitura de ECG",
+      "description": "Observe o traçado e exercite a interpretação dos achados.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#a6484d",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "fit": "contain",
+      "badge": "image",
+      "presentation": "ecg",
+      "provenance": {
+        "root": "remote",
+        "file": "ecg.png",
+        "sha256": "9163e3e86533f45b630a839c3501e0db82734a257e694a7c4b0f4775bec7605b",
+        "nativeWidth": 1819,
+        "nativeHeight": 1247,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 1819,
+          "height": 1247
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/quiz-ecg-456.webp",
+          "width": 456,
+          "height": 313,
+          "sha256": "9b6055d595625ad458d3be506be376d2c541bc3742b1d0f438c71909f3638812"
+        },
+        {
+          "url": "/assets/academy/resources/quiz-ecg-912.webp",
+          "width": 912,
+          "height": 625,
+          "sha256": "64d45ce645bf44ba84f84e7f6e0cf04789bc55ff3d11498373e3f038fa3ab97c"
+        }
+      ]
+    },
+    {
+      "id": "trilha-feedback",
+      "group": "Trilha clínica",
+      "title": "Vamos entender",
+      "description": "Retome o raciocínio e aprenda com cada tentativa.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#bd3b32",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "presentation": "game",
+      "recreated": true,
+      "reference": "Downloads/app.auscultoapp.com(Pixel 9)22.png",
+      "provenance": {
+        "root": "generated",
+        "file": "feedback-ui.png",
+        "sha256": "3bfd7e5ee6145212efbf56f0f770c35bbdd79b3f0f529daee370122a5b2808c2",
+        "nativeWidth": 1448,
+        "nativeHeight": 1086,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 1448,
+          "height": 1086
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/trilha-feedback-456.webp",
+          "width": 456,
+          "height": 342,
+          "sha256": "62a99ae2cd6b3d353ef295fd55182cef73314f23ad03bc8589d3dd3b59bc5950"
+        },
+        {
+          "url": "/assets/academy/resources/trilha-feedback-912.webp",
+          "width": 912,
+          "height": 684,
+          "sha256": "b3d11645a154aaa79a93c668fec89bf0d21fe6baab2438b08e4e7cae0dcd7f42"
+        }
+      ]
+    },
+    {
+      "id": "desempenho",
+      "group": "Desempenho",
+      "title": "Seu estudo deixa pistas",
+      "description": "Acompanhe resultados e identifique o próximo ponto de revisão.",
+      "family": "academy",
+      "type": "ui",
+      "accent": "#344866",
+      "rect": [
+        0.035,
+        0.232,
+        0.93,
+        0.35
+      ],
+      "demo": true,
+      "badge": "chart-bar",
+      "presentation": "compact",
+      "ui": {
+        "kind": "performance",
+        "tone": "blue",
+        "eyebrow": "SUA TRAJETÓRIA",
+        "heading": "Acurácia semanal",
+        "weekly": [
+          {
+            "week": "29 jun",
+            "answers": 20,
+            "correct": 16
+          },
+          {
+            "week": "6 jul",
+            "answers": 26,
+            "correct": 21
+          },
+          {
+            "week": "13 jul",
+            "answers": 22,
+            "correct": 18
+          },
+          {
+            "week": "20 jul",
+            "answers": 30,
+            "correct": 25
+          },
+          {
+            "week": "27 jul",
+            "answers": 24,
+            "correct": 19
+          },
+          {
+            "week": "3 ago",
+            "answers": 35,
+            "correct": 29
+          },
+          {
+            "week": "10 ago",
+            "answers": 28,
+            "correct": 23
+          },
+          {
+            "week": "17 ago",
+            "answers": 32,
+            "correct": 26
+          }
+        ],
+        "source": "app/test/visual_atlas/atlas_academy_part1_capture_test.dart::_FakePerformanceRepository",
+        "foot": "17–23 ago · Dados de demonstração"
+      },
+      "provenance": {
+        "root": "atlas",
+        "file": "mobile/academy/desempenho__dark.png",
+        "sha256": "32412b546f34875c260d0c0571ecc8b519d5699dc1604a1b28367b100f8c2cdb",
+        "nativeWidth": 1170,
+        "nativeHeight": 2532,
+        "crop": {
+          "left": 41,
+          "top": 587,
+          "width": 1088,
+          "height": 886
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/desempenho-456.webp",
+          "width": 456,
+          "height": 371,
+          "sha256": "d7cf14d84664c0740f231a1936035cafe35b3a934011d016058266e1c635fde9"
+        },
+        {
+          "url": "/assets/academy/resources/desempenho-912.webp",
+          "width": 912,
+          "height": 743,
+          "sha256": "0cf36005f831f20677b3cfc28852f4c2851488a31daee5ec2c98ee8dc534c869"
+        }
+      ]
+    },
+    {
+      "id": "trilha-capitulo",
+      "group": "Trilha clínica",
+      "title": "Primeiro atendimento",
+      "description": "Um percurso por capítulos para aprender, reconhecer e decidir.",
+      "family": "academy",
+      "type": "ui",
+      "accent": "#4d7b72",
+      "rect": [
+        0.33,
+        0.083,
+        0.63,
+        0.205
+      ],
+      "fit": "cover",
+      "presentation": "compact",
+      "ui": {
+        "kind": "chapter",
+        "tone": "cream",
+        "heading": "Primeiro atendimento que salva",
+        "eyebrow": "CLÍNICA MÉDICA · CAPÍTULO 1"
+      },
+      "provenance": {
+        "root": "downloads",
+        "file": "app.auscultoapp.com(Pixel 9).png",
+        "sha256": "da6c22b3baa0dfe7102d30fb61d55dc0970a56cf637184047b9880f564a6eef1",
+        "nativeWidth": 1082,
+        "nativeHeight": 2426,
+        "crop": {
+          "left": 357,
+          "top": 201,
+          "width": 682,
+          "height": 497
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/trilha-capitulo-456.webp",
+          "width": 456,
+          "height": 332,
+          "sha256": "47c576a9c9ffc31ae5a4f7ea7ffa2fb5b2dd4ec088afbd05d42e870f1587fc4c"
+        },
+        {
+          "url": "/assets/academy/resources/trilha-capitulo-682.webp",
+          "width": 682,
+          "height": 497,
+          "sha256": "40c2b890c7f14a5f63ecc541f9b4cd28e6d48bbb198c534cfeadeb67edc17427"
+        }
+      ]
+    },
+    {
+      "id": "caso-exames",
+      "group": "Casos clínicos",
+      "title": "Exames na prática",
+      "description": "Relacione imagens e dados à investigação do caso.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#697877",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "label": "Ultrassom · imagem de apoio",
+      "presentation": "ultrasound",
+      "provenance": {
+        "root": "site",
+        "file": "assets/academy/quiz-ultrassom.webp",
+        "sha256": "ae337753800330405adf54811454e7e976d8a34be69e314541af16353cefe427",
+        "nativeWidth": 389,
+        "nativeHeight": 292,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 389,
+          "height": 292
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/caso-exames-389.webp",
+          "width": 389,
+          "height": 292,
+          "sha256": "afc7a3e27b241d16d9d063b2e34f7380ceba1b3ec16d5e765e444e3633b2d869"
+        }
+      ]
+    },
+    {
+      "id": "flash-anatomia",
+      "group": "Flashcards",
+      "title": "Anatomia",
+      "description": "Uma revisão breve para conectar estruturas e funções.",
+      "family": "academy",
+      "type": "flash",
+      "accent": "#405783",
+      "source": null,
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "flashcard": {
+        "id": "anki_0009425197ddbb03",
+        "question": "Cite os principais nervos que se originam da porção supra-clavicular do plexo braquial",
+        "answer": "n.dorsal da escápula, n.torácico longo, n.supraescapular e n. p/ m.subclávio",
+        "specialty": "Anatomia",
+        "topic": "Membros Superiores e Inferiores",
+        "source": "curated_flashcards_import_v1",
+        "isCustom": false,
+        "sha256": "a8c6c0daa1b8a43ed6a5f227f8b1c425810df4691db22a9706ab182a8ef0152f"
+      },
+      "tone": "navy",
+      "badge": "cards"
+    },
+    {
+      "id": "caso-anamnese",
+      "group": "Casos clínicos",
+      "title": "Investigue em etapas",
+      "description": "Escolha perguntas, reúna os dados e desenvolva o raciocínio.",
+      "family": "academy",
+      "type": "ui",
+      "accent": "#465f8a",
+      "rect": [
+        0.038,
+        0.057,
+        0.925,
+        0.36
+      ],
+      "demo": true,
+      "presentation": "compact",
+      "ui": {
+        "kind": "case",
+        "eyebrow": "ETAPA 3 · ANAMNESE",
+        "heading": "Quais perguntas são mais relevantes?",
+        "rows": [
+          "Há quanto tempo iniciaram os sintomas?",
+          "Quais são os fatores de melhora e piora?"
+        ],
+        "tone": "lilac"
+      },
+      "provenance": {
+        "root": "atlas",
+        "file": "mobile/pratica/caso-anamnese__light.png",
+        "sha256": "6c61f684170a8b2f95678afa8f6c619d52b1f4950169d3256bd3a7f33b41d8e1",
+        "nativeWidth": 1170,
+        "nativeHeight": 2532,
+        "crop": {
+          "left": 44,
+          "top": 144,
+          "width": 1082,
+          "height": 912
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/caso-anamnese-456.webp",
+          "width": 456,
+          "height": 384,
+          "sha256": "f081f298fafc0771d5bee20ff91865876985dc38f63a4b9ce0e94e0967abb610"
+        },
+        {
+          "url": "/assets/academy/resources/caso-anamnese-912.webp",
+          "width": 912,
+          "height": 769,
+          "sha256": "ee33eac81156d1150ebbef3de6f4c7aa3f428ebd27784dfed385e70c34e34b06"
+        }
+      ]
+    },
+    {
+      "id": "trilha-resultado",
+      "group": "Trilha clínica",
+      "title": "Continue praticando",
+      "description": "XP, acertos e tempo ao concluir uma atividade.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#ca9a33",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "presentation": "game",
+      "recreated": true,
+      "demo": true,
+      "reference": "Downloads/app.auscultoapp.com(Pixel 9)2222.png",
+      "provenance": {
+        "root": "generated",
+        "file": "resultado-ui.png",
+        "sha256": "d558962f7c6a648e1303f954238cb8c1b2cbc3d1698157805aacef455cfc0132",
+        "nativeWidth": 1447,
+        "nativeHeight": 1087,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 1447,
+          "height": 1087
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/trilha-resultado-456.webp",
+          "width": 456,
+          "height": 343,
+          "sha256": "a157cede23fe5ed1fd7adda2053965025652981bc52308bfd0d0fd90c57499dd"
+        },
+        {
+          "url": "/assets/academy/resources/trilha-resultado-912.webp",
+          "width": 912,
+          "height": 685,
+          "sha256": "cb516784118ecf7cb3b87801cae1828f9e50e5a905ad3b2ebbf4671f450a0388"
+        }
+      ]
+    },
+    {
+      "id": "quiz-rx",
+      "group": "Quiz de imagens",
+      "title": "Radiografia de tórax",
+      "description": "Observe o exame com atenção e compare a sua interpretação.",
+      "family": "academy",
+      "type": "image",
+      "accent": "#536a77",
+      "rect": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "fit": "contain",
+      "provenance": {
+        "root": "site",
+        "file": "assets/academy/quiz-torax.webp",
+        "sha256": "07babc6dabf0805b9677a26d60aa2abb30c1ad3d14bbdd28795c745f6864a610",
+        "nativeWidth": 900,
+        "nativeHeight": 675,
+        "crop": {
+          "left": 0,
+          "top": 0,
+          "width": 900,
+          "height": 675
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/quiz-rx-456.webp",
+          "width": 456,
+          "height": 342,
+          "sha256": "c1ef79585aabd6048eb8d29723d3a52a1cb4c254329a3969844b32888cdd30f2"
+        },
+        {
+          "url": "/assets/academy/resources/quiz-rx-900.webp",
+          "width": 900,
+          "height": 675,
+          "sha256": "012c322a74b0a6d97295e518408efd138d213f0dc02dca7ae09b76fa5edceb91"
+        }
+      ]
+    },
+    {
+      "id": "ausflow",
+      "group": "AusFlow",
+      "title": "Sinais vitais em contexto",
+      "description": "Acompanhe a evolução das medidas ao longo do plantão.",
+      "family": "ausculto",
+      "type": "image",
+      "accent": "#236798",
+      "rect": [
+        0.035,
+        0.28,
+        0.93,
+        0.322
+      ],
+      "demo": true,
+      "badge": "chart-line-up",
+      "provenance": {
+        "root": "atlas",
+        "file": "mobile/ausflow/vitais-pressao__light.png",
+        "sha256": "cfa1f8aeae4c0c78b4b84a3695b37b1f5080b57a35d5dab3a8ae95ce6bd5af20",
+        "nativeWidth": 1170,
+        "nativeHeight": 2532,
+        "crop": {
+          "left": 41,
+          "top": 709,
+          "width": 1088,
+          "height": 815
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/ausflow-456.webp",
+          "width": 456,
+          "height": 342,
+          "sha256": "267b3c648cb34e7bc4e6e0d54ec72283b048aef66b748b01c6a2ec3b7555cefe"
+        },
+        {
+          "url": "/assets/academy/resources/ausflow-912.webp",
+          "width": 912,
+          "height": 683,
+          "sha256": "4b9c1ad227bf5aa48cf4646a87a0772d573ecf0bcefe05310450e6dc31bc30c3"
+        }
+      ]
+    },
+    {
+      "id": "questao-comentario",
+      "group": "Questões e simulados",
+      "title": "ENAMED 2025",
+      "description": "Retome a explicação e os comentários de cada alternativa.",
+      "family": "academy",
+      "type": "question",
+      "accent": "#487450",
+      "rect": [
+        0.06,
+        0.025,
+        0.89,
+        0.335
+      ],
+      "demo": false,
+      "presentation": "exam",
+      "ui": {
+        "kind": "exam",
+        "tone": "mint",
+        "question": {
+          "documentId": "enamed_2025_caderno_1_q034",
+          "collection": "questions",
+          "bank": "ENAMED",
+          "year": "2025",
+          "number": 34,
+          "examFolder": "ENAMED_2025_CADERNO_1",
+          "statement": "Uma instituição de saúde está pesquisando um novo teste de triagem para hanseníase, com sensibilidade de 92% e especificidade de 65%, aplicado em uma população com baixa prevalência da doença. Nesse contexto, é correto afirmar que",
+          "options": {
+            "B": "o número de falsos-positivos será elevado, devido à baixa especificidade do teste e à baixa prevalência da doença.",
+            "C": "o número de falsos-negativos será elevado, reduzindo a capacidade do teste em detectar casos reais.",
+            "A": "quase todos os testes positivos indicarão verdadeiros casos de hanseníase, diante da elevada sensibilidade do teste.",
+            "D": "a elevada sensibilidade do teste o torna ideal para a confirmação do diagnóstico de hanseníase."
+          },
+          "answer": "B",
+          "comment": "A baixa especificidade do teste (65%) combinada com a baixa prevalência da hanseníase na população resultará em um número elevado de resultados falso-positivos. Isso ocorre porque, em uma população onde a doença é rara, a maioria dos indivíduos é saudável, e mesmo uma taxa moderada de falsos-positivos (devido à baixa especificidade) se traduz em um grande número absoluto de pessoas testadas erroneamente como positivas. Consequentemente, a maioria dos testes positivos não indicará casos reais da doença.",
+          "sourceLabel": "ENAMED 2025",
+          "sha256": "7efc705b3e69a2fd35b4bd04697c3ca615df9adc81b65a1b99b2b007be8cccd2"
+        },
+        "commentExcerpt": "A baixa especificidade do teste (65%) combinada com a baixa prevalência da hanseníase na população resultará em um número elevado de resultados falso-positivos.",
+        "showOptions": false,
+        "highlights": [
+          "sensibilidade de 92%",
+          "especificidade de 65%",
+          "baixa prevalência"
+        ]
+      },
+      "recreated": false,
+      "provenance": {
+        "root": "atlas",
+        "file": "mobile/pratica/questao-comentarios__light.png",
+        "sha256": "c40082ee2299e2a8a98e33984176370b46d8091cc026a331f824995d4e4214f2",
+        "nativeWidth": 1170,
+        "nativeHeight": 2532,
+        "crop": {
+          "left": 70,
+          "top": 63,
+          "width": 1041,
+          "height": 848
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/questao-comentario-456.webp",
+          "width": 456,
+          "height": 371,
+          "sha256": "ee91a8c6bf74af9624eb48a4b01c75663296ba7521426802199a3f5bebca1901"
+        },
+        {
+          "url": "/assets/academy/resources/questao-comentario-912.webp",
+          "width": 912,
+          "height": 743,
+          "sha256": "bddc5e7a1d8dd4184abe68dde058684154ff9380cc9b0aa8310f1d197e0cb257"
+        }
+      ]
+    },
+    {
+      "id": "simulado-revisao",
+      "group": "Questões e simulados",
+      "title": "EINSTEIN 2025",
+      "description": "Retome acertos, erros e questões da sessão.",
+      "family": "academy",
+      "type": "question",
+      "accent": "#347563",
+      "rect": [
+        0.035,
+        0.065,
+        0.93,
+        0.35
+      ],
+      "demo": false,
+      "presentation": "exam",
+      "ui": {
+        "kind": "exam",
+        "tone": "blue",
+        "question": {
+          "documentId": "einstein_2025_q072",
+          "collection": "questions",
+          "bank": "Einstein",
+          "year": "2025",
+          "number": 72,
+          "examFolder": "EINSTEIN_2025",
+          "statement": "Em um ensaio clínico controlado, o planejamento de delineamento de cross-over",
+          "options": {
+            "A": "elimina a necessidade de randomização.",
+            "B": "requer randomização estratificada.",
+            "C": "deve considerar um possível efeito residual da primeira intervenção.",
+            "D": "aumenta a validade externa dos resultados."
+          },
+          "answer": "C",
+          "comment": "Gabarito oficial: alternativa C.\n\nCORRETA. Esta é a definição da principal preocupação metodológica do estudo cross-over. O planejamento deve considerar o efeito residual (carry-over) da primeira intervenção sobre a segunda. Se esse efeito existir e não for manejado (por meio de um tempo de washout adequado), a validade do estudo fica comprometida, já que não saberemos se o resultado da segunda fase é real ou \"contaminado\" pela primeira fase.",
+          "sourceLabel": "EINSTEIN 2025",
+          "sha256": "5ea030293c7a582870f3576a9f7220a41add90a7a4f6a40fb4a660d15745ceb3"
+        },
+        "commentExcerpt": "O planejamento deve considerar o efeito residual (carry-over) da primeira intervenção sobre a segunda.",
+        "showOptions": true,
+        "highlights": [
+          "cross-over"
+        ]
+      },
+      "recreated": false,
+      "provenance": {
+        "root": "atlas",
+        "file": "mobile/academy/praticar-simulado-relatorio__light.png",
+        "sha256": "809048f5feaba5acc125101874ce66eb5965a199754e887d17ac0a419b655b83",
+        "nativeWidth": 1170,
+        "nativeHeight": 2532,
+        "crop": {
+          "left": 41,
+          "top": 165,
+          "width": 1088,
+          "height": 886
+        }
+      },
+      "variants": [
+        {
+          "url": "/assets/academy/resources/simulado-revisao-456.webp",
+          "width": 456,
+          "height": 371,
+          "sha256": "3c6566f2c4a13ae81fe20a1ca81657e76cebbe952bf26033e4f9c195ea2c4db2"
+        },
+        {
+          "url": "/assets/academy/resources/simulado-revisao-912.webp",
+          "width": 912,
+          "height": 743,
+          "sha256": "4e3485a2aab0e3eadba60f316e0400c346a2ff2aa59fc72e5f11ce8349a347d5"
+        }
+      ]
+    }
+  ]
+}

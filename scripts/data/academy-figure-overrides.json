@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "derivatives": [
+    {
+      "id": "abdome-mecanismos",
+      "url": "/assets/academy/illustrations/abdome-mecanismos-66a30611d020b7a1.png",
+      "sha256": "66a30611d020b7a13bf5189e870da429bf54c9d4cfc9b2896ddd61d1b70a2822",
+      "masterSha256": "5bee813ee681bc222bf56c836c8d9e3831a267e5b9b2a89f3ec4a663e0f7cad9",
+      "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+      "width": 1475,
+      "height": 1066,
+      "oldUrl": "/assets/academy/illustrations/abdome-mecanismos-5545abc1baaab6ae.svg",
+      "watermark": {
+        "flattened": true,
+        "central": {
+          "widthFraction": 0.2,
+          "opacity": 0.085
+        },
+        "corner": {
+          "widthFraction": 0.055,
+          "opacity": 0.42
+        }
+      }
+    },
+    {
+      "id": "acidobase-disturbios",
+      "url": "/assets/academy/illustrations/acidobase-disturbios-938fc6f386aa1c85.png",
+      "sha256": "938fc6f386aa1c8531bbfdcddda9f2ea7e8917cbb8817c813aed7beac36ee4f6",
+      "masterSha256": "b0e2210d6091750dc7485a4531b48a4e9ff49f35992a4ee75085f7f8fb29ad87",
+      "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+      "width": 1422,
+      "height": 1106,
+      "oldUrl": "/assets/academy/illustrations/acidobase-disturbios-055572fbe424726c.svg",
+      "watermark": {
+        "flattened": true,
+        "central": {
+          "widthFraction": 0.2,
+          "opacity": 0.085
+        },
+        "corner": {
+          "widthFraction": 0.055,
+          "opacity": 0.42
+        }
+      }
+    },
+    {
+      "id": "epidemiologia-agregados",
+      "url": "/assets/academy/illustrations/epidemiologia-agregados-07392cc949807d0d.png",
+      "sha256": "07392cc949807d0d3ae9a95e0cf5875a11c2ac08b3c7fe0c828b100088619fb3",
+      "masterSha256": "1ea9a7be57eb2cd938c031d04fc19f124ad38bbafccaea9c619869adf1ce7938",
+      "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+      "width": 1536,
+      "height": 1024,
+      "oldUrl": "/assets/academy/illustrations/epidemiologia-agregados-5c91eb334f95aa48.svg",
+      "watermark": {
+        "flattened": true,
+        "central": {
+          "widthFraction": 0.2,
+          "opacity": 0.085
+        },
+        "corner": {
+          "widthFraction": 0.055,
+          "opacity": 0.42
+        }
+      }
+    },
+    {
+      "id": "epidemiologia-desenhos",
+      "url": "/assets/academy/illustrations/epidemiologia-desenhos-a4c8cc67f6d1642f.png",
+      "sha256": "a4c8cc67f6d1642f11a25f369bf1012f9279b34a41325e809f730bc0d2aef894",
+      "masterSha256": "a2eabaa4318a9c81b65b26beb0f965ab926bc8ee53e9845f9a5e9846311db41f",
+      "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+      "width": 1422,
+      "height": 1106,
+      "oldUrl": "/assets/academy/illustrations/epidemiologia-desenhos-3c6839af75760ba1.svg",
+      "watermark": {
+        "flattened": true,
+        "central": {
+          "widthFraction": 0.2,
+          "opacity": 0.085
+        },
+        "corner": {
+          "widthFraction": 0.055,
+          "opacity": 0.42
+        }
+      }
+    },
+    {
+      "id": "abdome-agudo-material",
+      "url": "/assets/academy/illustrations/abdome-agudo-material-a1a215e86db47b58.png",
+      "sha256": "a1a215e86db47b58a2799d64895590254fbd1a66bc313edacdf8beb615f89097",
+      "masterSha256": "120c44e5d7de233958ed3fead0efbe67ed8ca66f41fc758ece9275d947592136",
+      "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+      "width": 1055,
+      "height": 1491,
+      "oldUrl": "/assets/academy/material/abdome-agudo-120c44e5d7de233958ed3fead0efbe67ed8ca66f41fc758ece9275d947592136.png",
+      "watermark": {
+        "flattened": true,
+        "central": {
+          "widthFraction": 0.2,
+          "opacity": 0.085
+        },
+        "corner": {
+          "widthFraction": 0.055,
+          "opacity": 0.42
+        }
+      }
+    },
+    {
+      "id": "estudos-epidemiologicos-material",
+      "url": "/assets/academy/illustrations/estudos-epidemiologicos-material-b51affaf62c541e1.png",
+      "sha256": "b51affaf62c541e1c0e96c606b300fd707fafdd78cf8a0a1b15645e4336c33ed",
+      "masterSha256": "fce96fda2d3c65d5c9111c5a1dd93df36caf84166574554cc1557c02d2d77c36",
+      "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+      "width": 1648,
+      "height": 986,
+      "oldUrl": "/assets/academy/material/estudos-epidemiologicos-fce96fda2d3c65d5c9111c5a1dd93df36caf84166574554cc1557c02d2d77c36.png",
+      "watermark": {
+        "flattened": true,
+        "central": {
+          "widthFraction": 0.2,
+          "opacity": 0.085
+        },
+        "corner": {
+          "widthFraction": 0.055,
+          "opacity": 0.42
+        }
+      }
+    },
+    {
+      "id": "gasometria-fluxograma",
+      "url": "/assets/academy/illustrations/gasometria-fluxograma-2751ca9f4688f3ca.png",
+      "sha256": "2751ca9f4688f3ca760f657e2df1ca09bfee39b384acd02fc8d188146a97e00f",
+      "masterSha256": "9ace09f5f6dd5cd7cc178f72f89a39af116faa14f0a58526dd6b49b2f3507b5f",
+      "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+      "width": 1500,
+      "height": 2040,
+      "oldUrl": "/assets/academy/material/disturbios-eletroliticos-e-acido-base-9a8db23b877fe4b69f0f091525f1428f07b7b87fffa42a484d9308a87eb3bbb6.png",
+      "watermark": {
+        "flattened": true,
+        "central": {
+          "widthFraction": 0.2,
+          "opacity": 0.085
+        },
+        "corner": {
+          "widthFraction": 0.055,
+          "opacity": 0.42
+        }
+      }
+    }
+  ],
+  "retiredPublicAssets": [
+    "/assets/academy/illustrations/abdome-mecanismos-5545abc1baaab6ae.svg",
+    "/assets/academy/illustrations/acidobase-disturbios-055572fbe424726c.svg",
+    "/assets/academy/illustrations/epidemiologia-agregados-5c91eb334f95aa48.svg",
+    "/assets/academy/illustrations/epidemiologia-desenhos-3c6839af75760ba1.svg",
+    "/assets/academy/material/abdome-agudo-120c44e5d7de233958ed3fead0efbe67ed8ca66f41fc758ece9275d947592136.png",
+    "/assets/academy/material/estudos-epidemiologicos-fce96fda2d3c65d5c9111c5a1dd93df36caf84166574554cc1557c02d2d77c36.png",
+    "/assets/academy/material/disturbios-eletroliticos-e-acido-base-9a8db23b877fe4b69f0f091525f1428f07b7b87fffa42a484d9308a87eb3bbb6.png",
+    "/assets/academy/illustrations/gasometria-fluxograma-96e98c61f3795171.png"
+  ],
+  "errata": [
+    {
+      "summaryId": "disturbios-eletroliticos-e-acido-base",
+      "version": "export-d39a97b3b2e9e98660",
+      "blockId": "section-024",
+      "selectedTextSha256": "6a8b3375f558f39d952b60f7869af22e05a9e8b1e5a955f85f7851edf776c7e5",
+      "from": "Fluxograma diagnóstico prático para investigar as causas de hiponatremia com base na osmolaridade e volemia.",
+      "to": "Fluxograma de interpretação gasométrica: pH, PaCO₂ e HCO₃⁻, compensação esperada, ânion gap e investigação de distúrbios mistos.",
+      "reason": "Caption described hyponatremia although this section concerns arterial blood gas interpretation.",
+      "references": [
+        {
+          "label": "American Thoracic Society — interpretação da gasometria",
+          "url": "https://www.thoracic.org/professionals/clinical-resources/critical-care/clinical-education/abgs.php"
+        },
+        {
+          "label": "Merck Manual — distúrbios ácido-base",
+          "url": "https://www.merckmanuals.com/professional/nephrology/acid-base-regulation-and-disorders/acid-base-disorders"
+        }
+      ]
+    }
+  ]
+}

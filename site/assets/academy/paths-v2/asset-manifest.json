@@ -1,0 +1,306 @@
+{
+  "preparedAt": "2026-09-27T21:52:16.348Z",
+  "generation": "Built-in imagegen; generated prompts in prompts.md",
+  "files": [
+    {
+      "filename": "residency-doctor-640.webp",
+      "width": 640,
+      "height": 553,
+      "alpha": true,
+      "bytes": 75820,
+      "sha256": "44af24559300223cca7708914b661d8ff152bc839e9872d3a3fc068f3fa2f99b",
+      "masterSha256": "6dd3d1efdf696ecdc93b263e5248ff9996871e24402f749d221c6e3e8397d057",
+      "source": "C:/Users/medic/Downloads/DRJASSONIO.png"
+    },
+    {
+      "filename": "residency-doctor-1280.webp",
+      "width": 1280,
+      "height": 1106,
+      "alpha": true,
+      "bytes": 221162,
+      "sha256": "2d819670edfa897818f4234323825da3e23c48e8659c0fce7233750b3133feb3",
+      "masterSha256": "6dd3d1efdf696ecdc93b263e5248ff9996871e24402f749d221c6e3e8397d057",
+      "source": "C:/Users/medic/Downloads/DRJASSONIO.png"
+    },
+    {
+      "filename": "scroll-hand-400.webp",
+      "width": 400,
+      "height": 300,
+      "alpha": true,
+      "bytes": 16120,
+      "sha256": "2403aebc4cc01bdcc6be7c49f3f0a5df39c1efa20716ac56630d38a22d8e1062",
+      "masterSha256": "d7d072f89b091d256fa4d9016a6e763c97994f1dd556fb33bf9cb2f065aae13a",
+      "source": "C:/Users/medic/Downloads/mao.png"
+    },
+    {
+      "filename": "scroll-hand-800.webp",
+      "width": 800,
+      "height": 600,
+      "alpha": true,
+      "bytes": 42482,
+      "sha256": "2f3205018ddbf5bf7a367fb3eaa61b522d7d30442d7491d95fca05f80bdd4316",
+      "masterSha256": "d7d072f89b091d256fa4d9016a6e763c97994f1dd556fb33bf9cb2f065aae13a",
+      "source": "C:/Users/medic/Downloads/mao.png"
+    },
+    {
+      "filename": "enamed-closed-640.webp",
+      "width": 640,
+      "height": 800,
+      "alpha": true,
+      "bytes": 135468,
+      "sha256": "13c25f22bf66b80106f92a5ce8e435a89fdfd27f8cff42a52d706b01149a50e9",
+      "masterSha256": "bc64393524f89dcd5f712f6801b2575db503c77b9d818a7a12b011a9debf8f6c",
+      "source": "C:/Users/medic/Downloads/ChatGPT Image Sep 27, 2026, 05_46_06 PM.png"
+    },
+    {
+      "filename": "enamed-closed-1280.webp",
+      "width": 1122,
+      "height": 1402,
+      "alpha": true,
+      "bytes": 379502,
+      "sha256": "23b2e85f41752746c82f7d4c66d915cd2c7ade928745aef914b6f809eaa50f09",
+      "masterSha256": "bc64393524f89dcd5f712f6801b2575db503c77b9d818a7a12b011a9debf8f6c",
+      "source": "C:/Users/medic/Downloads/ChatGPT Image Sep 27, 2026, 05_46_06 PM.png"
+    },
+    {
+      "filename": "tools-screen-900.webp",
+      "width": 900,
+      "height": 563,
+      "alpha": false,
+      "bytes": 80506,
+      "sha256": "ae0996aa1a0903babcd70f32656e7250d71f859a5ddb0c03e5aad1297f5b5441",
+      "masterSha256": "9da974538827dbbdedde1254e08dbc2e503523f08a6169fc07926f53b53c8fc6",
+      "source": "C:/Users/medic/Desktop/AUSCULTO-atlas-rotas/desktop/ferramentas/hub__light.png"
+    },
+    {
+      "filename": "tools-screen-1800.webp",
+      "width": 1800,
+      "height": 1125,
+      "alpha": false,
+      "bytes": 213566,
+      "sha256": "f5f9d56d323a1efaa52587d3b5aa6d48f6b668a55fe76a40d38dc48f382ac309",
+      "masterSha256": "9da974538827dbbdedde1254e08dbc2e503523f08a6169fc07926f53b53c8fc6",
+      "source": "C:/Users/medic/Desktop/AUSCULTO-atlas-rotas/desktop/ferramentas/hub__light.png"
+    },
+    {
+      "filename": "icon-protocolos-160.webp",
+      "width": 160,
+      "height": 160,
+      "alpha": true,
+      "bytes": 8802,
+      "sha256": "f80e34293b0691e3a8f023731d00a7f316136cfd24302f0e9372002337176f86",
+      "masterSha256": "ae0a99a01d1a5706b961f249e837b4b809b6290ae16bc9128aaa0fe99cf84e49",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_protocolos.png"
+    },
+    {
+      "filename": "icon-protocolos-320.webp",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 22228,
+      "sha256": "79d5e45b1756ec6047121b5b5800bcaddb1619156dc4d0f3eff56412ed8610c9",
+      "masterSha256": "ae0a99a01d1a5706b961f249e837b4b809b6290ae16bc9128aaa0fe99cf84e49",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_protocolos.png"
+    },
+    {
+      "filename": "icon-semiologia-160.webp",
+      "width": 160,
+      "height": 160,
+      "alpha": true,
+      "bytes": 13212,
+      "sha256": "667c622ca40beed49570741120d74409b4efafc011910cdcc331ddadda330d8b",
+      "masterSha256": "fc5bf3ec0f5bc1093b836960723658c38459ca3ba474e14bfcca7c1919e4e6e8",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_semiologia.png"
+    },
+    {
+      "filename": "icon-semiologia-320.webp",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 34498,
+      "sha256": "9c099cea7134a7405276f8f379be78686e41282426bac95d5c426364c7a29302",
+      "masterSha256": "fc5bf3ec0f5bc1093b836960723658c38459ca3ba474e14bfcca7c1919e4e6e8",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_semiologia.png"
+    },
+    {
+      "filename": "icon-cid-160.webp",
+      "width": 160,
+      "height": 160,
+      "alpha": true,
+      "bytes": 9900,
+      "sha256": "f8d6d736a1f6bad2f6edf0bd84364b0c5f7d1974d2d2d30f7793771f5d89c74c",
+      "masterSha256": "6fc3682f930a029b74fb56e6da4ac43c0a7e0873dd17e70dfa54f58aa1cb18f3",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_cid10.png"
+    },
+    {
+      "filename": "icon-cid-320.webp",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 25868,
+      "sha256": "d1525117862d9b38cf0a919268dca42f25a01b42608a73f5855187decd281761",
+      "masterSha256": "6fc3682f930a029b74fb56e6da4ac43c0a7e0873dd17e70dfa54f58aa1cb18f3",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_cid10.png"
+    },
+    {
+      "filename": "icon-exames-160.webp",
+      "width": 160,
+      "height": 160,
+      "alpha": true,
+      "bytes": 10010,
+      "sha256": "fae756c40dbd5c512de5e7fe1f848bc59076861feffc4f2d5248d4c7530bba70",
+      "masterSha256": "4250bc15afa1a19e30933a150ee9e7e5a77b4a309bec480cbfcb46de2fbfe88c",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_exames.png"
+    },
+    {
+      "filename": "icon-exames-320.webp",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 25832,
+      "sha256": "7ae69c03a2f7b77098f7c6110f41d76a502c656573b94a72a409109e7e391666",
+      "masterSha256": "4250bc15afa1a19e30933a150ee9e7e5a77b4a309bec480cbfcb46de2fbfe88c",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_exames.png"
+    },
+    {
+      "filename": "icon-calculadoras-160.webp",
+      "width": 160,
+      "height": 160,
+      "alpha": true,
+      "bytes": 10564,
+      "sha256": "668c2d2db9195bea1ed05b323b05002ac28c6baa0baf1d8b10147f53c9ef8930",
+      "masterSha256": "6881a3431b4300021372a1beb36019ef83fd42cb0b8e2b505c1096fcf678d0e6",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_calculadoras.png"
+    },
+    {
+      "filename": "icon-calculadoras-320.webp",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 26752,
+      "sha256": "c8506eceba03ba1469046354a33de6e7837d4cd5e22e2473c0eb1aa4886a9c3f",
+      "masterSha256": "6881a3431b4300021372a1beb36019ef83fd42cb0b8e2b505c1096fcf678d0e6",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_calculadoras.png"
+    },
+    {
+      "filename": "icon-ausflow-160.webp",
+      "width": 160,
+      "height": 160,
+      "alpha": true,
+      "bytes": 7750,
+      "sha256": "04177f0430ae49312b829237b34bf65974c88dffaffef721a5766146b747a759",
+      "masterSha256": "b6a795a2fb18290c6e23eaceca8856227a71ecbfd5a95836c7118627502a8b8b",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_ausflow_2026_09.png"
+    },
+    {
+      "filename": "icon-ausflow-320.webp",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 18422,
+      "sha256": "79a3159a41ca70b4432bab25a21df531b8b4116be7af56d82697a7a6e226741e",
+      "masterSha256": "b6a795a2fb18290c6e23eaceca8856227a71ecbfd5a95836c7118627502a8b8b",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_ausflow_2026_09.png"
+    },
+    {
+      "filename": "icon-ausmind-160.webp",
+      "width": 160,
+      "height": 160,
+      "alpha": true,
+      "bytes": 10088,
+      "sha256": "f53aa5ec1c4d80fce9428a4ea5543a60c4c12fc6e6388b60a49753bd9dc40933",
+      "masterSha256": "0c8694b3a7377075b92d5f235860182beb9e3fcef68e418b47f1d5db0fa236ba",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_ausmind_2026_09.png"
+    },
+    {
+      "filename": "icon-ausmind-320.webp",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 23826,
+      "sha256": "b9f352bc7b3891916298e706d443e5f7ea628aa091eac2fcd7f6eef7f7cbb458",
+      "masterSha256": "0c8694b3a7377075b92d5f235860182beb9e3fcef68e418b47f1d5db0fa236ba",
+      "source": "../commit-v1-premium-backport/assets/branding/premium_v2/clinical_tool_icon_ausmind_2026_09.png"
+    },
+    {
+      "filename": "enamed-open-900.webp",
+      "width": 900,
+      "height": 600,
+      "alpha": true,
+      "bytes": 66052,
+      "sha256": "f1d1fddbfa14313706afd369c00a9d206ff90f2bbabd4a8c198e39581121687b",
+      "masterSha256": "ca7f994abe6642a86bcff29ca27bef68ca2826ccde7a24125b77e3f4404e1694",
+      "source": "C:/Users/medic/.codex/generated_images/01a0e4c0-e21e-7480-bef7-b9dd35648f0b/exec-686a33f2-47a4-4af5-92e4-96b8099db338.png"
+    },
+    {
+      "filename": "enamed-open-1800.webp",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "bytes": 163300,
+      "sha256": "8667136b3fdedd5ba599cb74f6ee7c162644e2fec7dfaf97139a316fc6f4c62b",
+      "masterSha256": "ca7f994abe6642a86bcff29ca27bef68ca2826ccde7a24125b77e3f4404e1694",
+      "source": "C:/Users/medic/.codex/generated_images/01a0e4c0-e21e-7480-bef7-b9dd35648f0b/exec-686a33f2-47a4-4af5-92e4-96b8099db338.png"
+    },
+    {
+      "filename": "enamed-half-900.webp",
+      "width": 900,
+      "height": 600,
+      "alpha": true,
+      "bytes": 86986,
+      "sha256": "2c63044bc4f1c5dc4817d1afcac5406992889c4d0e637566e0b3353c6de49dd6",
+      "masterSha256": "1ceac1892af63e793bb1ffd4b5048d2a9e07b7e61467cda142917cb817afe153",
+      "source": "C:/Users/medic/.codex/generated_images/01a0e4c0-e21e-7480-bef7-b9dd35648f0b/exec-7e7a8ad5-97a7-4e11-86db-12aeab660aed.png"
+    },
+    {
+      "filename": "enamed-half-1800.webp",
+      "width": 1536,
+      "height": 1024,
+      "alpha": true,
+      "bytes": 227494,
+      "sha256": "824e1f12d189c0181f54e0c29fbba9a71cca87f6c397cbdc3c8619828bb56af7",
+      "masterSha256": "1ceac1892af63e793bb1ffd4b5048d2a9e07b7e61467cda142917cb817afe153",
+      "source": "C:/Users/medic/.codex/generated_images/01a0e4c0-e21e-7480-bef7-b9dd35648f0b/exec-7e7a8ad5-97a7-4e11-86db-12aeab660aed.png"
+    },
+    {
+      "filename": "tools-device-900.webp",
+      "width": 900,
+      "height": 675,
+      "alpha": false,
+      "bytes": 58026,
+      "sha256": "5751634c2cc024002a7f4a1f138842f9f2da8eb3db4619584fc358517168e2cd",
+      "masterSha256": "0038c1ac1f6c820284db1626c00e31d15ac4451823f69424c8bc6e1d6554c639",
+      "source": "C:/Users/medic/.codex/generated_images/01a0e4c0-e21e-7480-bef7-b9dd35648f0b/exec-28623b43-6d1d-4a0f-920b-519be9afa136.png"
+    },
+    {
+      "filename": "tools-device-1800.webp",
+      "width": 1448,
+      "height": 1086,
+      "alpha": false,
+      "bytes": 120856,
+      "sha256": "541c7b2c21f5477379c76a14a0d3820fb7425068a772fc4f02cc5388009bf0c2",
+      "masterSha256": "0038c1ac1f6c820284db1626c00e31d15ac4451823f69424c8bc6e1d6554c639",
+      "source": "C:/Users/medic/.codex/generated_images/01a0e4c0-e21e-7480-bef7-b9dd35648f0b/exec-28623b43-6d1d-4a0f-920b-519be9afa136.png"
+    },
+    {
+      "filename": "pro-background-1000.webp",
+      "width": 1000,
+      "height": 563,
+      "alpha": false,
+      "bytes": 28172,
+      "sha256": "c5a84b95976bf3f0eb1038357765e58800c051fc7cf8b1c1f119de9359e9d18e",
+      "masterSha256": "ca32df850d93768733411838a815c2e1b8b31214092e9b129768679bb1d77248",
+      "source": "C:/Users/medic/.codex/generated_images/01a0e4c0-e21e-7480-bef7-b9dd35648f0b/exec-95d795ae-4acf-4c40-8948-f8c0661ad231.png"
+    },
+    {
+      "filename": "pro-background-2000.webp",
+      "width": 1672,
+      "height": 941,
+      "alpha": false,
+      "bytes": 57176,
+      "sha256": "1b87ce2ac6f8b8647aa6a18eb448410c7ab1a65f7b0500b9b69e4c15fe19c48b",
+      "masterSha256": "ca32df850d93768733411838a815c2e1b8b31214092e9b129768679bb1d77248",
+      "source": "C:/Users/medic/.codex/generated_images/01a0e4c0-e21e-7480-bef7-b9dd35648f0b/exec-95d795ae-4acf-4c40-8948-f8c0661ad231.png"
+    }
+  ]
+}

@@ -32,3 +32,12 @@ Thumbs.db
 .agents/
 .claude/
 skills-lock.json
+
+# Local audit exports, captures, credentials and generated caches.
+.local-art/
+__pycache__/
+*.pyc
+.tmp-*
+.env
+*serviceAccount*.json
+*service-account*.json

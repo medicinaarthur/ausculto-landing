@@ -1,0 +1,3610 @@
+{
+  "schemaVersion": 2,
+  "source": {
+    "exportedAt": "2026-09-27T07:18:40.116Z",
+    "documents": {
+      "residency_taxonomy_cache_v1": {
+        "sha256": "03d44e3ffcbca1250c7c1f25e4ba672347092e93e7bf3c036d301442f4959f60",
+        "generatedAt": "2026-05-15T06:58:10.152Z",
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 757000000
+        }
+      },
+      "residency_taxonomy_availability_v1": {
+        "sha256": "95e206cdc4e0e2abf2a98ede7c0ec5463d63f7876b763093db34ff1bc2572f94",
+        "generatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 824000000
+        },
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 824000000
+        }
+      },
+      "residency_taxonomy_availability_v1__einstein": {
+        "sha256": "e9c4d53a34ace9f3c263e4bb872625578fddead8725a98b96ac3ae5b20b61014",
+        "generatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 988000000
+        },
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 988000000
+        }
+      },
+      "residency_taxonomy_availability_v1__enamed": {
+        "sha256": "68f573710cc85d80566433de15665f9e59da3d9b6cab4db76ff73ef243358f0d",
+        "generatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 956000000
+        },
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 956000000
+        }
+      },
+      "residency_taxonomy_availability_v1__enare": {
+        "sha256": "bad14b780138aa9ad966bb08323e86fa63836e5e6f4dba5c88f17012280e9930",
+        "generatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 991000000
+        },
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 991000000
+        }
+      },
+      "residency_taxonomy_availability_v1__fuvest_usp": {
+        "sha256": "82a7463683d19794a0bb4748cf9c1995d2294f661305936524d3300d8ec98c45",
+        "generatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 976000000
+        },
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 976000000
+        }
+      },
+      "residency_taxonomy_availability_v1__revalida": {
+        "sha256": "7980f7541624953bb6805050fd903268277e7cd5daa8783b20dae8acffb46b07",
+        "generatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 992000000
+        },
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 992000000
+        }
+      },
+      "residency_taxonomy_availability_v1__sirio_libanes": {
+        "sha256": "a8044362bab06defc2594ab96e22f291e56f179a314a362869db08249598389a",
+        "generatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 993000000
+        },
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 993000000
+        }
+      },
+      "residency_taxonomy_availability_v1__sus_sp": {
+        "sha256": "daa834e9d754650b8861b20a06cc8aa379e08e19939a37ecb4e43ab87ce5c5d3",
+        "generatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 953000000
+        },
+        "updatedAt": {
+          "_seconds": 1778828330,
+          "_nanoseconds": 953000000
+        }
+      }
+    },
+    "appFiles": {
+      "lib/features/simulados/data/canonical_taxonomy.dart": "7162b88624119bec940eaded703984c8c0f46c4f1d2b9e1920c13964fbb989de",
+      "lib/features/simulados/data/simulado_bank_catalog.dart": "995e16e0a41ef51b71c52795143e58ecd16c1a49d28985e930c927ce876169be",
+      "lib/features/simulados/presentation/pt_br_label_formatter.dart": "c790913ad084af7918502e057a1e0a83bdaee336887e574727ceb6b35ec8ad43"
+    }
+  },
+  "banks": [
+    {
+      "id": "ENAMED",
+      "label": "ENAMED / ENARE",
+      "description": "Nacionais de acesso direto: generalistas, objetivas e equilibradas."
+    },
+    {
+      "id": "SUS-SP",
+      "label": "SUS-SP",
+      "description": "Preventiva forte, APS, rastreio e política pública."
+    },
+    {
+      "id": "FUVEST-USP",
+      "label": "FUVEST-USP",
+      "description": "Hospital terciário, alta complexidade e raciocínio técnico."
+    },
+    {
+      "id": "EINSTEIN",
+      "label": "EINSTEIN",
+      "description": "Conduta hospitalar prática, decisão rápida e gravidade clínica."
+    },
+    {
+      "id": "REVALIDA",
+      "label": "REVALIDA",
+      "description": "SUS, segurança do paciente e abordagem generalista."
+    },
+    {
+      "id": "SIRIO-LIBANES",
+      "label": "SÍRIO-LIBANÊS",
+      "description": "Hospitalar, alta complexidade e decisão clínica refinada."
+    }
+  ],
+  "nodes": [
+    {
+      "id": "Clinica%20Medica",
+      "label": "Clínica Médica",
+      "kind": "areas",
+      "parent": null,
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia",
+      "label": "Cardiologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Arritmias%20e%20Disturbios%20de%20Conducao",
+      "label": "Arritmias e Distúrbios de Condução",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Arritmias%20e%20Disturbios%20de%20Conducao/Fibrilacao%20Atrial",
+      "label": "Fibrilação Atrial",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Cardiologia/Arritmias%20e%20Disturbios%20de%20Conducao",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Arritmias%20e%20Disturbios%20de%20Conducao/Taquicardias%20Supraventriculares",
+      "label": "Taquicardias Supraventriculares",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Cardiologia/Arritmias%20e%20Disturbios%20de%20Conducao",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Doenca%20Arterial%20Coronariana%20Cronica",
+      "label": "Doença Arterial Coronariana Crônica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Doenca%20Tromboembolica%20Venosa",
+      "label": "Doença Tromboembolica Venosa",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/ECG%20e%20Interpretacao%20Eletrocardiografica",
+      "label": "ECG e Interpretação Eletrocardiográfica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Emergencias%20Cardiovasculares",
+      "label": "Emergências Cardiovasculares",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Endocardite%20Infecciosa",
+      "label": "Endocardite Infecciosa",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Hipertensao%20Arterial%20Sistemica",
+      "label": "Hipertensão Arterial Sistemica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Hipertensao%20Arterial%20Sistemica/emerg%C3%AAncia%20hipertensiva",
+      "label": "Emergência Hipertensiva",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Cardiologia/Hipertensao%20Arterial%20Sistemica",
+      "banks": [
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Insuficiencia%20Cardiaca",
+      "label": "Insuficiência Cardíaca",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Pericardiopatias%20e%20Miocardiopatias",
+      "label": "Pericardiopatias e Miocardiopatias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Sindrome%20Coronariana%20Aguda",
+      "label": "Síndrome Coronariana Aguda",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Sindrome%20Coronariana%20Aguda/angina%20inst%C3%A1vel",
+      "label": "angina instável",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Cardiologia/Sindrome%20Coronariana%20Aguda",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Valvopatias",
+      "label": "Valvopatias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Cardiologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Valvopatias/Estenose%20Aortica",
+      "label": "Estenose Aortica",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Cardiologia/Valvopatias",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Cardiologia/Valvopatias/Estenose%20Mitral",
+      "label": "Estenose Mitral",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Cardiologia/Valvopatias",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Pneumologia",
+      "label": "Pneumologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Pneumologia/Asma",
+      "label": "Asma",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Pneumologia",
+      "banks": [
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Pneumologia/Derrame%20Pleural",
+      "label": "Derrame Pleural",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Pneumologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Pneumologia/Doenca%20Tromboembolica%20Pulmonar",
+      "label": "Doença Tromboembólica Pulmonar",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Pneumologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Pneumologia/Doencas%20Intersticiais%20Pulmonares",
+      "label": "Doenças Intersticiais Pulmonares",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Pneumologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Pneumologia/Insuficiencia%20Respiratoria%20Aguda",
+      "label": "Insuficiência Respiratória Aguda",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Pneumologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Pneumologia/Pneumonia%20Adquirida%20na%20Comunidade",
+      "label": "Pneumonia Adquirida na Comunidade",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Pneumologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Pneumologia/Tuberculose%20Pulmonar",
+      "label": "Tuberculose Pulmonar",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Pneumologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia",
+      "label": "Endocrinologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Complicacoes%20Agudas%20do%20Diabetes",
+      "label": "Complicações Agudas do Diabetes",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Complicacoes%20Cronicas%20do%20Diabetes",
+      "label": "Complicações Cronicas do Diabetes",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Diabetes%20Mellitus%20Tipo%201%20e%20Tipo%202",
+      "label": "Diabetes Mellitus Tipo 1 e Tipo 2",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Dislipidemia",
+      "label": "Dislipidemia",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Disturbios%20da%20Hipofise",
+      "label": "Distúrbios da Hipofise",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Disturbios%20da%20Hipofise/Acromegalia",
+      "label": "Acromegalia",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Endocrinologia/Disturbios%20da%20Hipofise",
+      "banks": [
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Disturbios%20do%20Calcio%20e%20Metabolismo%20Osseo",
+      "label": "Distúrbios do Calcio e Metabolismo Osseo",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Doencas%20da%20Adrenal",
+      "label": "Doenças da Adrenal",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Doencas%20da%20Tireoide",
+      "label": "Doenças da Tireoide",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Doencas%20da%20Tireoide/Hipotireoidismo",
+      "label": "Hipotireoidismo",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Endocrinologia/Doencas%20da%20Tireoide",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Nodulo%20e%20Cancer%20de%20Tireoide",
+      "label": "Nodulo e Cancer de Tireoide",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Obesidade%20e%20Sindrome%20Metabolica",
+      "label": "Obesidade e Síndrome Metabólica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Endocrinologia/Osteoporose",
+      "label": "Osteoporose",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Endocrinologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia",
+      "label": "Gastroenterologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Doenca%20Diverticular%20do%20Colon",
+      "label": "Doença Diverticular do Cólon",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Gastroenterologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Doenca%20Ulcerosa%20Peptica",
+      "label": "Doença Ulcerosa Peptica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Gastroenterologia",
+      "banks": [
+        "SUS-SP",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Doencas%20Inflamatorias%20Intestinais",
+      "label": "Doenças Inflamatórias Intestinais",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Gastroenterologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Dor%20Abdominal%20Aguda%20-%20Diagnostico%20Diferencial",
+      "label": "Dor Abdominal Aguda - Diagnóstico Diferencial",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Gastroenterologia",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Hemorragia%20Digestiva%20Baixa",
+      "label": "Hemorragia Digestiva Baixa",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Gastroenterologia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Hemorragia%20Digestiva%20Baixa/Cancer%20Colorretal",
+      "label": "Câncer Colorretal",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Gastroenterologia/Hemorragia%20Digestiva%20Baixa",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Pancreatite%20Aguda%20e%20Cronica",
+      "label": "Pancreatite Aguda e Crônica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Gastroenterologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Sindrome%20de%20Ma%20Absorcao",
+      "label": "Síndrome de Ma Absorcao",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Gastroenterologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Gastroenterologia/Sindrome%20do%20Intestino%20Irritavel",
+      "label": "Síndrome do Intestino Irritavel",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Gastroenterologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hepatologia",
+      "label": "Hepatologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hepatologia/Cirrose%20Hepatica%20e%20Complicacoes",
+      "label": "Cirrose Hepática e Complicações",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hepatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hepatologia/Cirrose%20Hepatica%20e%20Complicacoes/Carcinoma%20Hepatocelular",
+      "label": "Carcinoma Hepatocelular",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Hepatologia/Cirrose%20Hepatica%20e%20Complicacoes",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hepatologia/Doencas%20Autoimunes%20do%20Figado",
+      "label": "Doenças Autoimunes do Fígado",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hepatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hepatologia/Hepatites%20Virais",
+      "label": "Hepatites Virais",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hepatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia",
+      "label": "Nefrologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Disturbios%20Acido-Base",
+      "label": "Distúrbios Acido-Base",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Disturbios%20do%20Sodio%20e%20da%20Agua",
+      "label": "Distúrbios do Sodio e da Agua",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Doenca%20Renal%20Cronica",
+      "label": "Doença Renal Crônica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Glomerulopatias",
+      "label": "Glomerulopatias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Hipertensao%20Renovascular",
+      "label": "Hipertensão Renovascular",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Infeccoes%20do%20Trato%20Urinario",
+      "label": "Infecções do Trato Urinário",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Injuria%20Renal%20Aguda",
+      "label": "Injúria Renal Aguda",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Litiase%20Renal",
+      "label": "Litiase Renal",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Sindrome%20Nefritica",
+      "label": "Síndrome Nefritica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Nefrologia/Sindrome%20Nefrotica",
+      "label": "Síndrome Nefrotica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Nefrologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Reumatologia",
+      "label": "Reumatologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Reumatologia/Artrite%20Reumatoide",
+      "label": "Artrite Reumatoide",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Reumatologia",
+      "banks": [
+        "SUS-SP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Reumatologia/Artrite%20Septica",
+      "label": "Artrite Septica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Reumatologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Reumatologia/Doencas%20Osteometabolicas",
+      "label": "Doenças Osteometabolicas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Reumatologia",
+      "banks": [
+        "FUVEST-USP",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Reumatologia/Espondiloartrites",
+      "label": "Espondiloartrites",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Reumatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Reumatologia/Espondiloartrites/Espondilite%20Anquilosante",
+      "label": "Espondilite Anquilosante",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Reumatologia/Espondiloartrites",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Reumatologia/Lupus%20Eritematoso%20Sistemico",
+      "label": "Lupus Eritematoso Sistemico",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Reumatologia",
+      "banks": [
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Reumatologia/Vasculites%20Sistemicas",
+      "label": "Vasculites Sistemicas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Reumatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia",
+      "label": "Hematologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia/Anemia%20Ferropriva",
+      "label": "Anemia Ferropriva",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hematologia",
+      "banks": [
+        "SUS-SP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia/Anemias%20de%20Doencas%20Cronicas",
+      "label": "Anemias de Doenças Cronicas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hematologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia/Anemias%20Hemoliticas",
+      "label": "Anemias Hemoliticas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hematologia",
+      "banks": [
+        "ENAMED",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia/Anemias%20Megaloblasticas",
+      "label": "Anemias Megaloblasticas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hematologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia/CIVD%20e%20Coagulopatias%20Adquiridas",
+      "label": "CIVD e Coagulopatias Adquiridas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hematologia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia/Coagulopatias%20Hereditarias",
+      "label": "Coagulopatias Hereditarias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hematologia",
+      "banks": [
+        "SUS-SP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia/Hemoglobinopatias",
+      "label": "Hemoglobinopatias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hematologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Hematologia/Trombocitopenias",
+      "label": "Trombocitopenias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Hematologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia",
+      "label": "Infectologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Doencas%20Arbovirais%20e%20Tropicais",
+      "label": "Doenças Arbovirais e Tropicais",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Infectologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Doencas%20Arbovirais%20e%20Tropicais/Chikungunya",
+      "label": "Chikungunya",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Infectologia/Doencas%20Arbovirais%20e%20Tropicais",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Endocardite%20Infecciosa",
+      "label": "Endocardite Infecciosa",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Infectologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Endocardite%20Infecciosa/Antibioticoterapia",
+      "label": "Antibioticoterapia",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Infectologia/Endocardite%20Infecciosa",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/HIV%20e%20AIDS",
+      "label": "HIV e AIDS",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Infectologia",
+      "banks": [
+        "SUS-SP",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Infeccoes%20Relacionadas%20a%20Assistencia%20a%20Saude",
+      "label": "Infecções Relacionadas a Assistencia a Saúde",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Infectologia",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Meningite%20Bacteriana%20e%20Viral",
+      "label": "Meningite Bacteriana e Viral",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Infectologia",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Meningite%20Bacteriana%20e%20Viral/Meningite%20Bacteriana%20-%20Diagnostico%20e%20ATB",
+      "label": "Meningite Bacteriana - Diagnóstico e ATB",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Infectologia/Meningite%20Bacteriana%20e%20Viral",
+      "banks": [
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Pneumonia%20e%20Infeccoes%20Respiratorias",
+      "label": "Pneumonia e Infecções Respiratórias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Infectologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Sepse%20e%20Choque%20Septico",
+      "label": "Sepse e Choque Septico",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Infectologia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Tuberculose",
+      "label": "Tuberculose",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Infectologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Infectologia/Tuberculose/Tuberculose%20Extrapulmonar",
+      "label": "Tuberculose Extrapulmonar",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Infectologia/Tuberculose",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia",
+      "label": "Neurologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/Ataque%20Isquemico%20Transitorio",
+      "label": "Ataque Isquêmico Transitorio",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Neurologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/AVC%20Hemorragico%20e%20HSA",
+      "label": "AVC Hemorrágico e HSA",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Neurologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/Cefaleias%20Primarias",
+      "label": "Cefaleias Primarias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Neurologia",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/Doenca%20de%20Parkinson%20e%20Sindromes%20Parkinsonianas",
+      "label": "Doença de Parkinson e Síndromes Parkinsonianas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Neurologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/Epilepsia%20e%20Crise%20Epileptica",
+      "label": "Epilepsia e Crise Epileptica",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Neurologia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/Epilepsia%20e%20Crise%20Epileptica/Epilepsia%20Refrataria",
+      "label": "Epilepsia Refrataria",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Neurologia/Epilepsia%20e%20Crise%20Epileptica",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/Meningites%20e%20Encefalites",
+      "label": "Meningites e Encefalites",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Neurologia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/Miopatias%20e%20Doencas%20Neuromusculares",
+      "label": "Miopatias e Doenças Neuromusculares",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Neurologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Neurologia/Vertigem%20e%20Disturbios%20do%20Equilibrio",
+      "label": "Vertigem e Distúrbios do Equilibrio",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Neurologia",
+      "banks": [
+        "FUVEST-USP",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia",
+      "label": "Dermatologia",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Acne%20e%20Ros%C3%A1cea",
+      "label": "Acne e Rosácea",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Dermatoses%20Inflamatorias",
+      "label": "Dermatoses Inflamatórias",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Dermatoses%20Inflamatorias/Dermatite%20Atopica",
+      "label": "Dermatite Atopica",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Dermatologia/Dermatoses%20Inflamatorias",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Dermatoses%20Inflamatorias/Dermatite%20Seborreica",
+      "label": "Dermatite Seborreica",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Dermatologia/Dermatoses%20Inflamatorias",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Dermatoses%20Inflamatorias/Psoriase",
+      "label": "Psoriase",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Dermatologia/Dermatoses%20Inflamatorias",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Doencas%20Bolhosas",
+      "label": "Doenças Bolhosas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Doencas%20Bolhosas/Penfigo%20Vulgar",
+      "label": "Penfigo Vulgar",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Dermatologia/Doencas%20Bolhosas",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Doencas%20Bolhosas/Penfigoide%20Bolhoso",
+      "label": "Penfigoide Bolhoso",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Dermatologia/Doencas%20Bolhosas",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Emergencias%20Dermatologicas",
+      "label": "Emergências Dermatológicas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Hanseniase",
+      "label": "Hanseniase",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Infeccoes%20Cutaneas%20Bacterianas",
+      "label": "Infecções Cutâneas Bacterianas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Infeccoes%20Cutaneas%20Bacterianas/Celulite",
+      "label": "Celulite",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Dermatologia/Infeccoes%20Cutaneas%20Bacterianas",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Infeccoes%20Cutaneas%20Fungicas",
+      "label": "Infecções Cutâneas Fungicas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Lesoes%20Cutaneas%20Fundamentais",
+      "label": "Lesões Cutâneas Fundamentais",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Manifestacoes%20Cutaneas%20de%20Doencas%20Sistemicas",
+      "label": "Manifestações Cutâneas de Doenças Sistêmicas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Manifestacoes%20Cutaneas%20Medicamentosas",
+      "label": "Manifestações Cutâneas Medicamentosas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Manifestacoes%20Cutaneas%20Medicamentosas/Eritema%20Multiforme",
+      "label": "Eritema Multiforme",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Dermatologia/Manifestacoes%20Cutaneas%20Medicamentosas",
+      "banks": [
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Neoplasias%20Cutaneas",
+      "label": "Neoplasias Cutâneas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Dermatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Dermatologia/Neoplasias%20Cutaneas/Carcinoma%20Espinocelular%20-%20CEC",
+      "label": "Carcinoma Espinocelular - CEC",
+      "kind": "subthemes",
+      "parent": "Clinica%20Medica/Dermatologia/Neoplasias%20Cutaneas",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Oncologia%20Clinica",
+      "label": "Oncologia Clínica",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Oncologia%20Clinica/Cancer%20de%20Prostata",
+      "label": "Cancer de Prostata",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Oncologia%20Clinica",
+      "banks": [
+        "SUS-SP"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Oncologia%20Clinica/Emergencias%20Oncologicas",
+      "label": "Emergências Oncológicas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Oncologia%20Clinica",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Terapia%20Intensiva",
+      "label": "Terapia Intensiva",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Emergencias%20Clinicas",
+      "label": "Emergências Clínicas",
+      "kind": "specialties",
+      "parent": "Clinica%20Medica",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Emergencias%20Clinicas/Emergencias%20Hipertensivas",
+      "label": "Emergências Hipertensivas",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Emergencias%20Clinicas",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Clinica%20Medica/Emergencias%20Clinicas/Insuficiencia%20Respiratoria%20Aguda",
+      "label": "Insuficiência Respiratória Aguda",
+      "kind": "themes",
+      "parent": "Clinica%20Medica/Emergencias%20Clinicas",
+      "banks": [
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral",
+      "label": "Cirurgia Geral",
+      "kind": "areas",
+      "parent": null,
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto",
+      "label": "Cirurgia Geral - Acesso Direto",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto/Abdome%20Agudo%20Inflamatorio",
+      "label": "Abdome Agudo Inflamatorio",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto/Abdome%20Agudo%20Obstrutivo",
+      "label": "Abdome Agudo Obstrutivo",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto",
+      "banks": [
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto/Cancer%20Colorretal%20Cirurgico",
+      "label": "Cancer Colorretal Cirurgico",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto/Cuidados%20Perioperatorios%20e%20Anestesia",
+      "label": "Cuidados Perioperatórios e Anestesia",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto/Doencas%20Ano-orificiais",
+      "label": "Doenças Ano-orificiais",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto/Hernias%20da%20Parede%20Abdominal",
+      "label": "Hernias da Parede Abdominal",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Geral%20-%20Acesso%20Direto",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "label": "Cirurgia do Aparelho Digestivo",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Colon%20e%20Reto",
+      "label": "Cólon e Reto",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Complicacoes%20e%20Pos-operatorio%20em%20Cirurgia%20Digestiva",
+      "label": "Complicações e Pós-operatorio em Cirurgia Digestiva",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Complicacoes%20e%20Pos-operatorio%20em%20Cirurgia%20Digestiva/Complicacoes%20Pos-colecistectomia",
+      "label": "Complicações Pós-colecistectomia",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Complicacoes%20e%20Pos-operatorio%20em%20Cirurgia%20Digestiva",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Complicacoes%20e%20Pos-operatorio%20em%20Cirurgia%20Digestiva/Complicacoes%20Pos-operatorias",
+      "label": "Complicações Pós-operatorias",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Complicacoes%20e%20Pos-operatorio%20em%20Cirurgia%20Digestiva",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia",
+      "label": "Esôfago - Doenças e Cirurgia",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia/Adenocarcinoma%20Esofagico",
+      "label": "Adenocarcinoma Esofágico",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia/Cancer%20de%20Esofago",
+      "label": "Câncer de Esôfago",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia/Doenca%20do%20Refluxo%20Gastroesofagico",
+      "label": "Doença do Refluxo Gastroesofágico",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia/Esofago%20de%20Barrett",
+      "label": "Esôfago de Barrett",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia/Esofago%20e%20Estomago",
+      "label": "Esôfago e Estômago",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia/Neoplasias%20do%20Esofago",
+      "label": "Neoplasias do Esôfago",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Esofago%20-%20Doencas%20e%20Cirurgia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno",
+      "label": "Estômago e Duodeno",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno/Cancer%20Gastrico",
+      "label": "Cancer Gastrico",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno/Complicacoes%20Pos-gastrectomia",
+      "label": "Complicações Pós-gastrectomia",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno/Doencas%20do%20Estomago",
+      "label": "Doenças do Estômago",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno/Hemorragia%20Digestiva%20Alta",
+      "label": "Hemorragia Digestiva Alta",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Estomago%20e%20Duodeno",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "label": "Fígado e Vias Biliares",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Carcinoma%20Hepatocelular",
+      "label": "Carcinoma Hepatocelular",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Colangite%20Aguda",
+      "label": "Colangite Aguda",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Colecistite%20Aguda",
+      "label": "Colecistite Aguda",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Doencas%20da%20Vesicula%20Biliar%20e%20Vias%20Biliares",
+      "label": "Doenças da Vesícula Biliar e Vias Biliares",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Doencas%20do%20Figado%20e%20Vias%20Biliares",
+      "label": "Doenças do Fígado e Vias Biliares",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Hipertensao%20Portal",
+      "label": "Hipertensão Portal",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Insuficiencia%20Hepatica%20e%20suas%20Complicacoes",
+      "label": "Insuficiência Hepática e suas Complicações",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Obstrucao%20Biliar",
+      "label": "Obstrução Biliar",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares/Transplante%20Hepatico",
+      "label": "Transplante Hepático",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Figado%20e%20Vias%20Biliares",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Intestino%20Delgado%20e%20Obstrucao",
+      "label": "Intestino Delgado e Obstrução",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Intestino%20Delgado%20e%20Obstrucao/Doencas%20do%20Intestino%20Delgado",
+      "label": "Doenças do Intestino Delgado",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Intestino%20Delgado%20e%20Obstrucao",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Intestino%20Delgado%20e%20Obstrucao/Doencas%20do%20Intestino%20Delgado%20e%20Colon",
+      "label": "Doenças do Intestino Delgado e Cólon",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Intestino%20Delgado%20e%20Obstrucao",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Intestino%20Delgado%20e%20Obstrucao/Intestino%20Delgado%20e%20Colon",
+      "label": "Intestino Delgado e Cólon",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Intestino%20Delgado%20e%20Obstrucao",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Oncologia%20Digestiva",
+      "label": "Oncologia Digestiva",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Oncologia%20Digestiva/Oncologia",
+      "label": "Oncologia",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Oncologia%20Digestiva",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino",
+      "label": "Pâncreas Exócrino",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino/Doencas%20do%20Pancreas",
+      "label": "Doenças do Pâncreas",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino/Neoplasias%20do%20Pancreas",
+      "label": "Neoplasias do Pâncreas",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino/Pancreas",
+      "label": "Pâncreas",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino/Pancreatite%20Aguda",
+      "label": "Pancreatite Aguda",
+      "kind": "subthemes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20do%20Aparelho%20Digestivo/Pancreas%20Exocrino",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Coloproctologia",
+      "label": "Coloproctologia",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Coloproctologia/Cancer%20de%20Colon",
+      "label": "Cancer de Cólon",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Coloproctologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Coloproctologia/Doenca%20Diverticular%20do%20Colon",
+      "label": "Doença Diverticular do Cólon",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Coloproctologia",
+      "banks": [
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Coloproctologia/Doencas%20Inflamatorias%20Intestinais%20Cirurgicas",
+      "label": "Doenças Inflamatórias Intestinais Cirurgicas",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Coloproctologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Coloproctologia/Fistulas%20e%20Abcessos%20Anorretais",
+      "label": "Fíustulas e Abcessos Anorretais",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Coloproctologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Coloproctologia/Incontinencia%20Fecal",
+      "label": "Incontinencia Fecal",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Coloproctologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Vascular",
+      "label": "Cirurgia Vascular",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Vascular/Acesso%20Vascular%20e%20Shunts",
+      "label": "Acesso Vascular e Shunts",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Vascular",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Vascular/Aneurisma%20de%20Aorta%20Abdominal",
+      "label": "Aneurisma de Aorta Abdominal",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Vascular",
+      "banks": [
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Vascular/Doenca%20Arterial%20Periferica%20Cronica",
+      "label": "Doença Arterial Periférica Crônica",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Vascular",
+      "banks": [
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Vascular/Insuficiencia%20Venosa%20Cronica%20e%20Varizes",
+      "label": "Insuficiência Venosa Crônica e Varizes",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Vascular",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Vascular/Isquemia%20Aguda%20de%20Membros",
+      "label": "Isquemia Aguda de Membros",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Vascular",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Vascular/Trombose%20Venosa%20Profunda",
+      "label": "Trombose Venosa Profunda",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Vascular",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Cardiaca",
+      "label": "Cirurgia Cardíaca",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Toracica",
+      "label": "Cirurgia Toracica",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Toracica/Cirurgia%20do%20Esofago",
+      "label": "Cirurgia do Esôfago",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Toracica",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Toracica/Tumores%20de%20Pulmao%20e%20Mediastino",
+      "label": "Tumores de Pulmão e Mediastino",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Toracica",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Oncologica",
+      "label": "Cirurgia Oncológica",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Oncologica/Tratamento%20Multidisciplinar%20em%20Oncologia",
+      "label": "Tratamento Multidisciplinar em Oncologia",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Oncologica",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Plastica",
+      "label": "Cirurgia Plástica",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Pediatrica",
+      "label": "Cirurgia Pediátrica",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Pediatrica/Abdome%20Agudo%20Pediatrico",
+      "label": "Abdome Agudo Pediatrico",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Pediatrica",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Pediatrica/Malformacoes%20Congenitas%20do%20TGI",
+      "label": "Malformacoes Congênitas do TGI",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Pediatrica",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Cirurgia%20Pediatrica/Trauma%20Pediatrico",
+      "label": "Trauma Pediatrico",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Cirurgia%20Pediatrica",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica",
+      "label": "Trauma e Emergência Cirúrgica",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica/ATLS%20e%20Avaliacao%20do%20Politraumatizado",
+      "label": "ATLS e Avaliacao do Politraumatizado",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica/Controle%20de%20Danos",
+      "label": "Controle de Danos",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica",
+      "banks": [
+        "SUS-SP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica/Trauma%20Cranioencefalico",
+      "label": "Trauma Cranioencefalico",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica/Trauma%20Toracico",
+      "label": "Trauma Torácico",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Trauma%20e%20Emergencia%20Cirurgica",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Anestesiologia",
+      "label": "Anestesiologia",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Ortopedia%20e%20Traumatologia",
+      "label": "Ortopedia e Traumatologia",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Neurocirurgia",
+      "label": "Neurocirurgia",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Neurocirurgia/Trauma%20Cranioencefalico",
+      "label": "Trauma Cranioencefalico",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Neurocirurgia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Urologia",
+      "label": "Urologia",
+      "kind": "specialties",
+      "parent": "Cirurgia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Urologia/Cancer%20de%20Bexiga",
+      "label": "Cancer de Bexiga",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Urologia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Urologia/Cancer%20de%20Prostata",
+      "label": "Cancer de Prostata",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Urologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Urologia/Escroto%20Agudo%20e%20Torsao%20Testicular",
+      "label": "Escroto Agudo e Torsao Testicular",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Urologia",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Urologia/Hiperplasia%20Prostatica%20Benigna",
+      "label": "Hiperplasia Prostatica Benigna",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Urologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Urologia/Infeccoes%20do%20Trato%20Urinario",
+      "label": "Infecções do Trato Urinário",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Urologia",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Cirurgia%20Geral/Urologia/Litiase%20Renal%20e%20Ureteral",
+      "label": "Litiase Renal e Ureteral",
+      "kind": "themes",
+      "parent": "Cirurgia%20Geral/Urologia",
+      "banks": [
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Pediatria",
+      "label": "Pediatria",
+      "kind": "areas",
+      "parent": null,
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Pediatria%20Geral",
+      "label": "Pediatria Geral",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Pediatria%20Geral/Desenvolvimento%20Neuropsicomotor",
+      "label": "Desenvolvimento Neuropsicomotor",
+      "kind": "themes",
+      "parent": "Pediatria/Pediatria%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Pediatria%20Geral/Doencas%20Exantematicas",
+      "label": "Doenças Exantematicas",
+      "kind": "themes",
+      "parent": "Pediatria/Pediatria%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Pediatria%20Geral/Febre%20na%20Infancia",
+      "label": "Febre na Infancia",
+      "kind": "themes",
+      "parent": "Pediatria/Pediatria%20Geral",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Pediatria/Pediatria%20Geral/Imunizacao%20e%20Calendario%20Vacinal%20PNI",
+      "label": "Imunizacao e Calendario Vacinal PNI",
+      "kind": "themes",
+      "parent": "Pediatria/Pediatria%20Geral",
+      "banks": [
+        "ENAMED",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Pediatria%20Geral/Infeccoes%20Respiratorias%20na%20Infancia",
+      "label": "Infecções Respiratórias na Infancia",
+      "kind": "themes",
+      "parent": "Pediatria/Pediatria%20Geral",
+      "banks": [
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Pediatria/Pediatria%20Geral/Obesidade%20Infantil",
+      "label": "Obesidade Infantil",
+      "kind": "themes",
+      "parent": "Pediatria/Pediatria%20Geral",
+      "banks": [
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Pediatria/Pediatria%20Geral/Puericultura%20e%20Crescimento",
+      "label": "Puericultura e Crescimento",
+      "kind": "themes",
+      "parent": "Pediatria/Pediatria%20Geral",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Pediatria/Neonatologia",
+      "label": "Neonatologia",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Neonatologia/Disturbios%20Respiratorios%20do%20RN",
+      "label": "Distúrbios Respiratorios do RN",
+      "kind": "themes",
+      "parent": "Pediatria/Neonatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Pediatria/Neonatologia/Enterocolite%20Necrosante",
+      "label": "Enterocolite Necrosante",
+      "kind": "themes",
+      "parent": "Pediatria/Neonatologia",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Pediatria/Neonatologia/Ictericia%20Neonatal",
+      "label": "Icterícia Neonatal",
+      "kind": "themes",
+      "parent": "Pediatria/Neonatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Pediatria/Neonatologia/Reanimacao%20Neonatal%20em%20Sala%20de%20Parto",
+      "label": "Reanimação Neonatal em Sala de Parto",
+      "kind": "themes",
+      "parent": "Pediatria/Neonatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Pediatria/Neonatologia/Sepse%20Neonatal",
+      "label": "Sepse Neonatal",
+      "kind": "themes",
+      "parent": "Pediatria/Neonatologia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Neonatologia/Sepse%20Neonatal/Antibioticoterapia%20Empirica",
+      "label": "Antibioticoterapia Empirica",
+      "kind": "subthemes",
+      "parent": "Pediatria/Neonatologia/Sepse%20Neonatal",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Emergencias%20Pediatricas",
+      "label": "Emergências Pediátricas",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Pneumologia%20Pediatrica",
+      "label": "Pneumologia Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Pneumologia%20Pediatrica/Bronquiolite%20Viral%20Aguda",
+      "label": "Bronquiolite Viral Aguda",
+      "kind": "themes",
+      "parent": "Pediatria/Pneumologia%20Pediatrica",
+      "banks": [
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Pediatria/Pneumologia%20Pediatrica/Fibrose%20Cistica",
+      "label": "Fibrose Cistica",
+      "kind": "themes",
+      "parent": "Pediatria/Pneumologia%20Pediatrica",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Pneumologia%20Pediatrica/Laringotraqueobronquite%20-%20Crupe",
+      "label": "Laringotraqueobronquite - Crupe",
+      "kind": "themes",
+      "parent": "Pediatria/Pneumologia%20Pediatrica",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Pediatria/Pneumologia%20Pediatrica/Pneumonia%20na%20Infancia",
+      "label": "Pneumonia na Infancia",
+      "kind": "themes",
+      "parent": "Pediatria/Pneumologia%20Pediatrica",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Infectologia%20Pediatrica",
+      "label": "Infectologia Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Infectologia%20Pediatrica/Infeccoes%20Bacterianas%20Graves",
+      "label": "Infecções Bacterianas Graves",
+      "kind": "themes",
+      "parent": "Pediatria/Infectologia%20Pediatrica",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Pediatria/Infectologia%20Pediatrica/Infeccoes%20por%20Arbovirus%20em%20Criancas",
+      "label": "Infecções por Arbovirus em Criancas",
+      "kind": "themes",
+      "parent": "Pediatria/Infectologia%20Pediatrica",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Nefrologia%20Pediatrica",
+      "label": "Nefrologia Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Hematologia%20Pediatrica",
+      "label": "Hematologia Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Pediatria/Gastroenterologia%20Pediatrica",
+      "label": "Gastroenterologia Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Gastroenterologia%20Pediatrica/Alergia%20a%20Proteina%20do%20Leite%20de%20Vaca",
+      "label": "Alergia a Proteina do Leite de Vaca",
+      "kind": "themes",
+      "parent": "Pediatria/Gastroenterologia%20Pediatrica",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Pediatria/Gastroenterologia%20Pediatrica/Dor%20Abdominal%20Recorrente",
+      "label": "Dor Abdominal Recorrente",
+      "kind": "themes",
+      "parent": "Pediatria/Gastroenterologia%20Pediatrica",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Neuropediatria",
+      "label": "Neuropediatria",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Neuropediatria/Meningite%20e%20Encefalite%20Pediatrica",
+      "label": "Meningite e Encefalite Pediátrica",
+      "kind": "themes",
+      "parent": "Pediatria/Neuropediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Neuropediatria/Paralisia%20Cerebral",
+      "label": "Paralisia Cerebral",
+      "kind": "themes",
+      "parent": "Pediatria/Neuropediatria",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Genetica%20Medica%20Pediatrica",
+      "label": "Genetica Médica Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Pediatria/Imunologia%20e%20Alergia%20Pediatrica",
+      "label": "Imunologia e Alergia Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Pediatria/Medicina%20Intensiva%20Pediatrica",
+      "label": "Medicina Intensiva Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Medicina%20do%20Crescimento%20e%20Desenvolvimento",
+      "label": "Medicina do Crescimento e Desenvolvimento",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Pediatria/Reumatologia%20Pediatrica",
+      "label": "Reumatologia Pediátrica",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "EINSTEIN"
+      ]
+    },
+    {
+      "id": "Pediatria/Especialidades%20Sensoriais%20Pediatricas",
+      "label": "Especialidades Sensoriais Pediátricas",
+      "kind": "specialties",
+      "parent": "Pediatria",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia",
+      "label": "Ginecologia e Obstetrícia",
+      "kind": "areas",
+      "parent": null,
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral",
+      "label": "Ginecologia Geral",
+      "kind": "specialties",
+      "parent": "Ginecologia%20e%20Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral/Contracepcao%20e%20Planejamento%20Familiar",
+      "label": "Contracepção e Planejamento Familiar",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral/Contracepcao%20e%20Planejamento%20Familiar/Contracepcao%20de%20Emergencia",
+      "label": "Contracepção de Emergência",
+      "kind": "subthemes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral/Contracepcao%20e%20Planejamento%20Familiar",
+      "banks": [
+        "ENAMED",
+        "SUS-SP"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral/Endometriose",
+      "label": "Endometriose",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral/Endometriose/Endometriose%20e%20Infertilidade",
+      "label": "Endometriose e Infertilidade",
+      "kind": "subthemes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral/Endometriose",
+      "banks": [
+        "ENAMED",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral/Sangramento%20Uterino%20Anormal",
+      "label": "Sangramento Uterino Anormal",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral/Emergencias%20Ginecologicas",
+      "label": "Emergências Ginecológicas",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Geral",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina",
+      "label": "Ginecologia Endocrina",
+      "kind": "specialties",
+      "parent": "Ginecologia%20e%20Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina/Climaterio%20e%20Menopausa",
+      "label": "Climaterio e Menopausa",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina/Sindrome%20dos%20Ovarios%20Policisticos",
+      "label": "Síndrome dos Ovarios Policisticos",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina/Sindrome%20dos%20Ovarios%20Policisticos/tratamento",
+      "label": "tratamento",
+      "kind": "subthemes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina/Sindrome%20dos%20Ovarios%20Policisticos",
+      "banks": [
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina/Infertilidade",
+      "label": "Infertilidade",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Ginecologia%20Endocrina",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Mastologia",
+      "label": "Mastologia",
+      "kind": "specialties",
+      "parent": "Ginecologia%20e%20Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Mastologia/Cancer%20de%20Mama",
+      "label": "Câncer de Mama",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Mastologia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Mastologia/Cancer%20de%20Mama/Subtipos%20Moleculares",
+      "label": "Subtipos Moleculares",
+      "kind": "subthemes",
+      "parent": "Ginecologia%20e%20Obstetricia/Mastologia/Cancer%20de%20Mama",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Obstetricia",
+      "label": "Obstetrícia",
+      "kind": "specialties",
+      "parent": "Ginecologia%20e%20Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Obstetricia/Infeccoes%20na%20Gestacao",
+      "label": "Infecções na Gestação",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Obstetricia/Morte%20Fetal%20e%20Natimorto",
+      "label": "Morte Fetal e Natimorto",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Obstetricia/Parto%20Prematuro",
+      "label": "Parto Prematuro",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Obstetricia",
+      "banks": [
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Obstetricia/Sindromes%20Hipertensivas%20da%20Gestacao",
+      "label": "Síndromes Hipertensivas da Gestação",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Obstetricia",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Obstetricia/Pre-natal%20de%20Baixo%20Risco",
+      "label": "Pré-natal de Baixo Risco",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Obstetricia/Trabalho%20de%20Parto%20e%20Partograma",
+      "label": "Trabalho de Parto e Partograma",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Oncoginecologia",
+      "label": "Oncoginecologia",
+      "kind": "specialties",
+      "parent": "Ginecologia%20e%20Obstetricia",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Uroginecologia",
+      "label": "Uroginecologia",
+      "kind": "specialties",
+      "parent": "Ginecologia%20e%20Obstetricia",
+      "banks": [
+        "SUS-SP"
+      ]
+    },
+    {
+      "id": "Ginecologia%20e%20Obstetricia/Uroginecologia/Prolapso%20Genital",
+      "label": "Prolapso Genital",
+      "kind": "themes",
+      "parent": "Ginecologia%20e%20Obstetricia/Uroginecologia",
+      "banks": [
+        "SUS-SP"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social",
+      "label": "Medicina Preventiva e Social",
+      "kind": "areas",
+      "parent": null,
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto",
+      "label": "Medicina Preventiva e Social - Acesso Direto",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto/Atencao%20Primaria%20a%20Saude",
+      "label": "Atenção Primaria a Saúde",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto",
+      "banks": [
+        "SUS-SP",
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto/Rastreamento%20e%20Diagnostico%20Precoce",
+      "label": "Rastreamento e Diagnóstico Precoce",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto",
+      "banks": [
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto/Saude%20do%20Trabalhador",
+      "label": "Saúde do Trabalhador",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto",
+      "banks": [
+        "REVALIDA"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto/Sistema%20Unico%20de%20Saude%20-%20SUS",
+      "label": "Sistema Unico de Saúde - SUS",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto/Vigilancia%20Epidemiologica",
+      "label": "Vigilância Epidemiologica",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Medicina%20Preventiva%20e%20Social%20-%20Acesso%20Direto",
+      "banks": [
+        "SUS-SP"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva",
+      "label": "Saúde Coletiva",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva/Atencao%20Basica%20e%20ESF",
+      "label": "Atenção Basica e ESF",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva",
+      "banks": [
+        "ENAMED"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva/Determinantes%20Sociais%20da%20Saude",
+      "label": "Determinantes Sociais da Saúde",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva/Principios%20e%20Diretrizes%20do%20SUS",
+      "label": "Princípios e Diretrizes do SUS",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva/Redes%20de%20Atencao%20a%20Saude",
+      "label": "Redes de Atenção a Saúde",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Saude%20Coletiva",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Epidemiologia",
+      "label": "Epidemiologia",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Bioestatistica",
+      "label": "Bioestatística",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica",
+      "label": "Epidemiologia e Bioestatística",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica/Delineamentos%20de%20Estudos%20Epidemiologicos",
+      "label": "Delineamentos de Estudos Epidemiologicos",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica",
+      "banks": [
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica/Medidas%20de%20Associacao%20-%20RR%20e%20OR",
+      "label": "Medidas de Associacao - RR e OR",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica/Medidas%20de%20Frequencia%20-%20Incidencia%20e%20Prevalencia",
+      "label": "Medidas de Frequência - Incidencia e Prevalencia",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica/Teste%20Diagnostico%20-%20Sensibilidade%20e%20Especificidade",
+      "label": "Teste Diagnóstico - Sensibilidade e Especificidade",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Epidemiologia%20e%20Bioestatistica",
+      "banks": [
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Medicina%20de%20Familia%20e%20Comunidade",
+      "label": "Medicina de Família e Comunidade",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Medicina%20de%20Familia%20e%20Comunidade/Atencao%20Primaria%20a%20Saude%20e%20Principios%20da%20MFC",
+      "label": "Atenção Primaria a Saúde e Princípios da MFC",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Medicina%20de%20Familia%20e%20Comunidade",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Vigilancia%20em%20Saude",
+      "label": "Vigilância em Saúde",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Vigilancia%20em%20Saude/Vigilancia%20Epidemiologica%20e%20DNC",
+      "label": "Vigilância Epidemiologica e DNC",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Vigilancia%20em%20Saude",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Gestao%20em%20Saude",
+      "label": "Gestao em Saúde",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Gestao%20em%20Saude/Planejamento%20e%20Programacao%20em%20Saude",
+      "label": "Planejamento e Programacao em Saúde",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Gestao%20em%20Saude",
+      "banks": [
+        "ENAMED",
+        "FUVEST-USP"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Etica%20e%20Bioetica",
+      "label": "Etica e Bioetica",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "SUS-SP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Etica%20e%20Bioetica/Codigo%20de%20Etica%20Medica",
+      "label": "Código de Ética Médica",
+      "kind": "themes",
+      "parent": "Medicina%20Preventiva%20e%20Social/Etica%20e%20Bioetica",
+      "banks": [
+        "SUS-SP",
+        "SIRIO-LIBANES"
+      ]
+    },
+    {
+      "id": "Medicina%20Preventiva%20e%20Social/Saude%20Ocupacional%20e%20Medicina%20Legal",
+      "label": "Saúde Ocupacional e Medicina Legal",
+      "kind": "specialties",
+      "parent": "Medicina%20Preventiva%20e%20Social",
+      "banks": [
+        "ENAMED",
+        "SUS-SP",
+        "FUVEST-USP",
+        "EINSTEIN",
+        "REVALIDA",
+        "SIRIO-LIBANES"
+      ]
+    }
+  ],
+  "difficulties": [
+    {
+      "id": "facil",
+      "label": "Fácil"
+    },
+    {
+      "id": "intermediario",
+      "label": "Intermediário"
+    },
+    {
+      "id": "dificil",
+      "label": "Difícil"
+    },
+    {
+      "id": "r2",
+      "label": "R2"
+    }
+  ],
+  "examQuantities": [
+    20,
+    50,
+    100
+  ],
+  "focusedRange": {
+    "min": 1,
+    "max": 30
+  },
+  "appUrl": "https://app.auscultoapp.com/"
+}

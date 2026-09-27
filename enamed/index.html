@@ -51,8 +51,8 @@
     <meta
       name="twitter:image"
       content="https://enamed.auscultoapp.com/assets/enamed/og-enamed.png">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" href="/assets/enamed/brand-mark.png">
+    <link rel="icon" href="/favicon.ico?v=20260917" sizes="any">
+    <link rel="icon" type="image/png" href="/assets/enamed/brand-mark.png?v=20260917">
     <link
       rel="preload"
       as="font"
@@ -76,10 +76,19 @@
         <div class="brand">
           <a
             class="brand__home"
-            href="/"
+            href="https://www.auscultoapp.com/"
             aria-label="Ausculto: ir para o site principal"
           >
-          <span class="brand__glyph" aria-hidden="true"
+          <svg class="brand__back" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M19 12H5M11 6l-6 6 6 6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+          ><span class="brand__glyph" aria-hidden="true"
             ><img
               class="brand__mark brand__mark--dark"
               src="/assets/enamed/auth-logo-128.png"
@@ -131,6 +140,26 @@
         </div>
         <span class="header-pill">PREPARAÇÃO ENAMED 2026</span>
         <div class="site-header__actions">
+          <a class="site-header__back" href="https://www.auscultoapp.com/"
+            ><svg
+              class="site-header__back-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M19 12H5M11 6l-6 6 6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              /></svg
+            ><span class="site-header__back-text"
+              ><span class="site-header__back-lead">Voltar ao</span>
+              Ausculto</span
+            ></a
+          >
+          <span class="site-header__divider" aria-hidden="true"></span>
           <a
             class="login-link site-header__login"
             href="https://app.auscultoapp.com/?utm_source=landing&utm_medium=ads_enamed&utm_content=direcao_login&utm_campaign=site_2026"
@@ -2203,11 +2232,15 @@
           prevê nota nem resultado oficial.
         </p>
         <nav class="site-footer__links" aria-label="Links legais e contato">
-          <a href="/politica-de-privacidade.html">Política de Privacidade</a>
-          <a href="/termos-de-uso.html">Termos de Uso</a>
+          <a href="https://www.auscultoapp.com/politica-de-privacidade.html"
+            >Política de Privacidade</a
+          >
+          <a href="https://www.auscultoapp.com/termos-de-uso.html"
+            >Termos de Uso</a
+          >
           <a href="mailto:suporte@auscultoapp.com">suporte@auscultoapp.com</a>
         </nav>
-        <a class="footer-home" href="/">
+        <a class="footer-home" href="https://www.auscultoapp.com/">
           <span class="footer-home__glyph" aria-hidden="true"
             ><img
               src="/assets/enamed/auth-logo-128.png"
@@ -2303,7 +2336,9 @@
           Usamos cookies de medição (Meta Pixel) para avaliar a eficácia dos
           nossos anúncios, apenas com o seu consentimento. Os cookies essenciais
           ao funcionamento da página permanecem ativos. Saiba mais na
-          <a href="/politica-de-privacidade.html">Política de Privacidade</a>.
+          <a href="https://www.auscultoapp.com/politica-de-privacidade.html"
+            >Política de Privacidade</a
+          >.
         </p>
         <div class="consent__actions">
           <button

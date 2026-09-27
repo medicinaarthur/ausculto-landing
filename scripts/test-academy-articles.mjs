@@ -94,7 +94,7 @@ test("student landing preserves the brand and advertises only available study re
   assert.match(html, /academy-hero-doctor\.png/);
   assert.match(html, /academy-hero-people-01-m\.webp/);
   assert.match(html, /class="sticky-cta"/);
-  assert.match(html, /data-rail-dots/);
+  assert.match(html, /data-mosaic-viewport/);
   assert.match(html, /clipPath id="ah-clip"/);
   assert.match(html, /card-navy\.webp/);
   assert.match(html, /card-cream\.webp/);
@@ -103,15 +103,17 @@ test("student landing preserves the brand and advertises only available study re
   assert.strictEqual((html.match(/data-benefit-panel/g) || []).length, 2);
   assert.match(html, /O que você encontra no Ausculto./);
   assert.match(html, /enamed-commented\.webp/);
-  assert.strictEqual((html.match(/data-book data-book-name=/g) || []).length, 3);
-  assert.match(html, /data-book-name="Gasometria"/);
-  // Sete ferramentas: seis cards de recurso e o card da Trilha clínica (card 07 desde 26/09/2026).
-  assert.strictEqual((html.match(/class="resource-card/g) || []).length, 6);
-  assert.strictEqual((html.match(/class="trail-card"/g) || []).length, 1);
-  assert.match(html, /quiz-torax\.webp/);
-  assert.match(html, /trilha-clinica-card\.webp/);
+  assert.strictEqual((html.match(/class="study-preview"/g) || []).length, 3);
+  assert.strictEqual((html.match(/data-book data-book-name=/g)||[]).length,3);
+  assert.match(html,/academy-book\.js/);
+  assert.match(html, /Distúrbios Eletrolíticos e Ácido-Base/);
+  // Seven Academy tools represented by 22 cards, plus 2 explicit Ausculto extras.
+  assert.strictEqual((html.match(/data-family="academy"/g) || []).length, 22);
+  assert.strictEqual((html.match(/data-family="ausculto"/g) || []).length, 2);
+  assert.match(html, /quiz-rx-/);
+  assert.match(html, /data-mosaic-card="trilha-clinica"/);
   assert.match(html, /class="reading-dialog"/);
-  assert.match(html, /pro-student.png/);
+  assert.match(html, /pro-motion\/pose-1.webp/);
   assert.match(html, /pro-screen\.png/);
   assert.doesNotMatch(html, /pro-laptop|pro-reading"|academy-hero-desk-overlay/);
   assert.doesNotMatch(html, /pro-panel/);

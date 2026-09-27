@@ -1,0 +1,3154 @@
+/* ==========================================================================
+   Ausculto ENAMED 2026 — landing (/enamed/)
+   Restyle v4: mundo editorial do ads-medico (paper/ink/mono/serif italic)
+   fundido com a identidade premium do app (deep-navy, champagne, wordmark).
+   Escopo: tudo sob .enamed-page.
+   ========================================================================== */
+
+/* ----- Fontes self-hosted (subset latin) + fallbacks metricamente ajustados --
+   Metricas reais extraidas dos woff2 (head/hhea/OS2 via decoder proprio):
+   Instrument Serif upm1000 asc990 desc-310 cap720 -> fallback Georgia
+     (upm2048 asc1878 desc-449 cap1419)
+   Inter Variable  upm2048 asc1984 desc-494 cap1490 -> fallback Arial
+     (upm2048 asc1854 desc-434 gap67 cap1467)
+   Montserrat      upm1000 asc968 desc-251 cap700  -> fallback Arial (wordmark)
+   IBM Plex Mono   upm1000 asc1025 desc-275 cap698 -> fallback ui-monospace
+     (so eyebrows/microcopy; sem size-adjust, como no ads-medico)             */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: optional;
+  src: url('/assets/fonts/enamed/instrument-serif-400-normal-latin.woff2')
+    format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: optional;
+  src: url('/assets/fonts/enamed/instrument-serif-400-italic-latin.woff2')
+    format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url('/assets/fonts/enamed/inter-var-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/enamed/ibm-plex-mono-400-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/enamed/ibm-plex-mono-500-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/enamed/montserrat-var-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Serif Fallback';
+  src: local('Georgia');
+  size-adjust: 103.92%;
+  ascent-override: 95.27%;
+  descent-override: 29.83%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 101.56%;
+  ascent-override: 95.38%;
+  descent-override: 23.75%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Montserrat Fallback';
+  src: local('Arial');
+  size-adjust: 97.72%;
+  ascent-override: 99.06%;
+  descent-override: 25.68%;
+  line-gap-override: 0%;
+}
+
+/* ----- Documento: o header fixo (64px) nunca cobre um foco/ancora; pagina
+   e so clara; tap highlight controlado pelos proprios estados. ----- */
+html {
+  color-scheme: light;
+  scroll-padding-top: 84px;
+}
+
+.enamed-page a,
+.enamed-page button,
+.enamed-page .demo__label {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ----- Tokens ----- */
+.enamed-page {
+  /* mundo ads-medico (paper editorial) */
+  --paper: #f7f4ec;
+  --paper-2: #efeadd;
+  --ink: #14110b;
+  --ink-2: #3d382c;
+  --mut: #6f6858;
+  --line: rgba(20, 17, 11, 0.12);
+  /* assinatura das telas reais do app (frames do hero, prints nas secoes) */
+  --line-gold: rgba(212, 175, 55, 0.38);
+  --blue: #156bff;
+  --blue-deep: #0b53d6;
+  --dark: #131009;
+  --dark-2: #1b1710;
+  /* ancoras da identidade premium do app */
+  --deep-navy: #000c1e;
+  --champagne: #d4af37;
+  --champagne-light: #e5c372;
+  /* champagne-deep escurecido p/ AA sobre paper/paper-2 e a textura
+     (axe mede 4.37:1 com #7e6313 sobre a textura; #6f5610 passa com margem) */
+  --champagne-deep: #6f5610;
+  --dark-ink: #f3f6fc;
+  --dark-muted: #b9c4d6;
+  /* estados semanticos (demo) */
+  --success: #43a047;
+  --danger: #ff4b4b;
+  --porcelain: #fefefe;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-control: 14px;
+  --r-lg: 16px;
+  --r-section: 18px;
+  --r-xl: 20px;
+  --r-pill: 999px;
+  --shadow-card: 0 6px 14px rgba(20, 17, 11, 0.05);
+  --shadow-soft: 0 10px 20px rgba(20, 17, 11, 0.07);
+  --shadow-lifted: 0 14px 28px rgba(20, 17, 11, 0.12);
+  --shadow-hero-contact: 0 14px 28px -18px rgba(0, 0, 0, 0.3);
+  --shadow-frame-dark: 0 24px 48px -16px rgba(0, 0, 0, 0.55);
+  --shadow-cta: 0 12px 28px -10px rgba(21, 107, 255, 0.55);
+  --r-hero: var(--r-section);
+  --font-display:
+    'Instrument Serif', 'Instrument Serif Fallback', Georgia, serif;
+  --font-body: 'Inter', 'Inter Fallback', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  --font-brand: 'Montserrat', 'Montserrat Fallback', Arial, sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* escala de secao: base (tablet) e par relacionado; desktop redefine */
+  --space-section: 84px;
+  --space-section-tight: 56px;
+
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink-2);
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  font-weight: 400;
+  line-height: 1.6;
+  touch-action: manipulation;
+  -webkit-font-smoothing: antialiased;
+}
+
+.enamed-page *,
+.enamed-page *::before,
+.enamed-page *::after {
+  box-sizing: border-box;
+}
+
+.enamed-page [hidden] {
+  display: none !important;
+}
+
+.enamed-page img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.enamed-page h1,
+.enamed-page h2,
+.enamed-page h3,
+.enamed-page p,
+.enamed-page figure,
+.enamed-page ul,
+.enamed-page ol,
+.enamed-page fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+.enamed-page fieldset {
+  border: 0;
+}
+
+/* ----- Utilitarios ----- */
+.enamed-page .wrap {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.enamed-page .wrap--editorial {
+  max-width: 860px;
+}
+
+.enamed-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.enamed-page .skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 100;
+  background: var(--deep-navy);
+  color: var(--dark-ink);
+  padding: 10px 16px;
+  border-radius: var(--r-control);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  text-decoration: none;
+  transition: top 0.16s var(--ease);
+}
+
+.enamed-page .skip-link:focus-visible {
+  top: 8px;
+}
+
+.enamed-page .caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--mut);
+}
+
+.enamed-page .caption--center {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.enamed-page .section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 42px);
+  line-height: 1.12;
+  letter-spacing: 0;
+  color: var(--ink);
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+
+.enamed-page .section-title em {
+  font-style: italic;
+  color: var(--blue-deep);
+}
+
+.enamed-page .section-title--light {
+  color: var(--dark-ink);
+}
+
+.enamed-page .section-title--light em {
+  color: var(--champagne-light);
+}
+
+/* Segundo tier: secoes de referencia (Para quem, FAQ) abaixo das de argumento. */
+.enamed-page .section-title--sub {
+  font-size: clamp(26px, 2.6vw, 32px);
+}
+
+.enamed-page .section-lead {
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 68ch;
+  margin-bottom: 32px;
+}
+
+.enamed-page section {
+  padding-block: var(--space-section);
+  scroll-margin-top: 84px;
+}
+
+/* Textura de papel quase imperceptivel sob as secoes editoriais (o hero e as
+   bandas navy/final/footer cobrem com bg proprio). */
+.enamed-page main {
+  background-color: var(--paper);
+  background-image: url('/assets/enamed/paper-texture.webp');
+  background-image: image-set(
+    url('/assets/enamed/paper-texture.avif') type('image/avif'),
+    url('/assets/enamed/paper-texture.webp') type('image/webp')
+  );
+  background-size: cover;
+  background-position: center top;
+  background-attachment: scroll;
+}
+
+/* Videos de fundo: variantes mobile + corte total em reduced-motion.
+   (ordem importa: este bloco fica antes das regras de hero/mapa/final; o swap
+   por media query precisa vir depois do default) */
+.enamed-page .bg-video--mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .enamed-page .bg-video--desktop {
+    display: none;
+  }
+
+  .enamed-page .bg-video--mobile {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enamed-page .bg-video {
+    display: none !important;
+  }
+}
+
+/* ----- Foco visivel ----- */
+.enamed-page a:focus-visible,
+.enamed-page button:focus-visible,
+.enamed-page .demo__input:focus-visible + .demo__label {
+  outline: 2px solid var(--blue-deep);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+.enamed-page .hero a:focus-visible,
+.enamed-page .hero button:focus-visible,
+.enamed-page .mapa a:focus-visible,
+.enamed-page .final a:focus-visible,
+.enamed-page .site-footer a:focus-visible,
+.enamed-page .lightbox button:focus-visible {
+  outline-color: var(--champagne-light);
+}
+
+/* ----- Botoes ----- */
+.enamed-page .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.1px;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.18s var(--ease),
+    color 0.18s var(--ease),
+    border-color 0.18s var(--ease);
+}
+
+/* Base no blue-deep (#0b53d6, 6.5:1 c/ branco): o blue #156bff do ads-medico
+   mede 4.45:1 no texto de 14-15px do botao (AA pede 4.5). Hover aprofunda. */
+.enamed-page .btn--primary {
+  background: var(--blue-deep);
+  color: #fff;
+}
+
+.enamed-page .btn--primary:hover {
+  background: #0a49c2;
+}
+
+.enamed-page .btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.enamed-page .btn--ghost:hover {
+  border-color: var(--blue-deep);
+  color: var(--blue-deep);
+}
+
+.enamed-page .btn--sm {
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 13px;
+}
+
+.enamed-page .btn--lg {
+  min-height: 52px;
+  padding: 14px 30px;
+  font-size: 15px;
+}
+
+/* CTA composto do hero: icone em circulo + titulo + sub em mono. */
+.enamed-page .btn--hero {
+  min-height: 62px;
+  padding: 10px 22px 10px 12px;
+  gap: 14px;
+  border-radius: var(--r-hero);
+  background: linear-gradient(180deg, #1f6dff 0%, var(--blue-deep) 100%);
+  box-shadow:
+    var(--shadow-cta),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  text-align: left;
+}
+
+.enamed-page .btn--hero:hover {
+  background: linear-gradient(180deg, #1a64f2 0%, #0a49c2 100%);
+}
+
+.enamed-page .btn__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.enamed-page .btn__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.enamed-page .btn__text {
+  display: grid;
+  gap: 3px;
+}
+
+.enamed-page .btn__title {
+  font-size: 16.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.enamed-page .btn__sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.enamed-page .text-cta {
+  color: var(--blue-deep);
+  font-weight: 600;
+  font-size: 14.5px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.enamed-page .text-cta::after {
+  content: '\2192';
+  transition: transform 0.18s var(--ease);
+}
+
+.enamed-page .text-cta:hover {
+  text-decoration: underline;
+}
+
+.enamed-page .text-cta:hover::after {
+  transform: translateX(3px);
+}
+
+.enamed-page .login-link {
+  color: var(--mut);
+  font-weight: 600;
+  font-size: 13.5px;
+  text-decoration: none;
+}
+
+.enamed-page .login-link:hover {
+  color: var(--blue-deep);
+  text-decoration: underline;
+}
+
+.enamed-page .login-link--ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 13px 26px;
+  border: 1px solid rgba(247, 244, 236, 0.3);
+  border-radius: var(--r-hero);
+  background: rgba(0, 12, 30, 0.35);
+  color: var(--dark-ink);
+  font-size: 15px;
+  font-weight: 600;
+  transition:
+    border-color 0.18s var(--ease),
+    background-color 0.18s var(--ease);
+}
+
+.enamed-page .login-link__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--champagne-light);
+}
+
+.enamed-page .login-link--ghost:hover {
+  border-color: rgba(247, 244, 236, 0.6);
+  background: rgba(247, 244, 236, 0.06);
+  color: var(--dark-ink);
+  text-decoration: none;
+}
+
+.enamed-page .lbl-short {
+  display: none;
+}
+
+/* ----- Wordmark enamed | 2026 (arte da campanha; versao clara sobre papel) ----- */
+.enamed-page .wordmark {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.enamed-page .wordmark__img {
+  display: block;
+  width: 150px;
+  height: auto;
+}
+
+.enamed-page .wordmark__img--light {
+  display: none;
+}
+
+.enamed-page .site-header.is-solid .wordmark__img--dark {
+  display: none;
+}
+
+.enamed-page .site-header.is-solid .wordmark__img--light {
+  display: block;
+}
+
+.enamed-page .hero__eyebrow .is-pending {
+  visibility: hidden;
+}
+
+/* ----- 1 · Header (fixo: transparente sobre o hero escuro, papel apos scroll) */
+.enamed-page .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.2s var(--ease),
+    border-color 0.2s var(--ease);
+}
+
+.enamed-page .site-header.is-solid {
+  background: rgba(247, 244, 236, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom-color: var(--line);
+}
+
+.enamed-page .site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+}
+
+/* A lockup e dois links irmaos com o fio no meio: a marca-mae leva ao site
+   principal, a campanha volta ao topo. O divisor ja dizia isso visualmente. */
+.enamed-page .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.enamed-page .brand__home,
+.enamed-page .brand__campaign {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+/* O link para a marca-mae precisa ser distinguivel, nao so clicavel. */
+.enamed-page .brand__home .brand__name {
+  text-decoration: underline solid transparent;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.18s var(--ease);
+}
+
+.enamed-page .brand__home:hover .brand__name,
+.enamed-page .brand__home:focus-visible .brand__name {
+  text-decoration-color: var(--champagne);
+}
+
+.enamed-page .site-header.is-solid .brand__home:hover .brand__name,
+.enamed-page .site-header.is-solid .brand__home:focus-visible .brand__name {
+  text-decoration-color: var(--champagne-deep);
+}
+
+.enamed-page .brand__glyph {
+  border-radius: 50%;
+  transition: box-shadow 0.18s var(--ease);
+}
+
+.enamed-page .brand__home:hover .brand__glyph,
+.enamed-page .brand__home:focus-visible .brand__glyph {
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.45);
+}
+
+.enamed-page .brand__glyph {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+/* Glifo sem shape: claro sobre o hero navy, em tinta quando o header vira papel. */
+.enamed-page .brand__mark {
+  display: block;
+  width: 26px;
+  height: auto;
+}
+
+.enamed-page .brand__mark--ink {
+  display: none;
+}
+
+.enamed-page .site-header.is-solid .brand__mark--dark {
+  display: none;
+}
+
+.enamed-page .site-header.is-solid .brand__mark--ink {
+  display: block;
+}
+
+.enamed-page .brand__name {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--dark-ink);
+  transition: color 0.2s var(--ease);
+}
+
+.enamed-page .site-header.is-solid .brand__name {
+  color: var(--ink);
+}
+
+.enamed-page .brand__divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(247, 244, 236, 0.28);
+}
+
+.enamed-page .site-header.is-solid .brand__divider {
+  background: var(--line);
+}
+
+.enamed-page .header-pill {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+  color: var(--champagne-light);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: var(--r-pill);
+  padding: 7px 11px;
+  white-space: nowrap;
+}
+
+.enamed-page .site-header.is-solid .header-pill {
+  display: none; /* a pilula so vale sobre o hero; depois o wordmark ja nomeia a campanha */
+}
+
+.enamed-page .site-header__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.enamed-page .site-header__login {
+  color: var(--dark-muted);
+}
+
+.enamed-page .site-header__login:hover {
+  color: var(--dark-ink);
+}
+
+.enamed-page .site-header.is-solid .site-header__login {
+  color: var(--mut);
+}
+
+.enamed-page .site-header.is-solid .site-header__login:hover {
+  color: var(--blue-deep);
+}
+
+/* ----- 2 · Hero (dark cinematic: deep-navy + sonar rings) -----
+   Camadas: poster estatico (CSS bg; primeiro paint/LCP) -> <video> (fade-in
+   quando toca) -> scrim navy (::after) -> conteudo (.wrap). Sem layout shift:
+   o video e absoluto e as dimensoes do hero nao mudam. */
+.enamed-page .hero {
+  position: relative;
+  padding-block: 152px 88px;
+  overflow: hidden;
+  background-color: var(--deep-navy);
+  background-image: url('/assets/enamed/videos/hero-sonar-desktop-poster.webp');
+  background-image: image-set(
+    url('/assets/enamed/videos/hero-sonar-desktop-poster.avif')
+      type('image/avif'),
+    url('/assets/enamed/videos/hero-sonar-desktop-poster.webp')
+      type('image/webp')
+  );
+  background-size: cover;
+  background-position: center 32%;
+}
+
+.enamed-page .bg-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+
+.enamed-page .hero .bg-video {
+  object-position: center 32%;
+}
+
+.enamed-page .hero .bg-video.is-playing {
+  opacity: 1;
+}
+
+.enamed-page .hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 12, 30, 0.56) 0%,
+    rgba(0, 12, 30, 0.34) 42%,
+    rgba(0, 12, 30, 0.78) 100%
+  );
+}
+
+.enamed-page .hero .wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.enamed-page .hero__grid {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 48px;
+  align-items: center;
+  min-height: 600px;
+}
+
+.enamed-page .hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: var(--champagne-light);
+  margin-bottom: 20px;
+}
+
+.enamed-page .hero__eyebrow [data-state='pre'],
+.enamed-page .final__lead [data-state='pre'] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Eyebrow em dois clusters semanticos: a quebra so acontece ENTRE eles
+   (nunca dentro), e o separador viaja com o countdown — sem linha orfa. */
+.enamed-page .hero__eyebrow [data-state-base] {
+  white-space: nowrap;
+}
+
+.enamed-page .hero__eyebrow [data-state='pre'] {
+  white-space: nowrap;
+  margin-left: 0.4em;
+}
+
+.enamed-page .hero__eyebrow [data-state='pre']::before {
+  content: '·';
+  flex: 0 0 auto;
+  line-height: 1;
+  opacity: 0.85;
+  margin-right: 0.15em;
+}
+
+.enamed-page .hero__eyebrow-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+}
+
+.enamed-page .hero__eyebrow-icon {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  color: var(--champagne);
+}
+
+.enamed-page .hero__eyebrow-n {
+  color: var(--dark-ink);
+  font-weight: 600;
+}
+
+.enamed-page .hero__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(40px, 3.9vw, 54px);
+  line-height: 1.1;
+  letter-spacing: 0;
+  color: var(--dark-ink);
+  margin-bottom: 22px;
+}
+
+.enamed-page .hero__accent {
+  font-style: italic;
+  color: var(--champagne-light);
+}
+
+.enamed-page .hero__nowrap,
+.enamed-page [data-h1-accent='lead'],
+.enamed-page [data-h1-part='post'] {
+  white-space: nowrap;
+}
+
+/* Traco dourado (arte do owner) sob o fecho do acento. Pseudo-elemento
+   absoluto: nao entra no layout, entra uma unica vez apos o paint. */
+.enamed-page .hero__stroke {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.enamed-page .hero__stroke::after {
+  content: '';
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  bottom: -0.16em;
+  height: 0.36em;
+  background: url('/assets/enamed/hero-stroke-700.png') center / 100% 100%
+    no-repeat;
+  background-image: image-set(
+    url('/assets/enamed/hero-stroke-700.webp') type('image/webp'),
+    url('/assets/enamed/hero-stroke-700.png') type('image/png')
+  );
+  pointer-events: none;
+  clip-path: inset(0 100% 0 0);
+  animation: hero-stroke-in 0.7s var(--ease) 0.2s forwards;
+}
+
+@keyframes hero-stroke-in {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.enamed-page .hero__sub {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--dark-muted);
+  max-width: 56ch;
+  margin-bottom: 30px;
+}
+
+.enamed-page .hero__sub-accent {
+  color: var(--champagne-light);
+  font-weight: 500;
+}
+
+.enamed-page .hero__cta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.enamed-page .hero__micro {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  color: rgba(247, 244, 236, 0.72);
+  max-width: 52ch;
+}
+
+/* Composicao de frames reais: diagnostico -> mapa -> missao (desktop) */
+.enamed-page .hero__visual {
+  position: relative;
+  height: 620px;
+}
+
+.enamed-page .hero__frame {
+  position: absolute;
+  background: var(--porcelain);
+  border: 1px solid rgba(212, 175, 55, 0.38);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-frame-dark);
+  overflow: hidden;
+}
+
+/* Proporcao natural dos prints: nada de zoom lateral — o texto de cada tela
+   fica inteiro; o corte, quando existe, e so no rodape (max-height). */
+.enamed-page .hero__frame img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.enamed-page .hero__frame--diag {
+  top: 0;
+  left: 0;
+  width: 54%;
+  z-index: 1;
+}
+
+.enamed-page .hero__frame--diag img {
+  max-height: 200px;
+}
+
+.enamed-page .hero__frame--mapa {
+  top: 128px;
+  right: 0;
+  width: 78%;
+  z-index: 2;
+}
+
+/* Feixe de luz que percorre a borda do frame: anel de 1.5px (mask) com um
+   gradiente conico girando por transform (sem @property), encadeado 01 -> 02
+   -> 03 num ciclo de 9s: cada frame acende so no seu terco. */
+/* O frame recorta no padding-box (overflow hidden + borda de 1px): o anel
+   vive por dentro da borda, com 3px, e o halo com 12px desfocados. */
+.enamed-page .hero__beam {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  border-radius: inherit;
+  padding: 3px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: hero-beam 9s linear infinite;
+}
+
+.enamed-page .hero__beam::before {
+  content: '';
+  position: absolute;
+  inset: -120%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 250deg,
+    rgba(229, 195, 114, 0.18) 300deg,
+    rgba(229, 195, 114, 0.95) 350deg,
+    #fff6d6 358deg,
+    transparent 360deg
+  );
+  animation: hero-beam-spin 9s linear infinite;
+}
+
+/* Halo: o mesmo feixe num anel mais largo, desfocado e mais fraco. */
+.enamed-page .hero__beam--glow {
+  padding: 12px;
+  z-index: 5;
+  animation-name: hero-beam-glow;
+}
+
+.enamed-page .hero__beam--glow::before {
+  filter: blur(7px);
+}
+
+.enamed-page .hero__frame--mapa .hero__beam,
+.enamed-page .hero__frame--mapa .hero__beam::before {
+  animation-delay: 3s;
+}
+
+.enamed-page .hero__frame--missao .hero__beam,
+.enamed-page .hero__frame--missao .hero__beam::before {
+  animation-delay: 6s;
+}
+
+@keyframes hero-beam {
+  0%,
+  31% {
+    opacity: 1;
+  }
+
+  33.3%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-beam-glow {
+  0%,
+  31% {
+    opacity: 0.5;
+  }
+
+  33.3%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-beam-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  33.3%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Cabecalho do frame do Mapa: icone em medalhao navy + titulo serif + sub mono.
+   Reserva 60px a direita para o botao de zoom. */
+.enamed-page .hero__frame-head {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  column-gap: 14px;
+  align-items: center;
+  padding: 14px 60px 12px 16px;
+  background: var(--porcelain);
+  border-bottom: 1px solid rgba(20, 17, 11, 0.08);
+}
+
+.enamed-page .hero__frame-icon {
+  grid-row: 1 / 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--deep-navy);
+  color: var(--champagne-light);
+  box-shadow:
+    0 0 0 2px rgba(212, 175, 55, 0.5),
+    0 8px 18px -8px rgba(0, 12, 30, 0.6);
+}
+
+.enamed-page .hero__frame-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.enamed-page .hero__frame-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.enamed-page .hero__frame-sub {
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+.enamed-page .hero__frame--mapa img {
+  max-height: 380px;
+}
+
+.enamed-page .hero__frame--mapa .hero__frame-tag {
+  left: auto;
+  right: 10px;
+}
+
+/* O frame do Mapa cobre o canto inferior direito do Diagnostico: a tag sobe
+   para o topo-direito, sobre a arte do print (nunca sobre a manchete). */
+.enamed-page .hero__frame--diag .hero__frame-tag {
+  top: 4px;
+  bottom: auto;
+  left: auto;
+  right: 10px;
+}
+
+.enamed-page .hero__frame--missao {
+  bottom: 22px;
+  left: 0;
+  width: 56%;
+  z-index: 3;
+}
+
+.enamed-page .hero__frame--missao img {
+  max-height: 236px;
+}
+
+.enamed-page .hero__frame-tag {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  background: rgba(0, 12, 30, 0.88);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: var(--dark-ink);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  padding: 6px 10px;
+  border-radius: var(--r-pill);
+}
+
+.enamed-page .hero__progress {
+  display: none;
+}
+
+.enamed-page .hero__visual-caption {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: var(--dark-muted);
+}
+
+/* ----- 3 · Proof strip -----
+   Quatro colunas separadas por fios, como um pe de pagina de jornal. Cada
+   coluna e UMA unidade: icone, a afirmacao e a linha que a sustenta, coladas.
+   (Nao ha subgrid: era ele que esticava a linha da afirmacao ate a altura do
+   item mais alto e abria um vao entre a afirmacao e a sua propria descricao.) */
+.enamed-page .proof-strip {
+  border-block: 1px solid var(--line);
+  padding-block: 32px;
+}
+
+.enamed-page .proof-strip__grid {
+  --rule-gap: 44px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--rule-gap);
+  row-gap: 28px;
+}
+
+.enamed-page .proof-strip__item {
+  position: relative;
+  display: grid;
+  align-content: start;
+  row-gap: 5px;
+}
+
+/* O fio vive no meio do vao: mesmo respiro dos dois lados. */
+.enamed-page .proof-strip__item::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--rule-gap) / -2);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.enamed-page .proof-strip__item:nth-child(4n + 1)::before {
+  display: none;
+}
+
+.enamed-page .proof-strip__icon {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 7px;
+  color: var(--champagne-deep);
+}
+
+.enamed-page .proof-strip__claim {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.enamed-page .proof-strip__desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--mut);
+}
+
+/* ----- 5 · Dor ----- */
+.enamed-page .dor__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.enamed-page .dor__card {
+  background: var(--porcelain);
+  border: 1px solid var(--line);
+  border-radius: var(--r-section);
+  padding: 26px;
+  box-shadow: var(--shadow-card);
+}
+
+.enamed-page .dor__card-title {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.enamed-page .dor__card p {
+  font-size: 15.5px;
+  color: var(--ink-2);
+}
+
+/* ----- 6 · Mecanismo ----- */
+.enamed-page .mecanismo__steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.enamed-page .mecanismo__step {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.enamed-page .mecanismo__screen {
+  position: relative;
+  border: 1px solid var(--line-gold);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: var(--porcelain);
+}
+
+/* Corte autoral: o print termina num fade para o papel, nao numa guilhotina. */
+.enamed-page .mecanismo__screen::after,
+.enamed-page .prova__screen::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 64px;
+  background: linear-gradient(to bottom, transparent, var(--paper));
+  pointer-events: none;
+}
+
+.enamed-page .mecanismo__screen img {
+  width: 100%;
+  height: clamp(200px, 19vw, 232px);
+  object-fit: cover;
+  object-position: top center;
+}
+
+.enamed-page .mecanismo__num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--champagne-deep);
+}
+
+.enamed-page .mecanismo__num::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--champagne);
+  margin-top: 6px;
+}
+
+.enamed-page .mecanismo__step-title {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.enamed-page .mecanismo__step > p:last-child {
+  font-size: 15.5px;
+  color: var(--ink-2);
+}
+
+.enamed-page .mecanismo__cta,
+.enamed-page .prova__cta {
+  margin-top: 36px;
+  text-align: center;
+}
+
+/* ----- 7 · Mapa (banda navy; ancora da identidade do app) -----
+   Mesma pilha do hero: poster estatico -> video (opacity .55) -> scrim -> conteudo. */
+.enamed-page .mapa {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--deep-navy);
+  background-image: url('/assets/enamed/videos/mapa-constelacao-desktop-poster.webp');
+  background-image: image-set(
+    url('/assets/enamed/videos/mapa-constelacao-desktop-poster.avif')
+      type('image/avif'),
+    url('/assets/enamed/videos/mapa-constelacao-desktop-poster.webp')
+      type('image/webp')
+  );
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--shadow-hero-contact);
+}
+
+.enamed-page .mapa .bg-video.is-playing {
+  opacity: 0.55;
+}
+
+.enamed-page .mapa::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 12, 30, 0.62) 0%,
+    rgba(0, 12, 30, 0.45) 55%,
+    rgba(0, 12, 30, 0.3) 100%
+  );
+}
+
+.enamed-page .mapa .wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.enamed-page .mapa__grid {
+  display: grid;
+  grid-template-columns: 1fr 560px;
+  gap: 48px;
+  align-items: center;
+}
+
+.enamed-page .mapa__body {
+  color: var(--dark-muted);
+  font-size: 15.5px;
+  line-height: 1.65;
+  max-width: 56ch;
+  margin-bottom: 20px;
+}
+
+.enamed-page .mapa__method-note {
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: var(--r-control);
+  background: rgba(254, 254, 254, 0.04);
+  color: var(--dark-ink);
+  font-size: 13.5px;
+  line-height: 1.6;
+  padding: 14px 16px;
+  max-width: 56ch;
+}
+
+.enamed-page .mapa__method-note strong {
+  color: var(--champagne-light);
+  font-weight: 600;
+}
+
+/* Sem isto o `.zoom-btn` (absolute) injetado pelo lightbox escapava para o
+   canto superior direito do DOCUMENTO — a lupa solta sobre o header. */
+.enamed-page .mapa__figure,
+.enamed-page .missao__figure {
+  position: relative;
+}
+
+.enamed-page .mapa__figure picture,
+.enamed-page .mapa__figure img {
+  border-radius: var(--r-lg);
+}
+
+.enamed-page .mapa__figure img {
+  width: 100%;
+  border: 1px solid var(--line-gold);
+  box-shadow: var(--shadow-frame-dark);
+}
+
+.enamed-page .mapa__figure .caption {
+  color: var(--dark-muted);
+  margin-top: 10px;
+}
+
+/* ----- 8 · Missao ----- */
+.enamed-page .missao__grid {
+  display: grid;
+  grid-template-columns: 520px 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.enamed-page .missao__figure img {
+  width: 100%;
+  border: 1px solid var(--line-gold);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.enamed-page .missao__figure .caption {
+  margin-top: 10px;
+}
+
+.enamed-page .missao__copy > p {
+  color: var(--ink-2);
+  font-size: 15.5px;
+  max-width: 56ch;
+  margin-bottom: 20px;
+}
+
+.enamed-page .missao__bullets {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.enamed-page .missao__bullets li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.enamed-page .missao__bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background: var(--paper-2)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 12.5 4 4L18 8' fill='none' stroke='%230b53d6' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / 12px no-repeat;
+  border: 1px solid var(--line);
+}
+
+/* ----- 4 · Demo (no DOM vem antes da Dor) ----- */
+.enamed-page .demo__card {
+  background: var(--porcelain);
+  border: 1px solid var(--line);
+  border-radius: var(--r-section);
+  box-shadow: var(--shadow-card);
+  padding: 32px;
+}
+
+.enamed-page .demo__badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: var(--champagne-deep);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: var(--r-pill);
+  padding: 7px 11px;
+  margin-bottom: 20px;
+}
+
+.enamed-page .demo__nojs {
+  display: none;
+  font-size: 14.5px;
+  color: var(--mut);
+}
+
+/* Sem JS: o modulo interativo cede lugar a uma nota honesta; o CTA (link real)
+   continua visivel. Com JS, o CTA so aparece apos a resposta. */
+.no-js .enamed-page .demo__form {
+  display: none;
+}
+
+.no-js .enamed-page .demo__nojs {
+  display: block;
+}
+
+.js .enamed-page .demo__cta-row .btn {
+  display: none;
+}
+
+.js .enamed-page .demo__form.is-answered ~ .demo__cta-row .btn {
+  display: inline-flex;
+}
+
+.enamed-page .demo__stem {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.enamed-page .demo__fieldset {
+  display: grid;
+  gap: 10px;
+}
+
+.enamed-page .demo__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.enamed-page .demo__label {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  min-height: 48px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-control);
+  background: var(--porcelain);
+  cursor: pointer;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  transition:
+    border-color 0.16s var(--ease),
+    background-color 0.16s var(--ease);
+}
+
+.enamed-page .demo__label:hover {
+  border-color: var(--blue);
+}
+
+.enamed-page .demo__letter {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: var(--deep-navy);
+  color: var(--champagne-light);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.enamed-page .demo__label:active {
+  transform: scale(0.99);
+  border-color: var(--blue);
+}
+
+/* Revelacao curta ao responder (hidden -> display; a animacao roda ao exibir).
+   Reduced-motion: o kill global de animations (bloco ao final) zera isto. */
+@keyframes demo-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.enamed-page .demo__comment,
+.enamed-page .demo__feedback,
+.enamed-page .demo__pne {
+  animation: demo-reveal 0.28s var(--ease) both;
+}
+
+.enamed-page .demo__input:checked + .demo__label {
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 2px var(--blue);
+  background: rgba(11, 83, 214, 0.04);
+}
+
+.enamed-page .demo__input:checked + .demo__label .demo__letter {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+}
+
+.enamed-page .demo__form.is-answered .demo__label {
+  cursor: default;
+}
+
+.enamed-page .demo__form.is-answered .demo__label:hover {
+  border-color: var(--line);
+}
+
+.enamed-page .demo__option.is-correct .demo__label {
+  border-color: var(--success);
+  box-shadow: inset 0 0 0 1px var(--success);
+  background: #f1f8f2;
+}
+
+.enamed-page .demo__option.is-correct .demo__label .demo__letter {
+  background: var(--success);
+  border-color: var(--success);
+  color: #fff;
+}
+
+/* "Ainda nao" nao e falha: o erro fala na familia quente da pagina, nao em vermelho. */
+.enamed-page .demo__option.is-wrong .demo__label {
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.55);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.enamed-page .demo__option.is-wrong .demo__label .demo__letter {
+  background: var(--paper-2);
+  border-color: rgba(212, 175, 55, 0.6);
+  color: var(--champagne-deep);
+}
+
+.enamed-page .demo__state {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.enamed-page .demo__option.is-correct .demo__state {
+  color: var(--success);
+}
+
+.enamed-page .demo__option.is-wrong .demo__state {
+  color: var(--champagne-deep);
+}
+
+.enamed-page .demo__comment {
+  margin: 8px 0 2px;
+  padding: 12px 14px;
+  border-left: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.enamed-page .demo__option.is-correct .demo__comment {
+  border-left-color: var(--success);
+}
+
+.enamed-page .demo__option.is-wrong .demo__comment {
+  border-left-color: rgba(212, 175, 55, 0.6);
+}
+
+.enamed-page .demo__comment strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.enamed-page .demo__feedback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: var(--r-control);
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.enamed-page .demo__feedback--correct {
+  background: #f1f8f2;
+  border: 1px solid var(--success);
+  color: #1b5e20;
+}
+
+.enamed-page .demo__feedback--incorrect {
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  color: var(--champagne-deep);
+}
+
+.enamed-page .demo__feedback-icon {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.enamed-page .demo__feedback--correct .demo__feedback-icon {
+  background: var(--success);
+}
+
+.enamed-page .demo__feedback--incorrect .demo__feedback-icon {
+  background: var(--champagne-deep);
+}
+
+.enamed-page .demo__feedback-icon::before {
+  content: '\2713';
+}
+
+.enamed-page .demo__feedback--incorrect .demo__feedback-icon::before {
+  content: '\2715';
+}
+
+.enamed-page .demo__pne {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--r-control);
+  background: var(--paper-2);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.enamed-page .demo__pne-title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--champagne-deep);
+  margin-bottom: 6px;
+}
+
+.enamed-page .demo__cta-row {
+  margin-top: 24px;
+}
+
+/* ----- 9 · Prova verificavel ----- */
+.enamed-page .prova__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Verificavel: a mesma moldura dourada das telas reais. */
+.enamed-page .prova__block {
+  background: var(--porcelain);
+  border: 1px solid var(--line-gold);
+  border-radius: var(--r-section);
+  padding: 26px;
+  box-shadow: var(--shadow-card);
+}
+
+.enamed-page .prova__block-title {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.enamed-page .prova__block p,
+.enamed-page .prova__commitments {
+  font-size: 15.5px;
+  color: var(--ink-2);
+}
+
+.enamed-page .prova__commitments {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.enamed-page .prova__commitments li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.enamed-page .prova__commitments li::before {
+  content: '·';
+  position: absolute;
+  left: 6px;
+  color: var(--champagne-deep);
+  font-weight: 800;
+}
+
+.enamed-page .prova__screens {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.enamed-page .prova__screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+}
+
+.enamed-page .prova__screen img {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: top center;
+  border: 1px solid var(--line-gold);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-soft);
+  background: var(--porcelain);
+}
+
+/* ----- 10 · Para quem e ----- */
+.enamed-page .para-quem__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Referencia, nao feature: paper-2 sem sombra, raio menor. */
+.enamed-page .para-quem__card {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 26px;
+}
+
+.enamed-page .para-quem__card-title {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.enamed-page .para-quem__card p {
+  font-size: 15.5px;
+  color: var(--ink-2);
+}
+
+.enamed-page .para-quem__note {
+  margin-top: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: var(--mut);
+}
+
+/* ----- 11 · FAQ ----- */
+.enamed-page .faq__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.enamed-page .faq__item:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.enamed-page .faq__q-row {
+  margin: 0;
+}
+
+.enamed-page .faq__q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding: 19px 4px;
+  background: none;
+  border: 0;
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.enamed-page .faq__chev {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  position: relative;
+  transition: transform 0.2s var(--ease);
+}
+
+.enamed-page .faq__chev::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-right: 1.6px solid var(--blue-deep);
+  border-bottom: 1.6px solid var(--blue-deep);
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.enamed-page .faq__item.is-open .faq__chev {
+  transform: rotate(180deg);
+}
+
+.enamed-page .faq__a {
+  padding: 0 44px 0 4px;
+  font-size: 15.5px;
+  color: var(--ink-2);
+  max-width: 72ch;
+}
+
+/* FAQ editorial (plano 4.G): grupos, micro-estrutura, altura animada */
+.enamed-page .faq__group + .faq__group {
+  margin-top: 40px;
+}
+
+.enamed-page .faq__group-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1.2;
+  color: var(--ink);
+  padding-top: 16px;
+  margin-bottom: 14px;
+  border-top: 1px solid rgba(212, 175, 55, 0.5);
+}
+
+.enamed-page .faq__a-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.enamed-page .faq__a-inner > *:last-child {
+  margin-bottom: 22px;
+}
+
+.enamed-page .faq__lead {
+  margin-bottom: 10px;
+}
+
+.enamed-page .faq__lead strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.enamed-page .faq__lead--gap {
+  margin-top: 16px;
+}
+
+.enamed-page .faq__bullets {
+  list-style: none;
+  display: grid;
+  gap: 7px;
+}
+
+.enamed-page .faq__bullets li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.enamed-page .faq__bullets li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.58em;
+  width: 6px;
+  height: 6px;
+  background: var(--champagne);
+  transform: rotate(45deg);
+  border-radius: 1px;
+}
+
+.enamed-page .faq__callout {
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: var(--r-control);
+  background: rgba(212, 175, 55, 0.07);
+  padding: 12px 14px;
+}
+
+.enamed-page .mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.92em;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.js .enamed-page .faq__a,
+.enamed-page.js .faq__a {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.26s var(--ease);
+}
+
+.js .enamed-page .faq__item.is-open .faq__a,
+.enamed-page.js .faq__item.is-open .faq__a {
+  grid-template-rows: 1fr;
+}
+
+/* ----- 12 · CTA final (banda navy + sonar baixo) ----- */
+.enamed-page .final {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--deep-navy);
+  background-image: url('/assets/enamed/videos/hero-sonar-desktop-poster.webp');
+  background-image: image-set(
+    url('/assets/enamed/videos/hero-sonar-desktop-poster.avif')
+      type('image/avif'),
+    url('/assets/enamed/videos/hero-sonar-desktop-poster.webp')
+      type('image/webp')
+  );
+  background-size: cover;
+  background-position: center 70%;
+  box-shadow: var(--shadow-hero-contact);
+  text-align: center;
+}
+
+.enamed-page .final .bg-video.is-playing {
+  opacity: 0.35;
+}
+
+.enamed-page .final::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(rgba(0, 12, 30, 0.62), rgba(0, 12, 30, 0.78));
+}
+
+.enamed-page .final .wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.enamed-page .final__inner {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.enamed-page .final__cta-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.enamed-page .final__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 42px);
+  line-height: 1.12;
+  text-wrap: balance;
+  color: var(--dark-ink);
+  margin-bottom: 14px;
+}
+
+.enamed-page .final__title em {
+  font-style: italic;
+  color: var(--champagne-light);
+}
+
+.enamed-page .final__lead {
+  color: var(--dark-muted);
+  font-size: 16px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+/* ----- Rodape (dark) ----- */
+/* Saida para a marca-mae: mesmo par titulo/sub do CTA do hero, mas em dourado
+   e sem pill — le como parente do CTA sem se passar por conversao. */
+.enamed-page .footer-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: var(--r-hero);
+  background: rgba(247, 244, 236, 0.04);
+  text-decoration: none;
+  transition:
+    border-color 0.18s var(--ease),
+    background-color 0.18s var(--ease);
+}
+
+.enamed-page .footer-home:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  background: rgba(247, 244, 236, 0.07);
+}
+
+.enamed-page .footer-home__glyph {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.enamed-page .footer-home__glyph img {
+  width: 28px;
+  height: auto;
+}
+
+.enamed-page .footer-home__text {
+  display: grid;
+  gap: 3px;
+}
+
+.enamed-page .footer-home__title {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--dark-ink);
+}
+
+.enamed-page .footer-home__sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--dark-muted);
+}
+
+.enamed-page .footer-home__arrow {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  color: var(--champagne-light);
+  transition: transform 0.18s var(--ease);
+}
+
+.enamed-page .footer-home:hover .footer-home__arrow {
+  transform: translateX(3px);
+}
+
+.enamed-page .site-footer {
+  background: #010913;
+  border-top: 1px solid rgba(247, 244, 236, 0.12);
+  padding-block: 44px;
+}
+
+.enamed-page .site-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.enamed-page .site-footer__brand .wordmark__img {
+  width: 140px;
+}
+
+.enamed-page .site-footer__brand .brand__name {
+  color: var(--dark-ink);
+}
+
+.enamed-page .site-footer__disclaimer {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: rgba(247, 244, 236, 0.55);
+  max-width: 92ch;
+  margin-bottom: 20px;
+}
+
+.enamed-page .site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.enamed-page .site-footer__links a {
+  color: var(--dark-muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.enamed-page .site-footer__links a:hover {
+  color: var(--champagne-light);
+  text-decoration: underline;
+}
+
+/* Uma coluna por padrao; no desktop o bloco ocupa a metade direita que hoje
+   esta vazia, sem mexer na ordem do DOM (a leitura linear termina na saida). */
+.enamed-page .site-footer .wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.enamed-page .footer-home {
+  margin-top: 24px;
+  justify-self: start;
+}
+
+/* ----- Sticky CTA (mobile) ----- */
+.enamed-page .sticky-cta {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-hero);
+  box-shadow: var(--shadow-lifted);
+  padding: 6px 12px 8px;
+  transform: translateY(calc(100% + 24px));
+  visibility: hidden;
+  transition:
+    transform 0.22s var(--ease),
+    visibility 0.22s;
+}
+
+.enamed-page .sticky-cta.is-on {
+  transform: translateY(0);
+  visibility: visible;
+}
+
+/* Microcopy mono de reducao de risco (plano 4.H); altura total ~76px + safe-area. */
+.enamed-page .sticky-cta__micro {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--mut);
+}
+
+.enamed-page .sticky-cta__btn {
+  width: 100%;
+  min-height: 44px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* Depois da regra base (mesma especificidade): no desktop o sticky nao existe. */
+@media (min-width: 768px) {
+  .enamed-page .sticky-cta {
+    display: none;
+  }
+}
+
+/* ----- Consent (ink-on-paper) ----- */
+.enamed-page .consent {
+  position: fixed;
+  padding-top: 0; /* e um <section>: nao herda os 84px de padding-block */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 70;
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  box-shadow: var(--shadow-lifted);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.enamed-page .consent__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px 24px;
+  flex-wrap: wrap;
+}
+
+.enamed-page .consent__text {
+  flex: 1 1 480px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.enamed-page .consent__text a {
+  color: var(--blue-deep);
+  font-weight: 600;
+}
+
+.enamed-page .consent__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ----- Reveals ----- */
+/* Longhands de proposito: o atraso escalonado (--reveal-i, definido pelo JS
+   por irmao nas grades) e o hover dos cards compartilham a mesma transicao. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition-property: opacity, transform, border-color, box-shadow;
+  transition-duration: 0.28s, 0.28s, 0.18s, 0.18s;
+  transition-timing-function: var(--ease);
+  transition-delay: calc(var(--reveal-i, 0) * 60ms);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* ===== Desktop (>=1024px): ritmo, medida, hover. Um bloco, modulos comentados. ===== */
+@media (min-width: 1024px) {
+  /* [M1] escala de secao: pares relacionados respiram menos; bandas navy, mais */
+  .enamed-page {
+    --space-section: 96px;
+    --space-section-tight: 64px;
+  }
+
+  .enamed-page .dor {
+    padding-bottom: var(--space-section-tight);
+  }
+
+  .enamed-page .mecanismo {
+    padding-top: var(--space-section-tight);
+  }
+
+  .enamed-page .missao {
+    padding-bottom: var(--space-section-tight);
+  }
+
+  .enamed-page .prova {
+    padding-top: var(--space-section-tight);
+  }
+
+  .enamed-page .mapa,
+  .enamed-page .final {
+    padding-block: 104px;
+  }
+
+  /* titulo -> conteudo = 40px em toda secao (com ou sem lead) */
+  .enamed-page .section-lead {
+    margin-bottom: 40px;
+  }
+
+  .enamed-page .section-title + .dor__grid,
+  .enamed-page .section-title + .mecanismo__steps,
+  .enamed-page .section-title + .prova__grid,
+  .enamed-page .section-title + .para-quem__grid,
+  .enamed-page .section-title + .faq__list {
+    margin-top: 40px;
+  }
+
+  .enamed-page .prova__cta {
+    margin-top: 36px;
+    text-align: center;
+  }
+
+  .enamed-page .site-footer .wrap {
+    grid-template-columns: 1fr auto;
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  .enamed-page .footer-home {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    margin-top: 0;
+  }
+
+  /* [M2] medida da banda final */
+  .enamed-page .final__title {
+    max-width: 24ch;
+    margin-inline: auto;
+  }
+
+  .enamed-page .final__title em {
+    white-space: nowrap;
+  }
+
+  .enamed-page .final__lead {
+    max-width: 44ch;
+    margin-inline: auto;
+  }
+}
+
+/* [M5] hover so onde ha ponteiro: cards sobem 2px com a moldura dourada; FAQ ganha fundo. */
+@media (min-width: 1024px) and (hover: hover) {
+  .enamed-page .dor__card:hover,
+  .enamed-page .prova__block:hover {
+    transform: translateY(-2px);
+    border-color: rgba(212, 175, 55, 0.45);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .enamed-page .para-quem__card:hover {
+    border-color: rgba(212, 175, 55, 0.45);
+  }
+
+  .enamed-page .faq__q {
+    padding-inline: 10px;
+    margin-inline: -6px;
+    width: calc(100% + 12px);
+    border-radius: var(--r-sm);
+    transition: background-color 0.18s var(--ease);
+  }
+
+  .enamed-page .faq__q:hover,
+  .enamed-page .faq__q:focus-visible {
+    background: rgba(212, 175, 55, 0.06);
+  }
+}
+
+/* ----- Responsivo ----- */
+@media (max-width: 1180px) {
+  .enamed-page .mapa__grid {
+    grid-template-columns: 1fr 480px;
+  }
+
+  .enamed-page .missao__grid {
+    grid-template-columns: 460px 1fr;
+  }
+}
+
+@media (max-width: 1023px) {
+  .enamed-page .hero {
+    padding-block: 128px 64px;
+  }
+
+  .enamed-page .hero__grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 40px;
+  }
+
+  .enamed-page .hero__visual {
+    height: auto;
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+  }
+
+  .enamed-page .hero__frame--diag,
+  .enamed-page .hero__frame--missao {
+    display: none;
+  }
+
+  .enamed-page .hero__frame--mapa {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .enamed-page .hero__frame--mapa img {
+    height: 460px;
+  }
+
+  .enamed-page .hero__progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--dark-muted);
+  }
+
+  .enamed-page .hero__progress svg {
+    width: 14px;
+    height: 14px;
+    color: var(--champagne-light);
+  }
+
+  .enamed-page .hero__visual-caption {
+    position: static;
+  }
+
+  .enamed-page .mapa__grid,
+  .enamed-page .missao__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .enamed-page .missao__figure {
+    order: -1;
+    max-width: 560px;
+  }
+
+  .enamed-page .mapa__figure {
+    max-width: 560px;
+  }
+
+  .enamed-page .mecanismo__steps,
+  .enamed-page .para-quem__grid {
+    grid-template-columns: 1fr;
+    max-width: 560px;
+  }
+
+  .enamed-page .proof-strip__grid {
+    grid-template-columns: 1fr 1fr;
+    --rule-gap: 36px;
+  }
+
+  .enamed-page .proof-strip__item:nth-child(4n + 1)::before {
+    display: block;
+  }
+
+  .enamed-page .proof-strip__item:nth-child(odd)::before {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .enamed-page section {
+    padding-block: 48px;
+  }
+
+  /* Eyebrow em duas linhas alinhadas (cada uma com o seu icone); o ponto
+     separador so faz sentido quando os dois clusters dividem a linha. */
+  .enamed-page .hero__eyebrow {
+    display: grid;
+    gap: 6px;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .enamed-page .hero__eyebrow [data-state='pre'] {
+    margin-left: 0;
+  }
+
+  .enamed-page .hero__eyebrow [data-state='pre']::before {
+    display: none;
+  }
+
+  /* Header transparente sobre o hero: hairline sutil sob a barra (o estado
+     papel ja tem a sua borda no .site-header). */
+  .enamed-page .site-header:not(.is-solid) .site-header__inner {
+    border-bottom: 1px solid rgba(247, 244, 236, 0.12);
+  }
+
+  .enamed-page .brand__mark {
+    width: 28px;
+  }
+
+  /* .brand__name e .brand__divider somem aqui: o alvo de toque da marca-mae
+     passa a ser o glifo sozinho, entao ele precisa cumprir os 44px. */
+  .enamed-page .brand__home {
+    min-width: 44px;
+    padding-inline-end: 2px;
+  }
+
+  .enamed-page .wordmark__img {
+    width: 132px;
+  }
+
+  .enamed-page .mecanismo__cta,
+  .enamed-page .prova__cta {
+    text-align: left;
+  }
+
+  .enamed-page .wrap {
+    padding-inline: 18px;
+  }
+
+  .enamed-page .header-pill,
+  .enamed-page .site-header__login,
+  .enamed-page .brand__name,
+  .enamed-page .brand__divider {
+    display: none;
+  }
+
+  .enamed-page .site-header__actions .btn {
+    white-space: nowrap;
+  }
+
+  .enamed-page .lbl-full {
+    display: none;
+  }
+
+  .enamed-page .lbl-short {
+    display: inline;
+  }
+
+  .enamed-page .hero {
+    padding-block: 100px 40px;
+    background-image: url('/assets/enamed/videos/hero-topo-mobile-poster.webp');
+    background-image: image-set(
+      url('/assets/enamed/videos/hero-topo-mobile-poster.avif')
+        type('image/avif'),
+      url('/assets/enamed/videos/hero-topo-mobile-poster.webp')
+        type('image/webp')
+    );
+    /* O hero mobile e mais alto que o viewport (o frame do Mapa mora nele):
+       o cover escala o video 720x1264 alem da largura, e ancorar a direita
+       preserva exatamente a faixa onde correm as linhas douradas. */
+    background-position: right top;
+  }
+
+  .enamed-page .hero .bg-video {
+    object-position: right top;
+  }
+
+  /* O video topografico ja e escuro: scrim leve no topo preserva as linhas
+     douradas; o fundo ainda escurece para o frame do Mapa assentar. */
+  .enamed-page .hero::after {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 12, 30, 0.3) 0%,
+      rgba(0, 12, 30, 0.16) 42%,
+      rgba(0, 12, 30, 0.72) 100%
+    );
+  }
+
+  .enamed-page .mapa {
+    background-image: url('/assets/enamed/videos/mapa-constelacao-mobile-poster.webp');
+    background-image: image-set(
+      url('/assets/enamed/videos/mapa-constelacao-mobile-poster.avif')
+        type('image/avif'),
+      url('/assets/enamed/videos/mapa-constelacao-mobile-poster.webp')
+        type('image/webp')
+    );
+  }
+
+  .enamed-page .final {
+    background-image: url('/assets/enamed/videos/hero-sonar-mobile-poster.webp');
+    background-image: image-set(
+      url('/assets/enamed/videos/hero-sonar-mobile-poster.avif')
+        type('image/avif'),
+      url('/assets/enamed/videos/hero-sonar-mobile-poster.webp')
+        type('image/webp')
+    );
+  }
+
+  .enamed-page .hero__sub {
+    font-size: 16px;
+    line-height: 1.55;
+    max-width: 34ch;
+    margin-bottom: 20px;
+  }
+
+  .enamed-page .hero__cta-row,
+  .enamed-page .final__cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .enamed-page .hero__cta-row .btn,
+  .enamed-page .hero__cta-row .login-link--ghost,
+  .enamed-page .final__cta-row .btn,
+  .enamed-page .final__cta-row .login-link--ghost {
+    width: 100%;
+  }
+
+  .enamed-page .btn--hero {
+    min-height: 66px;
+    padding: 11px 18px 11px 14px;
+  }
+
+  .enamed-page .btn--hero .btn__text {
+    justify-items: center;
+    text-align: center;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .enamed-page .btn__title {
+    font-size: clamp(15px, 4.4vw, 17px);
+  }
+
+  .enamed-page .btn__sub {
+    font-size: clamp(9px, 2.7vw, 10.5px);
+    letter-spacing: 0.12em;
+  }
+
+  .enamed-page .hero__micro {
+    font-size: 13px;
+    line-height: 1.55;
+    max-width: 40ch;
+  }
+
+  .enamed-page .hero__frame--mapa {
+    border-radius: 20px;
+    border-color: rgba(212, 175, 55, 0.45);
+    margin-top: 8px;
+  }
+
+  .enamed-page .hero__frame--mapa img {
+    height: 400px;
+  }
+
+  .enamed-page .hero__frame-head {
+    padding: 16px 60px 14px 16px;
+  }
+
+  .enamed-page .hero__frame-title {
+    font-size: 24px;
+  }
+
+  .enamed-page .hero__frame--mapa .hero__frame-tag {
+    display: none;
+  }
+
+  .enamed-page .hero__progress {
+    justify-content: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    font-size: 10px;
+  }
+
+  .enamed-page .hero__visual-caption {
+    text-align: center;
+    margin-top: 2px;
+  }
+
+  .enamed-page .demo__badge {
+    white-space: nowrap;
+  }
+
+  .enamed-page .dor__grid,
+  .enamed-page .prova__grid,
+  .enamed-page .prova__screens {
+    grid-template-columns: 1fr;
+  }
+
+  .enamed-page .demo__card {
+    padding: 20px 16px;
+  }
+
+  .enamed-page .prova__screen img {
+    height: auto;
+    max-height: 480px;
+  }
+
+  .enamed-page .consent__inner {
+    padding: 14px 16px;
+  }
+
+  /* Espaco estatico para o sticky CTA/banner fixos nunca cobrirem o rodape
+     (sem escrita de padding via JS — ver updateFixedChrome no enamed.js). */
+  .enamed-page .site-footer {
+    padding-bottom: 104px;
+  }
+
+  /* ----- M1 · Hero decision zone (4.A): 100svh + peek do Mapa ----- */
+  .enamed-page .hero {
+    min-height: 100svh;
+  }
+
+  .enamed-page .hero__copy {
+    /* a zona de decisao (eyebrow->CTA+ghost) termina em ~82svh; o frame do
+       Mapa comeca logo abaixo e espreita ~8-14% do viewport */
+    min-height: calc(82svh - 100px);
+  }
+
+  /* grade copy -> frame: o peek do Mapa depende deste intervalo curto */
+  .enamed-page .hero__grid {
+    gap: 16px;
+  }
+
+  .enamed-page .hero__title {
+    font-size: clamp(40px, 12.4vw, 54px);
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  /* ----- M1 · Higiene de toque (4.H) ----- */
+  /* ----- M1 · Tipografia fina mobile (4.I) ----- */
+  .enamed-page {
+    font-size: 16.5px;
+    line-height: 1.55;
+  }
+
+  .enamed-page .section-title {
+    font-size: clamp(26px, 7.2vw, 32px);
+  }
+
+  .enamed-page .section-lead {
+    font-size: 17px;
+    max-width: 38ch;
+  }
+
+  .enamed-page .dor__card-title,
+  .enamed-page .prova__block-title,
+  .enamed-page .para-quem__card-title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* ----- M1 · Proof strip mobile (4.D) ----- */
+  .enamed-page .proof-strip__grid {
+    --rule-gap: 24px;
+    row-gap: 24px;
+  }
+
+  .enamed-page .proof-strip__icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* ----- M1 · Mecanismo: screenshots maiores (4.E) ----- */
+  .enamed-page .mecanismo__screen img {
+    height: min(54svh, 460px);
+  }
+
+  .enamed-page .mecanismo__screen {
+    border-radius: var(--r-hero);
+  }
+
+  .enamed-page .demo__card {
+    border-radius: var(--r-hero);
+  }
+
+  .enamed-page .mapa__method-note {
+    font-size: 13px;
+  }
+
+  /* O print do Mapa tem ~2300px: mostra o topo (hero + maior ganho + primeira
+     area) e deixa o restante para o zoom, em vez de uma rolagem de 6 telas. */
+  .enamed-page .mapa__figure img {
+    height: min(118svh, 720px);
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .enamed-page .missao__bullets li {
+    font-size: 15px;
+  }
+
+  .enamed-page .faq__q {
+    font-size: 16px;
+    padding: 18px 4px;
+  }
+
+  .enamed-page .final__title {
+    font-size: clamp(32px, 9vw, 40px);
+  }
+
+  .enamed-page .final__lead {
+    font-size: 16px;
+    max-width: 32ch;
+    margin-inline: auto;
+  }
+
+  .enamed-page .site-footer__links a {
+    font-size: 14px;
+  }
+
+  /* ----- M1 · Demo: ergonomia de toque (4.F) ----- */
+  .enamed-page .demo__label {
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  .enamed-page .demo__cta-row .btn {
+    width: 100%;
+  }
+}
+
+/* ----- Reduced motion ----- */
+@media (prefers-reduced-motion: reduce) {
+  .enamed-page *,
+  .enamed-page *::before,
+  .enamed-page *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Traco dourado do hero: estado final estatico (sem animacao) */
+  .enamed-page .hero__stroke::after {
+    clip-path: none;
+  }
+
+  .enamed-page .hero__beam {
+    display: none;
+  }
+}
+
+/* ----- Print (trivial) ----- */
+@media print {
+  .enamed-page .site-header,
+  .enamed-page .sticky-cta,
+  .enamed-page .consent,
+  .enamed-page .skip-link,
+  .enamed-page .hero__visual {
+    display: none !important;
+  }
+
+  .enamed-page {
+    background: #fff;
+    color: #000;
+  }
+
+  .enamed-page section {
+    padding-block: 24px;
+  }
+
+  .enamed-page .hero,
+  .enamed-page .mapa,
+  .enamed-page .final,
+  .enamed-page .site-footer {
+    background: #fff;
+    box-shadow: none;
+  }
+
+  .enamed-page .hero {
+    padding-block: 24px;
+  }
+
+  .enamed-page .section-title--light,
+  .enamed-page .final__title,
+  .enamed-page .final__lead,
+  .enamed-page .mapa__body,
+  .enamed-page .mapa__method-note,
+  .enamed-page .hero__title,
+  .enamed-page .hero__accent,
+  .enamed-page .hero__sub,
+  .enamed-page .hero__eyebrow,
+  .enamed-page .hero__micro,
+  .enamed-page .site-footer__disclaimer,
+  .enamed-page .site-footer__links a,
+  .enamed-page .site-footer__brand .brand__name {
+    color: #000;
+  }
+
+  .enamed-page .faq__a {
+    display: block !important;
+  }
+}
+
+/* ----- Zoom premium das telas reais + lightbox ----- */
+.enamed-page [data-zoom] {
+  cursor: zoom-in;
+}
+
+.enamed-page .zoom-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 999px;
+  background: rgba(0, 12, 30, 0.88);
+  color: var(--dark-ink);
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.18s var(--ease),
+    transform 0.18s var(--ease);
+}
+
+.enamed-page .zoom-btn:hover {
+  transform: scale(1.06);
+}
+
+/* O frame do Mapa tem o cabecalho (com 60px reservados a direita) no topo,
+   a tag no rodape direito e o frame da Missao sobrepondo o canto inferior
+   esquerdo: o zoom vive no canto superior direito, dentro do cabecalho. */
+.enamed-page .hero__frame--mapa .zoom-btn {
+  bottom: auto;
+  top: 12px;
+  right: 12px;
+}
+
+/* Mobile: alvo de toque 44px (a regra base de 38px fica logo acima; esta
+   media query precisa vir depois dela no arquivo para vencer na cascata). */
+@media (max-width: 767px) {
+  .enamed-page .zoom-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.enamed-page [data-zoom]:hover .zoom-btn,
+.enamed-page [data-zoom]:focus-within .zoom-btn,
+.enamed-page .zoom-btn:focus-visible {
+  opacity: 1;
+}
+
+/* Em telas de toque nao ha hover: o affordance fica sempre visivel. */
+@media (hover: none) {
+  .enamed-page .zoom-btn {
+    opacity: 1;
+  }
+}
+
+.enamed-page .mapa__figure .zoom-btn,
+.enamed-page .missao__figure .zoom-btn,
+.enamed-page .mecanismo__screen .zoom-btn,
+.enamed-page .prova__screen .zoom-btn {
+  bottom: auto;
+  top: 10px;
+}
+
+.enamed-page .lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  overscroll-behavior: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.enamed-page .lightbox[hidden] {
+  display: none;
+}
+
+.enamed-page .lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(19, 16, 9, 0.93);
+  backdrop-filter: blur(8px);
+}
+
+.enamed-page .lightbox__figure {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  max-width: min(1080px, 94vw);
+  max-height: 92vh;
+  margin: 0;
+  align-items: center;
+  overflow: hidden;
+  background: var(--dark-2);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lifted);
+}
+
+.enamed-page .lightbox__img {
+  max-width: 100%;
+  max-height: calc(92vh - 52px);
+  object-fit: contain;
+  background: var(--paper);
+}
+
+.enamed-page .lightbox__caption {
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+  color: rgba(247, 244, 236, 0.66);
+  border-top: 1px solid rgba(247, 244, 236, 0.12);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+.enamed-page .lightbox__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 999px;
+  background: var(--dark);
+  color: var(--dark-ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+
+body.enamed-page.has-lightbox {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enamed-page .zoom-btn {
+    transition: none;
+  }
+}

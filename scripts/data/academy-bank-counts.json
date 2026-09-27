@@ -1,0 +1,697 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-09-27T21:37:56.459Z",
+  "source": "Firestore auscultoapp/questions (read-only projection)",
+  "exclusionContract": "functions/residencyCatalog.js",
+  "groupingContract": "ExamNameFormatter.bankGroupKey",
+  "commentContract": "Nonempty explanation or option_comments string; unique exam_folder/question_number",
+  "formatterSha256": "ea66575a77aec14614abf535c09b76aaa59a1daafea5764baf1261a40ff5f601",
+  "documents": 14345,
+  "excluded": 0,
+  "duplicates": 234,
+  "missingNumber": 0,
+  "banks": [
+    {
+      "name": "AMP PR",
+      "institution": "Associação Médica do Paraná",
+      "url": "/assets/academy/banks/directory-amp_pr.webp",
+      "source": "assets/residency/bancas/amp_pr.png",
+      "sha256": "86a5e0aa991bfcb1e38a3730295686e9d9e9247822d550295962560fea385462",
+      "bankKey": "AMP PR",
+      "examCount": 7,
+      "questionCount": 700,
+      "commentedQuestionCount": 700,
+      "examFolders": [
+        "AMP_PR_2020",
+        "AMP_PR_2021",
+        "AMP_PR_2022",
+        "AMP_PR_2023",
+        "AMP_PR_2024",
+        "AMP_PR_2025",
+        "AMP_PR_2026"
+      ]
+    },
+    {
+      "name": "EINSTEIN",
+      "institution": "Hospital Israelita Albert Einstein",
+      "url": "/assets/academy/banks/directory-einstein.webp",
+      "source": "assets/residency/bancas/einstein.png",
+      "sha256": "13555786e9a0a21ed9c77a7088ce942325b1b33d4f2207bfe1e97563e7aac18a",
+      "bankKey": "EINSTEIN",
+      "examCount": 7,
+      "questionCount": 499,
+      "commentedQuestionCount": 499,
+      "examFolders": [
+        "EINSTEIN_2026",
+        "EINSTEIN_2020",
+        "EINSTEIN_2021",
+        "EINSTEIN_2022",
+        "EINSTEIN_2023",
+        "EINSTEIN_2024",
+        "EINSTEIN_2025"
+      ]
+    },
+    {
+      "name": "ENAMED",
+      "institution": "Exame Nacional de Avaliação da Formação Médica (INEP)",
+      "url": "/assets/academy/banks/directory-enamed.webp",
+      "source": "assets/residency/bancas/enamed.png",
+      "sha256": "c51e0ee41e5ddc7a2cffab415fd92414d8d91a015d5fc1d9cfc34152b1b96cfd",
+      "bankKey": "ENAMED",
+      "examCount": 2,
+      "questionCount": 190,
+      "commentedQuestionCount": 190,
+      "examFolders": [
+        "ENAMED_2025_CADERNO_1",
+        "enamed_2026_caderno_1"
+      ]
+    },
+    {
+      "name": "ENARE",
+      "institution": "Exame Nacional de Residência",
+      "url": "/assets/academy/banks/directory-enare.webp",
+      "source": "assets/residency/bancas/enare.png",
+      "sha256": "58f0651a310c28f2e69b3218e5ea6430cb5607ff64fdf977466d937ca2e649ed",
+      "bankKey": "ENARE",
+      "examCount": 4,
+      "questionCount": 367,
+      "commentedQuestionCount": 367,
+      "examFolders": [
+        "ENARE_2025",
+        "ENARE_2023",
+        "ENARE_2024",
+        "ENARE 2024 MD"
+      ]
+    },
+    {
+      "name": "ENARE CM",
+      "institution": "Exame Nacional de Residência — Clínica Médica",
+      "url": "/assets/academy/banks/directory-enare_cm.webp",
+      "source": "assets/residency/bancas/enare_cm.png",
+      "sha256": "58f0651a310c28f2e69b3218e5ea6430cb5607ff64fdf977466d937ca2e649ed",
+      "bankKey": "ENARE CM",
+      "examCount": 1,
+      "questionCount": 66,
+      "commentedQuestionCount": 66,
+      "examFolders": [
+        "ENARE CM 2024 MD"
+      ]
+    },
+    {
+      "name": "FAMEMA",
+      "institution": "Faculdade de Medicina de Marília",
+      "url": "/assets/academy/banks/directory-famema.webp",
+      "source": "assets/residency/bancas/famema.png",
+      "sha256": "248c07e9fdf459a94c0c53d19a148c3abc590e9541de3fa156c3bf10c4be1801",
+      "bankKey": "FAMEMA",
+      "examCount": 4,
+      "questionCount": 398,
+      "commentedQuestionCount": 398,
+      "examFolders": [
+        "FAMEMA_2020",
+        "FAMEMA_2023",
+        "FAMEMA_2024",
+        "FAMEMA_2025"
+      ]
+    },
+    {
+      "name": "FAMERP",
+      "institution": "Faculdade de Medicina de São José do Rio Preto",
+      "url": "/assets/academy/banks/directory-famerp.webp",
+      "source": "assets/residency/bancas/famerp.png",
+      "sha256": "6a47999df2ef4c2f1b42b05e5ee313caa0bf2b7d738e4f40d16dfde6f2d7e1ff",
+      "bankKey": "FAMERP",
+      "examCount": 1,
+      "questionCount": 80,
+      "commentedQuestionCount": 80,
+      "examFolders": [
+        "FAMERP_2026"
+      ]
+    },
+    {
+      "name": "FM USP",
+      "institution": "Faculdade de Medicina da Universidade de São Paulo (FMUSP)",
+      "url": "/assets/academy/banks/directory-fm_usp.webp",
+      "source": "assets/residency/bancas/fm_usp.png",
+      "sha256": "5f36b9b223ec1d8acb4fa69e5e67687624b2b502f02c4e80131714b71845ba1f",
+      "bankKey": "FM USP",
+      "examCount": 5,
+      "questionCount": 520,
+      "commentedQuestionCount": 520,
+      "examFolders": [
+        "FM USP 2023 MD",
+        "FM USP 2025 AREAS BASICAS MD",
+        "FM USP 2025 ESPECIALIDADES CLINICAS MD",
+        "FM USP AREAS BASICAS 2024 MD",
+        "FM USP ESPECIALIDADES PEDIATRICAS 2025 MD"
+      ]
+    },
+    {
+      "name": "FMABC",
+      "institution": "Faculdade de Medicina do ABC — Centro Universitário FMABC",
+      "url": "/assets/academy/banks/directory-fmabc.webp",
+      "source": "assets/residency/bancas/fmabc.png",
+      "sha256": "189801e7a1b3294fab6a9e4e74baff65ac28b28d39d38be6cef0f6d1915c7bb5",
+      "bankKey": "FMABC",
+      "examCount": 1,
+      "questionCount": 100,
+      "commentedQuestionCount": 88,
+      "examFolders": [
+        "FMABC_2024"
+      ]
+    },
+    {
+      "name": "FMJ",
+      "institution": "Faculdade de Medicina de Jundiaí",
+      "url": "/assets/academy/banks/directory-fmj.webp",
+      "source": "assets/residency/bancas/fmj.png",
+      "sha256": "f651afd0f7f1c708b6ea026fcfce75a202652bc05e790d6d49a7919052769211",
+      "bankKey": "FMJ",
+      "examCount": 7,
+      "questionCount": 696,
+      "commentedQuestionCount": 696,
+      "examFolders": [
+        "FMJ_2020",
+        "FMJ_2021",
+        "FMJ_2022",
+        "FMJ_2023",
+        "FMJ_2024",
+        "FMJ_2025",
+        "FMJ_2026"
+      ]
+    },
+    {
+      "name": "HAOC",
+      "institution": "Hospital Alemão Oswaldo Cruz",
+      "url": "/assets/academy/banks/directory-haoc.webp",
+      "source": "assets/residency/bancas/haoc.png",
+      "sha256": "687024ed9af70f2e5bee830ddc3ed781fd875fb2d512272b9895bb8d22713aa3",
+      "bankKey": "HAOC",
+      "examCount": 7,
+      "questionCount": 349,
+      "commentedQuestionCount": 349,
+      "examFolders": [
+        "HAOC_2020",
+        "HAOC_2021",
+        "HAOC_2022",
+        "HAOC_2023",
+        "HAOC_2024",
+        "HAOC_2025",
+        "HAOC_2026"
+      ]
+    },
+    {
+      "name": "HCPA",
+      "institution": "Hospital de Clínicas de Porto Alegre",
+      "url": "/assets/academy/banks/directory-hcpa.webp",
+      "source": "assets/residency/bancas/hcpa.png",
+      "sha256": "d916f3f515a0ab11f9f3e26dcc4e27b346f2e4b38b2146eac66ed8bcba906dce",
+      "bankKey": "HCPA",
+      "examCount": 1,
+      "questionCount": 100,
+      "commentedQuestionCount": 99,
+      "examFolders": [
+        "HCPA_2024"
+      ]
+    },
+    {
+      "name": "HPP",
+      "institution": "Hospital Pequeno Príncipe (Curitiba/PR)",
+      "url": "/assets/academy/banks/directory-hpp.webp",
+      "source": "assets/residency/bancas/hpp.png",
+      "sha256": "4803539942b303d52c5357dd1f30cbf6a2fd285eb6f44458e9f4e5296d839371",
+      "bankKey": "HPP",
+      "examCount": 7,
+      "questionCount": 699,
+      "commentedQuestionCount": 699,
+      "examFolders": [
+        "HPP_2020",
+        "HPP_2021",
+        "HPP_2022",
+        "HPP_2023",
+        "HPP_2024",
+        "HPP_2025",
+        "HPP_2026"
+      ]
+    },
+    {
+      "name": "HRAC FUVEST",
+      "institution": "HRAC-USP — Hospital de Reabilitação de Anomalias Craniofaciais (Bauru)",
+      "url": "/assets/academy/banks/directory-hrac_fuvest.webp",
+      "source": "assets/residency/bancas/hrac_fuvest.png",
+      "sha256": "db5d9757a962619a8374cb300e0844654723f085984e76977ec56c268455f3cc",
+      "bankKey": "HRAC FUVEST",
+      "examCount": 3,
+      "questionCount": 238,
+      "commentedQuestionCount": 238,
+      "examFolders": [
+        "HRAC FUVEST 2024 AREAS BASICAS MD",
+        "HRAC PROVA A FUVEST 2024 MD",
+        "HRAC PROVA B FUVEST 2024 MD"
+      ]
+    },
+    {
+      "name": "HUV",
+      "institution": "Hospital Universitário de Vassouras — Universidade de Vassouras",
+      "url": "/assets/academy/banks/directory-huv.webp",
+      "source": "assets/residency/bancas/huv.png",
+      "sha256": "84ab7f4c8c8764724addf37eee2ba5d197702f09cc6dac0c50466be7029dcd1d",
+      "bankKey": "HUV",
+      "examCount": 1,
+      "questionCount": 51,
+      "commentedQuestionCount": 51,
+      "examFolders": [
+        "HUV 2024 MD"
+      ]
+    },
+    {
+      "name": "IAMSPE",
+      "institution": "Instituto de Assistência Médica ao Servidor Público Estadual",
+      "url": "/assets/academy/banks/directory-iamspe.webp",
+      "source": "assets/residency/bancas/iamspe.png",
+      "sha256": "38b76446fecab044d11cbd36e65f9feab84cc722b48521796cbb879fa49d4e04",
+      "bankKey": "IAMSPE",
+      "examCount": 1,
+      "questionCount": 60,
+      "commentedQuestionCount": 58,
+      "examFolders": [
+        "IAMSPE_2024"
+      ]
+    },
+    {
+      "name": "PSU GO",
+      "institution": "Processo Seletivo Unificado de Goiás (AREMG)",
+      "url": "/assets/academy/banks/directory-psu_go.webp",
+      "source": "assets/residency/bancas/psu_go.png",
+      "sha256": "120866af9034089810b2b0d0060d2a12026fb672dcdd9055bbdbf855477baf51",
+      "bankKey": "PSU GO",
+      "examCount": 4,
+      "questionCount": 400,
+      "commentedQuestionCount": 400,
+      "examFolders": [
+        "PSU_GO_2023",
+        "PSU_GO_2024",
+        "PSU_GO_2025",
+        "PSU_GO_2026"
+      ]
+    },
+    {
+      "name": "PSU MG",
+      "institution": "Processo Seletivo Unificado de Minas Gerais — logo da AREMG (organizadora)",
+      "url": "/assets/academy/banks/directory-psu_mg.webp",
+      "source": "assets/residency/bancas/psu_mg.png",
+      "sha256": "3e41f2c498e05e4a85b74bf59c7432e55b7dee5c869717925ccf67f2b9463205",
+      "bankKey": "PSU MG",
+      "examCount": 7,
+      "questionCount": 550,
+      "commentedQuestionCount": 550,
+      "examFolders": [
+        "PSU_MG_2020",
+        "PSU_MG_2021",
+        "PSU_MG_2022",
+        "PSU_MG_2023",
+        "PSU_MG_2024",
+        "PSU_MG_2025",
+        "PSU_MG_2026"
+      ]
+    },
+    {
+      "name": "REVALIDA",
+      "institution": "Exame Nacional Revalida (INEP/MEC)",
+      "url": "/assets/academy/banks/directory-revalida.webp",
+      "source": "assets/residency/bancas/revalida.png",
+      "sha256": "acb4c36578c2804ecf7e170ee0dfe3cc77d1d5da0202e3f3ba8d251f740ac701",
+      "bankKey": "REVALIDA",
+      "examCount": 3,
+      "questionCount": 273,
+      "commentedQuestionCount": 273,
+      "examFolders": [
+        "REVALIDA 2024 MD",
+        "REVALIDA 2025 - 1 MD",
+        "REVALIDA_2025_2"
+      ]
+    },
+    {
+      "name": "SCMBH",
+      "institution": "Santa Casa de Misericórdia de Belo Horizonte",
+      "url": "/assets/academy/banks/directory-scmbh.webp",
+      "source": "assets/residency/bancas/scmbh.png",
+      "sha256": "3a4474449e451070196e174ce30902b9dfe23ba48850c5d1356a79a0221b2bf1",
+      "bankKey": "SCMBH",
+      "examCount": 7,
+      "questionCount": 524,
+      "commentedQuestionCount": 524,
+      "examFolders": [
+        "SCMBH_2020",
+        "SCMBH_2021",
+        "SCMBH_2022",
+        "SCMBH_2023",
+        "SCMBH_2024",
+        "SCMBH_2025",
+        "SCMBH_2026"
+      ]
+    },
+    {
+      "name": "SCMCG",
+      "institution": "Santa Casa de Misericórdia de Campo Grande",
+      "url": "/assets/academy/banks/directory-scmcg.webp",
+      "source": "assets/residency/bancas/scmcg.png",
+      "sha256": "c4243def0adc846aba5a4ada71c9d6ac3aef13445e437344bc0edc8a0c6659e0",
+      "bankKey": "SCMCG",
+      "examCount": 7,
+      "questionCount": 558,
+      "commentedQuestionCount": 558,
+      "examFolders": [
+        "SCMCG_2020",
+        "SCMCG_2021",
+        "SCMCG_2022",
+        "SCMCG_2023",
+        "SCMCG_2024",
+        "SCMCG_2025",
+        "SCMCG_2026"
+      ]
+    },
+    {
+      "name": "SCML",
+      "institution": "Santa Casa de Misericórdia de Limeira",
+      "url": "/assets/academy/banks/directory-scml.webp",
+      "source": "assets/residency/bancas/scml.png",
+      "sha256": "80a5c14a7f14c4c55cbae562c6fb223049835cf5e8bf58bda07bd441c8226d89",
+      "bankKey": "SCML",
+      "examCount": 7,
+      "questionCount": 579,
+      "commentedQuestionCount": 579,
+      "examFolders": [
+        "SCML_2020",
+        "SCML_2021",
+        "SCML_2022",
+        "SCML_2023",
+        "SCML_2024",
+        "SCML_2025",
+        "SCML_2026"
+      ]
+    },
+    {
+      "name": "SCMSP",
+      "institution": "Irmandade da Santa Casa de Misericórdia de São Paulo",
+      "url": "/assets/academy/banks/directory-scmsp.webp",
+      "source": "assets/residency/bancas/scmsp.png",
+      "sha256": "1fcf36c8a6743295cc92ffaed1b658d7e910ff77f646171c52b8f4a941132ae6",
+      "bankKey": "SCMSP",
+      "examCount": 2,
+      "questionCount": 200,
+      "commentedQuestionCount": 200,
+      "examFolders": [
+        "SCMSP_2023",
+        "SCMSP_2026"
+      ]
+    },
+    {
+      "name": "SES DF",
+      "institution": "Secretaria de Estado de Saúde do Distrito Federal (lockup GDF)",
+      "url": "/assets/academy/banks/directory-ses_df.webp",
+      "source": "assets/residency/bancas/ses_df.png",
+      "sha256": "2d633ec34e565947d02bd95e2672d6f675001fc5cad1753a15cc606ab70f1923",
+      "bankKey": "SES DF",
+      "examCount": 1,
+      "questionCount": 100,
+      "commentedQuestionCount": 64,
+      "examFolders": [
+        "SES_DF_2024"
+      ]
+    },
+    {
+      "name": "SES GO",
+      "institution": "Secretaria de Estado da Saúde de Goiás (lockup Governo de Goiás)",
+      "url": "/assets/academy/banks/directory-ses_go.webp",
+      "source": "assets/residency/bancas/ses_go.png",
+      "sha256": "3737c27f00c8cdfc3b972de8bdeac50787f76626ba8666a9a7023c05c7342bf6",
+      "bankKey": "SES GO",
+      "examCount": 7,
+      "questionCount": 696,
+      "commentedQuestionCount": 696,
+      "examFolders": [
+        "SES_GO_2020",
+        "SES_GO_2021",
+        "SES_GO_2022",
+        "SES_GO_2023",
+        "SES_GO_2024",
+        "SES_GO_2025",
+        "SES_GO_2026"
+      ]
+    },
+    {
+      "name": "SIRIO LIBANES",
+      "institution": "Hospital Sírio-Libanês",
+      "url": "/assets/academy/banks/directory-sirio_libanes.webp",
+      "source": "assets/residency/bancas/sirio_libanes.png",
+      "sha256": "cdad2db8bdb0223fa9b3f1fea2caefa195c772c89b9e7ac0a6fc3b259f9eba37",
+      "bankKey": "SIRIO LIBANES",
+      "examCount": 6,
+      "questionCount": 600,
+      "commentedQuestionCount": 600,
+      "examFolders": [
+        "SIRIO_LIBANES_2026",
+        "SIRIO_LIBANES_2021",
+        "SIRIO_LIBANES_2022",
+        "SIRIO_LIBANES_2023",
+        "SIRIO_LIBANES_2024",
+        "SIRIO_LIBANES_2025"
+      ]
+    },
+    {
+      "name": "SMS-SP",
+      "institution": "Secretaria Municipal da Saúde de São Paulo (lockup Prefeitura de São Paulo)",
+      "url": "/assets/academy/banks/directory-sms_sp.webp",
+      "source": "assets/residency/bancas/sms_sp.png",
+      "sha256": "ab6135713b394a093de0eaedeb25e73b7a3efa65e6561db67d1d112b782bb1f0",
+      "bankKey": "SMS SP",
+      "examCount": 5,
+      "questionCount": 250,
+      "commentedQuestionCount": 250,
+      "examFolders": [
+        "SMS_SP_2020",
+        "SMS_SP_2021",
+        "SMS_SP_2022",
+        "SMS_SP_2023",
+        "SMS_SP_2024"
+      ]
+    },
+    {
+      "name": "SUS BA",
+      "institution": "Secretaria da Saúde do Estado da Bahia — SESAB (lockup Governo da Bahia)",
+      "url": "/assets/academy/banks/directory-sus_ba.webp",
+      "source": "assets/residency/bancas/sus_ba.png",
+      "sha256": "0194bda835376786bfd9ba93902c278ba5d3be47675ad76b017a4bc3689b6996",
+      "bankKey": "SUS BA",
+      "examCount": 6,
+      "questionCount": 300,
+      "commentedQuestionCount": 300,
+      "examFolders": [
+        "SUS_BA_2021",
+        "SUS_BA_2022",
+        "SUS_BA_2023",
+        "SUS_BA_2024",
+        "SUS_BA_2025",
+        "SUS_BA_2026"
+      ]
+    },
+    {
+      "name": "SUS-SP",
+      "institution": "Secretaria de Estado da Saúde de São Paulo — SES-SP (lockup Governo de SP)",
+      "url": "/assets/academy/banks/directory-sus_sp.webp",
+      "source": "assets/residency/bancas/sus_sp.png",
+      "sha256": "a7254003fff9dc2b2264505cf514020cd517a738f9d12810dcb7701204d7b387",
+      "bankKey": "SUS SP",
+      "examCount": 2,
+      "questionCount": 200,
+      "commentedQuestionCount": 200,
+      "examFolders": [
+        "SUS_SP_2023",
+        "SUS_SP_2026"
+      ]
+    },
+    {
+      "name": "UEL",
+      "institution": "Universidade Estadual de Londrina",
+      "url": "/assets/academy/banks/directory-uel.webp",
+      "source": "assets/residency/bancas/uel.png",
+      "sha256": "148dc1958aa42702ff33a705940407fd6a6dadbe692e0b6517bffb968a5d1871",
+      "bankKey": "UEL",
+      "examCount": 2,
+      "questionCount": 171,
+      "commentedQuestionCount": 137,
+      "examFolders": [
+        "UEL_2024",
+        "UEL_2025"
+      ]
+    },
+    {
+      "name": "UEM",
+      "institution": "Universidade Estadual de Maringá",
+      "url": "/assets/academy/banks/directory-uem.webp",
+      "source": "assets/residency/bancas/uem.png",
+      "sha256": "0d09d83095507076cd54664ee397d87a1ad38dcc0d8ead94446e214c3f75e5b0",
+      "bankKey": "UEM",
+      "examCount": 1,
+      "questionCount": 60,
+      "commentedQuestionCount": 60,
+      "examFolders": [
+        "UEM_2024"
+      ]
+    },
+    {
+      "name": "UEPA",
+      "institution": "Universidade do Estado do Pará",
+      "url": "/assets/academy/banks/directory-uepa.webp",
+      "source": "assets/residency/bancas/uepa.png",
+      "sha256": "46f75c9c626fa429e6a9b5159d8eba19145cfe5f7aaf3f83416a827e16c2ddf2",
+      "bankKey": "UEPA",
+      "examCount": 7,
+      "questionCount": 694,
+      "commentedQuestionCount": 694,
+      "examFolders": [
+        "UEPA_2020",
+        "UEPA_2021",
+        "UEPA_2022",
+        "UEPA_2023",
+        "UEPA_2024",
+        "UEPA_2025",
+        "UEPA_2026"
+      ]
+    },
+    {
+      "name": "UERJ",
+      "institution": "Universidade do Estado do Rio de Janeiro",
+      "url": "/assets/academy/banks/directory-uerj.webp",
+      "source": "assets/residency/bancas/uerj.png",
+      "sha256": "f6c446d54bec4bc61c8e21c2ca67700e521b5c4e4b72c92e98c1e113d5047bd6",
+      "bankKey": "UERJ",
+      "examCount": 5,
+      "questionCount": 400,
+      "commentedQuestionCount": 400,
+      "examFolders": [
+        "UERJ_2020",
+        "UERJ_2021",
+        "UERJ_2022",
+        "UERJ_2023",
+        "UERJ_2025"
+      ]
+    },
+    {
+      "name": "UFCSPA",
+      "institution": "Universidade Federal de Ciências da Saúde de Porto Alegre",
+      "url": "/assets/academy/banks/directory-ufcspa.webp",
+      "source": "assets/residency/bancas/ufcspa.png",
+      "sha256": "227919186cb04a747f1a71b2be3fd1539b0eee61df2f07adbc6c2677aae91428",
+      "bankKey": "UFCSPA",
+      "examCount": 1,
+      "questionCount": 16,
+      "commentedQuestionCount": 12,
+      "examFolders": [
+        "UFCSPA_2024"
+      ]
+    },
+    {
+      "name": "UFRJ",
+      "institution": "Universidade Federal do Rio de Janeiro",
+      "url": "/assets/academy/banks/directory-ufrj.webp",
+      "source": "assets/residency/bancas/ufrj.png",
+      "sha256": "710522ddb5240afa2b297c30139c79f459205f27a8ce149a76a681d1b358459e",
+      "bankKey": "UFRJ",
+      "examCount": 6,
+      "questionCount": 700,
+      "commentedQuestionCount": 700,
+      "examFolders": [
+        "UFRJ_2020",
+        "UFRJ_2021",
+        "UFRJ_2022",
+        "UFRJ_2023",
+        "UFRJ_2024",
+        "UFRJ_2025"
+      ]
+    },
+    {
+      "name": "UNESP",
+      "institution": "Universidade Estadual Paulista 'Júlio de Mesquita Filho'",
+      "url": "/assets/academy/banks/directory-unesp.webp",
+      "source": "assets/residency/bancas/unesp.png",
+      "sha256": "6f9919eebf8f3a78f6bb05cabb5a551eac1bffa495d5b6c3edbbe8d801a33f50",
+      "bankKey": "UNESP",
+      "examCount": 1,
+      "questionCount": 82,
+      "commentedQuestionCount": 82,
+      "examFolders": [
+        "UNESP_2024"
+      ]
+    },
+    {
+      "name": "UNIFESP",
+      "institution": "Universidade Federal de São Paulo",
+      "url": "/assets/academy/banks/directory-unifesp.webp",
+      "source": "assets/residency/bancas/unifesp.png",
+      "sha256": "feaf1eff8717bf0c534b2ced3d1d5b5341c8db998e1e9598447163b28d346d2f",
+      "bankKey": "UNIFESP",
+      "examCount": 7,
+      "questionCount": 700,
+      "commentedQuestionCount": 700,
+      "examFolders": [
+        "UNIFESP_2020",
+        "UNIFESP_2021",
+        "UNIFESP_2022",
+        "UNIFESP_2023",
+        "UNIFESP_2024",
+        "UNIFESP_2025",
+        "UNIFESP_2026"
+      ]
+    },
+    {
+      "name": "UNIP",
+      "institution": "Universidade Paulista",
+      "url": "/assets/academy/banks/directory-unip.webp",
+      "source": "assets/residency/bancas/unip.png",
+      "sha256": "c8b2d6f3d8ec5c5f51a821a9bfc4189d85434d6ed58b614422937545bbb58ed6",
+      "bankKey": "UNIP",
+      "examCount": 1,
+      "questionCount": 55,
+      "commentedQuestionCount": 55,
+      "examFolders": [
+        "UNIP MD"
+      ]
+    },
+    {
+      "name": "USP-RP",
+      "institution": "Faculdade de Medicina de Ribeirão Preto da USP (FMRP)",
+      "url": "/assets/academy/banks/directory-usp_rp.webp",
+      "source": "assets/residency/bancas/usp_rp.png",
+      "sha256": "bac4f106d33e9170f2b449c54cf303d99f9edb8dda7bd0c65f85430f1f7efcbf",
+      "bankKey": "USP RP",
+      "examCount": 1,
+      "questionCount": 100,
+      "commentedQuestionCount": 100,
+      "examFolders": [
+        "USP_RP_2024"
+      ]
+    },
+    {
+      "name": "USP-SP",
+      "institution": "Universidade de São Paulo",
+      "url": "/assets/academy/banks/directory-usp_sp.webp",
+      "source": "assets/residency/bancas/usp_sp.png",
+      "sha256": "5b007f45789ae1955db606e796dec963dfb6f9dc0acf2a9f90fdcdd79ea3c8ec",
+      "bankKey": "USP SP",
+      "examCount": 7,
+      "questionCount": 790,
+      "commentedQuestionCount": 790,
+      "examFolders": [
+        "USP_SP_2023",
+        "USP_SP_2020",
+        "USP_SP_2021",
+        "USP_SP_2022",
+        "USP_SP_2024",
+        "USP_SP_2025",
+        "USP_SP_2026"
+      ]
+    }
+  ]
+}

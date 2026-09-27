@@ -1,0 +1,37 @@
+[
+  {
+    "id": "enamed",
+    "source": "enamed-c51e0ee41e5d.png",
+    "sourceSha256": "c51e0ee41e5ddc7a2cffab415fd92414d8d91a015d5fc1d9cfc34152b1b96cfd",
+    "filename": "enamed-hero.webp",
+    "bytes": 7464
+  },
+  {
+    "id": "usp-sp",
+    "source": "usp-sp-5b007f45789a.png",
+    "sourceSha256": "5b007f45789ae1955db606e796dec963dfb6f9dc0acf2a9f90fdcdd79ea3c8ec",
+    "filename": "usp-sp-hero.webp",
+    "bytes": 3234
+  },
+  {
+    "id": "sus-sp",
+    "source": "sus-sp-a7254003fff9.png",
+    "sourceSha256": "a7254003fff9dc2b2264505cf514020cd517a738f9d12810dcb7701204d7b387",
+    "filename": "sus-sp-hero.webp",
+    "bytes": 18346
+  },
+  {
+    "id": "einstein",
+    "source": "einstein-13555786e9a0.png",
+    "sourceSha256": "13555786e9a0a21ed9c77a7088ce942325b1b33d4f2207bfe1e97563e7aac18a",
+    "filename": "einstein-hero.webp",
+    "bytes": 7164
+  },
+  {
+    "id": "unifesp",
+    "source": "unifesp-feaf1eff8717.png",
+    "sourceSha256": "feaf1eff8717bf0c534b2ced3d1d5b5341c8db998e1e9598447163b28d346d2f",
+    "filename": "unifesp-hero.webp",
+    "bytes": 10544
+  }
+]

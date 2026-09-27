@@ -1,0 +1,26 @@
+[
+  {
+    "id": "neuro",
+    "documentId": "001113e66650b877c9766c8a316f2c7574543c12",
+    "session": "NEUROIMAGEM_RM_TUMORES_V1",
+    "storagePath": "sessions/NEUROIMAGEM_RM_TUMORES_V1/organized/glioma/Brain_Tumor_MRI_Zeno__glioma_00257.jpg",
+    "file": "neuro.jpg",
+    "sha256": "2597450f93f5f21dbd723a0f5fa304e02ceba919368f71b4f634bcacc28b4ec0"
+  },
+  {
+    "id": "retina",
+    "documentId": "002e10b9d1284339372b313b20ff26c6e00ab2a0",
+    "session": "OFTALMO_RETINOGRAFIA_DR_V1",
+    "storagePath": "sessions/OFTALMO_RETINOGRAFIA_DR_V1/organized/dr_0_none/EyePACS_EasyDR__dr_0_none_00519.png",
+    "file": "retina.png",
+    "sha256": "a7f7465d0e7c151e90668b9dfd42ff70fa46beadd3cba1da5f2d86eb63be058e"
+  },
+  {
+    "id": "ecg",
+    "documentId": "00241fc2555edb0e724ec892dfd26875030a7863",
+    "session": "ECG_V1",
+    "storagePath": "sessions/ECG_V1/organized/lbbb_complete/ECG_PTBXL__lbbb_complete_00063.png",
+    "file": "ecg.png",
+    "sha256": "9163e3e86533f45b630a839c3501e0db82734a257e694a7c4b0f4775bec7605b"
+  }
+]

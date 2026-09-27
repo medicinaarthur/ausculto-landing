@@ -1,0 +1,446 @@
+{
+  "reviewedAt": "2026-09-27",
+  "files": [
+    {
+      "folder": "ENAMED_2025_CADERNO_1",
+      "records": 90,
+      "sha256": "3cf3986ab40f9aa7be6846085b2bf1c701c2d0df075673e0d87df73a0ffd83c9",
+      "missingNumbers": [
+        2,
+        7,
+        9,
+        10,
+        11,
+        40,
+        43,
+        76,
+        88,
+        100
+      ],
+      "canonicalAreaCoverage": 0,
+      "themeCoverage": 0,
+      "answerStatuses": {
+        "graded": 90
+      }
+    },
+    {
+      "folder": "enamed_2026_caderno_1",
+      "records": 100,
+      "sha256": "a820f00c424b7ce7f7e7b64d0a77424db6bc401e6f1bae776690db00d33e6aee",
+      "missingNumbers": [],
+      "canonicalAreaCoverage": 0,
+      "themeCoverage": 100,
+      "answerStatuses": {
+        "preliminary": 100
+      }
+    },
+    {
+      "folder": "REVALIDA 2025 - 1 MD",
+      "records": 86,
+      "sha256": "a3d6cf08d6a0c01b69f284d671ce81147328c6bd440a15cd1f9f151833edce20",
+      "missingNumbers": [
+        5,
+        6,
+        15,
+        16,
+        24,
+        32,
+        33,
+        41,
+        42,
+        50,
+        57,
+        66,
+        76,
+        95
+      ],
+      "canonicalAreaCoverage": 66,
+      "themeCoverage": 85,
+      "answerStatuses": {
+        "not_declared": 86
+      }
+    },
+    {
+      "folder": "REVALIDA_2025_2",
+      "records": 100,
+      "sha256": "e8822e26efb3184e6ceb74d88b440539b774f4a85ae5c6d5fcb0b4b1419c9a6a",
+      "missingNumbers": [],
+      "canonicalAreaCoverage": 100,
+      "themeCoverage": 100,
+      "answerStatuses": {
+        "not_declared": 100
+      }
+    },
+    {
+      "folder": "REVALIDA 2024 MD",
+      "records": 87,
+      "sha256": "1d30f135077355609e089354b6ee4dd8a766cb74705728cf9c89567de0c652f7",
+      "missingNumbers": [
+        6,
+        7,
+        15,
+        22,
+        23,
+        30,
+        44,
+        51,
+        59,
+        69,
+        86,
+        87,
+        95
+      ],
+      "canonicalAreaCoverage": 62,
+      "themeCoverage": 87,
+      "answerStatuses": {
+        "not_declared": 87
+      }
+    }
+  ],
+  "areas": [
+    {
+      "label": "Clínica Médica",
+      "sourceLabel": "Clínica Médica",
+      "count": 20,
+      "percent": 20,
+      "questions": [
+        1,
+        5,
+        8,
+        15,
+        22,
+        29,
+        36,
+        40,
+        41,
+        46,
+        51,
+        55,
+        58,
+        65,
+        68,
+        78,
+        79,
+        86,
+        90,
+        96
+      ]
+    },
+    {
+      "label": "Pediatria",
+      "sourceLabel": "Pediatria",
+      "count": 16,
+      "percent": 16,
+      "questions": [
+        2,
+        9,
+        16,
+        23,
+        30,
+        33,
+        42,
+        45,
+        52,
+        59,
+        60,
+        66,
+        72,
+        73,
+        92,
+        97
+      ]
+    },
+    {
+      "label": "Cirurgia",
+      "sourceLabel": "Cirurgia Geral",
+      "count": 14,
+      "percent": 14,
+      "questions": [
+        3,
+        10,
+        17,
+        24,
+        31,
+        37,
+        38,
+        43,
+        48,
+        53,
+        67,
+        74,
+        81,
+        98
+      ]
+    },
+    {
+      "label": "Ginecologia e Obstetrícia",
+      "sourceLabel": "Ginecologia e Obstetrícia",
+      "count": 14,
+      "percent": 14,
+      "questions": [
+        4,
+        11,
+        18,
+        25,
+        32,
+        44,
+        49,
+        54,
+        61,
+        75,
+        82,
+        89,
+        94,
+        99
+      ]
+    },
+    {
+      "label": "Saúde Coletiva",
+      "sourceLabel": "Medicina Preventiva e Social",
+      "count": 14,
+      "percent": 14,
+      "questions": [
+        6,
+        19,
+        20,
+        27,
+        34,
+        50,
+        56,
+        62,
+        63,
+        64,
+        77,
+        80,
+        88,
+        93
+      ]
+    },
+    {
+      "label": "Saúde Mental",
+      "sourceLabel": "Psiquiatria",
+      "count": 11,
+      "percent": 11,
+      "questions": [
+        7,
+        14,
+        21,
+        28,
+        35,
+        47,
+        71,
+        76,
+        85,
+        91,
+        95
+      ]
+    },
+    {
+      "label": "Medicina de Família",
+      "sourceLabel": "Medicina de Família e Comunidade",
+      "count": 11,
+      "percent": 11,
+      "questions": [
+        12,
+        13,
+        26,
+        39,
+        57,
+        69,
+        70,
+        83,
+        84,
+        87,
+        100
+      ]
+    }
+  ],
+  "overlaps": [
+    {
+      "left": "ENAMED_2025_CADERNO_1",
+      "right": "REVALIDA_2025_2",
+      "exactNormalizedStatementMatches": 37,
+      "pairs": [
+        [
+          1,
+          1
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          13,
+          13
+        ],
+        [
+          14,
+          14
+        ],
+        [
+          16,
+          16
+        ],
+        [
+          17,
+          17
+        ],
+        [
+          18,
+          18
+        ],
+        [
+          20,
+          20
+        ],
+        [
+          21,
+          21
+        ],
+        [
+          22,
+          22
+        ],
+        [
+          23,
+          23
+        ],
+        [
+          25,
+          25
+        ],
+        [
+          26,
+          26
+        ],
+        [
+          27,
+          27
+        ],
+        [
+          28,
+          28
+        ],
+        [
+          29,
+          29
+        ],
+        [
+          30,
+          30
+        ],
+        [
+          31,
+          31
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          34,
+          34
+        ],
+        [
+          35,
+          35
+        ],
+        [
+          36,
+          36
+        ],
+        [
+          37,
+          37
+        ],
+        [
+          39,
+          39
+        ],
+        [
+          42,
+          42
+        ],
+        [
+          44,
+          44
+        ],
+        [
+          45,
+          45
+        ],
+        [
+          46,
+          46
+        ],
+        [
+          47,
+          47
+        ],
+        [
+          48,
+          48
+        ],
+        [
+          49,
+          49
+        ],
+        [
+          50,
+          50
+        ]
+      ],
+      "note": "Lower bound only; transcription differences are not automatically treated as distinct items."
+    }
+  ],
+  "method": "Chart: the specialty field of all 100 ENAMED 2026 items, one label per item. Editorial catalog classification, not an official INEP allocation or forecast. Historical collections inform reviewed study suggestions, never a pooled incidence denominator.",
+  "limitations": [
+    "ENAMED 2025 has 90 loadable scored items; ten numbers were annulled or excluded, according to the app official-item source manifest.",
+    "Revalida 2024 and 2025/1 exports are incomplete; their absent numbers are not assumed to be annulled.",
+    "Revalida 2025/2 canonical theme Diarreia Aguda incorrectly includes items 2, 14, 30, 59 and 95, among others. No incidence is derived from that field.",
+    "ENAMED 2026 and Revalida 2026/2 share the same items (Edital INEP 76/2026, 3.1.1); do not double-count.",
+    "The supplied checklists describe editorial study priorities, not audited incidence percentages."
+  ],
+  "pdfs": [
+    {
+      "file": "C:\\Users\\medic\\Downloads\\AUSCULTO_ENAMED_2026.pdf",
+      "pages": 124,
+      "sha256": "7d68fef9b145d69b185bb8e435ca860fae57e36cb1ac8208cfdafd02cadc8172"
+    },
+    {
+      "file": "C:\\Users\\medic\\Downloads\\ENAMED%20CHECKLIST%20AUSCULTO%202026.pdf",
+      "pages": 24,
+      "sha256": "046e91a4ec91c19a98048c5f20f07d247f1fb2eaf4b1051d7977990267a502e0"
+    },
+    {
+      "file": "C:\\Users\\medic\\Downloads\\Checklist_ENAMED_Ausculto_2_paginas.pdf",
+      "pages": 2,
+      "sha256": "7a19dee51a0750f4bea68c6c8bece160d59508de05026f082d2044dec23bc754"
+    },
+    {
+      "file": "C:\\Users\\medic\\Downloads\\Checklist_Vespera_ENAMED_Revalida_2026_2.pdf",
+      "pages": 22,
+      "sha256": "bd0215e8582e7c4c5d3e06b939f17350bdb21dba639f0766c7bb52aa15e5a134"
+    }
+  ]
+}

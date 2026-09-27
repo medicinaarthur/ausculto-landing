@@ -1,0 +1,142 @@
+[
+  {
+    "id": "abdome-mecanismos",
+    "summaryId": "abdome-agudo",
+    "afterSection": "section-003",
+    "title": "Os mecanismos por trás das cinco síndromes",
+    "alt": "Esquema dos mecanismos inflamatório, perfurativo, obstrutivo, vascular e hemorrágico. A obstrução dilata o segmento proximal; a isquemia reduz o fluxo; a hemorragia extravasa sangue.",
+    "caption": "Leia junto à tabela: inflamação, perda da integridade da parede, bloqueio da passagem, redução do fluxo sanguíneo e sangramento são mecanismos distintos. Representação conceitual, sem escala anatômica ou valor diagnóstico isolado.",
+    "references": [
+      {
+        "label": "Tabela comparativa deste tema",
+        "url": "#section-003"
+      }
+    ],
+    "url": "/assets/academy/illustrations/abdome-mecanismos-66a30611d020b7a1.png",
+    "sha256": "66a30611d020b7a13bf5189e870da429bf54c9d4cfc9b2896ddd61d1b70a2822",
+    "masterSha256": "5bee813ee681bc222bf56c836c8d9e3831a267e5b9b2a89f3ec4a663e0f7cad9",
+    "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+    "width": 1475,
+    "height": 1066,
+    "reviewedOn": "2026-09-27",
+    "creation": "Original AI-generated supplementary educational illustration; concepts checked against cited sources. Not a figure from the published application.",
+    "oldUrl": "/assets/academy/illustrations/abdome-mecanismos-5545abc1baaab6ae.svg",
+    "watermark": {
+      "flattened": true,
+      "central": {
+        "widthFraction": 0.2,
+        "opacity": 0.085
+      },
+      "corner": {
+        "widthFraction": 0.055,
+        "opacity": 0.42
+      }
+    },
+    "creationMethod": "AI illustration preserved; deterministic in-area branding flattened in PNG"
+  },
+  {
+    "id": "acidobase-disturbios",
+    "summaryId": "disturbios-eletroliticos-e-acido-base",
+    "afterSection": "section-016",
+    "title": "Alteração primária e tendência do pH",
+    "alt": "Acidose metabólica: bicarbonato cai e pH tende a cair. Alcalose metabólica: bicarbonato sobe e pH tende a subir. Acidose respiratória: PaCO2 sobe e pH tende a cair. Alcalose respiratória: PaCO2 cai e pH tende a subir.",
+    "caption": "O esquema organiza as quatro alterações primárias. Compensação e distúrbios mistos precisam ser avaliados separadamente; as setas não substituem a interpretação completa da gasometria.",
+    "references": [
+      {
+        "label": "MSD/Merck — alterações primárias e compensação",
+        "url": "https://www.merckmanuals.com/professional/multimedia/table/primary-changes-and-compensations-in-simple-acid-base-disorders?ruleredirectid=747"
+      }
+    ],
+    "url": "/assets/academy/illustrations/acidobase-disturbios-938fc6f386aa1c85.png",
+    "sha256": "938fc6f386aa1c8531bbfdcddda9f2ea7e8917cbb8817c813aed7beac36ee4f6",
+    "masterSha256": "b0e2210d6091750dc7485a4531b48a4e9ff49f35992a4ee75085f7f8fb29ad87",
+    "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+    "width": 1422,
+    "height": 1106,
+    "reviewedOn": "2026-09-27",
+    "creation": "Original AI-generated supplementary educational illustration; concepts checked against cited sources. Not a figure from the published application.",
+    "oldUrl": "/assets/academy/illustrations/acidobase-disturbios-055572fbe424726c.svg",
+    "watermark": {
+      "flattened": true,
+      "central": {
+        "widthFraction": 0.2,
+        "opacity": 0.085
+      },
+      "corner": {
+        "widthFraction": 0.055,
+        "opacity": 0.42
+      }
+    },
+    "creationMethod": "AI illustration preserved; deterministic in-area branding flattened in PNG"
+  },
+  {
+    "id": "epidemiologia-agregados",
+    "summaryId": "estudos-epidemiologicos",
+    "afterSection": "section-017",
+    "title": "O grupo e a pessoa são unidades de análise diferentes",
+    "alt": "Dois grupos ilustrativos comparados no nível agregado e uma pessoa ampliada, com exposição e desfecho próprios. Uma associação entre grupos não permite atribuir a mesma relação a cada indivíduo.",
+    "caption": "Em estudos ecológicos, exposição e desfecho são analisados no agregado. Para relacioná-los em uma pessoa, é necessário conhecer seus dados individuais. Os símbolos são conceituais e não representam uma amostra real.",
+    "references": [
+      {
+        "label": "IARC/OMS — estudos com dados de rotina, capítulo 11",
+        "url": "https://publications.iarc.who.int/_publications/media/download/4118/a71dca0e43d2c356f8d810b83e419aa30c8472eb.pdf"
+      }
+    ],
+    "url": "/assets/academy/illustrations/epidemiologia-agregados-07392cc949807d0d.png",
+    "sha256": "07392cc949807d0d3ae9a95e0cf5875a11c2ac08b3c7fe0c828b100088619fb3",
+    "masterSha256": "1ea9a7be57eb2cd938c031d04fc19f124ad38bbafccaea9c619869adf1ce7938",
+    "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+    "width": 1536,
+    "height": 1024,
+    "reviewedOn": "2026-09-27",
+    "creation": "Original AI-generated supplementary educational illustration; concepts checked against cited sources. Not a figure from the published application.",
+    "oldUrl": "/assets/academy/illustrations/epidemiologia-agregados-5c91eb334f95aa48.svg",
+    "watermark": {
+      "flattened": true,
+      "central": {
+        "widthFraction": 0.2,
+        "opacity": 0.085
+      },
+      "corner": {
+        "widthFraction": 0.055,
+        "opacity": 0.42
+      }
+    },
+    "creationMethod": "AI illustration preserved; deterministic in-area branding flattened in PNG"
+  },
+  {
+    "id": "epidemiologia-desenhos",
+    "summaryId": "estudos-epidemiologicos",
+    "afterSection": "section-029",
+    "title": "Reconheça por onde o estudo começa",
+    "alt": "Coorte parte de expostos e não expostos e acompanha desfechos. Caso-controle parte de casos e controles e investiga exposição anterior. Transversal mede exposição e desfecho no mesmo recorte.",
+    "caption": "As setas indicam a direção da investigação. A coorte também pode reconstruir exposição e seguimento já ocorridos; o transversal, por si só, não estabelece qual veio primeiro. Pessoas e documentos são símbolos, sem dados reais.",
+    "references": [
+      {
+        "label": "CDC — epidemiologia analítica",
+        "url": "https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section7.html"
+      }
+    ],
+    "url": "/assets/academy/illustrations/epidemiologia-desenhos-a4c8cc67f6d1642f.png",
+    "sha256": "a4c8cc67f6d1642f11a25f369bf1012f9279b34a41325e809f730bc0d2aef894",
+    "masterSha256": "a2eabaa4318a9c81b65b26beb0f965ab926bc8ee53e9845f9a5e9846311db41f",
+    "watermarkSha256": "f76fb443fd4ba25db34ff65f68245ac0e71bf7f1b49649a7c93ab5a0b79812a4",
+    "width": 1422,
+    "height": 1106,
+    "reviewedOn": "2026-09-27",
+    "creation": "Original AI-generated supplementary educational illustration; concepts checked against cited sources. Not a figure from the published application.",
+    "oldUrl": "/assets/academy/illustrations/epidemiologia-desenhos-3c6839af75760ba1.svg",
+    "watermark": {
+      "flattened": true,
+      "central": {
+        "widthFraction": 0.2,
+        "opacity": 0.085
+      },
+      "corner": {
+        "widthFraction": 0.055,
+        "opacity": 0.42
+      }
+    },
+    "creationMethod": "AI illustration preserved; deterministic in-area branding flattened in PNG"
+  }
+]

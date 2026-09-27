@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-27",
+  "source": "Firestore questions; read-only export",
+  "questions": [
+    {
+      "id": "residencia_enamed_2026_c1_019",
+      "bankId": "enamed",
+      "examFolder": "enamed_2026_caderno_1",
+      "number": 19,
+      "sourceFileHash": "a820f00c424b7ce7f7e7b64d0a77424db6bc401e6f1bae776690db00d33e6aee",
+      "contentHash": "2df8ee8c84b7d8d8b7bbdf5d1d78c14366070b5029f706d9c15809f3bd9c6c16",
+      "sourceStatus": "preliminary",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "residencia_enamed_2026_c1_045",
+      "bankId": "enamed",
+      "examFolder": "enamed_2026_caderno_1",
+      "number": 45,
+      "sourceFileHash": "a820f00c424b7ce7f7e7b64d0a77424db6bc401e6f1bae776690db00d33e6aee",
+      "contentHash": "1855c724af74ae332f4941f60e0e504192ddaa70b874b10a6bacadb096733b4d",
+      "sourceStatus": "preliminary",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "residencia_enamed_2026_c1_064",
+      "bankId": "enamed",
+      "examFolder": "enamed_2026_caderno_1",
+      "number": 64,
+      "sourceFileHash": "a820f00c424b7ce7f7e7b64d0a77424db6bc401e6f1bae776690db00d33e6aee",
+      "contentHash": "feaf0aa7d847aaf939070a162b1437edd5a060be37e72a518e64a405ff81226f",
+      "sourceStatus": "preliminary",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "usp_sp_2026_q031",
+      "bankId": "usp-sp",
+      "examFolder": "USP_SP_2026",
+      "number": 31,
+      "sourceFileHash": "1670aac4b9bcf067fdfa18f6dc10d7d161b5778c0b603d6c557c045defac2456",
+      "contentHash": "9d6546619e7033990943f585471fd368dd2ad91005d18bdd0308dc53f946946b",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "usp_sp_2026_q078",
+      "bankId": "usp-sp",
+      "examFolder": "USP_SP_2026",
+      "number": 78,
+      "sourceFileHash": "1670aac4b9bcf067fdfa18f6dc10d7d161b5778c0b603d6c557c045defac2456",
+      "contentHash": "af71c3bda890172ea75a5b67036c60f95373a49ef3d0959b6bf9057776b7b6ac",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "usp_sp_2026_q108",
+      "bankId": "usp-sp",
+      "examFolder": "USP_SP_2026",
+      "number": 108,
+      "sourceFileHash": "1670aac4b9bcf067fdfa18f6dc10d7d161b5778c0b603d6c557c045defac2456",
+      "contentHash": "657e007c7fbb9fa6f200275f2b375c03e343943110d2d59d74fb240394677758",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "sus_sp_2026_q034",
+      "bankId": "sus-sp",
+      "examFolder": "SUS_SP_2026",
+      "number": 34,
+      "sourceFileHash": "896b8d128e48b1ef78a67b8f85a2221ca633bfdbb57b994bb3400572f313012d",
+      "contentHash": "0f96298dbebce9795a814c114935a7fcaffcdaa1a6f6da738ebb9312ee0d7fb3",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "sus_sp_2026_q055",
+      "bankId": "sus-sp",
+      "examFolder": "SUS_SP_2026",
+      "number": 55,
+      "sourceFileHash": "896b8d128e48b1ef78a67b8f85a2221ca633bfdbb57b994bb3400572f313012d",
+      "contentHash": "ffc98a4f6fd0a6b0665d07d3dc489d4b7e26f9d8f7abc40438839b73f0681cbb",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "sus_sp_2026_q080",
+      "bankId": "sus-sp",
+      "examFolder": "SUS_SP_2026",
+      "number": 80,
+      "sourceFileHash": "896b8d128e48b1ef78a67b8f85a2221ca633bfdbb57b994bb3400572f313012d",
+      "contentHash": "74cd2b733e40c4af6bb90ff1f227efe81d05acf8152809dfdb7d311a2c5cb2a3",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "einstein_2025_q028",
+      "bankId": "einstein",
+      "examFolder": "EINSTEIN_2025",
+      "number": 28,
+      "sourceFileHash": "becc9f4f4085f1a8e2d3a10fd92cdef8dc6e326334cbeae896745ec2c923d224",
+      "contentHash": "78f16e0e5bf738104dab2514df76141ca9ce4234c6f1b2a005137fe4c328f22e",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "einstein_2025_q053",
+      "bankId": "einstein",
+      "examFolder": "EINSTEIN_2025",
+      "number": 53,
+      "sourceFileHash": "becc9f4f4085f1a8e2d3a10fd92cdef8dc6e326334cbeae896745ec2c923d224",
+      "contentHash": "736483cac46873974f5688f69839fcc91bafd383f60f96c8e82657a90bc83cd0",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "einstein_2025_q070",
+      "bankId": "einstein",
+      "examFolder": "EINSTEIN_2025",
+      "number": 70,
+      "sourceFileHash": "becc9f4f4085f1a8e2d3a10fd92cdef8dc6e326334cbeae896745ec2c923d224",
+      "contentHash": "8d51073f4eb994bc5d674926ac634e51777b1f1e2e176c3fbf21d2f891f4348b",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "unifesp_2026_q014",
+      "bankId": "unifesp",
+      "examFolder": "UNIFESP_2026",
+      "number": 14,
+      "sourceFileHash": "f2497dee7c58c708f95f9f78a46c118715d84a8c2b8e70d9c26c6707d761b885",
+      "contentHash": "de12452dc4933de297821ebb497e2db3cdd5293db942df6974409c8e0b48dfb0",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "unifesp_2026_q043",
+      "bankId": "unifesp",
+      "examFolder": "UNIFESP_2026",
+      "number": 43,
+      "sourceFileHash": "f2497dee7c58c708f95f9f78a46c118715d84a8c2b8e70d9c26c6707d761b885",
+      "contentHash": "1ca858c34cc78e328fe85c2a6e096f5db0839b466217e93c22eb5d5f2cd489c4",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    },
+    {
+      "id": "unifesp_2026_q078",
+      "bankId": "unifesp",
+      "examFolder": "UNIFESP_2026",
+      "number": 78,
+      "sourceFileHash": "f2497dee7c58c708f95f9f78a46c118715d84a8c2b8e70d9c26c6707d761b885",
+      "contentHash": "1a74ba9471f4ac66d525bb5111a0568dde92feb8e989975ee9781f7e33213403",
+      "sourceStatus": "answer_official in imported exam",
+      "review": "Statement, alternatives and correct commentary inspected; cancelled and image-dependent questions excluded."
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "generator": "Built-in image_gen",
+  "generatedDirectory": "C:/Users/medic/.codex/generated_images/01a0e1db-9c32-7351-a3ac-8c0a62b523d5",
+  "revision": "2026-09-27-enamed-complete-edition",
+  "entries": [
+    {
+      "id": "enamed",
+      "layout": "desktop",
+      "generatedFile": "exec-335f21f8-4a30-4e4b-b7b4-312f84561e70.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit this exact printed two-page ENAMED paper artwork. Preserve its size, every position, paper texture, colors, typefaces, heart engraving, gutter and all left-page text, and especially the completely blank lower-left chart window. ONLY replace the three topic entries on the right page with the following exact Portuguese text, in the same hierarchy, size, spacing and numbered gold circles. 1 heading \"Imunizações e prevenção\"; body \"Revise calendário, hesitação vacinal e prevenção de infecções.\" 2 heading \"Saúde da mulher\"; body \"Conecte contracepção, rastreamento e cuidado na gestação.\" 3 heading \"APS e saúde mental\"; body \"Treine acolhimento, continuidade e articulação da rede.\" Preserve quote and INEP 2026 footer exactly. No graphs, numbers or extra writing in the blank chart area. Flat printable page asset only, no external desk, no scene. Accurate accents, sharp elegant typesetting.",
+      "copyHash": "98f370018c3d30d552479bd378d950e3ef4bc497a43323f9e4daf8e4a3df0b30"
+    },
+    {
+      "id": "enamed",
+      "layout": "mobile",
+      "generatedFile": "exec-fcb2a512-d868-4a56-83a5-7e0856164600.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit this exact portrait ENAMED paper artwork, preserve its exact aspect ratio, paper, all top headline and facts, engraving, positions and font sizes. Preserve completely blank chart window from 37% through 64% of total height. ONLY replace the two topic titles under \"Comece por\": numbered 1 becomes \"Imunizações e prevenção\"; numbered 2 becomes \"Saúde da mulher\". Keep both in navy bold serif fitting elegantly on one line each if possible, using the existing size or slightly smaller only if needed. Preserve the exact quote at bottom. No other change. No chart, no placeholder writing, no graphics in the large blank middle window. Flat print-ready paper artwork without frame or environment.",
+      "copyHash": "98f370018c3d30d552479bd378d950e3ef4bc497a43323f9e4daf8e4a3df0b30"
+    },
+    {
+      "id": "usp-sp",
+      "layout": "desktop",
+      "generatedFile": "exec-bf695f71-2b99-4231-acdd-e525dc8f0de4.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit the reference medical editorial two-page spread into the USP-SP edition. Preserve EXACT flat 1495:1052 rectangular two-page format, subtle warm ivory paper, central gutter, navy serif type, gold numbered headings and rules, typesetting sizes and layout. No book cover, no perspective, no desk, no website UI. Output edge-to-edge paper only. High resolution, sharp Portuguese accents.\nLeft page top: AUSCULTO ACADEMY\nUSP-SP\nDossiê da prova\n01 Perfil da prova\nDetalhes clínicos, interpretação de exames e a escolha do próximo passo.\nThree inline facts: 120 / questões ; 4 / alternativas ; 2026 / edição\nAt y=555 on 1052-high canvas: thin gold rule then 02 Como cobra\nCRITICAL leave entire lower left rectangle x85..685 y650..1000 completely blank ivory paper, no numbers, text, charts or illustrations. This region receives live charts later.\nRight page upper quarter: an antique anatomical brain engraving delicate low-contrast graphite, beside small letterspaced A PROFUNDIDADE ORIENTA A ESCOLHA.\nAt y300: 03 Comece por\n1 Oncologia e estadiamento\nOrganize a investigação antes da decisão terapêutica.\n\n2 Epidemiologia clínica\nCompare vieses e limites dos desenhos de estudo.\n\n3 Desenvolvimento infantil\nRevise marcos, sinais de alerta e investigação.\nBottom right elegant italic quotation: “Aprofundar o raciocínio também é preparar a resposta.”\nColophon FMUSP · FUVEST · 2026.\nKeep all text accurate, no additional words. Match reference visual rhythm closely.",
+      "copyHash": "8c077f1bdc97e71e84410dbf7e16f5fccda859f587e2b4d181a165fe02343d1a"
+    },
+    {
+      "id": "usp-sp",
+      "layout": "mobile",
+      "generatedFile": "exec-f59bf26e-70a0-478b-a7a3-eed8c825749b.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit this exact mobile editorial sheet into the USP-SP edition. Keep EXACTLY the same geometry, aspect ratio, edge-to-edge flat ivory paper, typography hierarchy, navy ink, gold rules, and especially the large BLANK CHART WINDOW between \"Como cobra\" and \"Comece por\". Do not move that window or put anything in it. Top engraving changes from heart to a small delicate antique brain engraving in upper right. No background, frame, desk, perspective, or UI.\nExact printed copy:\nAUSCULTO ACADEMY\nUSP-SP\nDossiê da prova\nThree facts in one row: 120 / questões ; 4 / alternativas ; 2026 / edição\nComo cobra\n[ENTIRE EMPTY IVORY WINDOW from 37% to64% of page height. Absolutely no text, data, numbers, or decoration in this region.]\nComece por\n1 Oncologia e estadiamento\n2 Epidemiologia clínica\n“Aprofundar o raciocínio também é preparar a resposta.”\nNo description paragraph. No third topic. Keep title, facts, headings and quote in the same zones. For long study topic names wrap to two lines within lower third without shrinking text below 46px per 1080px canvas. All accents perfect. Final paper will display at about350px wide, must remain legible. The artwork of every bank is distinct; retain restrained anatomical engraving and typeset quote, no branding logo recreation.",
+      "copyHash": "8c077f1bdc97e71e84410dbf7e16f5fccda859f587e2b4d181a165fe02343d1a"
+    },
+    {
+      "id": "sus-sp",
+      "layout": "desktop",
+      "generatedFile": "exec-e57b75dd-ef0a-4a79-b8ba-70453a471751.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit the reference medical editorial two-page spread into the SUS-SP edition. Preserve EXACT flat 1495:1052 rectangular two-page format, subtle warm ivory paper, central gutter, navy serif type, gold numbered headings and rules, typesetting sizes and layout. No book cover, no perspective, no desk, no website UI. Output edge-to-edge paper only. High resolution, sharp Portuguese accents.\nLeft page top: AUSCULTO ACADEMY\nSUS-SP\nDossiê da prova\n01 Perfil da prova\nCinco grandes áreas com o mesmo peso. Revisão equilibrada faz diferença.\nThree inline facts: 100 / questões ; 5 / alternativas ; 2026 / edição\nAt y=555 on 1052-high canvas: thin gold rule then 02 Como cobra\nCRITICAL leave entire lower left rectangle x85..685 y650..1000 completely blank ivory paper, no numbers, text, charts or illustrations. This region receives live charts later.\nRight page upper quarter: an antique hand skeleton engraving delicate low-contrast graphite, beside small letterspaced MÉTODO PARA CUIDAR MELHOR.\nAt y300: 03 Comece por\n1 Urgências pediátricas\nTreine a ordem das medidas no atendimento inicial.\n\n2 Anatomia aplicada\nRelacione a estrutura anatômica ao procedimento.\n\n3 Rastreamento e seguimento\nDiferencie teste inicial, confirmação e acompanhamento.\nBottom right elegant italic quotation: “Revisar com método torna o conhecimento mais disponível.”\nColophon SES-SP · VUNESP · 2026.\nKeep all text accurate, no additional words. Match reference visual rhythm closely.",
+      "copyHash": "1e9f8245c9acfd8bb3cae42da45c4723a4caca020f9e6dbcd361d372549589f4"
+    },
+    {
+      "id": "sus-sp",
+      "layout": "mobile",
+      "generatedFile": "exec-d5f99d7d-95c3-4826-97b9-f2e1736eebf1.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit this exact mobile editorial sheet into the SUS-SP edition. Keep EXACTLY the same geometry, aspect ratio, edge-to-edge flat ivory paper, typography hierarchy, navy ink, gold rules, and especially the large BLANK CHART WINDOW between \"Como cobra\" and \"Comece por\". Do not move that window or put anything in it. Top engraving changes from heart to a small delicate antique hand skeleton engraving in upper right. No background, frame, desk, perspective, or UI.\nExact printed copy:\nAUSCULTO ACADEMY\nSUS-SP\nDossiê da prova\nThree facts in one row: 100 / questões ; 5 / alternativas ; 2026 / edição\nComo cobra\n[ENTIRE EMPTY IVORY WINDOW from 37% to64% of page height. Absolutely no text, data, numbers, or decoration in this region.]\nComece por\n1 Urgências pediátricas\n2 Anatomia aplicada\n“Revisar com método torna o conhecimento mais disponível.”\nNo description paragraph. No third topic. Keep title, facts, headings and quote in the same zones. For long study topic names wrap to two lines within lower third without shrinking text below 46px per 1080px canvas. All accents perfect. Final paper will display at about350px wide, must remain legible. The artwork of every bank is distinct; retain restrained anatomical engraving and typeset quote, no branding logo recreation.",
+      "copyHash": "1e9f8245c9acfd8bb3cae42da45c4723a4caca020f9e6dbcd361d372549589f4"
+    },
+    {
+      "id": "einstein",
+      "layout": "desktop",
+      "generatedFile": "exec-c6c09a19-e201-4eca-9fa9-b7073531ffa4.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit the reference medical editorial two-page spread into the Einstein edition. Preserve EXACT flat 1495:1052 rectangular two-page format, subtle warm ivory paper, central gutter, navy serif type, gold numbered headings and rules, typesetting sizes and layout. No book cover, no perspective, no desk, no website UI. Output edge-to-edge paper only. High resolution, sharp Portuguese accents.\nLeft page top: AUSCULTO ACADEMY\nEinstein\nDossiê da prova\n01 Perfil da prova\nLeia os dados do caso, compare alternativas e justifique sua escolha.\nThree inline facts: 75 / questões ; 3 / fases ; 2026 / edição\nAt y=555 on 1052-high canvas: thin gold rule then 02 Como cobra\nCRITICAL leave entire lower left rectangle x85..685 y650..1000 completely blank ivory paper, no numbers, text, charts or illustrations. This region receives live charts later.\nRight page upper quarter: an antique anatomical eye engraving delicate low-contrast graphite, beside small letterspaced OBSERVAR PARA COMPREENDER.\nAt y300: 03 Comece por\n1 Emergências cardiovasculares\nIdentifique os dados que mudam a prioridade.\n\n2 Pré-natal e rastreamento\nCompare indicações e limites dos exames.\n\n3 Estudos clínicos\nRevise ensaios, revisões sistemáticas e metanálises.\nBottom right elegant italic quotation: “O dado decisivo merece atenção.”\nColophon Einstein Hospital Israelita · VUNESP · 2026.\nKeep all text accurate, no additional words. Match reference visual rhythm closely.",
+      "copyHash": "0395382775dada24bfaf2767c9ac35968c9caa71f02c1029f66ecf50f97a47fe"
+    },
+    {
+      "id": "einstein",
+      "layout": "mobile",
+      "generatedFile": "exec-de87a626-cd2f-4bc6-9269-00b768dc105b.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit this exact mobile editorial sheet into the Einstein edition. Keep EXACTLY the same geometry, aspect ratio, edge-to-edge flat ivory paper, typography hierarchy, navy ink, gold rules, and especially the large BLANK CHART WINDOW between \"Como cobra\" and \"Comece por\". Do not move that window or put anything in it. Top engraving changes from heart to a small delicate antique eye engraving in upper right. No background, frame, desk, perspective, or UI.\nExact printed copy:\nAUSCULTO ACADEMY\nEinstein\nDossiê da prova\nThree facts in one row: 75 / questões ; 3 / fases ; 2026 / edição\nComo cobra\n[ENTIRE EMPTY IVORY WINDOW from 37% to64% of page height. Absolutely no text, data, numbers, or decoration in this region.]\nComece por\n1 Emergências cardiovasculares\n2 Pré-natal e rastreamento\n“O dado decisivo merece atenção.”\nNo description paragraph. No third topic. Keep title, facts, headings and quote in the same zones. For long study topic names wrap to two lines within lower third without shrinking text below 46px per 1080px canvas. All accents perfect. Final paper will display at about350px wide, must remain legible. The artwork of every bank is distinct; retain restrained anatomical engraving and typeset quote, no branding logo recreation.",
+      "copyHash": "0395382775dada24bfaf2767c9ac35968c9caa71f02c1029f66ecf50f97a47fe"
+    },
+    {
+      "id": "unifesp",
+      "layout": "desktop",
+      "generatedFile": "exec-670484c3-756d-4449-af5c-c7fda52a2f0e.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit the reference medical editorial two-page spread into the UNIFESP edition. Preserve EXACT flat 1495:1052 rectangular two-page format, subtle warm ivory paper, central gutter, navy serif type, gold numbered headings and rules, typesetting sizes and layout. No book cover, no perspective, no desk, no website UI. Output edge-to-edge paper only. High resolution, sharp Portuguese accents.\nLeft page top: AUSCULTO ACADEMY\nUNIFESP\nDossiê da prova\n01 Perfil da prova\nConecte fundamentos, exames e condutas em diferentes cenários clínicos.\nThree inline facts: 100 / questões ; 4 / alternativas ; 2026 / edição\nAt y=555 on 1052-high canvas: thin gold rule then 02 Como cobra\nCRITICAL leave entire lower left rectangle x85..685 y650..1000 completely blank ivory paper, no numbers, text, charts or illustrations. This region receives live charts later.\nRight page upper quarter: an antique anatomical vertebral column engraving delicate low-contrast graphite, beside small letterspaced CONCEITOS QUE SE CONECTAM.\nAt y300: 03 Comece por\n1 Urologia e abdome agudo\nUse localização, tamanho e gravidade na resolução.\n\n2 Contracepção\nRevise elegibilidade e interações medicamentosas.\n\n3 Epidemiologia e bioestatística\nDiferencie associação, causalidade e incerteza.\nBottom right elegant italic quotation: “Conectar conceitos transforma a maneira de resolver.”\nColophon Escola Paulista de Medicina · 2026.\nKeep all text accurate, no additional words. Match reference visual rhythm closely.",
+      "copyHash": "ec8fdfcd4abd980a848a4829aab97dfbb6060f1839418cf186d7c8bfd810dd58"
+    },
+    {
+      "id": "unifesp",
+      "layout": "mobile",
+      "generatedFile": "exec-9f3ed752-1252-471d-9219-7131f3799ac4.png",
+      "visuallyReviewed": true,
+      "prompt": "Edit this exact mobile editorial sheet into the UNIFESP edition. Keep EXACTLY the same geometry, aspect ratio, edge-to-edge flat ivory paper, typography hierarchy, navy ink, gold rules, and especially the large BLANK CHART WINDOW between \"Como cobra\" and \"Comece por\". Do not move that window or put anything in it. Top engraving changes from heart to a small delicate antique vertebral column engraving in upper right. No background, frame, desk, perspective, or UI.\nExact printed copy:\nAUSCULTO ACADEMY\nUNIFESP\nDossiê da prova\nThree facts in one row: 100 / questões ; 4 / alternativas ; 2026 / edição\nComo cobra\n[ENTIRE EMPTY IVORY WINDOW from 37% to64% of page height. Absolutely no text, data, numbers, or decoration in this region.]\nComece por\n1 Urologia e abdome agudo\n2 Contracepção\n“Conectar conceitos transforma a maneira de resolver.”\nNo description paragraph. No third topic. Keep title, facts, headings and quote in the same zones. For long study topic names wrap to two lines within lower third without shrinking text below 46px per 1080px canvas. All accents perfect. Final paper will display at about350px wide, must remain legible. The artwork of every bank is distinct; retain restrained anatomical engraving and typeset quote, no branding logo recreation.",
+      "copyHash": "ec8fdfcd4abd980a848a4829aab97dfbb6060f1839418cf186d7c8bfd810dd58"
+    }
+  ]
+}

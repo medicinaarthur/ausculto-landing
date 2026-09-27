@@ -1,0 +1,106 @@
+{
+  "generator": "Built-in image_gen",
+  "revision": "2026-09-27-enamed-complete-edition",
+  "files": [
+    {
+      "id": "enamed",
+      "layout": "desktop",
+      "filename": "print-enamed-desktop.webp",
+      "nativeWidth": 1495,
+      "nativeHeight": 1052,
+      "bytes": 141884,
+      "sha256": "e33fcb7cf536ab6e91db3d2d7ffe83db0079ae98fcfa7b196cf082d24a399258",
+      "masterSha256": "9560d12063aed725138da81d76fb4f2ec2d63dcf014ee17cb972e2975c0b190f"
+    },
+    {
+      "id": "enamed",
+      "layout": "mobile",
+      "filename": "print-enamed-mobile.webp",
+      "nativeWidth": 1011,
+      "nativeHeight": 1555,
+      "bytes": 112944,
+      "sha256": "7c4c1e0914e98126b5b702f943f13956c8a71cfe9611bb8c86c653b38b93a6fc",
+      "masterSha256": "e93ee49a5c2eaa29cf32b5462b11b4884caadcdccd3779e2e1c0efec793a85d3"
+    },
+    {
+      "id": "usp-sp",
+      "layout": "desktop",
+      "filename": "print-usp-sp-desktop.webp",
+      "nativeWidth": 1495,
+      "nativeHeight": 1052,
+      "bytes": 153590,
+      "sha256": "67e66cbc5af812d11a02cd866260e4b0bfe5cb579bb47c248abf858acf538671",
+      "masterSha256": "e9a940e2550483b81a68e079856c3dbf484849d2b9b4028d149ade8f7a9b2812"
+    },
+    {
+      "id": "usp-sp",
+      "layout": "mobile",
+      "filename": "print-usp-sp-mobile.webp",
+      "nativeWidth": 1011,
+      "nativeHeight": 1556,
+      "bytes": 116234,
+      "sha256": "696db43f506b7b8d64fb76d452bab5e3b6cfe3f2f173e9f7cd811db87dce3a07",
+      "masterSha256": "2654bdbcb012068d363d18ad0a67d0aec1755c9da4ac3602e2098c3d4cb6d0ac"
+    },
+    {
+      "id": "sus-sp",
+      "layout": "desktop",
+      "filename": "print-sus-sp-desktop.webp",
+      "nativeWidth": 1495,
+      "nativeHeight": 1052,
+      "bytes": 147014,
+      "sha256": "aca11faa3753cc8c4a03e5d4a4938818daf2222231e3a44941f020cd795793fa",
+      "masterSha256": "c2704f8ecf0ff5585ae6682fa3dd6a0ba5d2c2148f64e08d851620b2a822a45a"
+    },
+    {
+      "id": "sus-sp",
+      "layout": "mobile",
+      "filename": "print-sus-sp-mobile.webp",
+      "nativeWidth": 1011,
+      "nativeHeight": 1555,
+      "bytes": 109944,
+      "sha256": "2ecf9df64a3b22b0ce4803a2b90fa3633eaffbfd8612d15a78cc704268026e22",
+      "masterSha256": "2e13d131d6518905f47cdea080afba08841a3319457666fcccc7e903ef434629"
+    },
+    {
+      "id": "einstein",
+      "layout": "desktop",
+      "filename": "print-einstein-desktop.webp",
+      "nativeWidth": 1495,
+      "nativeHeight": 1052,
+      "bytes": 149642,
+      "sha256": "c3929ef2caaafb888c130ac941e6cb27b3d4d919fe807e9a419f22d9d32cc6b3",
+      "masterSha256": "56e09ea141356071eb003a6fbde00fdf2c54b57d9de75325d2d72f5a6daa756a"
+    },
+    {
+      "id": "einstein",
+      "layout": "mobile",
+      "filename": "print-einstein-mobile.webp",
+      "nativeWidth": 1011,
+      "nativeHeight": 1555,
+      "bytes": 114908,
+      "sha256": "054100211f43a73b78e5add23b7864a430b2c37fed7e165d1e1c06388861e72e",
+      "masterSha256": "e6fcc926053a4a6af73ee3af2859b9c38809b7c121c23ed5e0dc0de8c4acf462"
+    },
+    {
+      "id": "unifesp",
+      "layout": "desktop",
+      "filename": "print-unifesp-desktop.webp",
+      "nativeWidth": 1494,
+      "nativeHeight": 1052,
+      "bytes": 146628,
+      "sha256": "8c95872e8028df6992bae3142ec73c7b3199ebc8600dd0a7f9c620a5454cd7d5",
+      "masterSha256": "50dc1242580083eda3c0e3a9ee1b0ea3d58c677dead36b8c5355001457cd1b86"
+    },
+    {
+      "id": "unifesp",
+      "layout": "mobile",
+      "filename": "print-unifesp-mobile.webp",
+      "nativeWidth": 1011,
+      "nativeHeight": 1556,
+      "bytes": 105108,
+      "sha256": "cd1c1d58b3691ce3add0b4a2a3112e025ccdfaceb2924912f0dc2bb1fe1c63a7",
+      "masterSha256": "8dd3bc93331f921552612e4d816f0b11983bfbe5efbd94fc52217b4a8cbbeea8"
+    }
+  ]
+}

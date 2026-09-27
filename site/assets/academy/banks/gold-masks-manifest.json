@@ -1,0 +1,44 @@
+[
+  {
+    "label": "ENAMED",
+    "source": "site/assets/academy/banks/enamed-mark-fa0ce2383a21.svg",
+    "sourceSha256": "fa0ce2383a21548551fc0401cd467f08bcac1d00d57e078f45a8fab1372459ce",
+    "filename": "site/assets/academy/banks/enamed-mark-fa0ce2383a21.webp",
+    "bytes": 12904
+  },
+  {
+    "label": "ENARE",
+    "source": "site/assets/academy/banks/enare-mark-5d8879ccf011.svg",
+    "sourceSha256": "5d8879ccf0119a855ea1a5809dd04b97564dda2f9663b986f1d200a6ba97f853",
+    "filename": "site/assets/academy/banks/enare-mark-5d8879ccf011.webp",
+    "bytes": 12232
+  },
+  {
+    "label": "UNIFESP",
+    "source": "site/assets/academy/banks/unifesp-mark-f509149fbbfd.svg",
+    "sourceSha256": "f509149fbbfd1d8de58ea28977015f46425f9a9ea6786b62c0b45769edb328e9",
+    "filename": "site/assets/academy/banks/unifesp-mark-f509149fbbfd.webp",
+    "bytes": 10524
+  },
+  {
+    "label": "USP",
+    "source": "site/assets/academy/banks/usp-mark-f3fa8df42b2f.svg",
+    "sourceSha256": "f3fa8df42b2f7df91bc6cd1f603ce1815413581ef1c4e73464e05589b86b4c19",
+    "filename": "site/assets/academy/banks/usp-mark-f3fa8df42b2f.webp",
+    "bytes": 4668
+  },
+  {
+    "label": "Einstein",
+    "source": "site/assets/academy/banks/einstein-mark-a04415e1e31b.svg",
+    "sourceSha256": "a04415e1e31b5b4a037685a57c260c63c8e660bb3649f41e6b65ffba360edf77",
+    "filename": "site/assets/academy/banks/einstein-mark-a04415e1e31b.webp",
+    "bytes": 21242
+  },
+  {
+    "label": "Sírio-Libanês",
+    "source": "site/assets/academy/banks/sirio-libanes-mark-08ceb5f9b00a.svg",
+    "sourceSha256": "08ceb5f9b00ad8e1f178cf8cc5909642ac95d169bdbd66299eb353c75d4f8600",
+    "filename": "site/assets/academy/banks/sirio-libanes-mark-08ceb5f9b00a.webp",
+    "bytes": 38944
+  }
+]

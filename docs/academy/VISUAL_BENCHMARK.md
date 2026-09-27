@@ -1,0 +1,34 @@
+# Composição visual — referências de educação médica
+
+Inspeção em 14/09/2026. Páginas abertas no navegador em 390×844 e 1440×1000; capturas locais em `commit-v1-premium-backport/.local-demo/academy-qa/benchmark-*`. A inspeção cobre o hero e os elementos que o sustentam, não uma auditoria integral de cada site. Cookies/pop-ups limitaram algumas capturas; o MEDGRUPO foi recapturado após rejeitar cookies. A captura mobile do Osmosis apresentou conteúdo cortado/overlay e não serve como referência confiável de responsividade.
+
+## Evidência por empresa
+
+| Empresa / página observada | Fotos e assets observados | Composição e comportamento | Aplicação ao Ausculto |
+|---|---|---|---|
+| [Medway](https://www.medway.com.br/) | Material de campanha composto: livros, bolsa, garrafa e pequenos elementos de produto, com títulos no próprio criativo. | Hero azul, texto à esquerda e criativo à direita no desktop; texto seguido pelo criativo no mobile. A imagem vende a oferta concreta. | Compor objetos relacionados ao estudo; não usar paisagem genérica. Não copiar brindes, urgência, preços ou promessas que não oferecemos. |
+| [MedCof](https://www.grupomedcof.com.br/) | Pessoas recortadas, quadros vermelhos, elementos menores e nomes/resultados associados a cada pessoa. O arquivo `img1.webp` foi inspecionado isoladamente. | O recorte ultrapassa seu quadro, e a tipografia participa do mesmo conjunto. No mobile, a composição vem após proposição, CTA e seleção de prova. | Aprender a relação entre camadas, escala e recorte. Não atribuir nomes, credenciais ou aprovações a personagens ilustrativos. |
+| [MEDGRUPO](https://medgrupo.com.br/medcursoemed/) | Campanha preta/amarela, marcas dos cursos, superfícies de produto e conteúdo audiovisual. | Forte contraste, títulos de campanha e grandes blocos de oferta; navegação simplificada no mobile. | Ritmo e ênfase de campanha, preservando a marca própria. Não adotar calendário comercial ou linguagem de produto não disponível. |
+| [SanarMed](https://sanarmed.com/) | Cards de ferramentas/materiais, fotografia contextual com texto sobreposto e chamadas por assunto. | Busca com destaque; aquisição por um problema específico, não só por uma marca genérica. | Artigos e entradas temáticas em `/conteudos/`, com utilidade real e continuidade no mesmo tema. |
+| [Estratégia MED](https://med.estrategia.com/concursos.cursos/) | Criativo de assinatura com tipografia, preço e efeito gráfico integrado. | Campanha densa em carrossel; adaptação mobile do criativo e CTA separado. | Tratar a arte como uma composição deliberada. Evitar excesso promocional, preço/urgência inventados e texto crucial rasterizado. |
+| [AMBOSS](https://www.amboss.com/us/students) | Fotografia de estudantes/ambiente, texto sobre percurso, módulos de confiança e aprendizado. | Benefício e caminho de estudo lideram; estrutura mobile reorganiza a narrativa antes da imagem. | Clareza de percurso e continuidade do estudo; distinguir leitura de prática e desempenho. |
+| [Lecturio Medical](https://www.lecturio.com/medical/) | Pessoa recortada, folha de percurso, gráfico de apoio e pequenos elementos médicos em assets separados. | A foto não está dentro de um cartão: pessoa, plano de fundo e materiais se sobrepõem. A composição é reposicionada no mobile. | Referência principal para a arquitetura de assets solicitada: transparência real, camadas independentes e elementos que representam recursos existentes. |
+| [Osmosis](https://www.osmosis.org/) | Linguagem de aprendizado visual, grande campo de cor e entradas por profissão. | Hero e seleção de público observados; overlay e corte limitaram o julgamento mobile. | Referência de segmentação e coerência visual, sem afirmar qualidade mobile com base numa captura incompleta. |
+| [Med School Bootcamp](https://bootcamp.com/med-school) | Fotografia de dispositivo em uso como fundo; abaixo, demonstração efetiva do produto. | Fundo escurecido integra contexto e proposição; CTA destacado antes da demonstração. | Mostrar para que serve o produto. O usuário rejeitou screenshots nesta landing, portanto essa técnica específica não foi adotada. |
+| [UWorld Medical](https://medical.uworld.com/usmle/usmle-step-1/) | Monitor com conteúdo real do banco e ilustração explicativa no produto. | A prova visual do produto vem cedo, junto a benefícios concretos e avaliações. | Conteúdo demonstrável vale mais que decoração, mas números, avaliações e prints concorrentes não podem ser transplantados. |
+
+## Assets examinados separadamente
+
+- [MedCof: composição de aprovados](https://www.grupomedcof.com.br/img1.webp): recortes + campos gráficos + tipografia no mesmo criativo. Arquivado apenas como referência local, fora da árvore pública.
+- [Lecturio: learning path](https://cdn.lecturio.com/assets/homepage-header-learning-path.png): PNG independente. No DOM, a pessoa usa `header-female-doc-medical-min.png` como background e a forma de apoio usa `triangle-outline-7.svg`. Isso confirma uma composição de camadas, em vez de uma fotografia retangular única.
+- [Medway: criativo de materiais](https://site-medway.s3.sa-east-1.amazonaws.com/wp-content/uploads/sites/5/2026/08/18090800/2-hero-lista-espera_ext-27-6-1.png): materiais têm hierarquia, perspectiva e relacionamento com a oferta. Nenhum item ou arquivo concorrente entra no site Ausculto.
+
+## Decisão aplicada
+
+Após a rejeição explícita da montagem de assets, a prioridade aplicada é **1. Bootcamp — dispositivo em uso numa cena; 2. AMBOSS — contexto e percurso de estudo; 3. Sanar — aquisição temática; 4. Medway — relação entre imagem e oferta; 5. Lecturio/MedCof — hierarquia e composição, sem imitar o empilhamento de elementos.** O ranking expressa adequação ao pedido corrigido, não superioridade geral nem previsão de conversão.
+
+O hero em cartão, as folhas CSS e a montagem de materiais com uma estudante foram rejeitados. A última falha foi concreta: objetos sem relação espacial coerente e um kit físico dominando a apresentação de um app. A versão atual usa UMA fotografia editorial ilustrativa de estudo pelo tablet, com perspectiva e iluminação comuns. O campo navy recebe o texto no desktop; no mobile, a mesma cena fica abaixo das ações, de ponta a ponta, mantendo rostos, mãos e dispositivo no enquadramento. Não há screenshots, recortes sobrepostos, livros gigantes ou moldura. O CTA explicita o estudo no app; a logo oficial permanece intacta. Os resumos seguem sujeitos à liberação editorial. Capturas atuais: `scene-mobile.png` e `scene-desktop.png`; `campaign-*` documentam a versão rejeitada.
+
+## Limites da conclusão
+
+Capturas mostram composição, não conversão. Fotografias de concorrentes, nomes, resultados e métricas não foram reutilizados. Nenhuma inspeção visual substitui a aceitação do usuário. O comparativo é evidência de direção, não uma declaração automática de que o resultado final atingiu o nível desejado.

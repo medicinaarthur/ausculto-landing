@@ -1,0 +1,32 @@
+{
+  "capturedAt": "2026-09-27T18:45:35.737Z",
+  "source": "Current canonical app source via atlas_tools_refresh_capture_test.dart",
+  "captureType": "Flutter component runtime, synthetic account, no remote mutation",
+  "fontWarning": "Montserrat-Black cache warning; visible typography inspected",
+  "artifacts": [
+    {
+      "file": "tools-refresh__1024x2000_light__pro.png",
+      "name": "tablet",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 2048,
+        "height": 1536
+      },
+      "width": 1440,
+      "sha256": "ee86723d0926670853408849da48086bbc4950d9d9331ef09cfd4aad3cd92d4b"
+    },
+    {
+      "file": "tools-refresh__390x2600_light__free.png",
+      "name": "mobile",
+      "crop": {
+        "left": 0,
+        "top": 0,
+        "width": 780,
+        "height": 1400
+      },
+      "width": 780,
+      "sha256": "fbdda540ee801dbadfdcd3196d5072c9631d29fc4ff2b92604b14e585a321b88"
+    }
+  ]
+}

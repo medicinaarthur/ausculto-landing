@@ -1,8 +1,22 @@
 # Deploy config — RECONSTRUCTED, validate before any deploy
 
+## Current main-site source (2026-09-14)
+
+The `site` target now builds from `site/` into `dist/site`, using the preserved published snapshot as its baseline. Root `index.html` is not the source of this target. Existing `embaixadores/` edits are included by the build without changing their source. ENAMED remains a separate target and source at `enamed/index.html`.
+
+Run `npm run build:site`, `npm run verify:site` and `npm run test:academy-content` for local validation. The build adds `/estudantes/` and `/conteudos/`. Without an explicitly approved release, it emits zero articles and discloses that the collection is under review. `node scripts/build-site.mjs --release <release.json>` accepts only reviewed public portions; never copy the protected release or PDFs into `site/`.
+
+`dist/site-manifest.json` records the generated artifact hashes outside the public directory. Verification checks that artifact, so rebuild after changing any source. Build and verification do not publish. Production activation still depends on whole-corpus editorial clearance and the app's disabled-by-default release gates.
+
 `firebase.json` and `.firebaserc` in this repo were **reconstructed on 2026-08-21 from observed live behavior** of https://auscultoapp.com (Firebase project `auscultoapp`, default Hosting site). They were **not** recovered from the original deploy source.
 
 ## Evidence used
+
+## Continuous ENAMED candidate (local, not deployed)
+
+`enamed/continuous.html` is the evergreen replacement candidate. Run `npm run test:enamed-continuous`, `npm run build:enamed-continuous`, and `npm run verify:enamed-continuous`. Its isolated allowlisted output is `dist/enamed-continuous`; source and artifact hashes must agree. The existing ads entry `enamed/index.html`, its build and production target remain intact. When this candidate is released, the ENAMED Hosting target must explicitly select this output; no current production command silently switches campaigns. The candidate uses absolute site/app links, canonical and sitemap for the ENAMED subdomain, and no live backend rewrites or tracking requests.
+
+## Observed hosting evidence
 
 - `/_bridge/appstore-click` returns `204 No Content` for both GET and POST with `Server: Google Frontend` + `X-Cloud-Trace-Context` headers → Cloud Function rewrite. Function name `recordAppStoreClick` per project convention (verify in Firebase console → Functions).
 - Observed `Cache-Control` on live (2026-08-21):

@@ -1,0 +1,593 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-27",
+  "editorialNote": "Orientações editoriais baseadas nos cadernos do acervo. Não representam incidência estatística nem previsão de prova.",
+  "banks": [
+    {
+      "id": "enamed",
+      "canonicalBank": "ENAMED",
+      "name": "ENAMED",
+      "icon": "books",
+      "institution": "INEP",
+      "edition": "2026",
+      "mode": "Avaliação da formação médica",
+      "description": "Conhecimentos médicos aplicados a situações de cuidado. Uma leitura que conecta diagnóstico, conduta e atenção à saúde.",
+      "facts": [
+        {
+          "value": "100",
+          "label": "questões"
+        },
+        {
+          "value": "5h",
+          "label": "de prova"
+        },
+        {
+          "value": "2026",
+          "label": "edição"
+        }
+      ],
+      "insights": [
+        {
+          "title": "O caso antes da resposta",
+          "text": "Reconheça o problema central e o contexto de atendimento."
+        },
+        {
+          "title": "Cuidado integral",
+          "text": "Relacione a clínica à prevenção e à saúde coletiva."
+        },
+        {
+          "title": "A próxima decisão",
+          "text": "Diferencie hipótese diagnóstica, investigação e conduta."
+        }
+      ],
+      "themes": [
+        {
+          "title": "Imunizações e prevenção",
+          "text": "Revise calendário, hesitação vacinal e prevenção de infecções."
+        },
+        {
+          "title": "Saúde da mulher",
+          "text": "Conecte contracepção, rastreamento e cuidado na gestação."
+        },
+        {
+          "title": "APS e saúde mental",
+          "text": "Treine acolhimento, continuidade e articulação da rede."
+        }
+      ],
+      "sourceNote": "Perfil e gráfico: ENAMED 2026 completo. Orientação de estudo confrontada com ENAMED 2025, Revalida 2024 e 2025/1–2 e os checklists Ausculto fornecidos. Questões compartilhadas não são somadas como evidências independentes. Revalida 2026/2 utiliza as mesmas questões do ENAMED 2026. A prática identifica o ano e o status do gabarito de cada questão.",
+      "sources": [
+        {
+          "label": "Provas e gabaritos · INEP",
+          "url": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enamed/provas-e-gabaritos"
+        },
+        {
+          "label": "Aplicação de 2026 · duração",
+          "url": "https://www.gov.br/hubrasil/pt-br/comunicacao/noticias/provas-objetivas-do-enare-e-enamed-serao-aplicadas-neste-domingo-13"
+        },
+        {
+          "label": "Revalida 2026/2 · edital, item 3.1.1",
+          "url": "https://mecnormas.mec.gov.br/pesquisa/detalhar/12400"
+        }
+      ],
+      "practiceFolder": "enamed_2026_caderno_1",
+      "practiceYear": 2026,
+      "practiceNumbers": [
+        19,
+        45,
+        64
+      ],
+      "practiceThemes": [
+        "Alimentação e prevenção",
+        "Imunizações",
+        "Rede de Atenção Psicossocial"
+      ],
+      "quote": "Conhecimento ganha sentido quando orienta uma decisão.",
+      "shortDescription": "Da atenção primária à urgência: diagnóstico, cuidado e decisão.",
+      "distribution": {
+        "kind": "editorial",
+        "year": 2026,
+        "total": 100,
+        "label": "ENAMED 2026 · 100 questões",
+        "note": "Distribuição por especialidade cadastrada no Ausculto nas 100 questões do caderno 1 de 2026. Cada item é contado uma vez. Os agrupamentos são editoriais, não pesos oficiais do INEP nem previsão da próxima prova. Saúde Mental e atenção primária também atravessam outras áreas. Gabarito de 2026: preliminar.",
+        "areas": [
+          {
+            "label": "Clínica Médica",
+            "count": 20,
+            "percent": 20
+          },
+          {
+            "label": "Pediatria",
+            "count": 16,
+            "percent": 16
+          },
+          {
+            "label": "Cirurgia",
+            "count": 14,
+            "percent": 14
+          },
+          {
+            "label": "Ginecologia e Obstetrícia",
+            "count": 14,
+            "percent": 14
+          },
+          {
+            "label": "Saúde Coletiva",
+            "count": 14,
+            "percent": 14
+          },
+          {
+            "label": "Saúde Mental",
+            "count": 11,
+            "percent": 11
+          },
+          {
+            "label": "Medicina de Família",
+            "count": 11,
+            "percent": 11
+          }
+        ]
+      },
+      "studyEvidence": [
+        {
+          "title": "Imunizações e prevenção",
+          "references": [
+            "ENAMED 2025: 47, 55",
+            "ENAMED 2026: 26, 45, 73",
+            "Revalida 2025/1: 81, 90",
+            "Revalida 2024: 28, 80"
+          ]
+        },
+        {
+          "title": "Saúde da mulher",
+          "references": [
+            "ENAMED 2025: 49, 54, 75",
+            "ENAMED 2026: 32, 49, 61, 84",
+            "Revalida 2025/1: 65",
+            "Revalida 2025/2: 68, 69"
+          ]
+        },
+        {
+          "title": "APS e saúde mental",
+          "references": [
+            "ENAMED 2025: 71",
+            "ENAMED 2026: 7, 13, 64, 71, 85",
+            "Checklist ENAMED Ausculto 2026: prioridades de APS, ética e saúde mental"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "usp-sp",
+      "canonicalBank": "FUVEST-USP",
+      "name": "USP-SP",
+      "icon": "buildings",
+      "institution": "FMUSP · FUVEST",
+      "edition": "2026",
+      "mode": "Áreas básicas e acesso direto",
+      "description": "Uma prova de acesso direto que reúne situações clínicas de diferentes áreas. Leia os detalhes e identifique o que a pergunta realmente solicita.",
+      "facts": [
+        {
+          "value": "120",
+          "label": "questões"
+        },
+        {
+          "value": "4",
+          "label": "alternativas"
+        },
+        {
+          "value": "2026",
+          "label": "edição"
+        }
+      ],
+      "insights": [
+        {
+          "title": "Detalhes que mudam o caso",
+          "text": "Idade, evolução e exames orientam a decisão."
+        },
+        {
+          "title": "Interpretação de dados",
+          "text": "Entenda o significado clínico e os limites da informação."
+        },
+        {
+          "title": "Condutas em sequência",
+          "text": "Separe o próximo passo do tratamento definitivo."
+        }
+      ],
+      "themes": [
+        {
+          "title": "Oncologia e estadiamento",
+          "text": "Organize a investigação antes da decisão terapêutica."
+        },
+        {
+          "title": "Epidemiologia clínica",
+          "text": "Compare vieses e limites dos desenhos de estudo."
+        },
+        {
+          "title": "Desenvolvimento infantil",
+          "text": "Revise marcos, sinais de alerta e investigação."
+        }
+      ],
+      "sourceNote": "Caderno de acesso direto de 2026 no acervo. Temas apresentados como percurso editorial, sem estimativa de incidência.",
+      "sources": [
+        {
+          "label": "Edital 2026 · FUVEST",
+          "url": "https://www.fuvest.br/wp-content/uploads/rm2026_edital_03-2025.pdf"
+        }
+      ],
+      "practiceFolder": "USP_SP_2026",
+      "practiceYear": 2026,
+      "practiceNumbers": [
+        31,
+        78,
+        108
+      ],
+      "practiceThemes": [
+        "Melanoma",
+        "Viés de informação",
+        "Puberdade precoce"
+      ],
+      "quote": "Aprofundar o raciocínio também é preparar a resposta.",
+      "shortDescription": "Detalhes clínicos, interpretação de exames e a escolha do próximo passo.",
+      "distribution": {
+        "kind": "official",
+        "year": 2026,
+        "total": 120,
+        "label": "Distribuição do edital · 2026",
+        "note": "Edital COREME/FM 03/2025, seção V, item 1.1. Cinco blocos básicos, com Preventiva, MFC e Saúde Coletiva agrupadas. Saúde Mental e Urgência também integram o conteúdo.",
+        "areas": [
+          {
+            "label": "Clínica Médica",
+            "count": 24,
+            "percent": 20
+          },
+          {
+            "label": "Cirurgia",
+            "count": 24,
+            "percent": 20
+          },
+          {
+            "label": "Pediatria",
+            "count": 24,
+            "percent": 20
+          },
+          {
+            "label": "Ginecologia e Obstetrícia",
+            "count": 24,
+            "percent": 20
+          },
+          {
+            "label": "Preventiva e MFC",
+            "count": 24,
+            "percent": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "sus-sp",
+      "canonicalBank": "SUS-SP",
+      "name": "SUS-SP",
+      "icon": "first-aid",
+      "institution": "SES-SP · VUNESP",
+      "edition": "2026",
+      "mode": "Residência médica · acesso direto",
+      "description": "Formação médica aplicada às situações do atendimento. O caderno permite revisar fundamentos, reconhecer achados e escolher a conduta solicitada.",
+      "facts": [
+        {
+          "value": "100",
+          "label": "questões"
+        },
+        {
+          "value": "5",
+          "label": "alternativas"
+        },
+        {
+          "value": "2026",
+          "label": "edição"
+        }
+      ],
+      "insights": [
+        {
+          "title": "Fundamentos em contexto",
+          "text": "A anatomia e a fisiopatologia ajudam a resolver o caso."
+        },
+        {
+          "title": "Prioridades no atendimento",
+          "text": "Identifique qual intervenção vem primeiro."
+        },
+        {
+          "title": "Achados e condutas",
+          "text": "Relacione o resultado do exame à orientação adequada."
+        }
+      ],
+      "themes": [
+        {
+          "title": "Urgências pediátricas",
+          "text": "Treine a ordem das medidas no atendimento inicial."
+        },
+        {
+          "title": "Anatomia aplicada",
+          "text": "Relacione a estrutura anatômica ao procedimento."
+        },
+        {
+          "title": "Rastreamento e seguimento",
+          "text": "Diferencie teste inicial, confirmação e acompanhamento."
+        }
+      ],
+      "sourceNote": "Caderno de acesso direto de 2026 no acervo. Orientações editoriais ilustradas pelas questões da prática.",
+      "sources": [
+        {
+          "label": "Processo seletivo 2026 · VUNESP",
+          "url": "https://www.vunesp.com.br/SESA2504"
+        }
+      ],
+      "practiceFolder": "SUS_SP_2026",
+      "practiceYear": 2026,
+      "practiceNumbers": [
+        34,
+        55,
+        80
+      ],
+      "practiceThemes": [
+        "Anatomia portal",
+        "Cetoacidose diabética",
+        "Achados mamográficos"
+      ],
+      "quote": "Revisar com método torna o conhecimento mais disponível.",
+      "shortDescription": "Cinco grandes áreas com o mesmo peso. Revisão equilibrada faz diferença.",
+      "distribution": {
+        "kind": "official",
+        "year": 2026,
+        "total": 100,
+        "label": "Distribuição do edital · 2026",
+        "note": "Edital SES-SP 2026, capítulo 9, tabela de acesso direto: 20 questões por grande área.",
+        "areas": [
+          {
+            "label": "Clínica Médica",
+            "count": 20,
+            "percent": 20
+          },
+          {
+            "label": "Cirurgia",
+            "count": 20,
+            "percent": 20
+          },
+          {
+            "label": "Pediatria",
+            "count": 20,
+            "percent": 20
+          },
+          {
+            "label": "Ginecologia e Obstetrícia",
+            "count": 20,
+            "percent": 20
+          },
+          {
+            "label": "Preventiva e MFC",
+            "count": 20,
+            "percent": 20
+          }
+        ]
+      }
+    },
+    {
+      "id": "einstein",
+      "canonicalBank": "EINSTEIN",
+      "name": "Einstein",
+      "icon": "atom",
+      "institution": "Einstein Hospital Israelita · VUNESP",
+      "edition": "2026",
+      "mode": "Residência médica · acesso direto",
+      "description": "A prova objetiva integra um processo com etapas prática e curricular. A preparação combina conhecimento clínico e leitura crítica das alternativas.",
+      "facts": [
+        {
+          "value": "75",
+          "label": "questões"
+        },
+        {
+          "value": "3",
+          "label": "fases"
+        },
+        {
+          "value": "2026",
+          "label": "edição"
+        }
+      ],
+      "insights": [
+        {
+          "title": "A melhor alternativa",
+          "text": "Compare afirmações próximas e seus limites."
+        },
+        {
+          "title": "Medicina e evidências",
+          "text": "Revise a interpretação dos métodos de pesquisa."
+        },
+        {
+          "title": "Conhecimento aplicado",
+          "text": "Conecte prevenção, investigação e cuidado clínico."
+        }
+      ],
+      "themes": [
+        {
+          "title": "Emergências cardiovasculares",
+          "text": "Identifique os dados que mudam a prioridade."
+        },
+        {
+          "title": "Pré-natal e rastreamento",
+          "text": "Compare indicações e limites dos exames."
+        },
+        {
+          "title": "Estudos clínicos",
+          "text": "Revise ensaios, revisões sistemáticas e metanálises."
+        }
+      ],
+      "sourceNote": "Perfil: edital de 2026. Prática: questões de 2025, com gabarito da banca. As etapas variam conforme o programa.",
+      "sources": [
+        {
+          "label": "Edital 2026 · Einstein/VUNESP",
+          "url": "https://documento.vunesp.com.br/documento/stream/NzE1MDkyMA%3D%3D"
+        },
+        {
+          "label": "Gabarito 2025 · VUNESP",
+          "url": "https://documento.vunesp.com.br/documento/stream/NjU3MDg2OQ%3D%3D"
+        }
+      ],
+      "practiceFolder": "EINSTEIN_2025",
+      "practiceYear": 2025,
+      "practiceNumbers": [
+        28,
+        53,
+        70
+      ],
+      "practiceThemes": [
+        "Câncer colorretal",
+        "Aloimunização",
+        "Metanálise"
+      ],
+      "quote": "O dado decisivo merece atenção.",
+      "shortDescription": "Leia os dados do caso, compare alternativas e justifique sua escolha.",
+      "distribution": {
+        "kind": "editorial",
+        "year": 2025,
+        "total": 71,
+        "label": "Acervo 2025 · 71 itens",
+        "note": "Análise editorial do caderno de acesso direto de 2025. Agrupamento por blocos e contexto das questões: 1–15 Clínica, 16–30 Cirurgia, 31–45 Pediatria, 46–60 GO, 61–75 MFC/Preventiva. Excluídas as questões 11, 31, 44 e 45, anuladas no acervo. A amostra de 71 itens não representa os pesos do edital de 2026.",
+        "areas": [
+          {
+            "label": "Clínica Médica",
+            "count": 14,
+            "percent": 19.7
+          },
+          {
+            "label": "Cirurgia",
+            "count": 15,
+            "percent": 21.1
+          },
+          {
+            "label": "Pediatria",
+            "count": 12,
+            "percent": 16.9
+          },
+          {
+            "label": "Ginecologia e Obstetrícia",
+            "count": 15,
+            "percent": 21.1
+          },
+          {
+            "label": "Preventiva e MFC",
+            "count": 15,
+            "percent": 21.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "unifesp",
+      "canonicalBank": "UNIFESP",
+      "name": "UNIFESP",
+      "icon": "bank",
+      "institution": "Escola Paulista de Medicina",
+      "edition": "2026",
+      "mode": "Residência médica · acesso direto",
+      "description": "Situações clínicas exigem reconhecer o detalhe decisivo e comparar as possibilidades de cuidado. Um estudo que aproxima fundamento e aplicação.",
+      "facts": [
+        {
+          "value": "100",
+          "label": "questões"
+        },
+        {
+          "value": "4",
+          "label": "alternativas"
+        },
+        {
+          "value": "2026",
+          "label": "edição"
+        }
+      ],
+      "insights": [
+        {
+          "title": "O dado que diferencia",
+          "text": "Tamanho, localização e contexto mudam a escolha."
+        },
+        {
+          "title": "Cuidado individualizado",
+          "text": "Considere medicações e condições associadas."
+        },
+        {
+          "title": "Pesquisa e prática",
+          "text": "Entenda o que cada desenho de estudo permite avaliar."
+        }
+      ],
+      "themes": [
+        {
+          "title": "Urologia e abdome agudo",
+          "text": "Use localização, tamanho e gravidade na resolução."
+        },
+        {
+          "title": "Contracepção",
+          "text": "Revise elegibilidade e interações medicamentosas."
+        },
+        {
+          "title": "Epidemiologia e bioestatística",
+          "text": "Diferencie associação, causalidade e incerteza."
+        }
+      ],
+      "sourceNote": "Caderno de acesso direto de 2026 no acervo. Temas apresentados como percurso editorial, sem estimativa de incidência.",
+      "sources": [
+        {
+          "label": "Residência médica · UNIFESP",
+          "url": "https://site.unifesp.br/coreme/"
+        }
+      ],
+      "practiceFolder": "UNIFESP_2026",
+      "practiceYear": 2026,
+      "practiceNumbers": [
+        14,
+        43,
+        78
+      ],
+      "practiceThemes": [
+        "Litíase renal",
+        "Contracepção",
+        "Estudo caso-controle"
+      ],
+      "quote": "Conectar conceitos transforma a maneira de resolver.",
+      "shortDescription": "Conecte fundamentos, exames e condutas em diferentes cenários clínicos.",
+      "distribution": {
+        "kind": "editorial",
+        "year": 2026,
+        "total": 100,
+        "label": "Acervo 2026 · 100 itens",
+        "note": "Análise editorial dos 100 itens de acesso direto de 2026 no acervo, por competência predominante. Urologia, ortopedia, perioperatório e oncologia cirúrgica integram Cirurgia; psiquiatria integra Clínica; epidemiologia e ética integram Preventiva. Não é percentual oficial do edital nem previsão de temas futuros.",
+        "areas": [
+          {
+            "label": "Cirurgia",
+            "count": 24,
+            "percent": 24
+          },
+          {
+            "label": "Clínica Médica",
+            "count": 22,
+            "percent": 22
+          },
+          {
+            "label": "Ginecologia e Obstetrícia",
+            "count": 18,
+            "percent": 18
+          },
+          {
+            "label": "Preventiva e MFC",
+            "count": 18,
+            "percent": 18
+          },
+          {
+            "label": "Pediatria",
+            "count": 18,
+            "percent": 18
+          }
+        ]
+      }
+    }
+  ],
+  "analysisMethod": "ENAMED: classificação por especialidade das 100 questões de 2026 no aplicativo; edições anteriores e Revalida fundamentam orientações, sem mistura de denominadores. Einstein e UNIFESP: classificação editorial dos cadernos indicados. USP-SP e SUS-SP: distribuição do edital. Cada gráfico explicita sua edição e método; não constitui previsão de prova."
+}

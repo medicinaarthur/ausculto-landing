@@ -1,0 +1,253 @@
+<dialog class="qdemo-dialog" id="qdemo" aria-labelledby="qdemo-title">
+<div class="qdemo" data-qdemo>
+<div class="qdemo-frame">
+  <header class="qdemo-topbar">
+    <button type="button" class="qdemo-close" data-qdemo-close aria-label="Fechar questão">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="qdemo-topbar-meta">
+      <span class="qdemo-banca" id="qdemo-title">EINSTEIN 2026</span>
+      <span class="qdemo-count">Questão 1 de 145</span>
+    </div>
+    <div class="qdemo-progress" role="progressbar" aria-valuemin="0" aria-valuemax="145" aria-valuenow="1" aria-label="Progresso da prova"><span class="qdemo-progress-fill"></span></div>
+  </header>
+
+  <div class="qdemo-body">
+    <div class="qdemo-toolbar">
+      <button type="button" class="qdemo-grifar" data-qdemo-grifar aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4.2L15.7 5.3a2.1 2.1 0 0 1 3 3L8.2 18.8 4 20z"/><path d="M13.5 6.5l3 3"/></svg>
+        Grifar
+      </button>
+      <div class="qdemo-swatches" hidden>
+        <button type="button" class="qdemo-swatch qdemo-swatch-y" data-qdemo-color="y" aria-label="Grifar em amarelo" aria-pressed="false"></button>
+        <button type="button" class="qdemo-swatch qdemo-swatch-r" data-qdemo-color="r" aria-label="Grifar em vermelho" aria-pressed="false"></button>
+        <button type="button" class="qdemo-swatch qdemo-swatch-g" data-qdemo-color="g" aria-label="Grifar em verde" aria-pressed="false"></button>
+      </div>
+      <button type="button" class="qdemo-eraser" data-qdemo-eraser hidden aria-label="Limpar marcações">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3h4v6h4a1 1 0 0 1 1 1v3H5v-3a1 1 0 0 1 1-1h4V3z"/><path d="M6 13l-1 8M10 13v8M14 13v8M18 13l1 8"/></svg>
+      </button>
+    </div>
+
+    <article class="qdemo-question">
+      <p class="qdemo-vignette" data-qdemo-vignette>Homem de 58 anos, não tabagista, sem antecedentes familiares de fratura por fragilidade, apresenta fratura de rádio distal após queda da própria altura. Relata fadiga crônica e diminuição da libido nos últimos anos. Não faz uso de corticoides, álcool em excesso ou outras medicações sabidamente relacionadas a osteoporose. Exames laboratoriais prévios mostram função renal normal.<br><br>De acordo com as recomendações para investigação de osteoporose em homens, qual é a conduta diagnóstica mais adequada?</p>
+    </article>
+
+    <div class="qdemo-alts" data-qdemo-alts role="group" aria-label="Alternativas">
+      <div class="qdemo-altwrap">
+        <button type="button" class="qdemo-alt" data-qdemo-alt="a" aria-pressed="false">
+          <span class="qdemo-alt-chip" aria-hidden="true">A</span>
+          <span class="qdemo-alt-text">Considerar que a presença de fratura por fragilidade, mesmo sem densitometria prévia, já configura diagnóstico de osteoporose e, portanto, iniciar tratamento farmacológico empírico; a investigação de causas secundárias poderia ser adiada para um segundo momento, apenas em caso de falha terapêutica.</span>
+          <span class="qdemo-alt-ic" hidden aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.18)"/><path d="M8.6 8.6l6.8 6.8M15.4 8.6l-6.8 6.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="qdemo-strip qdemo-strip-red" hidden>
+          <span class="qdemo-strip-badge" aria-hidden="true">A</span>
+          <p>Incorreta. O tratamento empírico sem investigação completa pode mascarar doenças subjacentes graves e não otimizar o manejo. A pesquisa de causas secundárias não deve ser adiada.</p>
+        </div>
+      </div>
+      <div class="qdemo-altwrap">
+        <button type="button" class="qdemo-alt" data-qdemo-alt="b" aria-pressed="false">
+          <span class="qdemo-alt-chip" aria-hidden="true">B</span>
+          <span class="qdemo-alt-text">Direcionar a investigação inicial para neoplasias ocultas, como mieloma múltiplo ou câncer de próstata, com exames como PSA, eletroforese de proteínas séricas/urinárias e, eventualmente, imagem avançada, uma vez que, em homens, a osteoporose frequentemente representa manifestação secundária de doenças malignas subjacentes.</span>
+          <span class="qdemo-alt-ic" hidden aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.18)"/><path d="M8.6 8.6l6.8 6.8M15.4 8.6l-6.8 6.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="qdemo-strip qdemo-strip-red" hidden>
+          <span class="qdemo-strip-badge" aria-hidden="true">B</span>
+          <p>Incorreta. Embora neoplasias sejam causas secundárias importantes, focar a investigação <em>inicialmente</em> apenas nelas é incompleto. A avaliação da DMO e outros marcadores metabólicos são essenciais para um diagnóstico completo.</p>
+        </div>
+      </div>
+      <div class="qdemo-altwrap">
+        <button type="button" class="qdemo-alt" data-qdemo-alt="c" aria-pressed="false">
+          <span class="qdemo-alt-chip" aria-hidden="true">C</span>
+          <span class="qdemo-alt-text">Realizar densitometria óssea (DXA) como exame inicial isolado, visto que a confirmação de baixa densidade mineral já direciona a conduta terapêutica, sendo a pesquisa laboratorial de causas secundárias opcional e geralmente restrita a casos refratários ao tratamento.</span>
+          <span class="qdemo-alt-ic" hidden aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.18)"/><path d="M8.6 8.6l6.8 6.8M15.4 8.6l-6.8 6.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+        </button>
+        <div class="qdemo-strip qdemo-strip-red" hidden>
+          <span class="qdemo-strip-badge" aria-hidden="true">C</span>
+          <p>Incorreta. A DXA é fundamental, mas não deve ser o exame inicial isolado em homens com suspeita de osteoporose secundária. A investigação laboratorial é crucial para identificar causas tratáveis.</p>
+        </div>
+      </div>
+      <div class="qdemo-altwrap">
+        <button type="button" class="qdemo-alt" data-qdemo-alt="d" aria-pressed="false">
+          <span class="qdemo-alt-chip" aria-hidden="true">D</span>
+          <span class="qdemo-alt-text">Solicitar densitometria óssea (DXA) associada a uma investigação laboratorial inicial abrangente, incluindo testosterona total, cálcio sérico e urinário, fósforo, fosfatase alcalina, vitamina D e função renal, reconhecendo que até metade dos casos em homens adultos está relacionada a etiologias secundárias.</span>
+          <span class="qdemo-alt-ic" hidden aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="rgba(0,0,0,.18)"/><path d="M7.8 12.4l2.7 2.7 5.7-5.7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="qdemo-strip qdemo-strip-green" hidden>
+          <span class="qdemo-strip-badge" aria-hidden="true">D</span>
+          <p>Correta. Esta alternativa abrange a abordagem recomendada pelas diretrizes, combinando a avaliação da densidade mineral óssea com a investigação laboratorial para causas secundárias, reconhecendo sua alta prevalência em homens.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="qdemo-actions" data-qdemo-actions hidden>
+      <button type="button" class="qdemo-thumb" data-qdemo-thumb="up" aria-pressed="false" aria-label="Gostei da questão">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11v9H4.5a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1H7z"/><path d="M7 11l4.2-7.2c1.4.1 2.3 1.1 2.3 2.5L13 10h5.3a2 2 0 0 1 2 2.4l-1.2 5.6a2.5 2.5 0 0 1-2.4 2H7"/></svg>
+      </button>
+      <button type="button" class="qdemo-thumb" data-qdemo-thumb="down" aria-pressed="false" aria-label="Não gostei da questão">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 13V4h2.5a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H17z"/><path d="M17 13l-4.2 7.2c-1.4-.1-2.3-1.1-2.3-2.5L11 14H5.7a2 2 0 0 1-2-2.4l1.2-5.6a2.5 2.5 0 0 1 2.4-2H17"/></svg>
+      </button>
+      <button type="button" class="qdemo-report">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4"/><path d="M6 4h10.5l-2 4 2 4H6"/></svg>
+        Reportar erro
+      </button>
+    </div>
+
+    <section class="qdemo-editorial" data-qdemo-editorial hidden aria-label="Explicação editorial da questão">
+      <div class="qdemo-ed-head">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5l1.3 3.4a4 4 0 0 0 2.3 2.3L18 12l-3.4 1.3a4 4 0 0 0-2.3 2.3L11 19l-1.3-3.4a4 4 0 0 0-2.3-2.3L4 12l3.4-1.3a4 4 0 0 0 2.3-2.3L11 5z"/><path d="M19 2l.7 1.8 1.8.7-1.8.7L19 7l-.7-1.8-1.8-.7 1.8-.7L19 2z"/></svg>
+        <span>Explicação editorial da questão</span>
+      </div>
+
+      <div class="qdemo-pearl">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-4.2 12.6c.7.5 1.2 1.4 1.2 2.4h6c0-1 .5-1.9 1.2-2.4A7 7 0 0 0 12 2z"/><path d="M9.5 18.5h5v.5a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-.5z"/></svg>
+        <div>
+          <span class="qdemo-pearl-title">Para Não Esquecer</span>
+          <p>Em homens com fratura por fragilidade, a investigação deve ser dupla: densitometria óssea (DXA) e pesquisa laboratorial de causas secundárias, pois até metade dos casos podem ter etiologia secundária.</p>
+        </div>
+      </div>
+
+      <div class="qdemo-panel" style="--qp:#0891B2;--qp-rgb:8,145,178">
+        <button type="button" class="qdemo-panel-head" data-qdemo-panel aria-expanded="false" aria-controls="qdemo-p1" id="qdemo-p1h">
+          <span class="qdemo-panel-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.4 5 8.2 4.2 5.5 4.2c-.6 0-1 .4-1 1v12c0 .6.4 1 1 1 2.7 0 4.9.8 6.5 2.3 1.6-1.5 3.8-2.3 6.5-2.3.6 0 1-.4 1-1v-12c0-.6-.4-1-1-1-2.7 0-4.9.8-6.5 2.3z"/><path d="M12 6.5v14"/></svg></span>
+          <span class="qdemo-panel-titles">
+            <span class="qdemo-panel-title">Aprofundamento</span>
+            <span class="qdemo-panel-sub">Base teórica completa do tema</span>
+          </span>
+          <span class="qdemo-panel-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5 12 15l5.5-5.5"/></svg></span>
+        </button>
+        <div class="qdemo-panel-body" id="qdemo-p1" role="region" aria-labelledby="qdemo-p1h">
+          <div class="qdemo-panel-inner">
+            <div class="qdemo-panel-content">
+              <p class="qdemo-md-h">Diagnóstico</p>
+              <ul class="qdemo-md-list">
+                <li>A osteoporose em homens, embora menos prevalente que em mulheres pós-menopausa, representa um desafio diagnóstico e terapêutico significativo, especialmente em pacientes com fraturas por fragilidade.</li>
+              </ul>
+              <p class="qdemo-md-h">Quadro Clínico</p>
+              <ul class="qdemo-md-list">
+                <li>A apresentação clínica do paciente de 58 anos, com fratura de rádio distal após queda de baixa energia, fadiga crônica e diminuição da libido, levanta a suspeita de osteoporose e de causas secundárias.</li>
+              </ul>
+              <p class="qdemo-md-h">Fisiopatologia</p>
+              <ul class="qdemo-md-list">
+                <li>A fisiopatologia da osteoporose envolve um desequilíbrio entre a reabsorção óssea (osteoclastos) e a formação óssea (osteoblastos), levando à diminuição da massa óssea e deterioração da microarquitetura do tecido ósseo, resultando em fragilidade e aumento do risco de fraturas.</li>
+                <li>Em homens, a osteoporose pode ser primária (relacionada ao envelhecimento e deficiência de testosterona) ou secundária a diversas condições, como hipogonadismo, uso de glicocorticoides, distúrbios gastrointestinais com má absorção, doenças endócrinas (hiperparatireoidismo, hipertireoidismo), deficiência de vitamina D, e malignidades (mieloma múltiplo, câncer de próstata metastático).</li>
+                <li>A investigação de causas secundárias é crucial, pois até 50% dos casos de osteoporose em homens adultos podem ter uma etiologia secundária identificável, conforme sugerido por estudos e diretrizes.</li>
+                <li>A abordagem diagnóstica deve ser abrangente, combinando a avaliação da densidade mineral óssea (DMO) com a investigação laboratorial direcionada.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qdemo-panel" style="--qp:#7C3AED;--qp-rgb:124,58,237">
+        <button type="button" class="qdemo-panel-head" data-qdemo-panel aria-expanded="false" aria-controls="qdemo-p2" id="qdemo-p2h">
+          <span class="qdemo-panel-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 3A6.5 6.5 0 0 0 6 9.5c0 1.5.5 2.9 1.4 4L6 17h2.5v2.5A1.5 1.5 0 0 0 10 21h4v-3.2"/><path d="M17.6 7.5a6.5 6.5 0 0 1 1.4 4"/><circle cx="12.5" cy="9.5" r="2.2"/><path d="M12.5 7.3V5.8M12.5 13.2v-1.5M14.7 9.5h1.5M8.8 9.5h1.5"/></svg></span>
+          <span class="qdemo-panel-titles">
+            <span class="qdemo-panel-title">Raciocínio Clínico</span>
+            <span class="qdemo-panel-sub">Como abordar este tipo de questão</span>
+          </span>
+          <span class="qdemo-panel-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5 12 15l5.5-5.5"/></svg></span>
+        </button>
+        <div class="qdemo-panel-body" id="qdemo-p2" role="region" aria-labelledby="qdemo-p2h">
+          <div class="qdemo-panel-inner">
+            <div class="qdemo-panel-content">
+              <p class="qdemo-md-h">Epidemiologia</p>
+              <ul class="qdemo-md-list">
+                <li>O caso clínico descreve um homem de 58 anos com fratura por fragilidade (rádio distal após queda da própria altura), fadiga crônica e diminuição da libido, sem fatores de risco clássicos para osteoporose primária em homens (como uso de corticoides, álcool em excesso, tabagismo ou história familiar).</li>
+                <li>A presença de fratura por fragilidade em um homem com menos de 70 anos, sem fatores de risco óbvios, sugere fortemente a necessidade de investigação para osteoporose e suas causas secundárias.</li>
+              </ul>
+              <p class="qdemo-md-h">Tratamento e Conduta</p>
+              <ul class="qdemo-md-list">
+                <li>A alternativa D propõe a conduta mais adequada, que é a combinação da densitometria óssea (DXA) com uma investigação laboratorial inicial abrangente.</li>
+              </ul>
+              <p class="qdemo-md-h">Epidemiologia</p>
+              <ul class="qdemo-md-list">
+                <li>Esta abordagem reconhece a alta prevalência de causas secundárias em homens e a importância de identificar e tratar essas condições.</li>
+              </ul>
+              <p class="qdemo-md-h">Análise das Alternativas</p>
+              <ul class="qdemo-md-list">
+                <li>A alternativa C está incorreta porque isolar a DXA como exame inicial e postergar a investigação laboratorial ignora a alta taxa de causas secundárias em homens.</li>
+              </ul>
+              <p class="qdemo-md-h">Diagnóstico</p>
+              <ul class="qdemo-md-list">
+                <li>A alternativa A está incorreta ao sugerir tratamento empírico e adiar a investigação de causas secundárias, o que pode levar a atrasos no diagnóstico de doenças subjacentes graves e a um tratamento subótimo.</li>
+                <li>A alternativa B está incorreta porque, embora neoplasias ocultas sejam causas secundárias importantes, direcionar a investigação inicial <em>apenas</em> para elas, sem incluir a avaliação da DMO e outros marcadores metabólicos ósseos, é incompleto e pode atrasar o diagnóstico de outras causas secundárias ou de osteoporose primária.</li>
+              </ul>
+              <p class="qdemo-md-h">Análise das Alternativas</p>
+              <ul class="qdemo-md-list">
+                <li>Portanto, a alternativa D, que combina a avaliação da DMO com a investigação laboratorial completa, é a mais adequada.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qdemo-panel" style="--qp:#EA580C;--qp-rgb:234,88,12">
+        <button type="button" class="qdemo-panel-head" data-qdemo-panel aria-expanded="false" aria-controls="qdemo-p3" id="qdemo-p3h">
+          <span class="qdemo-panel-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4.5l6 2 4.3-1.7a.5.5 0 0 1 .7.5v12.2a.5.5 0 0 1-.3.5L15 19.5l-6-2-4.3 1.7a.5.5 0 0 1-.7-.5V6.5a.5.5 0 0 1 .3-.5L9 4.5z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span>
+          <span class="qdemo-panel-titles">
+            <span class="qdemo-panel-title">Mapa Rápido</span>
+            <span class="qdemo-panel-sub">Diferenciadores de alto rendimento</span>
+          </span>
+          <span class="qdemo-panel-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5 12 15l5.5-5.5"/></svg></span>
+        </button>
+        <div class="qdemo-panel-body" id="qdemo-p3" role="region" aria-labelledby="qdemo-p3h">
+          <div class="qdemo-panel-inner">
+            <div class="qdemo-panel-content">
+              <p class="qdemo-md-h">Investigação de Osteoporose em Homens</p>
+              <p><strong>Fratura por Fragilidade em Homem &lt; 70 anos OU DMO baixa em qualquer homem:</strong></p>
+              <p><strong>Densitometria Óssea (DXA):</strong> Avaliar DMO (T-score e Z-score). <strong>Investigação Laboratorial Inicial:</strong></p>
+              <ul class="qdemo-md-list">
+                <li>Hemograma completo</li>
+                <li>Cálcio sérico e urinário (24h)</li>
+                <li>Fósforo sérico</li>
+                <li>Fosfatase alcalina total (isoenzimas se alterada)</li>
+                <li>Vitamina D (25-hidroxivitamina D)</li>
+                <li>Função renal (ureia, creatinina, taxa de filtração glomerular)</li>
+                <li>Testosterona total (em homens com sintomas de hipogonadismo ou achados sugestivos)</li>
+                <li>TSH (se clinicamente indicado)</li>
+                <li>Eletroforese de proteínas séricas e urinárias (se suspeita de mieloma múltiplo)</li>
+                <li>PSA (se suspeita de câncer de próstata)</li>
+              </ul>
+              <p><strong>Conduta:</strong> Se DMO compatível com osteoporose (T-score ≤ -2.5) OU fratura por fragilidade: iniciar tratamento. Tratar causas secundárias identificadas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qdemo-panel" style="--qp:#CA8A04;--qp-rgb:202,138,4">
+        <button type="button" class="qdemo-panel-head" data-qdemo-panel aria-expanded="false" aria-controls="qdemo-p4" id="qdemo-p4h">
+          <span class="qdemo-panel-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 5.5 13H10l-1 9L16.5 11H12l1-9z"/></svg></span>
+          <span class="qdemo-panel-titles">
+            <span class="qdemo-panel-title">Síntese</span>
+            <span class="qdemo-panel-sub">Pontos-chave para fixar</span>
+          </span>
+          <span class="qdemo-panel-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5 12 15l5.5-5.5"/></svg></span>
+        </button>
+        <div class="qdemo-panel-body" id="qdemo-p4" role="region" aria-labelledby="qdemo-p4h">
+          <div class="qdemo-panel-inner">
+            <div class="qdemo-panel-content">
+              <ul class="qdemo-md-list">
+                <li><strong>Osteoporose em homens:</strong> menos comum, mas com alta taxa de causas secundárias.</li>
+                <li>Fratura por fragilidade em homens &lt; 70 anos: indica investigação.</li>
+                <li><strong>DXA:</strong> exame padrão para DMO.</li>
+                <li><strong>Investigação laboratorial:</strong> essencial para causas secundárias (hipogonadismo, deficiência de vitamina D, etc.).</li>
+                <li>Até 50% dos casos em homens têm causa secundária.</li>
+                <li><strong>Conduta:</strong> DXA + laboratório inicial abrangente.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="qdemo-footer">
+      <button type="button" class="qdemo-verify" data-qdemo-verify hidden>VERIFICAR</button>
+      <button type="button" class="qdemo-redo" data-qdemo-redo hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1"/><path d="M3.5 3.5v5h5"/></svg>REFAZER</button>
+      <a class="qdemo-cta" data-qdemo-cta hidden href="https://app.auscultoapp.com/">CONTINUAR NO APP</a>
+    </div>
+  </div>
+
+
+</div>
+</div>
+</dialog>

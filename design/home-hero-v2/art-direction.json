@@ -1,0 +1,51 @@
+{
+  "revision": 3,
+  "direction": "Approved preview environment clean plates; imagegen-composited product surfaces. Frameless mobile, physical desktop.",
+  "sources": [
+    {
+      "name": "mobile-plantao",
+      "generated": "exec-3e9f1249-e15a-4b7a-bc3e-081544071e51.png",
+      "crop": {
+        "left": 128,
+        "top": 54,
+        "width": 770,
+        "height": 1432
+      },
+      "radius": 48
+    },
+    {
+      "name": "mobile-prova",
+      "generated": "exec-d2e4c864-b8e4-46a1-8f0f-215314ff5972.png",
+      "crop": {
+        "left": 151,
+        "top": 69,
+        "width": 726,
+        "height": 1430
+      },
+      "radius": 56
+    },
+    {
+      "name": "desktop-plantao",
+      "generated": "exec-91fb7291-baaf-4d68-b599-9fbd2af829ba.png",
+      "crop": {
+        "left": 40,
+        "top": 45,
+        "width": 530,
+        "height": 1155
+      },
+      "radius": 0
+    },
+    {
+      "name": "desktop-prova",
+      "generated": "exec-91fb7291-baaf-4d68-b599-9fbd2af829ba.png",
+      "crop": {
+        "left": 690,
+        "top": 50,
+        "width": 530,
+        "height": 1150
+      },
+      "radius": 0
+    }
+  ],
+  "screenshots": "plantao.png and prova.png are unchanged actual product captures. Enlargements use those originals; hero imagery is an artistic product presentation."
+}

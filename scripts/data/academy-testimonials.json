@@ -1,0 +1,8 @@
+{
+  "source": "site/ads-estudante.html, seção depoimento — textos existentes preservados",
+  "testimonials": [
+    {"id":"loren","name":"Loren Ferrarezi","role":"Estudante de Medicina · 6.º ano","image":"/assets/testimonials/loren.png","frame":"navy","quote":"O Ausculto virou meu companheiro de plantão. Tenho todos os protocolos na palma da mão e a IA me ajuda a pensar nos casos difíceis."},
+    {"id":"camila","name":"Camila Menon","role":"Estudante de Medicina · 4.º ano","image":"/assets/testimonials/camila.png","frame":"gold","quote":"O Raio-X Acadêmico me mostrou onde eu precisava revisar por especialidade. Ficou muito mais fácil decidir o próximo estudo."},
+    {"id":"guilherme","name":"Guilherme de Lucio","role":"Estudante de Medicina · 4.º ano","image":"/assets/testimonials/gui.jpg","frame":"navy","quote":"Uso todos os dias nos estágios e nas aulas clínicas. As calculadoras e os protocolos me ajudam a entender a lógica clínica muito antes de chegar na residência."}
+  ]
+}

@@ -1,0 +1,12 @@
+/* Site-only reflow corrections; independent ENAMED output is not changed. */
+.academy-public .about-faq__head p{overflow-wrap:anywhere}
+.academy-students .pro .pro-sub span{white-space:normal;overflow-wrap:anywhere;min-width:0}
+.academy-students .ah-cta__sub{white-space:normal;text-align:center;max-width:100%}
+@media(max-width:600px){
+ .academy-public .atb__bar{gap:12px;height:auto;min-height:var(--atb-h);padding-block:8px}
+ .academy-public .atb__home{min-width:0;flex:0 1 auto}
+ .academy-public .atb__name{min-width:0;overflow-wrap:anywhere;line-height:1.2}
+ .academy-public .atb__menu{flex:0 0 44px}
+ .academy-public .atb__menu>summary{margin-right:0}
+ .academy-public .atb__sheet{top:var(--atb-offset,var(--atb-h))}
+}

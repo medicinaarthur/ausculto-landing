@@ -1,0 +1,25 @@
+/* The desktop photograph is 1586 x 992. Its original framing and the existing
+   1440px composition now share one scale, leaving a narrow right-hand gutter
+   for Dr. Aus. The tablet/mobile rules and assets remain untouched. */
+@media(min-width:1200px){
+ .dossier-hero{aspect-ratio:1586/992;container-type:inline-size}
+ .dossier-backdrop img{object-fit:contain;object-position:center}
+ .dossier-layout{position:absolute;left:0;top:0;width:1440px;max-width:none;margin:0;padding:145px 46px 74px;grid-template-columns:minmax(300px,.72fr) minmax(0,1.55fr);gap:42px;transform-origin:top left;transform:scale(calc(100cqw / 1586px))}
+ .dossier-copy h1{font-size:73.44px}
+ .dossier-wave{height:9.07%}
+ .dossier-mascot{position:absolute;left:88.15%;bottom:24.5%;width:8.2%;aspect-ratio:9/16;pointer-events:none;user-select:none;z-index:3;isolation:isolate}
+ /* Shadows belong to the desk plane, not the full character silhouette.
+    Two sole contacts plus a broad, low-opacity cast toward the lower left. */
+ .dossier-mascot::before,.dossier-mascot::after{content:"";position:absolute;pointer-events:none;z-index:-1}
+ .dossier-mascot::before{left:-14%;bottom:-2.8%;width:110%;height:10%;transform:rotate(-9deg);background:radial-gradient(ellipse,rgba(9,7,5,.32) 0%,rgba(9,7,5,.16) 36%,transparent 71%)}
+ .dossier-mascot::after{left:0;bottom:-1.3%;width:100%;height:5.4%;background:radial-gradient(ellipse 19% 43% at 29% 47%,rgba(8,6,4,.64) 0%,rgba(8,6,4,.34) 38%,transparent 100%),radial-gradient(ellipse 16% 43% at 80% 53%,rgba(8,6,4,.62) 0%,rgba(8,6,4,.32) 38%,transparent 100%)}
+ .dossier-mascot>img,.dossier-mascot>video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;user-select:none}
+ .dossier-mascot>img[hidden]{display:none}
+ /* Keep the incoming video in the rendering tree so Firefox presents a decoded
+    frame before the swap. Opacity is switched atomically, never animated. */
+ .dossier-mascot>video[hidden]{display:block;opacity:0}
+}
+/* Firefox versions without CSS typed division use the same measured ratio. */
+@supports not (transform:scale(calc(100cqw / 1586px))){
+ @media(min-width:1200px){.dossier-layout{transform:scale(var(--dossier-art-scale,1))}}
+}

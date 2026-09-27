@@ -1,0 +1,62 @@
+{
+  "readAt": "2026-09-27T20:50:40.917Z",
+  "cards": [
+    {
+      "documentId": "usp_sp_2026_q034",
+      "collection": "questions",
+      "bank": "USP-SP",
+      "year": "2026",
+      "number": 34,
+      "examFolder": "USP_SP_2026",
+      "statement": "Durante um checklist pré-operatório de retossigmoidectomia para o tratamento de adenocarcinoma de cólon esquerdo, em um paciente de 64 anos de idade com diabetes controlado, o anestesista pergunta ao cirurgião qual é o antibiótico preconizado neste momento. Qual é a melhor opção?",
+      "options": {
+        "A": "Cefoxitina.",
+        "B": "Cefuroxima.",
+        "C": "Cefazolina.",
+        "D": "Ceftriaxona."
+      },
+      "answer": "A",
+      "comment": "Em síntese, a Cefoxitina é uma cefalosporina de 2ª geração do subgrupo das cefamicinas. Diferente da Cefuroxima (também de 2ª geração), a Cefoxitina possui excelente atividade contra bactérias anaeróbias, além de cobrir os Gram-negativos entéricos. Por ser capaz de cobrir sozinha a flora mista do cólon, é a droga de escolha em monoterapia para cirurgias colorretais e apendicectomias.",
+      "sourceLabel": "USP-SP 2026",
+      "sha256": "22072ea80ae5ef547116ca54dd0fa440a7243f3c86ecb350eb9b46d015e302d6"
+    },
+    {
+      "documentId": "enamed_2025_caderno_1_q034",
+      "collection": "questions",
+      "bank": "ENAMED",
+      "year": "2025",
+      "number": 34,
+      "examFolder": "ENAMED_2025_CADERNO_1",
+      "statement": "Uma instituição de saúde está pesquisando um novo teste de triagem para hanseníase, com sensibilidade de 92% e especificidade de 65%, aplicado em uma população com baixa prevalência da doença. Nesse contexto, é correto afirmar que",
+      "options": {
+        "B": "o número de falsos-positivos será elevado, devido à baixa especificidade do teste e à baixa prevalência da doença.",
+        "C": "o número de falsos-negativos será elevado, reduzindo a capacidade do teste em detectar casos reais.",
+        "A": "quase todos os testes positivos indicarão verdadeiros casos de hanseníase, diante da elevada sensibilidade do teste.",
+        "D": "a elevada sensibilidade do teste o torna ideal para a confirmação do diagnóstico de hanseníase."
+      },
+      "answer": "B",
+      "comment": "A baixa especificidade do teste (65%) combinada com a baixa prevalência da hanseníase na população resultará em um número elevado de resultados falso-positivos. Isso ocorre porque, em uma população onde a doença é rara, a maioria dos indivíduos é saudável, e mesmo uma taxa moderada de falsos-positivos (devido à baixa especificidade) se traduz em um grande número absoluto de pessoas testadas erroneamente como positivas. Consequentemente, a maioria dos testes positivos não indicará casos reais da doença.",
+      "sourceLabel": "ENAMED 2025",
+      "sha256": "7efc705b3e69a2fd35b4bd04697c3ca615df9adc81b65a1b99b2b007be8cccd2"
+    },
+    {
+      "documentId": "einstein_2025_q072",
+      "collection": "questions",
+      "bank": "Einstein",
+      "year": "2025",
+      "number": 72,
+      "examFolder": "EINSTEIN_2025",
+      "statement": "Em um ensaio clínico controlado, o planejamento de delineamento de cross-over",
+      "options": {
+        "A": "elimina a necessidade de randomização.",
+        "B": "requer randomização estratificada.",
+        "C": "deve considerar um possível efeito residual da primeira intervenção.",
+        "D": "aumenta a validade externa dos resultados."
+      },
+      "answer": "C",
+      "comment": "Gabarito oficial: alternativa C.\n\nCORRETA. Esta é a definição da principal preocupação metodológica do estudo cross-over. O planejamento deve considerar o efeito residual (carry-over) da primeira intervenção sobre a segunda. Se esse efeito existir e não for manejado (por meio de um tempo de washout adequado), a validade do estudo fica comprometida, já que não saberemos se o resultado da segunda fase é real ou \"contaminado\" pela primeira fase.",
+      "sourceLabel": "EINSTEIN 2025",
+      "sha256": "5ea030293c7a582870f3576a9f7220a41add90a7a4f6a40fb4a660d15745ceb3"
+    }
+  ]
+}

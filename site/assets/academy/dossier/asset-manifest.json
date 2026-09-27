@@ -1,0 +1,140 @@
+{
+  "createdAt": "2026-09-27",
+  "generator": "Built-in image_gen",
+  "sources": {
+    "calendar-frame": {
+      "width": 1086,
+      "height": 1448,
+      "alpha": true,
+      "sha256": "b54e54acb4a176235d75135a40d6bbb8e0b5b100095125b418b52b1e83d8c51d"
+    },
+    "leaf": {
+      "width": 793,
+      "height": 1983,
+      "alpha": true,
+      "sha256": "e13211c11326d8b8cf860455e1cd3fa4ca8a79dd9487a8d9a5ecc75f09df57fe"
+    },
+    "desktop": {
+      "width": 1586,
+      "height": 992,
+      "alpha": false,
+      "sha256": "46b4f9500cb9bb65ce9d96f9607064ba352bdadf922c38498261a22376a4b2a9"
+    },
+    "mobile": {
+      "width": 941,
+      "height": 1672,
+      "alpha": false,
+      "sha256": "3ebdee2020426251440cc1623b85e3e8a53fbb7d51e07f9a0668683e5a75ae99"
+    },
+    "book": {
+      "width": 1457,
+      "height": 1080,
+      "alpha": true,
+      "sha256": "83786e887a968848a7362bd55332dbf8d001a09c42b00fadd67718014fdbc078"
+    },
+    "engraving": {
+      "width": 1122,
+      "height": 1402,
+      "alpha": true,
+      "sha256": "350e63b75f956edc3bd53e1df05160718a8b1ef503fa7c5a6cf3669ffba0b5d2"
+    }
+  },
+  "files": {
+    "book.webp": {
+      "bytes": 105168,
+      "sha256": "020b3c292bfb985e02c88cf8a1e62e02ac93fcf403317985ed9efc83085b90df"
+    },
+    "calendar-frame.webp": {
+      "bytes": 161026,
+      "sha256": "f684100e02b85d704ff293f0d0d70cba0ab9ef03d83857311acc86a6541ff90c"
+    },
+    "desktop-1280.avif": {
+      "bytes": 18190,
+      "sha256": "7cd455f5512129ded3e66f8de2426e5146547a59a0ede7f7f1ec71da70592d71"
+    },
+    "desktop-1280.webp": {
+      "bytes": 28284,
+      "sha256": "b4a6cc416f93c0d89a10ab0ea667c68bdb0d96a79131a83c1b0811a1e6bd2d5f"
+    },
+    "desktop-1586.avif": {
+      "bytes": 25444,
+      "sha256": "9075dbc14ab61f27e1df5c61bfc31283ee6f9ed4fdce04e9143cd012c84b765c"
+    },
+    "desktop-1586.webp": {
+      "bytes": 40252,
+      "sha256": "dd0c4ea27b59184856c3db490b6b6c7f8b655d6d2445b83a3fff3243992761a6"
+    },
+    "engraving.webp": {
+      "bytes": 45680,
+      "sha256": "8c9db3c8a2b3c71782892c85048755484bc33d6b2b9eb3966afc2b9076f84bc2"
+    },
+    "leaf.webp": {
+      "bytes": 70840,
+      "sha256": "422f300dee625212373200da2071ceaff326548ca564ffed925629d2bde286c7"
+    },
+    "mobile-540.avif": {
+      "bytes": 12687,
+      "sha256": "8cf1844bccf147250791bb8cc57ead9fe7aa715b93f176411ce1b3bd4eb2060d"
+    },
+    "mobile-540.webp": {
+      "bytes": 20530,
+      "sha256": "a4b0f1c6b81014de69ab8af92776d1b0c2d43916d436792a280e0bb2989fc091"
+    },
+    "mobile-780.avif": {
+      "bytes": 23963,
+      "sha256": "bedbeab8f1b20775090ea3564ff8ab0bd3b408e3de876cdc916a67e48a88cb1d"
+    },
+    "mobile-780.webp": {
+      "bytes": 39256,
+      "sha256": "fabe8e30a91f244da5cdc9009065ce6db93feb30778a0ead6fefaee476473d37"
+    },
+    "mobile-941.avif": {
+      "bytes": 33125,
+      "sha256": "b329fb8bc15fb34b7f145d9dbe85bf4a272b4997612860fbc38a4766c0a4c872"
+    },
+    "mobile-941.webp": {
+      "bytes": 53082,
+      "sha256": "d517d4bb4be8103da3f2123bd80991992a4ff115b85d50c95ce7dd1b74d1c017"
+    },
+    "print-einstein-desktop.webp": {
+      "bytes": 149642,
+      "sha256": "c3929ef2caaafb888c130ac941e6cb27b3d4d919fe807e9a419f22d9d32cc6b3"
+    },
+    "print-einstein-mobile.webp": {
+      "bytes": 114908,
+      "sha256": "054100211f43a73b78e5add23b7864a430b2c37fed7e165d1e1c06388861e72e"
+    },
+    "print-enamed-desktop.webp": {
+      "bytes": 141884,
+      "sha256": "e33fcb7cf536ab6e91db3d2d7ffe83db0079ae98fcfa7b196cf082d24a399258"
+    },
+    "print-enamed-mobile.webp": {
+      "bytes": 112944,
+      "sha256": "7c4c1e0914e98126b5b702f943f13956c8a71cfe9611bb8c86c653b38b93a6fc"
+    },
+    "print-sus-sp-desktop.webp": {
+      "bytes": 147014,
+      "sha256": "aca11faa3753cc8c4a03e5d4a4938818daf2222231e3a44941f020cd795793fa"
+    },
+    "print-sus-sp-mobile.webp": {
+      "bytes": 109944,
+      "sha256": "2ecf9df64a3b22b0ce4803a2b90fa3633eaffbfd8612d15a78cc704268026e22"
+    },
+    "print-unifesp-desktop.webp": {
+      "bytes": 146628,
+      "sha256": "8c95872e8028df6992bae3142ec73c7b3199ebc8600dd0a7f9c620a5454cd7d5"
+    },
+    "print-unifesp-mobile.webp": {
+      "bytes": 105108,
+      "sha256": "cd1c1d58b3691ce3add0b4a2a3112e025ccdfaceb2924912f0dc2bb1fe1c63a7"
+    },
+    "print-usp-sp-desktop.webp": {
+      "bytes": 153590,
+      "sha256": "67e66cbc5af812d11a02cd866260e4b0bfe5cb579bb47c248abf858acf538671"
+    },
+    "print-usp-sp-mobile.webp": {
+      "bytes": 116234,
+      "sha256": "696db43f506b7b8d64fb76d452bab5e3b6cfe3f2f173e9f7cd811db87dce3a07"
+    }
+  }
+}

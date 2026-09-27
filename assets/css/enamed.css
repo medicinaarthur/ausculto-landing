@@ -660,6 +660,12 @@ html {
   line-height: 0;
 }
 
+/* Seta de "voltar" antes do glifo: so no mobile, onde o nome da marca some e
+   a saida explicita do header nao cabe. */
+.enamed-page .brand__back {
+  display: none;
+}
+
 /* Glifo sem shape: claro sobre o hero navy, em tinta quando o header vira papel. */
 .enamed-page .brand__mark {
   display: block;
@@ -740,6 +746,60 @@ html {
 
 .enamed-page .site-header.is-solid .site-header__login:hover {
   color: var(--blue-deep);
+}
+
+/* Saida explicita para o site principal (a marca-mae do lockup tambem leva
+   para la): mesmo tratamento do "Ja tenho conta", seta dourada como a do
+   rodape e o mesmo fio do lockup separando-a da conta. */
+.enamed-page .site-header__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  color: var(--dark-muted);
+  font-weight: 600;
+  font-size: 13.5px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.enamed-page .site-header__back:hover {
+  color: var(--dark-ink);
+  text-decoration: underline;
+}
+
+.enamed-page .site-header__back-icon {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  color: var(--champagne-light);
+  transition: transform 0.18s var(--ease);
+}
+
+.enamed-page .site-header__back:hover .site-header__back-icon {
+  transform: translateX(-3px);
+}
+
+.enamed-page .site-header.is-solid .site-header__back {
+  color: var(--mut);
+}
+
+.enamed-page .site-header.is-solid .site-header__back:hover {
+  color: var(--blue-deep);
+}
+
+.enamed-page .site-header.is-solid .site-header__back-icon {
+  color: var(--champagne-deep);
+}
+
+.enamed-page .site-header__divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(247, 244, 236, 0.28);
+}
+
+.enamed-page .site-header.is-solid .site-header__divider {
+  background: var(--line);
 }
 
 /* ----- 2 · Hero (dark cinematic: deep-navy + sonar rings) -----
@@ -2478,9 +2538,29 @@ html {
   .enamed-page .missao__grid {
     grid-template-columns: 460px 1fr;
   }
+
+  /* Ao lado da pilula nao cabe o rotulo inteiro: a saida vira "Ausculto" com a
+     seta, e o "Voltar ao" segue para leitores de tela. */
+  .enamed-page .site-header__back-lead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
 }
 
 @media (max-width: 1023px) {
+  /* Tablet: o header ja esta no limite; a marca-mae do lockup e a saida. */
+  .enamed-page .site-header__back,
+  .enamed-page .site-header__divider {
+    display: none;
+  }
+
   .enamed-page .hero {
     padding-block: 128px 64px;
   }
@@ -2608,7 +2688,22 @@ html {
      passa a ser o glifo sozinho, entao ele precisa cumprir os 44px. */
   .enamed-page .brand__home {
     min-width: 44px;
-    padding-inline-end: 2px;
+    gap: 4px;
+  }
+
+  /* Seta + gap + glifo fecham os mesmos 44px do alvo, sem alargar o header;
+     o -2px compensa o respiro do viewBox e alinha a ponta com a margem. */
+  .enamed-page .brand__back {
+    display: block;
+    flex: 0 0 auto;
+    width: 14px;
+    height: 14px;
+    margin-left: -2px;
+    color: var(--champagne-light);
+  }
+
+  .enamed-page .site-header.is-solid .brand__back {
+    color: var(--champagne-deep);
   }
 
   .enamed-page .wordmark__img {

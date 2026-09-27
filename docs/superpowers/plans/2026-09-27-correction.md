@@ -1,0 +1,6 @@
+# Correção da experiência Ausculto
+Autoridade: plano integral aprovado na conversa em 27/09/2026.
+Executor: agente principal, sem workers de implementação.
+T0 baseline, inventário e capturas; T1 simulador de quatro etapas com taxonomia publicada mapeada pelo Dart do app; T2 cards compactos com questão original e marcas; T3 ECG independente e catálogo compacto; T4 leitor navy com estudo local e livros globais; T5 watermark incorporada e fluxograma gasométrico; T6 foto AusFlow e brilho AusMind; T7 testes, inspeção independente e release hosting:site.
+Invariantes: app somente leitura; preservar snapshot editorial, livros e contratos de links; prévia não gera nem transfere escolhas; estudo não sai do navegador; conteúdo gratuito completo; alteração clínica somente na legenda gasométrica com guarda de versão/hash; site existente e alterações locais preservados.
+Validação: seis páginas em 360,390,768,1100,1440,1920; DPR1/2/3; teclado/reduced motion/200% texto; simulado Treino/Mista/Focada e hierarquia; localStorage indisponível/reload; livros em todas as superfícies; watermark dentro dos arquivos; testes de conteúdo/tracking/build/manifesto; revisão independente antes de hosting:site e smoke real depois.

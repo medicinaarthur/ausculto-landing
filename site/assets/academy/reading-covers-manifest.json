@@ -1,0 +1,77 @@
+[
+  {
+    "source": "site/assets/academy/book-abdome-closed.webp",
+    "target": "site/assets/academy/book-abdome-cover.webp",
+    "crop": {
+      "left": 120,
+      "top": 0,
+      "width": 598,
+      "height": 881
+    },
+    "format": "webp",
+    "mediaType": "image/webp",
+    "width": 434,
+    "height": 640,
+    "space": "srgb",
+    "channels": 4,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": true,
+    "autoOrient": {
+      "width": 434,
+      "height": 640
+    }
+  },
+  {
+    "source": "site/assets/academy/book-gasometria-closed.webp",
+    "target": "site/assets/academy/book-gasometria-cover.webp",
+    "crop": {
+      "left": 38,
+      "top": 6,
+      "width": 629,
+      "height": 876
+    },
+    "format": "webp",
+    "mediaType": "image/webp",
+    "width": 460,
+    "height": 640,
+    "space": "srgb",
+    "channels": 4,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": true,
+    "autoOrient": {
+      "width": 460,
+      "height": 640
+    }
+  },
+  {
+    "source": "site/assets/academy/book-epidemiologia-closed.webp",
+    "target": "site/assets/academy/book-epidemiologia-cover.webp",
+    "crop": {
+      "left": 328,
+      "top": 15,
+      "width": 634,
+      "height": 866
+    },
+    "format": "webp",
+    "mediaType": "image/webp",
+    "width": 469,
+    "height": 640,
+    "space": "srgb",
+    "channels": 4,
+    "depth": "uchar",
+    "isProgressive": false,
+    "isPalette": false,
+    "hasProfile": false,
+    "hasAlpha": true,
+    "autoOrient": {
+      "width": 469,
+      "height": 640
+    }
+  }
+]
