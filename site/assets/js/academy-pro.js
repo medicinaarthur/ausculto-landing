@@ -5,7 +5,7 @@
  const frames=[...stage.querySelectorAll('[data-pro-pose]')],reduced=matchMedia('(prefers-reduced-motion:reduce)');
  const holds=[1600,220,220,2400];let visible=false,ready=false,generation=0,timer=null,animation=null;
  const paint=index=>{frames.forEach((frame,i)=>frame.classList.toggle('is-current',i===index));stage.dataset.frame=String(index);};
- const active=()=>visible&&!document.hidden&&ready;
+ const active=()=>visible&&!document.hidden&&ready&&!reduced.matches;
  function stop(){generation++;clearTimeout(timer);animation?.cancel();animation=null;stage.style.opacity='';stage.style.transform='';paint(0);stage.dataset.playing='false';}
  function later(fn,ms,token){timer=setTimeout(()=>{if(token===generation&&active())fn();},ms);}
  async function effect(keyframes,duration,token){
@@ -27,7 +27,7 @@
   },holds[index],token);
  }
  async function start(){
-  stop();if(!visible||document.hidden)return;const token=generation;
+  stop();if(reduced.matches){paint(3);frames[3].querySelector('img').loading='eager';stage.dataset.playing='reduced-motion';return;}if(!visible||document.hidden)return;const token=generation;
   try{
    await Promise.all(frames.map(async frame=>{const image=frame.querySelector('img');image.loading='eager';await image.decode();}));ready=true;
   }catch{

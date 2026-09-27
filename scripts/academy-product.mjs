@@ -1,6 +1,6 @@
 import {renderTestimonials,testimonialAssets} from './academy-testimonials.mjs';
 import {renderResources, resourceAssets} from './academy-resources.mjs';
-import {objectives,practiceStudio,bankGallery,learningJourney,closingPdf} from './academy-experience.mjs';
+import {objectives,practiceStudio,learningJourney,closingPdf} from './academy-experience.mjs';
 import correctionAssets from './data/academy-correction-assets.json' with {type:'json'};
 import {renderSimDemo} from "./academy-sim-demo.mjs";
 import { presentation } from "./academy-presentation.mjs";

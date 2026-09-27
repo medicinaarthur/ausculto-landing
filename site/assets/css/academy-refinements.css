@@ -38,17 +38,6 @@
  .ecg-course__access{max-width:230px;font-size:9px}
  .academy-students .academy-library{padding-bottom:30px}
  .academy-students .library-motto{margin-bottom:0;padding-bottom:0}
- .academy-students .pro{background:#f8f6f1;padding:12px 0 34px}
- .academy-students .pro .pro-grid{margin-top:48px;padding:22px 20px 20px;box-shadow:0 15px 30px #07182f20}
- .academy-students .pro h2{max-width:61%;font-size:28px;line-height:1.05}
- .academy-students .pro .pro-sub{max-width:61%;margin-top:17px;display:block;min-height:65px}
- .academy-students .pro .pro-sub span{display:block;white-space:normal;margin:0;font:400 11px/1.6 Inter,sans-serif;letter-spacing:0;text-transform:none}
- .academy-students .pro .pro-sub span+span::before{content:none}
- .academy-students .pro-price{margin-top:18px;position:relative;z-index:2;font-size:13px;line-height:1.55}
- .academy-students .pro .pro-visual{top:-49px;height:220px;right:4px}
- .academy-students .pro .pro-student{width:145px;height:220px;object-fit:contain;object-position:bottom;top:0;right:0}
- .academy-students .pro-actions{margin-top:16px;gap:9px}
- .academy-students .pro-actions>*{min-height:46px}
  .academy-students .footer-brand>.footer-back{max-width:165px;padding:8px}
  .academy-students .footer-brand .footer-back__mark{display:none}
  .academy-students .footer-brand>.academy-brand{max-width:128px;gap:8px}
@@ -57,8 +46,6 @@
  .academy-students .footer-back__text{flex:1;min-width:0}
 }
 @media(max-width:339px){
- .academy-students .pro .pro-sub{max-width:56%}
- .academy-students .pro .pro-student{width:128px;right:-9px}
  .academy-students .footer-brand{gap:12px}
 }
 /* Printed paper and live figures share one moving surface. */

@@ -16,8 +16,9 @@ const generated='art-source/academy-paths-v2/generated-inputs.json';
 if(existsSync(generated))inputs.push(...Object.entries(JSON.parse(readFileSync(generated,'utf8'))).map(([name,file])=>[name,file,name==='pro-background'?[1000,2000]:[900,1800]]));
 const manifest={preparedAt:new Date().toISOString(),generation:'Built-in imagegen; generated prompts in prompts.md',files:[]};
 for(const [name,file,widths]of inputs){
- const bytes=readFileSync(file),meta=await sharp(bytes).metadata();
- const master=resolve(masters,name+'.png');if(resolve(file)!==master)copyFileSync(file,master);
+ const restored=existsSync(file)?file:resolve(masters,name+'.png');
+ const bytes=readFileSync(restored),meta=await sharp(bytes).metadata();
+ const master=resolve(masters,name+'.png');if(resolve(restored)!==master)copyFileSync(restored,master);
  for(const width of widths){
   const filename=name+'-'+width+'.webp',target=root+'/'+filename;
   await sharp(bytes).resize({width,withoutEnlargement:true}).webp({quality:94,alphaQuality:100,effort:6}).toFile(target);

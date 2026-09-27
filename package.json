@@ -40,7 +40,11 @@
     "test:academy-dossier-runtime": "node scripts/test-academy-dossier-runtime.mjs",
     "prepare:academy-dossier-assets": "node scripts/prepare-academy-dossier-assets.mjs",
     "prepare:academy-practice": "node scripts/prepare-academy-practice.mjs",
-    "prepare:academy-dossier-prints": "node scripts/prepare-academy-dossier-prints.mjs"
+    "prepare:academy-dossier-prints": "node scripts/prepare-academy-dossier-prints.mjs",
+    "test:academy-paths": "node --test scripts/test-academy-paths.mjs scripts/test-academy-bank-counts.mjs",
+    "test:academy-paths-runtime": "node scripts/test-academy-paths-runtime.mjs",
+    "prepare:academy-paths": "node scripts/prepare-academy-paths-assets.mjs",
+    "audit:academy-banks": "node scripts/export-academy-bank-counts.mjs"
   },
   "dependencies": {
     "@phosphor-icons/core": "2.1.1",

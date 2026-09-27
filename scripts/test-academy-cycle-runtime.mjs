@@ -24,8 +24,8 @@ try{
   assert.equal(await page.locator('#curso-ecg').count(),1);assert.equal(await page.locator('#ecg-modules ol a').count(),18);
   assert.equal(await page.locator('#curso-ecg').evaluate(e=>e.previousElementSibling.classList.contains('library-features')),true);
   await page.locator('[data-ecg-expand]').click();assert.equal(await page.locator('#ecg-modules').evaluate(e=>e.open),true);
-  assert.equal(await page.locator('.clinical-tools-metrics dt').allTextContents().then(a=>a.join('|')),'10 mil+|280+|140 mil+|5.255');
-  assert.ok((await page.locator('.clinical-tools-link:visible').getAttribute('href')).endsWith(width<1024?'#m-ferramentas':'#ferramentas'));
+  assert.equal(await page.locator('.tool-float-card').count(),7);
+  assert.equal(await page.locator('.clinical-tools-link').getAttribute('href'),'https://app.auscultoapp.com/');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);assert.deepEqual(errors,[]);
   results.push({width,pass:true});console.log('PASS',engine,width);await context.close();
  }
@@ -44,7 +44,7 @@ try{
   await context.close();console.log('PASS',engine,'timeline and visibility');
  }
  for(const width of [390,1440]){const {context,page}=await setup(width,{javaScriptEnabled:false});assert.equal(await page.locator('.journey-step[open]').count(),4);assert.equal(await page.locator('#curso-ecg').count(),1);await context.close();console.log('PASS',engine,'no-JS',width);}
- {const {context,page}=await setup(390,{reducedMotion:'reduce'});await page.locator('.pro-grid').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('[data-pro-sequence]').dataset.frame==='3');assert.equal(await page.locator('[data-pro-sequence]').evaluate(e=>getComputedStyle(e).transform),'none');await context.close();}
+ {const {context,page}=await setup(390,{reducedMotion:'reduce'});await page.locator('.pro-grid').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('[data-pro-sequence]').dataset.playing==='reduced-motion');assert.equal(await page.locator('[data-pro-sequence]').evaluate(e=>getComputedStyle(e).transform),'none');await context.close();}
  {
   const context=await browser.newContext({viewport:{width:390,height:1000}});await context.route('**/pro-motion/pose-3*',r=>r.abort());await context.route('**/study-cycle/pose-2*',r=>r.abort());const page=await context.newPage();await page.goto('http://127.0.0.1:4197/estudantes/');await page.locator('.pro-grid').scrollIntoViewIfNeeded();await page.waitForFunction(()=>document.querySelector('[data-pro-sequence]').dataset.playing==='asset-unavailable');assert.equal(await page.locator('.pro-pose.is-current img').evaluate(e=>e.naturalWidth>0),true);await page.evaluate(()=>document.querySelector('.cycle-mobile-steps [data-cycle-select="1"]').click());await page.waitForFunction(()=>document.querySelector('[data-study-cycle]').dataset.poseUnavailable==='true');assert.equal(await page.locator('.journey-step[open]').count(),1);await context.close();
  }

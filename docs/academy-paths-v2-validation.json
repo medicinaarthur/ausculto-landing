@@ -1,0 +1,122 @@
+{
+  "verifiedAt": "2026-09-27T22:24:54.253Z",
+  "browser": "Chrome / Playwright",
+  "checks": [
+    {
+      "width": 360,
+      "dpr": 1,
+      "pass": true
+    },
+    {
+      "width": 360,
+      "dpr": 2,
+      "pass": true
+    },
+    {
+      "width": 360,
+      "dpr": 3,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "dpr": 1,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "dpr": 2,
+      "pass": true
+    },
+    {
+      "width": 390,
+      "dpr": 3,
+      "pass": true
+    },
+    {
+      "width": 430,
+      "dpr": 1,
+      "pass": true
+    },
+    {
+      "width": 430,
+      "dpr": 2,
+      "pass": true
+    },
+    {
+      "width": 430,
+      "dpr": 3,
+      "pass": true
+    },
+    {
+      "width": 768,
+      "dpr": 1,
+      "pass": true
+    },
+    {
+      "width": 768,
+      "dpr": 2,
+      "pass": true
+    },
+    {
+      "width": 1024,
+      "dpr": 1,
+      "pass": true
+    },
+    {
+      "width": 1024,
+      "dpr": 2,
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "dpr": 1,
+      "pass": true
+    },
+    {
+      "width": 1280,
+      "dpr": 2,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "dpr": 1,
+      "pass": true
+    },
+    {
+      "width": 1440,
+      "dpr": 2,
+      "pass": true
+    },
+    {
+      "width": 1920,
+      "dpr": 1,
+      "pass": true
+    },
+    {
+      "width": 1920,
+      "dpr": 2,
+      "pass": true
+    },
+    {
+      "motion": true,
+      "pass": true
+    },
+    {
+      "imageFailure": true,
+      "pass": true
+    },
+    {
+      "enlargedText": true,
+      "pass": true
+    }
+  ],
+  "regressionTests": 27,
+  "pathAndBankTests": 3,
+  "syntaxModules": 19,
+  "trackingContract": "passed",
+  "build": "passed",
+  "artifactIntegrity": "passed",
+  "independentReview": "No unresolved Critical, Important or Minor findings",
+  "physicalDeviceValidation": false,
+  "productionPublication": false
+}

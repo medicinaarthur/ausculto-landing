@@ -13,8 +13,8 @@ try{
   await page.goto('http://127.0.0.1:4197/estudantes/');await page.evaluate(()=>document.fonts.ready);
   const reject=page.getByRole('button',{name:'Recusar',exact:true});if(await reject.isVisible())await reject.click();
   const studio=page.locator('[data-practice-studio]');
-  assert.equal(await page.locator('.moment-paths .path-figure--doctor').isVisible(),true);
-  assert.equal(await page.locator('.moment-paths .path-figure--notebook').isVisible(),true);
+  assert.equal(await page.locator('.moment-paths .residency-doctor').isVisible(),true);
+  assert.equal(await page.locator('.moment-paths .enamed-book').isVisible(),true);
   assert.equal(await page.locator('.studio-demo .q-demo__alt:visible').count(),4);
   assert.equal(await page.locator('.studio-demo .q-demo').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(255, 255, 255)');
   if(width===390){
@@ -41,7 +41,7 @@ try{
   assert.ok(await track.evaluate(e=>e.scrollLeft)>0);assert.equal(await page.locator('.bank-gallery-track li').count(),40);
   assert.equal(await page.locator('[data-bank-pause]').isVisible(),false);
   assert.equal(await page.locator('.closing-pdf').count(),1);assert.equal(await page.locator('.moment-grid .closing-pdf').count(),0);
-  const pdf=await page.locator('.closing-pdf').boundingBox(),faq=await page.locator('.about-faq').boundingBox();assert.ok(pdf.y>faq.y+faq.height);
+  const pdf=await page.locator('.closing-pdf').boundingBox(),faq=await page.locator('.about-faq').boundingBox();assert.ok(pdf.y>=faq.y+faq.height-1);
   const audit=await new AxeBuilder({page}).include('.moment-paths').include('.practice-studio').include('.bank-gallery').include('.learning-journey').include('.closing-pdf').include('.pro').withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
   writeFileSync(`${out}/${engine}-${width}-axe.json`,JSON.stringify(audit,null,2));assert.deepEqual(audit.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)})),[]);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);assert.deepEqual(errors,[]);

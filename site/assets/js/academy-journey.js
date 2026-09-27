@@ -21,7 +21,7 @@
   const token=++request;selected=index;animations.forEach(a=>a.cancel());animations=[];
   steps.forEach((step,i)=>{step.open=i===index;step.classList.toggle('is-active',i===index);step.querySelector('summary').setAttribute('aria-expanded',String(i===index));});
   controls.forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.cycleSelect)===index)));
-  paths.forEach((path,i)=>path.classList.toggle('is-active',i<=index));
+  paths.forEach((path,i)=>path.classList.toggle('is-active',i===index));
   root.dataset.stage=String(index);root.querySelector('[data-cycle-count]').textContent=`Etapa 0${index+1} de 04`;
   const name=steps[index].querySelector('[data-stage-name]').firstChild.textContent;
   root.querySelector('[data-cycle-name]').textContent=name;root.querySelector('[data-cycle-subtitle]').textContent=steps[index].querySelector('[data-stage-subtitle]').textContent;

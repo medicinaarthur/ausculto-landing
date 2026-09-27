@@ -1,0 +1,44 @@
+{
+  "verifiedAt": "2026-09-27T21:37:56.459Z",
+  "remoteBankAudit": {
+    "source": "Firestore auscultoapp/questions (read-only projection)",
+    "documents": 14345,
+    "duplicates": 234,
+    "excluded": 0,
+    "missingNumber": 0,
+    "exams": 162,
+    "questions": 14111,
+    "commentedQuestions": 14022,
+    "banks": 40,
+    "evidence": "Nonempty explanation or option_comments string; unique exam_folder/question_number"
+  },
+  "localCatalogues": {
+    "exams": {
+      "file": "assets/data/exames/exames_dataset_v1.json",
+      "sha256": "44bf5a4761f6bdd23f97c071fdd0a3b0877d3db276bd15aec19b1a73a780d708",
+      "count": 500
+    },
+    "semiology": {
+      "file": "lib/semiologia/semiologia index/topics_index.json",
+      "sha256": "5a236cabdf6923838f5b0ffa3946e05ca31ea37b549204ca78136763428337ea",
+      "publishedTopics": 22,
+      "clinicalReview": "needs_review; not advertised as clinically reviewed"
+    },
+    "protocols": {
+      "file": "functions/config/ausmind_corpus_manifest_v1.json",
+      "sha256": "c4b53f51c799320b7283edad4e786fb03e8015f91238d0a547dfaceec1cf3484",
+      "count": 1005
+    },
+    "calculators": {
+      "count": 280,
+      "source": "Existing owner-approved commercial product snapshot"
+    }
+  },
+  "academy": {
+    "themes": 152,
+    "ecgModules": 18,
+    "source": "scripts/data/academy-presentation.json"
+  },
+  "commercialChanges": false,
+  "applicationChanges": false
+}
