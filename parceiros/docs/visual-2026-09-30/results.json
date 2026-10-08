@@ -1,0 +1,112 @@
+{
+  "results": [
+    {
+      "mode": "login",
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "login",
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "login",
+      "width": 360,
+      "height": 800,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "dashboard",
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "dashboard",
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "dashboard",
+      "width": 768,
+      "height": 1024,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "partial",
+      "width": 1440,
+      "height": 900,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "partial",
+      "width": 360,
+      "height": 800,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "pending",
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "finishing",
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "error",
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "blocked",
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "empty",
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "long",
+      "width": 360,
+      "height": 800,
+      "dpr": 1,
+      "overflow": false
+    },
+    {
+      "mode": "loading",
+      "width": 390,
+      "height": 844,
+      "dpr": 1,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "realBackendRequests": 0
+}
