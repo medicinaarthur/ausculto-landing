@@ -3,13 +3,13 @@
   Vanilla JS, sem dependencias. Responsavel por: variantes do topo (?angulo=),
   banner de consentimento, sticky CTA mobile, eventos de secao, perguntas
   frequentes, a questao do Caso-Chefe (demo) e as cenas interativas:
-    - cenas com areas clicaveis (topo, Provas) que abrem um cartao; no celular
-      viram selos dentro da cena;
+    - holofote: cada objeto tem a silhueta exata; mouse/foco/toque acende o objeto,
+      recua o resto e abre o cartao com a tela real do app (pinos no celular);
     - reacoes das miniaturas (videos curtos sobre a imagem fiel): tocam uma vez,
       em sequencia, quando a cena aparece, e de novo no mouse ou no toque;
     - Desempenho: o mapa de exemplo enche as barras e abre a primeira lacuna;
-    - Temas: a lista de areas acende a lombada do volume (e vice-versa);
-    - Para quem e: o perfil acende o palco da miniatura;
+    - Temas e Para quem e: a lista acende o objeto (e vice-versa);
+    - stop-motion das miniaturas (sprites gerados quadro a quadro);
     - Trilha: o video toca uma vez quando o bloco aparece e descansa no ultimo
       quadro; no Mapa os aneis acendem nas medalhas e abrem cartoes; na Jornada
       as tres paradas iluminam a cena e disparam a reacao do personagem.
@@ -25,6 +25,17 @@
   var conn = navigator.connection || null;
   function lowData() {
     return !!(conn && (conn.saveData === true || /2g/.test(conn.effectiveType || '')));
+  }
+  // depois do load e de uma folga: nada da animacao disputa banda com a primeira pintura
+  function afterSettle(fn) {
+    var go = function () {
+      window.setTimeout(function () {
+        if ('requestIdleCallback' in window) window.requestIdleCallback(fn, { timeout: 1500 });
+        else fn();
+      }, 1800);
+    };
+    if (document.readyState === 'complete') go();
+    else window.addEventListener('load', go, { once: true });
   }
   function motionOk() {
     return !reducedMq.matches && !lowData();
@@ -221,6 +232,7 @@
   var heroGone = false;
   var finalVisible = false;
   var demoVisible = false;
+  var ctaVisible = false;
 
   function updateFixedChrome() {
     var wantSticky =
@@ -228,6 +240,7 @@
       heroGone &&
       !finalVisible &&
       !demoVisible &&
+      !ctaVisible &&
       !consentVisible &&
       mobileMq.matches;
     if (wantSticky !== stickyOn) {
@@ -259,6 +272,19 @@
       demoVisible = e.isIntersecting;
       updateFixedChrome();
     });
+    // e enquanto o botao dourado de uma secao estiver na tela (nunca dois iguais juntos)
+    if ('IntersectionObserver' in window) {
+      var seen = new Set();
+      var ctaIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) seen.add(en.target);
+          else seen.delete(en.target);
+        });
+        ctaVisible = seen.size > 0;
+        updateFixedChrome();
+      }, { threshold: 0.6 });
+      Array.prototype.forEach.call(document.querySelectorAll('main .btn--gold'), function (b) { ctaIO.observe(b); });
+    }
     if (typeof mobileMq.addEventListener === 'function') {
       mobileMq.addEventListener('change', updateFixedChrome);
     }
@@ -418,36 +444,13 @@
     update();
   }
 
-  /* ================= Cenas com areas clicaveis =================
-     Mouse: passar sobre a area acende e abre o cartao (que fica aberto enquanto o
-     mouse estiver nele). Toque: o toque abre/fecha. Teclado: o foco abre. */
-  function buildCard(box, spec) {
-    var parts = spec.split('|');
-    while (box.firstChild) box.removeChild(box.firstChild);
-    var b = document.createElement('b');
-    b.textContent = parts[0];
-    var strong = document.createElement('strong');
-    strong.textContent = parts[1];
-    var span = document.createElement('span');
-    span.textContent = parts[2];
-    box.appendChild(b);
-    box.appendChild(strong);
-    box.appendChild(span);
-    if (parts[3] && parts[4]) {
-      var a = document.createElement('a');
-      a.href = parts[3];
-      a.textContent = parts[4] + ' ↓';
-      box.appendChild(a);
-    }
-  }
-
+  /* ================= Cenas: entrada, dica e reacoes =================
+     A cena aparece: os objetos acendem um de cada vez (uma volta rapida) e os
+     personagens reagem em sequencia. O resto e do holofote (initLit). */
   function initScenes() {
     var scenes = document.querySelectorAll('[data-cena]');
     for (var s = 0; s < scenes.length; s += 1) {
       (function (cena) {
-        var section = cena.closest('section');
-        var box = section ? section.querySelector('[data-card-box]') : null;
-        var hots = Array.prototype.slice.call(cena.querySelectorAll('.hot'));
         var hint = cena.querySelector('.cena__hint');
         if (hint) {
           hint.textContent = touchMq.matches
@@ -457,13 +460,11 @@
         var rx = reactionPlayer(cena);
         cena.rxPlayer = rx;
         if (rx.count && 'IntersectionObserver' in window) {
-          // os videos da cena baixam quando ela chega a uma tela de distancia
+          // as reacoes baixam quando a cena chega a uma tela de distancia, depois do load
           var near = new IntersectionObserver(function (entries) {
             if (!entries[0].isIntersecting) return;
             near.disconnect();
-            // depois do load: o video nunca disputa banda com a imagem principal (LCP)
-            if (document.readyState === 'complete') rx.preload();
-            else window.addEventListener('load', rx.preload, { once: true });
+            afterSettle(rx.preload);
           }, { rootMargin: '700px 0px' });
           near.observe(cena);
         }
@@ -476,270 +477,467 @@
           }
           window.setTimeout(function () {
             cena.classList.add('is-intro', 'is-hinting');
-            if (rx.count) window.setTimeout(function () { rx.sequence(700); }, 900);
-          }, 500);
-        });
-        // areas que so fazem o personagem reagir (sem cartao)
-        Array.prototype.forEach.call(cena.querySelectorAll('.fig[data-rx-play]'), function (f) {
-          var key = f.getAttribute('data-rx-play');
-          f.addEventListener('pointerenter', function (ev) {
-            if (ev.pointerType === 'mouse' && !rx.busy()) rx.play(key);
-          });
-          f.addEventListener('click', function () {
-            cena.classList.add('is-touched');
-            rx.play(key);
-          });
-        });
-        if (!box || !hots.length) return;
-
-        var open = null;
-        var hideTimer = 0;
-
-        function place(h) {
-          if (mobileMq.matches) {
-            box.style.left = '';
-            box.style.top = '';
-            return;
-          }
-          var r = h.getBoundingClientRect();
-          var R = section.getBoundingClientRect();
-          var w = box.offsetWidth;
-          var hh = box.offsetHeight;
-          var at = h.getAttribute('data-card-at');
-          if (at === 'inside' || at === 'left') {
-            var lx = at === 'inside' ? r.left - R.left + 28 : r.left - R.left - w - 12;
-            var ly = at === 'inside' ? r.top - R.top + 28 : r.top - R.top + r.height / 2 - hh / 2;
-            box.style.left = Math.max(16, Math.min(R.width - w - 16, lx)) + 'px';
-            box.style.top = Math.max(88, Math.min(R.height - hh - 16, ly)) + 'px';
-            return;
-          }
-          if (cena.getAttribute('data-card-place') === 'above') {
-            // etiqueta acima do objeto (ou abaixo, se nao couber sob o cabecalho)
-            var cx = r.left - R.left + r.width / 2 - w / 2;
-            var ty = r.top - R.top - hh - 12;
-            if (ty < 88) ty = r.bottom - R.top + 12;
-            box.style.left = Math.max(16, Math.min(R.width - w - 16, cx)) + 'px';
-            box.style.top = Math.min(R.height - hh - 16, ty) + 'px';
-            return;
-          }
-          var left = r.right - R.left + 14;
-          if (left + w > R.width - 16) left = r.left - R.left - w - 14;
-          if (left < 16) left = Math.max(16, Math.min(R.width - w - 16, r.left - R.left + r.width / 2 - w / 2));
-          var top = r.top - R.top + r.height / 2 - hh / 2;
-          top = Math.max(16, Math.min(R.height - hh - 16, top));
-          box.style.left = left + 'px';
-          box.style.top = top + 'px';
-        }
-
-        function show(h) {
-          window.clearTimeout(hideTimer);
-          var key = h.getAttribute('data-rx-play');
-          if (key && !rx.busy()) rx.play(key);
-          if (mobileMq.matches) {
-            // no celular nao ha cartao: o anel acende e o personagem reage
-            for (var j = 0; j < hots.length; j += 1) hots[j].classList.toggle('is-open', hots[j] === h);
-            open = h;
-            cena.classList.add('is-touched');
-            return;
-          }
-          if (open !== h) buildCard(box, h.getAttribute('data-card'));
-          for (var i = 0; i < hots.length; i += 1) hots[i].classList.toggle('is-open', hots[i] === h);
-          open = h;
-          box.removeAttribute('hidden');
-          place(h);
-          cena.classList.add('is-touched');
-        }
-
-        function hide() {
-          open = null;
-          for (var i = 0; i < hots.length; i += 1) hots[i].classList.remove('is-open');
-          box.setAttribute('hidden', '');
-        }
-
-        function hideSoon() {
-          window.clearTimeout(hideTimer);
-          hideTimer = window.setTimeout(hide, 220);
-        }
-
-        hots.forEach(function (h) {
-          var viaPointer = false;
-          h.addEventListener('pointerenter', function (e) {
-            if (e.pointerType === 'mouse') show(h);
-          });
-          h.addEventListener('pointerleave', function (e) {
-            if (e.pointerType === 'mouse') hideSoon();
-          });
-          h.addEventListener('pointerdown', function () {
-            viaPointer = true;
-          });
-          h.addEventListener('focus', function () {
-            if (!viaPointer) show(h);
-          });
-          h.addEventListener('blur', function () {
-            viaPointer = false;
-          });
-          h.addEventListener('click', function (e) {
-            viaPointer = false;
-            if (e.pointerType === 'mouse') show(h);
-            else if (open === h) hide();
-            else show(h);
-          });
-        });
-        box.addEventListener('pointerenter', function () {
-          window.clearTimeout(hideTimer);
-        });
-        box.addEventListener('pointerleave', function (e) {
-          if (e.pointerType === 'mouse') hideSoon();
-        });
-        document.addEventListener('pointerdown', function (e) {
-          if (!open || e.pointerType === 'mouse') return;
-          if (cena.contains(e.target) || box.contains(e.target)) return;
-          hide();
-        });
-        window.addEventListener('resize', function () {
-          if (open) place(open);
+            var sils = Array.prototype.slice.call(cena.querySelectorAll('.sil'));
+            var step = sils.length > 5 ? 260 : 520;
+            sils.forEach(function (el, i) {
+              window.setTimeout(function () {
+                if (cena.classList.contains('is-lit')) return;
+                el.classList.add('flash');
+                window.setTimeout(function () { el.classList.remove('flash'); }, step + 220);
+              }, i * step);
+            });
+            if (rx.count) window.setTimeout(function () { rx.sequence(650); }, sils.length * step + 300);
+          }, 450);
         });
       })(scenes[s]);
     }
   }
 
-  /* ================= Temas: area na lista <-> lombada do volume ================= */
-  function initTemas() {
-    var list = document.getElementById('temasAreas');
-    if (!list) return;
-    var rows = Array.prototype.slice.call(list.querySelectorAll('li[data-area]'));
-    var spines = Array.prototype.slice.call(document.querySelectorAll('.lombada'));
-    var current = null;
-    spines.forEach(function (el, i) {
-      el.style.setProperty('--i', String(i));
-    });
-    function lit(key) {
-      current = key;
-      rows.forEach(function (r) {
-        r.classList.toggle('is-on', r.getAttribute('data-area') === key);
-      });
-      spines.forEach(function (sp) {
-        sp.classList.toggle('is-on', sp.getAttribute('data-area') === key);
-      });
-    }
-    rows.concat(spines).forEach(function (el) {
-      var key = el.getAttribute('data-area');
-      el.addEventListener('pointerenter', function (e) {
-        if (e.pointerType === 'mouse') lit(key);
-      });
-      el.addEventListener('pointerleave', function (e) {
-        if (e.pointerType === 'mouse') lit(null);
-      });
-      el.addEventListener('click', function () {
-        lit(current === key ? null : key);
-      });
-    });
+  /* ================= Holofote e cartoes =================
+     Cada objeto interativo tem a silhueta exata (recorte com alfa) e a area de clique
+     pelo contorno (path SVG). Mouse/foco/toque acende o objeto, recua o resto sob um
+     veu marfim, abre o cartao com a tela real do app e liga os dois por uma linha-guia.
+     No celular o cartao vem logo abaixo da cena e os pinos marcam os objetos. */
+  var CARD_DATA = {};
+  try {
+    CARD_DATA = JSON.parse(document.getElementById('cardData').textContent) || {};
+  } catch (err) {
+    CARD_DATA = {};
+  }
+  var ASSET = '/assets/enamed/v2/';
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
   }
 
-  /* ================= Para quem e: perfil <-> palco ================= */
-  function initPerfis() {
-    var items = Array.prototype.slice.call(document.querySelectorAll('.perfis li[data-perfil]'));
-    var stages = Array.prototype.slice.call(document.querySelectorAll('.palco'));
-    var quem = document.querySelector('.cena--quem');
-    function lit(key) {
-      if (key !== null && quem && quem.rxPlayer && !quem.rxPlayer.busy()) quem.rxPlayer.play(key);
-      items.forEach(function (li) {
-        li.classList.toggle('is-on', li.getAttribute('data-perfil') === key);
-      });
-      stages.forEach(function (p) {
-        p.classList.toggle('is-on', p.getAttribute('data-perfil') === key);
-      });
+  function renderCard(box, d) {
+    while (box.firstChild) box.removeChild(box.firstChild);
+    box.classList.toggle('card--compact', !!d.compact && !d.thumb && !d.medal);
+    if (d.thumb || d.medal) {
+      var t = el('span', 'card__thumb' + (d.medal ? ' card__thumb--medal' : ''));
+      var img = el('img');
+      img.src = ASSET + (d.medal ? 'insignia-' + d.medal : 'thumb-' + d.thumb) + '.webp';
+      img.alt = '';
+      img.width = d.medal ? 92 : 100;
+      img.height = d.medal ? 92 : 133;
+      t.appendChild(img);
+      box.appendChild(t);
     }
-    items.forEach(function (li) {
-      var key = li.getAttribute('data-perfil');
-      li.addEventListener('pointerenter', function () {
-        lit(key);
+    var body = el('div', 'card__body');
+    body.appendChild(el('b', 'card__kick', d.kick));
+    body.appendChild(el('strong', 'card__title', d.title));
+    body.appendChild(el('p', 'card__text', d.text));
+    if (d.stats && d.stats.length) {
+      var ul = el('ul', 'card__stats');
+      d.stats.forEach(function (st) {
+        var li = el('li');
+        li.appendChild(el('b', null, st[0]));
+        li.appendChild(el('span', null, st[1]));
+        ul.appendChild(li);
       });
-      li.addEventListener('pointerleave', function () {
-        lit(null);
-      });
-      li.addEventListener('focus', function () {
-        lit(key);
-      });
-      li.addEventListener('blur', function () {
-        lit(null);
-      });
-    });
+      body.appendChild(ul);
+    }
+    if (d.href && d.link) {
+      var a = el('a', 'card__link');
+      a.href = d.href;
+      a.appendChild(document.createTextNode(d.link + ' '));
+      a.appendChild(el('span', null, '→'));
+      body.appendChild(a);
+    }
+    box.appendChild(body);
+    box.style.animation = 'none';
+    void box.offsetWidth;
+    box.style.animation = '';
   }
 
-  /* ================= Reacoes (videos curtos sobre a imagem fiel) =================
-     Cada <video class="rx" data-rx="chave"> cobre so a regiao do personagem; comeca
-     igual a imagem parada e termina perto dela, com fade de 0,3 s nas duas pontas.
-     play(chave, fim) toca uma; sequence() toca todas, uma por vez. */
+  function initLit() {
+    var roots = document.querySelectorAll('[data-scene]');
+    for (var r = 0; r < roots.length; r += 1) {
+      (function (root) {
+        var scene = root.getAttribute('data-scene');
+        var section = root.closest('section');
+        var frame = root.querySelector('.cena__frame') || root;
+        var box = section.querySelector('[data-card-for="' + scene + '"]');
+        var lead = section.querySelector('[data-lead-for="' + scene + '"]');
+        var data = CARD_DATA[scene] || {};
+        var hits = Array.prototype.slice.call(root.querySelectorAll('.hit'));
+        var pins = Array.prototype.slice.call(root.querySelectorAll('.pin'));
+        var links = Array.prototype.slice.call(document.querySelectorAll('[data-link^="' + scene + ':"]'));
+        var sils = {};
+        Array.prototype.forEach.call(root.querySelectorAll('.sil'), function (n) {
+          sils[n.getAttribute('data-k')] = n;
+        });
+        var minX0 = parseFloat(root.getAttribute('data-card-min-x') || '0');
+        var open = null;
+        var hideTimer = 0;
+
+        function ready() {
+          return scene !== 'mapa' || section.classList.contains('is-rest');
+        }
+
+        function place(k, d) {
+          if (!box) return;
+          if (mobileMq.matches || !d || d.ax == null) {
+            box.style.left = '';
+            box.style.top = '';
+            if (lead) lead.classList.remove('on');
+            return;
+          }
+          var S = section.getBoundingClientRect();
+          var F = frame.getBoundingClientRect();
+          var rel = function (q) { return { l: q.left - S.left, t: q.top - S.top, r: q.right - S.left, b: q.bottom - S.top }; };
+          var o = rel(sils[k] ? sils[k].getBoundingClientRect() : F);
+          var ax = F.left - S.left + (F.width * d.ax) / 100;
+          var ay = F.top - S.top + (F.height * d.ay) / 100;
+          var w = box.offsetWidth;
+          var h = box.offsetHeight;
+          var gap = 28;
+          var minY = Math.max(16, 96 - S.top);
+          var maxY = Math.min(S.height - h - 16, window.innerHeight - S.top - h - 16);
+          var minX = Math.max(16, S.width * minX0);
+          var maxX = S.width - w - 16;
+          // o que o cartao nao pode cobrir: os outros objetos (peso 1) e o texto (peso 4)
+          var avoid = [];
+          Object.keys(sils).forEach(function (key) {
+            if (key !== k) avoid.push([rel(sils[key].getBoundingClientRect()), 1]);
+          });
+          Array.prototype.forEach.call(root.querySelectorAll('.sm, video.rx'), function (n) {
+            avoid.push([rel(n.getBoundingClientRect()), 2]);
+          });
+          Array.prototype.forEach.call(section.querySelectorAll('.hero__copy > *, .bloco__copy > *, .ta-card, .hero__facts'), function (n) {
+            avoid.push([rel(n.getBoundingClientRect()), 4]);
+          });
+          var cx = (o.l + o.r) / 2;
+          var cy = (o.t + o.b) / 2;
+          var cand = [
+            [o.r + gap, cy - h / 2], [o.l - gap - w, cy - h / 2],
+            [cx - w / 2, o.t - gap - h], [cx - w / 2, o.b + gap],
+            [o.r + gap, o.t], [o.l - gap - w, o.t], [o.r + gap, o.b - h], [o.l - gap - w, o.b - h],
+          ];
+          var best = null;
+          cand.forEach(function (c) {
+            var x = Math.max(minX, Math.min(maxX, c[0]));
+            var y = Math.max(minY, Math.min(maxY, c[1]));
+            var cost = Math.abs(x - c[0]) + Math.abs(y - c[1]);
+            avoid.forEach(function (av) {
+              var q = av[0];
+              var ix = Math.max(0, Math.min(x + w, q.r) - Math.max(x, q.l));
+              var iy = Math.max(0, Math.min(y + h, q.b) - Math.max(y, q.t));
+              cost += (ix * iy * av[1]) / 40;
+            });
+            // o proprio objeto coberto pesa mais ainda
+            var ox = Math.max(0, Math.min(x + w, o.r) - Math.max(x, o.l));
+            var oy = Math.max(0, Math.min(y + h, o.b) - Math.max(y, o.t));
+            cost += (ox * oy * 3) / 40;
+            if (!best || cost < best[2]) best = [x, y, cost];
+          });
+          box.style.left = Math.round(best[0]) + 'px';
+          box.style.top = Math.round(best[1]) + 'px';
+          if (!lead) return;
+          // linha-guia: do ponto do objeto ao ponto mais proximo da borda do cartao
+          var ex = Math.max(best[0], Math.min(best[0] + w, ax));
+          var ey = Math.max(best[1], Math.min(best[1] + h, ay));
+          var path = lead.querySelector('path');
+          var dot = lead.querySelector('circle');
+          path.setAttribute('d', 'M' + ax + ' ' + ay + ' L' + ex + ' ' + ey);
+          lead.style.setProperty('--len', String(Math.ceil(Math.hypot(ex - ax, ey - ay)) + 2));
+          dot.setAttribute('cx', String(ax));
+          dot.setAttribute('cy', String(ay));
+          lead.classList.remove('on');
+          void lead.getBoundingClientRect();
+          lead.classList.toggle('on', Math.hypot(ex - ax, ey - ay) > 12);
+        }
+
+        function activate(k) {
+          if (!ready()) return;
+          loadSils();
+          window.clearTimeout(hideTimer);
+          if (open === k) return;
+          open = k;
+          root.classList.add('is-lit');
+          Object.keys(sils).forEach(function (key) {
+            sils[key].classList.remove('flash');
+            sils[key].classList.toggle('on', key === k);
+          });
+          pins.forEach(function (p) {
+            p.classList.toggle('is-on', p.getAttribute('data-k') === k);
+          });
+          links.forEach(function (l) {
+            l.classList.toggle('is-on', l.getAttribute('data-link') === scene + ':' + k);
+          });
+          var d = data[k];
+          if (box && d) {
+            renderCard(box, d);
+            box.hidden = false;
+            place(k, d);
+          }
+          var rx = root.rxPlayer;
+          var rk = d && d.rx ? d.rx : scene === 'quem' ? k : null;
+          if (rx && rk != null && !rx.busy()) rx.play(rk);
+        }
+
+        function deactivate() {
+          open = null;
+          root.classList.remove('is-lit');
+          Object.keys(sils).forEach(function (key) {
+            sils[key].classList.remove('on');
+          });
+          pins.forEach(function (p) { p.classList.remove('is-on'); });
+          links.forEach(function (l) { l.classList.remove('is-on'); });
+          if (box) box.hidden = true;
+          if (lead) lead.classList.remove('on');
+        }
+
+        function soon() {
+          window.clearTimeout(hideTimer);
+          hideTimer = window.setTimeout(deactivate, 260);
+        }
+
+        function go(k) {
+          var d = data[k];
+          if (!d || !d.href) return;
+          var target = document.querySelector(d.href);
+          if (target) target.scrollIntoView({ behavior: reducedMq.matches ? 'auto' : 'smooth', block: 'start' });
+        }
+
+        function bind(n, k, opts) {
+          var viaPointer = false;
+          n.addEventListener('pointerenter', function (e) {
+            if (e.pointerType === 'mouse') activate(k);
+          });
+          n.addEventListener('pointerleave', function (e) {
+            if (e.pointerType === 'mouse') soon();
+          });
+          n.addEventListener('pointerdown', function () {
+            viaPointer = true;
+          });
+          n.addEventListener('focus', function () {
+            if (!viaPointer) activate(k);
+          });
+          n.addEventListener('blur', function () {
+            viaPointer = false;
+            soon();
+          });
+          n.addEventListener('click', function (e) {
+            viaPointer = false;
+            root.classList.add('is-touched');
+            if (e.pointerType === 'mouse') {
+              activate(k);
+              if (opts && opts.follow) go(k);
+            } else if (open === k) {
+              deactivate();
+            } else {
+              activate(k);
+            }
+          });
+          n.addEventListener('keydown', function (e) {
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            e.preventDefault();
+            activate(k);
+            if (opts && opts.follow) go(k);
+          });
+        }
+
+        // celular: o pino fica dentro do trecho visivel da cena (o recorte), sobre a parte
+        // visivel do objeto, mesmo quando o centro do objeto cai fora do recorte
+        function fitPins() {
+          pins.forEach(function (p) {
+            p.style.left = '';
+            p.style.top = '';
+          });
+          if (!mobileMq.matches || !pins.length) return;
+          var R = root.getBoundingClientRect();
+          var F = frame.getBoundingClientRect();
+          pins.forEach(function (p) {
+            var pw = p.offsetWidth;
+            var ph = p.offsetHeight;
+            var px = (parseFloat(p.style.getPropertyValue('--px')) || 0) / 100;
+            var py = (parseFloat(p.style.getPropertyValue('--py')) || 0) / 100;
+            var x = F.width * px;
+            var y = F.height * py;
+            var minX = R.left - F.left + 8 + 15;
+            var maxX = R.right - F.left - pw + 15 - 8;
+            var minY = R.top - F.top + 8 + ph / 2;
+            var maxY = R.bottom - F.top - 8 - ph / 2;
+            p.style.left = Math.round(Math.max(minX, Math.min(maxX, x))) + 'px';
+            p.style.top = Math.round(Math.max(minY, Math.min(maxY, y))) + 'px';
+          });
+        }
+        fitPins();
+        window.addEventListener('resize', fitPins);
+        window.addEventListener('load', fitPins);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPins);
+
+        // os recortes so aparecem na interacao: baixam depois do load, quando a cena chega perto
+        function loadSils() {
+          Object.keys(sils).forEach(function (key) {
+            var im = sils[key];
+            if (!im.getAttribute('src') && im.getAttribute('data-src')) im.src = im.getAttribute('data-src');
+          });
+        }
+        if ('IntersectionObserver' in window) {
+          var silIO = new IntersectionObserver(function (entries) {
+            if (!entries[0].isIntersecting) return;
+            silIO.disconnect();
+            afterSettle(loadSils);
+          }, { rootMargin: '600px 0px' });
+          silIO.observe(root);
+        } else {
+          loadSils();
+        }
+
+        hits.forEach(function (h) { bind(h, h.getAttribute('data-k'), { follow: true }); });
+        pins.forEach(function (p) { bind(p, p.getAttribute('data-k')); });
+        links.forEach(function (l) { bind(l, l.getAttribute('data-link').split(':')[1]); });
+        if (box) {
+          box.addEventListener('pointerenter', function () { window.clearTimeout(hideTimer); });
+          box.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') soon(); });
+        }
+        document.addEventListener('pointerdown', function (e) {
+          if (open === null || e.pointerType === 'mouse') return;
+          if (root.contains(e.target) || (box && box.contains(e.target))) return;
+          if (links.some(function (l) { return l.contains(e.target); })) return;
+          deactivate();
+        });
+        window.addEventListener('resize', function () {
+          if (open !== null) place(open, data[open]);
+        });
+      })(roots[r]);
+    }
+  }
+
+  /* ================= Reacoes =================
+     Videos curtos (<video class="rx">) e stop-motion (<span class="sm">: sprite com os
+     quadros lado a lado; o quadro 0 e a propria cena). Os dois comecam e terminam na
+     imagem fiel. play(chave, fim) toca um; sequence() toca todos, um por vez. */
+  var SM_STEPS = [[1, 110], [2, 110], [3, 240], [2, 110], [3, 240], [2, 110], [1, 110], [0, 60]];
+
   function reactionPlayer(root) {
-    var vids = Array.prototype.slice.call(root.querySelectorAll('video.rx'));
+    var items = Array.prototype.slice.call(root.querySelectorAll('video.rx, .sm'));
     var current = null;
     var onDone = null;
     var suffix = window.innerWidth < 768 ? '-960' : '';
-    function load(v) {
-      if (!v.getAttribute('src')) v.src = v.getAttribute('data-src') + suffix + '.mp4';
+    var small = window.innerWidth < 1024;
+    function isSprite(n) {
+      return n.classList.contains('sm');
     }
-    function stop(v) {
+    function load(n) {
+      if (isSprite(n)) {
+        if (n.getAttribute('data-state')) return;
+        n.setAttribute('data-state', 'loading');
+        var url = n.getAttribute(small ? 'data-bg-cel' : 'data-bg');
+        var img = new Image();
+        img.onload = function () {
+          n.style.backgroundImage = 'url("' + url + '")';
+          n.setAttribute('data-state', 'ready');
+        };
+        img.src = url;
+        return;
+      }
+      if (!n.getAttribute('src')) n.src = n.getAttribute('data-src') + suffix + '.mp4';
+    }
+    function finish(n) {
+      if (current !== n) return;
+      current = null;
+      var cb = onDone;
+      onDone = null;
+      if (cb) cb();
+    }
+    function stopVideo(v) {
       v.classList.remove('is-on');
       window.setTimeout(function () {
         if (!v.classList.contains('is-on')) v.pause();
       }, 340);
-      if (current === v) {
-        current = null;
-        var cb = onDone;
-        onDone = null;
-        if (cb) cb();
-      }
+      finish(v);
     }
-    vids.forEach(function (v) {
-      v.addEventListener('playing', function () {
-        if (current === v) v.classList.add('is-on');
+    items.forEach(function (n) {
+      if (isSprite(n)) return;
+      n.addEventListener('playing', function () {
+        if (current === n) n.classList.add('is-on');
       });
-      v.addEventListener('timeupdate', function () {
-        var dur = parseFloat(v.getAttribute('data-dur')) || 6;
-        if (current === v && v.currentTime >= dur - 0.35) stop(v);
+      n.addEventListener('timeupdate', function () {
+        var dur = parseFloat(n.getAttribute('data-dur')) || 6;
+        if (current === n && n.currentTime >= dur - 0.35) stopVideo(n);
       });
-      v.addEventListener('ended', function () {
-        stop(v);
+      n.addEventListener('ended', function () {
+        stopVideo(n);
       });
     });
+    function playSprite(n) {
+      var frames = parseInt(n.getAttribute('data-frames'), 10) || 4;
+      if (n.getAttribute('data-state') !== 'ready') {
+        load(n);
+        window.setTimeout(function () { finish(n); }, 50);
+        return;
+      }
+      var i = 0;
+      n.style.backgroundPosition = '0 0';
+      n.classList.add('is-on');
+      (function next() {
+        if (current !== n) {
+          n.classList.remove('is-on');
+          return;
+        }
+        if (i >= SM_STEPS.length) {
+          n.style.backgroundPosition = '0 0';
+          n.classList.remove('is-on');
+          finish(n);
+          return;
+        }
+        var f = Math.min(frames - 1, SM_STEPS[i][0]);
+        n.style.backgroundPosition = (frames > 1 ? (f / (frames - 1)) * 100 : 0) + '% 0';
+        var wait = SM_STEPS[i][1];
+        i += 1;
+        window.setTimeout(next, wait);
+      })();
+    }
     function find(key) {
-      for (var i = 0; i < vids.length; i += 1) if (vids[i].getAttribute('data-rx') === String(key)) return vids[i];
+      for (var i = 0; i < items.length; i += 1) if (items[i].getAttribute('data-rx') === String(key)) return items[i];
       return null;
     }
     var api = {
-      count: vids.length,
+      count: items.length,
       busy: function () {
         return !!current;
       },
       preload: function () {
         if (!motionOk()) return;
-        vids.forEach(function (v) {
-          v.preload = 'auto';
-          load(v);
+        items.forEach(function (n) {
+          if (!isSprite(n)) n.preload = 'auto';
+          load(n);
         });
       },
       play: function (key, done) {
-        var v = find(key);
-        if (!v || !motionOk()) {
+        var n = find(key);
+        if (!n || !motionOk()) {
           if (done) done();
           return;
         }
-        if (current && current !== v) stop(current);
-        if (current === v) return;
-        current = v;
+        if (current && current !== n) {
+          if (isSprite(current)) current.classList.remove('is-on');
+          else stopVideo(current);
+        }
+        if (current === n) return;
+        current = n;
         onDone = done || null;
-        load(v);
+        if (isSprite(n)) {
+          playSprite(n);
+          return;
+        }
+        load(n);
         try {
-          v.currentTime = 0;
+          n.currentTime = 0;
         } catch (e) {
           /* metadados ainda nao carregados: comeca do inicio de qualquer jeito */
         }
-        var p = v.play();
-        if (p && typeof p.catch === 'function') p.catch(function () { stop(v); });
+        var p = n.play();
+        if (p && typeof p.catch === 'function') p.catch(function () { stopVideo(n); });
       },
       sequence: function (gap) {
-        var keys = vids.map(function (v) { return v.getAttribute('data-rx'); });
+        var keys = items.map(function (n) { return n.getAttribute('data-rx'); });
         var i = 0;
         function next() {
           if (i >= keys.length) return;
@@ -777,7 +975,7 @@
           block.classList.add('is-touched');
         }, { passive: true });
         block.addEventListener('focusin', function (e) {
-          if (e.target.matches && e.target.matches('.spot, .stage')) block.classList.add('is-touched');
+          if (e.target.matches && e.target.matches('.hit, .stage, .pin')) block.classList.add('is-touched');
         });
         if (reducedMq.matches || !video) {
           rest();
@@ -814,99 +1012,13 @@
       })(blocks[b]);
     }
 
-    /* ---- Mapa-ilha: cartao no mouse, foco ou toque ---- */
-    var ta = document.querySelector('.tv.ta');
-    if (ta) {
-      var tip = ta.querySelector('[data-tip-box]');
-      var spots = Array.prototype.slice.call(ta.querySelectorAll('.spot'));
-      var openSpot = null;
-      var placeTip = function (el) {
-        if (mobileMq.matches) return;
-        var r = el.getBoundingClientRect();
-        var R = ta.getBoundingClientRect();
-        var w = tip.offsetWidth;
-        var h = tip.offsetHeight;
-        var left = r.right - R.left + 12;
-        if (left + w > R.width - 14) left = r.left - R.left - w - 12;
-        tip.style.left = left + 'px';
-        tip.style.top = Math.max(14, Math.min(R.height - h - 14, r.top - R.top + r.height / 2 - h / 2)) + 'px';
-      };
-      var showTip = function (el) {
-        var parts = el.getAttribute('data-tip').split('|');
-        while (tip.firstChild) tip.removeChild(tip.firstChild);
-        if (parts[3]) {
-          var img = document.createElement('img');
-          img.src = '/assets/enamed/v2/insignia-' + parts[3] + '.webp';
-          img.alt = '';
-          img.width = 52;
-          img.height = 52;
-          tip.appendChild(img);
-        }
-        var kicker = document.createElement('b');
-        kicker.textContent = parts[1];
-        var title = document.createElement('strong');
-        title.textContent = parts[0];
-        var text = document.createElement('span');
-        text.textContent = parts[2];
-        tip.appendChild(kicker);
-        tip.appendChild(title);
-        tip.appendChild(text);
-        spots.forEach(function (x) {
-          x.classList.toggle('is-open', x === el);
-        });
-        openSpot = el;
-        tip.classList.add('on');
-        placeTip(el);
-      };
-      var hideTip = function () {
-        openSpot = null;
-        spots.forEach(function (x) {
-          x.classList.remove('is-open');
-        });
-        tip.classList.remove('on');
-      };
-      spots.forEach(function (el) {
-        el.setAttribute('aria-label', el.getAttribute('data-tip').split('|')[0]);
-        var viaPointer = false;
-        el.addEventListener('pointerenter', function (e) {
-          if (e.pointerType === 'mouse') showTip(el);
-        });
-        el.addEventListener('pointerleave', function (e) {
-          if (e.pointerType === 'mouse') hideTip();
-        });
-        el.addEventListener('pointerdown', function () {
-          viaPointer = true;
-        });
-        el.addEventListener('focus', function () {
-          if (!viaPointer) showTip(el);
-        });
-        el.addEventListener('blur', function () {
-          viaPointer = false;
-          hideTip();
-        });
-        el.addEventListener('click', function (e) {
-          viaPointer = false;
-          if (e.pointerType === 'mouse') showTip(el);
-          else if (openSpot === el) hideTip();
-          else showTip(el);
-        });
-      });
-      window.addEventListener('resize', function () {
-        if (openSpot) placeTip(openSpot);
-      });
-    }
-
     /* ---- Jornada: paradas que iluminam a cena e fazem o personagem reagir ---- */
     var tb = document.querySelector('.tv.tb');
     if (tb) {
       var focus = tb.querySelector('[data-focus]');
       var note = tb.querySelector('[data-note]');
       var stages = Array.prototype.slice.call(tb.querySelectorAll('.stage'));
-      var NOTES = [
-        ['Caso', 'Você atende o caso', 'Cada etapa é um caso com personagem. Você escolhe a conduta e vê o raciocínio de cada alternativa.'],
-        ['Caso-Chefe', 'A questão de prova', 'No fim do capítulo, a Dra. Helena traz o Caso-Chefe, como a questão 34 do Caderno 1 do ENAMED 2025, que você pode responder aqui embaixo.'],
-        ['Insígnia', 'Medir para decidir', 'Vença o Caso-Chefe e leve a insígnia do capítulo. São 54 para colecionar, uma por capítulo.'],
-      ];
+      var NOTES = CARD_DATA.jornada || {};
       var current = -1;
       var pick = function (i) {
         if (current === i) {
@@ -916,6 +1028,7 @@
           });
           focus.classList.remove('on');
           note.classList.remove('on');
+          note.hidden = true;
           return;
         }
         current = i;
@@ -927,18 +1040,12 @@
         focus.style.setProperty('--fy', btn.getAttribute('data-fy'));
         focus.style.setProperty('--cy', btn.getAttribute('data-cy'));
         focus.classList.add('on');
-        while (note.firstChild) note.removeChild(note.firstChild);
-        var k = document.createElement('b');
-        k.textContent = NOTES[i][0];
-        var t = document.createElement('strong');
-        t.textContent = NOTES[i][1];
-        var x = document.createElement('span');
-        x.textContent = NOTES[i][2];
-        note.appendChild(k);
-        note.appendChild(t);
-        note.appendChild(x);
+        if (NOTES[i]) renderCard(note, NOTES[i]);
+        note.hidden = false;
         note.style.left = btn.getAttribute('data-nx');
         note.style.top = btn.getAttribute('data-ny');
+        note.classList.remove('on');
+        void note.offsetWidth;
         note.classList.add('on');
         if (tb.classList.contains('is-rest') && tb.reactions) tb.reactions.play(i);
       };
@@ -979,6 +1086,7 @@
       if (!e.isIntersecting || card.classList.contains('is-in')) return;
       card.classList.add('is-in');
       // a primeira lacuna abre sozinha: o bloco se explica sem precisar de toque
+      if (mobileMq.matches) return;
       window.setTimeout(function () {
         if (!touched && rows[0]) toggle(rows[0], true);
       }, reducedMq.matches ? 0 : 1500);
@@ -995,8 +1103,7 @@
   initDemo();
   initHeaderChrome();
   initScenes();
-  initTemas();
-  initPerfis();
+  initLit();
   initEvid();
   initVideoBlocks();
   updateFixedChrome();
