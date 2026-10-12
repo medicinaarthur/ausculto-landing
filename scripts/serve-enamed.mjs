@@ -13,6 +13,7 @@ import { createServer } from 'node:http';
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { join, extname, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { gzipSync } from 'node:zlib';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const arg = (name, fallback) => {
@@ -41,6 +42,7 @@ function resolvePath(urlPath) {
   if (urlPath === '/404.html') return join(root, 'enamed', '404.html');
   if (urlPath === '/meta_tracking.js') return metaTracking;
   if (urlPath === '/robots.txt' || urlPath === '/sitemap.xml') return join(root, 'enamed', urlPath.slice(1));
+  if (urlPath === '/favicon.ico' || urlPath === '/favicon.png') return join(root, urlPath.slice(1));
   if (urlPath.startsWith('/assets/')) return join(root, normalize(urlPath).replace(/^[\\/]+/, ''));
   return null;
 }
@@ -59,7 +61,15 @@ const server = createServer((req, res) => {
     res.end(readFileSync(join(root, 'enamed', '404.html')));
     return;
   }
-  res.writeHead(200, { ...headers, 'Content-Type': TYPES[extname(file).toLowerCase()] || 'application/octet-stream' });
-  res.end(readFileSync(file));
+  const type = TYPES[extname(file).toLowerCase()] || 'application/octet-stream';
+  const body = readFileSync(file);
+  // como o Hosting: texto vai comprimido quando o navegador aceita (o peso medido fica igual ao do ar)
+  if (/^(text\/|application\/(json|javascript))/.test(type) && /gzip/.test(req.headers['accept-encoding'] || '')) {
+    res.writeHead(200, { ...headers, 'Content-Type': type, 'Content-Encoding': 'gzip', Vary: 'Accept-Encoding' });
+    res.end(gzipSync(body));
+    return;
+  }
+  res.writeHead(200, { ...headers, 'Content-Type': type });
+  res.end(body);
 });
 server.listen(port, '127.0.0.1', () => console.log(`enamed local em http://127.0.0.1:${port}/ (meta_tracking: ${metaTracking})`));

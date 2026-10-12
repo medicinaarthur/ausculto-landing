@@ -1,21 +1,34 @@
 /*
-  Ausculto ENAMED 2026: landing (/enamed/).
-  Vanilla JS, sem dependencias. Responsavel por: countdown (estados da campanha),
-  variantes de hero (?angulo=), banner de consentimento, demo de questao,
-  sticky CTA mobile, eventos de secao e reveals.
-
-  Bloco de config sincronizado manualmente com scripts/configure_enamed_campaign.cjs
-  (payload canonico app_config/enamed_campaign_v1).
+  Ausculto ENAMED (enamed.auscultoapp.com): "ENAMED o ano todo" (11/10/2026).
+  Vanilla JS, sem dependencias. Responsavel por: variantes do topo (?angulo=),
+  banner de consentimento, sticky CTA mobile, eventos de secao, perguntas
+  frequentes, a questao do Caso-Chefe (demo) e as cenas interativas:
+    - cenas com areas clicaveis (topo, Provas) que abrem um cartao; no celular
+      viram selos dentro da cena;
+    - reacoes das miniaturas (videos curtos sobre a imagem fiel): tocam uma vez,
+      em sequencia, quando a cena aparece, e de novo no mouse ou no toque;
+    - Desempenho: o mapa de exemplo enche as barras e abre a primeira lacuna;
+    - Temas: a lista de areas acende a lombada do volume (e vice-versa);
+    - Para quem e: o perfil acende o palco da miniatura;
+    - Trilha: o video toca uma vez quando o bloco aparece e descansa no ultimo
+      quadro; no Mapa os aneis acendem nas medalhas e abrem cartoes; na Jornada
+      as tres paradas iluminam a cena e disparam a reacao do personagem.
+  O contrato de rastreio (eventos, posicoes, UTMs, consentimento) e o mesmo da
+  campanha; ver scripts/test-enamed-tracking.mjs.
 */
 (function () {
   'use strict';
 
-  window.AUSCULTO_ENAMED_CONFIG = {
-    examDateISO: '2026-09-13T13:30:00-03:00', // America/Sao_Paulo. Edital Inep 71/2026
-    postExamUntilISO: '2026-09-20T23:59:59-03:00', // pos-prova da campanha no produto
-    resultDateLabel: '04/12/2026', // resultado individual (edital)
-  };
-  var CONFIG = window.AUSCULTO_ENAMED_CONFIG;
+  var reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var mobileMq = window.matchMedia('(max-width: 1023px)');
+  var touchMq = window.matchMedia('(hover: none)');
+  var conn = navigator.connection || null;
+  function lowData() {
+    return !!(conn && (conn.saveData === true || /2g/.test(conn.effectiveType || '')));
+  }
+  function motionOk() {
+    return !reducedMq.matches && !lowData();
+  }
 
   function track(eventName, params) {
     if (typeof window.auscultoTrack === 'function') {
@@ -24,58 +37,41 @@
     return null;
   }
 
-  /* ================= Variantes de hero (?angulo=) =================
-     Dicionario fixo; aplicacao por textContent (nada de innerHTML).
+  /* ================= Variantes do topo (?angulo=) =================
+     Dicionario fixo; aplicacao por textContent/createElement (nada de innerHTML).
      A chave ja foi resolvida no boot inline (window.auscultoEnamedHeroVariant)
-     e aqui e revalidada contra o dicionario; fallback 'direcao'.
-     Copy canonica: plano Secao 11.2. */
-  // H1 em cinco nos (pre / pre2 / lead / tail / post) e sub em tres
-  // (pre / accent / post): `pre2` e `lead` sao unidades que nao quebram no
-  // celular (composicao em 5 linhas), `tail` recebe o traco dourado e
-  // `accent` do sub e a data em champagne. O texto concatenado continua
-  // identico a copy canonica.
+     e aqui e revalidada contra o dicionario; fallback 'direcao'. Sem datas:
+     o ENAMED e o ano todo. */
   var HERO_VARIANTS = {
     direcao: {
-      h1: {
-        pre: 'Descubra em',
-        pre2: '50 questões',
-        lead: 'o que você',
-        tail: 'ainda não domina',
-        post: 'no ENAMED.',
-      },
-      sub: {
-        pre: 'Diagnóstico gratuito: você responde, o Ausculto mostra suas prioridades por área e entrega uma missão de estudo possível para hoje e para cada dia até ',
-        accent: '13 de setembro',
-        post: '.',
-      },
+      h1: { pre: 'ENAMED:', lead: 'do primeiro tema', tail: 'à prova oficial.' },
+      sub: [
+        ['Trilha com '],
+        ['54 capítulos, 170 temas', true],
+        [' para ler e as provas oficiais do '],
+        ['Inep', true],
+        [' para medir onde você está. Tudo no app da Ausculto Academy.'],
+      ],
     },
     tempo: {
-      h1: {
-        pre: 'Faltam {N} dias',
-        pre2: 'para o ENAMED.',
-        lead: 'Saiba exatamente',
-        tail: 'onde focar.',
-        post: '',
-      },
-      sub: {
-        pre: 'O diagnóstico gratuito do Ausculto mostra suas prioridades por área e transforma cada dia até ',
-        accent: '13 de setembro',
-        post: ' em uma missão concreta.',
-      },
+      h1: { pre: 'ENAMED:', lead: 'no seu ritmo,', tail: 'o ano todo.' },
+      sub: [
+        ['Sem correr contra o calendário: '],
+        ['54 capítulos, 170 temas', true],
+        [' e as provas oficiais do '],
+        ['Inep', true],
+        [' abertos o ano todo, no app da Ausculto Academy.'],
+      ],
     },
     erros: {
-      h1: {
-        pre: 'Transforme',
-        pre2: '',
-        lead: '',
-        tail: 'seus erros',
-        post: 'em uma missão de estudo.',
-      },
-      sub: {
-        pre: 'O diagnóstico gratuito revela o que você ainda não domina; o Ausculto converte isso em Mapa ENAMED e em uma missão diária, incluindo a revisão das suas próprias questões erradas.',
-        accent: '',
-        post: '',
-      },
+      h1: { pre: 'ENAMED:', lead: 'erre aqui,', tail: 'acerte na prova.' },
+      sub: [
+        ['Cada capítulo da Trilha termina num '],
+        ['Caso-Chefe', true],
+        [', com o raciocínio de cada alternativa. Depois, meça onde você está com as provas oficiais do '],
+        ['Inep', true],
+        ['.'],
+      ],
     },
   };
 
@@ -87,47 +83,24 @@
     : 'direcao';
   window.auscultoEnamedHeroVariant = heroVariant;
 
-  var heroSubEl = document.getElementById('heroSub');
-  // H1 e sub em nos (ver HERO_VARIANTS): aplicacao por textContent, sem
-  // innerHTML; o texto final concatenado e identico ao da copy canonica.
-  var H1_KEYS = ['pre', 'pre2', 'lead', 'tail', 'post'];
-  var SUB_KEYS = ['pre', 'accent', 'post'];
-  var heroTitleParts = {
-    pre: document.querySelector('[data-h1-part="pre"]'),
-    pre2: document.querySelector('[data-h1-part="pre2"]'),
-    lead: document.querySelector('[data-h1-accent="lead"]'),
-    tail: document.querySelector('[data-h1-accent="tail"]'),
-    post: document.querySelector('[data-h1-part="post"]'),
-  };
-  var heroSubParts = {
-    pre: document.querySelector('[data-sub-part="pre"]'),
-    accent: document.querySelector('[data-sub-part="accent"]'),
-    post: document.querySelector('[data-sub-part="post"]'),
-  };
-
-  function applyHeroVariant(state, days) {
-    if (!heroSubEl) return;
+  function applyHeroVariant() {
     var copy = HERO_VARIANTS[heroVariant];
-    var h1 = copy.h1;
-    var joined = '';
-    for (var j = 0; j < H1_KEYS.length; j += 1) joined += h1[H1_KEYS[j]];
-    if (joined.indexOf('{N}') !== -1 && state !== 'pre') {
-      // O {N} so existe no estado pre-prova; fora dele a variante 'tempo'
-      // perde o sentido e cai para a headline default.
-      h1 = HERO_VARIANTS.direcao.h1;
-    }
-    for (var k = 0; k < H1_KEYS.length; k += 1) {
-      var el = heroTitleParts[H1_KEYS[k]];
-      if (!el) continue;
-      var text = h1[H1_KEYS[k]].replace('{N}', String(days));
-      if (el.textContent !== text) el.textContent = text;
-    }
-    for (var m = 0; m < SUB_KEYS.length; m += 1) {
-      var subEl = heroSubParts[SUB_KEYS[m]];
-      if (!subEl) continue;
-      var subText = copy.sub[SUB_KEYS[m]];
-      if (subEl.textContent !== subText) subEl.textContent = subText;
-    }
+    ['pre', 'lead', 'tail'].forEach(function (key) {
+      var el = document.querySelector('[data-h1-part="' + key + '"]');
+      if (el && el.textContent !== copy.h1[key]) el.textContent = copy.h1[key];
+    });
+    var sub = document.getElementById('heroSub');
+    if (!sub || heroVariant === 'direcao') return;
+    while (sub.firstChild) sub.removeChild(sub.firstChild);
+    copy.sub.forEach(function (part) {
+      if (part[1]) {
+        var strong = document.createElement('strong');
+        strong.textContent = part[0];
+        sub.appendChild(strong);
+      } else {
+        sub.appendChild(document.createTextNode(part[0]));
+      }
+    });
   }
 
   function rewriteCtaHrefs() {
@@ -145,122 +118,6 @@
       if (next !== href) links[i].setAttribute('href', next);
     }
   }
-
-  /* ================= Countdown / estados da campanha =================
-     pre      -> antes do dia da prova: "Faltam {N} dias"
-     examday  -> dia 13/09/2026 (America/Sao_Paulo): "A prova é hoje"
-     post     -> ate 20/09: prova aplicada, resultado em resultDateLabel
-     evergreen-> apos 20/09: pagina generica, sem countdown              */
-  var examDay = CONFIG.examDateISO.slice(0, 10); // '2026-09-13'
-  var tzOffset = CONFIG.examDateISO.slice(-6); // '-03:00'
-  var examDayStartMs = Date.parse(examDay + 'T00:00:00' + tzOffset);
-  var examDayEndMs = Date.parse(examDay + 'T23:59:59.999' + tzOffset);
-  var postUntilMs = Date.parse(CONFIG.postExamUntilISO);
-  var DAY_MS = 86400000;
-
-  function campaignState(nowMs) {
-    if (nowMs < examDayStartMs) return 'pre';
-    if (nowMs <= examDayEndMs) return 'examday';
-    if (nowMs <= postUntilMs) return 'post';
-    return 'evergreen';
-  }
-
-  function daysUntilExam(nowMs) {
-    return Math.max(1, Math.ceil((examDayStartMs - nowMs) / DAY_MS));
-  }
-
-  var stateSpans = document.querySelectorAll('[data-state]');
-  var baseSpans = document.querySelectorAll('[data-state-base]');
-  var resultLabels = document.querySelectorAll('[data-result-label]');
-  var ctaLinks = document.querySelectorAll(
-    'a[data-label-default][data-label-inactive]',
-  );
-
-  function applyCampaignState() {
-    var now = Date.now();
-    var state = campaignState(now);
-    var days = daysUntilExam(now);
-
-    for (var i = 0; i < stateSpans.length; i += 1) {
-      var span = stateSpans[i];
-      var active = span.getAttribute('data-state') === state;
-      if (active && state === 'pre') {
-        var plural = span.getAttribute('data-tpl-plural');
-        var singular = span.getAttribute('data-tpl-singular');
-        var nEl = span.querySelector('[data-n]');
-        if (plural && nEl) {
-          // Countdown com o numero em destaque: o template e partido em
-          // "antes {N} depois" e cada pedaco vai para o seu no (sem innerHTML).
-          var tplParts = (days === 1 && singular ? singular : plural).split(
-            '{N}',
-          );
-          var wordPre = span.querySelector('[data-tpl-word="pre"]');
-          var wordPost = span.querySelector('[data-tpl-word="post"]');
-          var n = String(days);
-          var preWord = (tplParts[0] || '').trim();
-          var postWord = (tplParts[1] || '').trim();
-          if (nEl.textContent !== n) nEl.textContent = n;
-          if (wordPre && wordPre.textContent !== preWord)
-            wordPre.textContent = preWord;
-          if (wordPost && wordPost.textContent !== postWord)
-            wordPost.textContent = postWord;
-        } else if (plural) {
-          span.textContent = (
-            days === 1 && singular ? singular : plural
-          ).replace('{N}', String(days));
-        }
-      }
-      if (active && state === 'post') {
-        for (var r = 0; r < resultLabels.length; r += 1) {
-          resultLabels[r].textContent = CONFIG.resultDateLabel;
-        }
-      }
-      if (active) {
-        span.removeAttribute('hidden');
-        span.classList.remove('is-pending');
-      } else span.setAttribute('hidden', '');
-    }
-
-    for (var b = 0; b < baseSpans.length; b += 1) {
-      var base = baseSpans[b];
-      var states = (base.getAttribute('data-state-base') || '').split(/\s+/);
-      if (states.indexOf(state) !== -1) base.removeAttribute('hidden');
-      else base.setAttribute('hidden', '');
-    }
-
-    for (var c = 0; c < ctaLinks.length; c += 1) {
-      var link = ctaLinks[c];
-      var suffix = state === 'pre' ? 'default' : 'inactive';
-      var label = link.getAttribute('data-label-' + suffix);
-      var full = link.querySelector('.lbl-full');
-      var short = link.querySelector('.lbl-short');
-      var target = link.querySelector('[data-label-target]');
-      if (target) {
-        // CTA composto (icone + titulo + sub): so o titulo recebe o rotulo.
-        if (label && target.textContent !== label) target.textContent = label;
-      } else if (full) {
-        // CTA com rotulo duplo (ex.: header compacto no mobile)
-        var shortLabel = link.getAttribute('data-label-short-' + suffix);
-        if (label && full.textContent !== label) full.textContent = label;
-        if (short && shortLabel && short.textContent !== shortLabel)
-          short.textContent = shortLabel;
-      } else if (label && link.textContent !== label) {
-        link.textContent = label;
-      }
-    }
-
-    applyHeroVariant(state, days);
-    return state;
-  }
-
-  var currentState = applyCampaignState();
-  rewriteCtaHrefs();
-  window.setInterval(function () {
-    currentState = applyCampaignState();
-  }, 60000); // granularidade de dias: 1x/min basta, sem CLS
-  document.addEventListener('visibilitychange', function () {
-    if (!document.hidden) currentState = applyCampaignState();
-  });
 
   /* ================= Consentimento (LGPD) =================
      O gate canonico vive em /meta_tracking.js (window.auscultoConsent). Se o
@@ -300,9 +157,7 @@
     var secure = window.location.protocol === 'https:' ? '; Secure' : '';
     var expires = new Date(Date.now() + 365 * 864e5).toUTCString();
     // encodeURIComponent para casar byte a byte com o escritor canonico de
-    // /meta_tracking.js. Hoje o valor e alfanumerico + ponto e o encode e
-    // inerte, mas dois escritores com encodings diferentes para a MESMA chave
-    // e uma divergencia esperando um formato futuro para quebrar.
+    // /meta_tracking.js.
     document.cookie =
       CONSENT_KEY +
       '=' +
@@ -330,10 +185,8 @@
   function initConsent() {
     if (!consentBanner) return;
     if (consentState() === 'undecided') {
-      /* Mostra o banner so depois das fontes (ou 600ms): o banner e ancorado
-         em bottom e sua altura muda com a troca de fonte, o que conta como
-         layout shift. Com a metrica final aplicada, a altura nao muda mais.
-         O flag consentVisible sobe ja, para o sticky CTA ficar suprimido. */
+      /* Mostra o banner so depois das fontes (ou 600ms): a altura do banner
+         muda com a troca de fonte, o que contaria como layout shift. */
       consentVisible = true;
       var shown = false;
       var showOnce = function () {
@@ -362,13 +215,12 @@
       });
   }
 
-  /* ================= Sticky CTA (mobile) + compensacao de altura ================= */
+  /* ================= Sticky CTA (mobile) ================= */
   var stickyCta = document.getElementById('stickyCta');
   var stickyOn = false;
   var heroGone = false;
   var finalVisible = false;
   var demoVisible = false;
-  var mobileMq = window.matchMedia('(max-width: 767px)');
 
   function updateFixedChrome() {
     var wantSticky =
@@ -382,59 +234,33 @@
       stickyOn = wantSticky;
       stickyCta.classList.toggle('is-on', stickyOn);
     }
-    /* Sem compensacao de padding no body: qualquer escrita de layout aqui vira
-       CLS. Banner e sticky CTA sao overlays fixos; o rodape tem padding
-       estatico no mobile para nunca ficar coberto. */
+  }
+
+  function observeOnce(el, threshold, fn) {
+    if (!el || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function (entries) {
+      fn(entries[0]);
+    }, { threshold: threshold }).observe(el);
   }
 
   function initSticky() {
     if (!stickyCta) return;
     stickyCta.removeAttribute('hidden'); // controlado por classe a partir daqui
-    var heroEl = document.getElementById('hero');
-    var finalEl = document.getElementById('final');
-    if ('IntersectionObserver' in window) {
-      var heroIO = new IntersectionObserver(
-        function (entries) {
-          heroGone = !entries[0].isIntersecting;
-          updateFixedChrome();
-        },
-        { threshold: 0 },
-      );
-      if (heroEl) heroIO.observe(heroEl);
-      var finalIO = new IntersectionObserver(
-        function (entries) {
-          finalVisible = entries[0].isIntersecting;
-          updateFixedChrome();
-        },
-        { threshold: 0.12 },
-      );
-      if (finalEl) finalIO.observe(finalEl);
-      // Sticky some durante a demo: la ja existe um CTA azul proprio no card,
-      // e dois botoes empilhados com copys diferentes diluem o clique.
-      var demoEl = document.getElementById('demo');
-      var demoIO = new IntersectionObserver(
-        function (entries) {
-          demoVisible = entries[0].isIntersecting;
-          updateFixedChrome();
-        },
-        { threshold: 0.08 },
-      );
-      if (demoEl) demoIO.observe(demoEl);
-    } else {
-      // Fallback sem IO: mostra apos rolar a altura do hero.
-      window.addEventListener(
-        'scroll',
-        function () {
-          heroGone = window.scrollY > (heroEl ? heroEl.offsetHeight : 480);
-          updateFixedChrome();
-        },
-        { passive: true },
-      );
-    }
+    observeOnce(document.getElementById('hero'), 0, function (e) {
+      heroGone = !e.isIntersecting;
+      updateFixedChrome();
+    });
+    observeOnce(document.getElementById('final'), 0.12, function (e) {
+      finalVisible = e.isIntersecting;
+      updateFixedChrome();
+    });
+    // Sticky some durante a demo: la ja existe o botao do proprio card.
+    observeOnce(document.getElementById('demo'), 0.08, function (e) {
+      demoVisible = e.isIntersecting;
+      updateFixedChrome();
+    });
     if (typeof mobileMq.addEventListener === 'function') {
       mobileMq.addEventListener('change', updateFixedChrome);
-    } else if (typeof mobileMq.addListener === 'function') {
-      mobileMq.addListener(updateFixedChrome);
     }
     window.addEventListener('resize', updateFixedChrome);
   }
@@ -443,7 +269,7 @@
   var sectionIO = null;
 
   function initSectionTracking() {
-    var ids = ['mecanismo', 'mapa', 'missao', 'demo', 'faq'];
+    var ids = ['trilha', 'jornada', 'temas', 'provas', 'desempenho', 'demo', 'para-quem', 'faq'];
     if (!('IntersectionObserver' in window)) return;
     sectionIO = new IntersectionObserver(
       function (entries) {
@@ -470,68 +296,34 @@
     if (sectionIO) sectionIO.disconnect();
   }
 
-  /* ================= Reveals ================= */
-  function initReveals() {
-    var items = document.querySelectorAll('[data-reveal]');
-    if (!('IntersectionObserver' in window)) {
-      for (var i = 0; i < items.length; i += 1)
-        items[i].classList.add('is-visible');
-      return;
-    }
-    // Irmaos de uma grade entram escalonados (60ms cada, teto 4): uma lista
-    // aparece como lista. Secoes isoladas continuam sem atraso.
-    var groups = document.querySelectorAll(
-      '.proof-strip__grid, .dor__grid, .mecanismo__steps, .prova__grid, .prova__screens, .para-quem__grid, .missao__bullets',
-    );
-    for (var g = 0; g < groups.length; g += 1) {
-      var kids = groups[g].children;
-      var n = 0;
-      for (var k = 0; k < kids.length; k += 1) {
-        if (!kids[k].hasAttribute('data-reveal')) continue;
-        kids[k].style.setProperty('--reveal-i', String(Math.min(n, 4)));
-        n += 1;
-      }
-    }
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-            // Depois de entrar, o atraso sai: o hover nunca espera. (setTimeout,
-            // nao transitionend: em reduced-motion a transicao nao dispara.)
-            (function (el) {
-              window.setTimeout(function () {
-                el.style.removeProperty('--reveal-i');
-              }, 500);
-            })(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
-    );
-    for (var j = 0; j < items.length; j += 1) io.observe(items[j]);
-  }
-
-  /* ================= FAQ ================= */
+  /* ================= Perguntas frequentes (uma aberta por vez) ================= */
   function initFaq() {
-    var buttons = document.querySelectorAll('.faq__q');
-    for (var i = 0; i < buttons.length; i += 1) {
-      buttons[i].addEventListener('click', function () {
-        var item = this.closest('.faq__item');
-        if (!item) return;
-        var open = item.classList.toggle('is-open');
-        this.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
+    var items = document.querySelectorAll('.faq__item');
+    for (var i = 0; i < items.length; i += 1) {
+      (function (item) {
+        var btn = item.querySelector('.faq__q');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var open = !item.classList.contains('is-open');
+          for (var j = 0; j < items.length; j += 1) {
+            items[j].classList.remove('is-open');
+            var b = items[j].querySelector('.faq__q');
+            if (b) b.setAttribute('aria-expanded', 'false');
+          }
+          item.classList.toggle('is-open', open);
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      })(items[i]);
     }
   }
 
-  /* ================= Demo de questao =================
-     Conteudo autoral no HTML; aqui so o comportamento. Sem tema/conteudo da
-     questao nos eventos (Secao 19.5 do plano). */
+  /* ================= Caso-Chefe (demo) =================
+     ENAMED 2025, Caderno 1, Questao 34; gabarito definitivo B. Conteudo no HTML;
+     aqui so o comportamento. Sem tema/conteudo da questao nos eventos. */
   function initDemo() {
     var demoRoot = document.getElementById('demoForm');
     if (!demoRoot) return;
+    var section = document.getElementById('demo');
     var started = false;
     var answered = false;
     var CORRECT = 'b';
@@ -567,26 +359,20 @@
       for (var j = 0; j < options.length; j += 1) {
         var option = options[j];
         var key = option.getAttribute('data-option');
-        var label = option.querySelector('.demo__label');
-        if (key === CORRECT) {
-          option.classList.add('is-correct');
-          if (label) {
+        var text = option.querySelector('.demo__text');
+        option.classList.add('is-locked');
+        if (key === CORRECT || key === chosen) {
+          option.classList.add(key === CORRECT ? 'is-correct' : 'is-wrong');
+          if (text) {
             var tag = document.createElement('span');
             tag.className = 'demo__state';
-            tag.textContent = 'Gabarito';
-            label.appendChild(tag);
-          }
-        } else if (key === chosen) {
-          option.classList.add('is-wrong');
-          if (label) {
-            var chosenTag = document.createElement('span');
-            chosenTag.className = 'demo__state';
-            chosenTag.textContent = 'Sua resposta';
-            label.appendChild(chosenTag);
+            tag.textContent = key === CORRECT ? 'Gabarito' : 'Sua resposta';
+            text.appendChild(tag);
           }
         }
+        // comentario so da resposta escolhida e do gabarito: o card nao vira um muro de texto
         var comment = option.querySelector('.demo__comment');
-        if (comment) comment.removeAttribute('hidden');
+        if (comment && (key === CORRECT || key === chosen)) comment.removeAttribute('hidden');
       }
 
       var feedback = document.getElementById('demoFeedback');
@@ -594,31 +380,23 @@
         feedback.classList.add(
           correct ? 'demo__feedback--correct' : 'demo__feedback--incorrect',
         );
-        var text = feedback.querySelector('.demo__feedback-text');
-        if (text) {
-          text.textContent = correct
-            ? 'Resposta correta. Veja o porquê de cada alternativa abaixo.'
-            : 'Resposta incorreta. A conduta adequada é a alternativa B. Veja o porquê de cada alternativa abaixo.';
+        var fbText = feedback.querySelector('.demo__feedback-text');
+        if (fbText) {
+          fbText.textContent = correct
+            ? 'Resposta correta. Veja o comentário de cada alternativa.'
+            : 'Resposta incorreta. O gabarito oficial é a alternativa B. Veja o comentário de cada alternativa.';
         }
         feedback.removeAttribute('hidden');
-        // A recompensa aparece onde o clique aconteceu (abaixo da dobra no desktop).
-        if (typeof feedback.scrollIntoView === 'function') {
-          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-          feedback.scrollIntoView({
-            block: 'center',
-            behavior: reduce.matches ? 'auto' : 'smooth',
-          });
-        }
       }
-
-      var pne = document.getElementById('demoPne');
-      if (pne) pne.removeAttribute('hidden');
+      if (section && correct) {
+        section.classList.add('is-won');
+        var demoScene = section.querySelector('.cena--demo');
+        if (demoScene && demoScene.rxPlayer) demoScene.rxPlayer.play('residente');
+      }
     });
   }
 
-  /* ================= Header chrome =================
-     Transparente sobre o hero escuro; vira papel com hairline apos o scroll.
-     Sem layout shift: o header e fixed e o hero ja compensa o padding-top. */
+  /* ================= Cabecalho ================= */
   function initHeaderChrome() {
     var header = document.getElementById('siteHeader');
     if (!header) return;
@@ -640,136 +418,586 @@
     update();
   }
 
-  /* ================= Video backgrounds (progressive enhancement) =================
-     Estatico primeiro: o poster CSS e o primeiro paint/LCP. O <video> so toca
-     quando o elemento esta visivel (media query), sem reduced-motion e sem
-     save-data/2g; preload="none" garante zero bytes antes do play(). Pausa com
-     a aba escondida; retoma ao voltar. Sem atributo autoplay no markup: o play
-     e sempre uma decisao explicita desta funcao. */
-  function initVideoBackgrounds() {
-    var videos = document.querySelectorAll('.bg-video');
-    if (!videos.length) return;
-    var motionMq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    var mobileMqVideos = window.matchMedia('(max-width: 767px)');
-    var conn = navigator.connection || null;
-
-    function dataOk() {
-      return !(
-        conn &&
-        (conn.saveData === true || /2g/.test(conn.effectiveType || ''))
-      );
+  /* ================= Cenas com areas clicaveis =================
+     Mouse: passar sobre a area acende e abre o cartao (que fica aberto enquanto o
+     mouse estiver nele). Toque: o toque abre/fecha. Teclado: o foco abre. */
+  function buildCard(box, spec) {
+    var parts = spec.split('|');
+    while (box.firstChild) box.removeChild(box.firstChild);
+    var b = document.createElement('b');
+    b.textContent = parts[0];
+    var strong = document.createElement('strong');
+    strong.textContent = parts[1];
+    var span = document.createElement('span');
+    span.textContent = parts[2];
+    box.appendChild(b);
+    box.appendChild(strong);
+    box.appendChild(span);
+    if (parts[3] && parts[4]) {
+      var a = document.createElement('a');
+      a.href = parts[3];
+      a.textContent = parts[4] + ' ↓';
+      box.appendChild(a);
     }
+  }
 
-    function syncPlayback() {
-      var allowed = !motionMq.matches && dataOk() && !document.hidden;
-      for (var i = 0; i < videos.length; i += 1) {
-        var v = videos[i];
-        var visible = v.getClientRects().length > 0;
-        if (allowed && visible) {
-          if (v.paused) {
-            var p = v.play();
-            if (p && typeof p.catch === 'function') p.catch(function () {});
-          }
-        } else if (!v.paused) {
-          v.pause();
+  function initScenes() {
+    var scenes = document.querySelectorAll('[data-cena]');
+    for (var s = 0; s < scenes.length; s += 1) {
+      (function (cena) {
+        var section = cena.closest('section');
+        var box = section ? section.querySelector('[data-card-box]') : null;
+        var hots = Array.prototype.slice.call(cena.querySelectorAll('.hot'));
+        var hint = cena.querySelector('.cena__hint');
+        if (hint) {
+          hint.textContent = touchMq.matches
+            ? cena.getAttribute('data-hint-touch') || ''
+            : cena.getAttribute('data-hint-mouse') || '';
         }
-      }
-    }
+        var rx = reactionPlayer(cena);
+        cena.rxPlayer = rx;
+        if (rx.count && 'IntersectionObserver' in window) {
+          // os videos da cena baixam quando ela chega a uma tela de distancia
+          var near = new IntersectionObserver(function (entries) {
+            if (!entries[0].isIntersecting) return;
+            near.disconnect();
+            // depois do load: o video nunca disputa banda com a imagem principal (LCP)
+            if (document.readyState === 'complete') rx.preload();
+            else window.addEventListener('load', rx.preload, { once: true });
+          }, { rootMargin: '700px 0px' });
+          near.observe(cena);
+        }
+        observeOnce(cena, 0.45, function (e) {
+          if (!e.isIntersecting || cena.classList.contains('is-seen')) return;
+          cena.classList.add('is-seen');
+          if (reducedMq.matches) {
+            cena.classList.add('is-hinting', 'no-intro');
+            return;
+          }
+          window.setTimeout(function () {
+            cena.classList.add('is-intro', 'is-hinting');
+            if (rx.count) window.setTimeout(function () { rx.sequence(700); }, 900);
+          }, 500);
+        });
+        // areas que so fazem o personagem reagir (sem cartao)
+        Array.prototype.forEach.call(cena.querySelectorAll('.fig[data-rx-play]'), function (f) {
+          var key = f.getAttribute('data-rx-play');
+          f.addEventListener('pointerenter', function (ev) {
+            if (ev.pointerType === 'mouse' && !rx.busy()) rx.play(key);
+          });
+          f.addEventListener('click', function () {
+            cena.classList.add('is-touched');
+            rx.play(key);
+          });
+        });
+        if (!box || !hots.length) return;
 
-    for (var j = 0; j < videos.length; j += 1) {
-      videos[j].addEventListener('playing', function () {
-        this.classList.add('is-playing');
+        var open = null;
+        var hideTimer = 0;
+
+        function place(h) {
+          if (mobileMq.matches) {
+            box.style.left = '';
+            box.style.top = '';
+            return;
+          }
+          var r = h.getBoundingClientRect();
+          var R = section.getBoundingClientRect();
+          var w = box.offsetWidth;
+          var hh = box.offsetHeight;
+          var at = h.getAttribute('data-card-at');
+          if (at === 'inside' || at === 'left') {
+            var lx = at === 'inside' ? r.left - R.left + 28 : r.left - R.left - w - 12;
+            var ly = at === 'inside' ? r.top - R.top + 28 : r.top - R.top + r.height / 2 - hh / 2;
+            box.style.left = Math.max(16, Math.min(R.width - w - 16, lx)) + 'px';
+            box.style.top = Math.max(88, Math.min(R.height - hh - 16, ly)) + 'px';
+            return;
+          }
+          if (cena.getAttribute('data-card-place') === 'above') {
+            // etiqueta acima do objeto (ou abaixo, se nao couber sob o cabecalho)
+            var cx = r.left - R.left + r.width / 2 - w / 2;
+            var ty = r.top - R.top - hh - 12;
+            if (ty < 88) ty = r.bottom - R.top + 12;
+            box.style.left = Math.max(16, Math.min(R.width - w - 16, cx)) + 'px';
+            box.style.top = Math.min(R.height - hh - 16, ty) + 'px';
+            return;
+          }
+          var left = r.right - R.left + 14;
+          if (left + w > R.width - 16) left = r.left - R.left - w - 14;
+          if (left < 16) left = Math.max(16, Math.min(R.width - w - 16, r.left - R.left + r.width / 2 - w / 2));
+          var top = r.top - R.top + r.height / 2 - hh / 2;
+          top = Math.max(16, Math.min(R.height - hh - 16, top));
+          box.style.left = left + 'px';
+          box.style.top = top + 'px';
+        }
+
+        function show(h) {
+          window.clearTimeout(hideTimer);
+          var key = h.getAttribute('data-rx-play');
+          if (key && !rx.busy()) rx.play(key);
+          if (mobileMq.matches) {
+            // no celular nao ha cartao: o anel acende e o personagem reage
+            for (var j = 0; j < hots.length; j += 1) hots[j].classList.toggle('is-open', hots[j] === h);
+            open = h;
+            cena.classList.add('is-touched');
+            return;
+          }
+          if (open !== h) buildCard(box, h.getAttribute('data-card'));
+          for (var i = 0; i < hots.length; i += 1) hots[i].classList.toggle('is-open', hots[i] === h);
+          open = h;
+          box.removeAttribute('hidden');
+          place(h);
+          cena.classList.add('is-touched');
+        }
+
+        function hide() {
+          open = null;
+          for (var i = 0; i < hots.length; i += 1) hots[i].classList.remove('is-open');
+          box.setAttribute('hidden', '');
+        }
+
+        function hideSoon() {
+          window.clearTimeout(hideTimer);
+          hideTimer = window.setTimeout(hide, 220);
+        }
+
+        hots.forEach(function (h) {
+          var viaPointer = false;
+          h.addEventListener('pointerenter', function (e) {
+            if (e.pointerType === 'mouse') show(h);
+          });
+          h.addEventListener('pointerleave', function (e) {
+            if (e.pointerType === 'mouse') hideSoon();
+          });
+          h.addEventListener('pointerdown', function () {
+            viaPointer = true;
+          });
+          h.addEventListener('focus', function () {
+            if (!viaPointer) show(h);
+          });
+          h.addEventListener('blur', function () {
+            viaPointer = false;
+          });
+          h.addEventListener('click', function (e) {
+            viaPointer = false;
+            if (e.pointerType === 'mouse') show(h);
+            else if (open === h) hide();
+            else show(h);
+          });
+        });
+        box.addEventListener('pointerenter', function () {
+          window.clearTimeout(hideTimer);
+        });
+        box.addEventListener('pointerleave', function (e) {
+          if (e.pointerType === 'mouse') hideSoon();
+        });
+        document.addEventListener('pointerdown', function (e) {
+          if (!open || e.pointerType === 'mouse') return;
+          if (cena.contains(e.target) || box.contains(e.target)) return;
+          hide();
+        });
+        window.addEventListener('resize', function () {
+          if (open) place(open);
+        });
+      })(scenes[s]);
+    }
+  }
+
+  /* ================= Temas: area na lista <-> lombada do volume ================= */
+  function initTemas() {
+    var list = document.getElementById('temasAreas');
+    if (!list) return;
+    var rows = Array.prototype.slice.call(list.querySelectorAll('li[data-area]'));
+    var spines = Array.prototype.slice.call(document.querySelectorAll('.lombada'));
+    var current = null;
+    spines.forEach(function (el, i) {
+      el.style.setProperty('--i', String(i));
+    });
+    function lit(key) {
+      current = key;
+      rows.forEach(function (r) {
+        r.classList.toggle('is-on', r.getAttribute('data-area') === key);
+      });
+      spines.forEach(function (sp) {
+        sp.classList.toggle('is-on', sp.getAttribute('data-area') === key);
       });
     }
-    document.addEventListener('visibilitychange', syncPlayback);
-    if (typeof motionMq.addEventListener === 'function')
-      motionMq.addEventListener('change', syncPlayback);
-    if (typeof mobileMqVideos.addEventListener === 'function')
-      mobileMqVideos.addEventListener('change', syncPlayback);
-    if (conn && typeof conn.addEventListener === 'function')
-      conn.addEventListener('change', syncPlayback);
-    syncPlayback();
-  }
-
-  /* ================= boot ================= */
-  /* ================= Lightbox (ampliacao premium das telas reais) ================= */
-  var lightbox = document.getElementById('lightbox');
-  var lightboxImg = document.getElementById('lightboxImg');
-  var lightboxSource = document.getElementById('lightboxSource');
-  var lightboxCaption = document.getElementById('lightboxCaption');
-  var lightboxClose = document.getElementById('lightboxClose');
-  var lightboxTrigger = null;
-
-  function openLightbox(figure) {
-    if (!lightbox) return;
-    var img = figure.querySelector('img');
-    lightboxSource.setAttribute(
-      'srcset',
-      figure.getAttribute('data-zoom-src') || '',
-    );
-    lightboxImg.setAttribute(
-      'src',
-      figure.getAttribute('data-zoom-fallback') || '',
-    );
-    lightboxImg.setAttribute('alt', img ? img.getAttribute('alt') || '' : '');
-    lightboxCaption.textContent = img ? img.getAttribute('alt') || '' : '';
-    lightboxTrigger = document.activeElement;
-    lightbox.removeAttribute('hidden');
-    document.body.classList.add('has-lightbox');
-    if (lightboxClose) lightboxClose.focus();
-  }
-
-  function closeLightbox() {
-    if (!lightbox || lightbox.hasAttribute('hidden')) return;
-    lightbox.setAttribute('hidden', '');
-    document.body.classList.remove('has-lightbox');
-    if (lightboxTrigger && lightboxTrigger.focus) lightboxTrigger.focus();
-    lightboxTrigger = null;
-  }
-
-  function initLightbox() {
-    if (!lightbox) return;
-    var figures = document.querySelectorAll('[data-zoom]');
-    for (var i = 0; i < figures.length; i += 1) {
-      (function (figure) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'zoom-btn';
-        btn.setAttribute('aria-label', 'Ampliar esta tela do Ausculto');
-        btn.innerHTML =
-          '<svg viewBox="0 0 24 24" aria-hidden="true" width="17" height="17">' +
-          '<circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="1.8"/>' +
-          '<path d="M15.2 15.2 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' +
-          '<path d="M10.5 8v5M8 10.5h5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
-          '</svg>';
-        btn.addEventListener('click', function (ev) {
-          ev.stopPropagation();
-          openLightbox(figure);
-        });
-        figure.appendChild(btn);
-        figure.addEventListener('click', function (ev) {
-          if (ev.target.closest('a, button')) return;
-          openLightbox(figure);
-        });
-      })(figures[i]);
-    }
-    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-    lightbox
-      .querySelector('[data-lightbox-close]')
-      .addEventListener('click', closeLightbox);
-    document.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Escape') closeLightbox();
+    rows.concat(spines).forEach(function (el) {
+      var key = el.getAttribute('data-area');
+      el.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'mouse') lit(key);
+      });
+      el.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'mouse') lit(null);
+      });
+      el.addEventListener('click', function () {
+        lit(current === key ? null : key);
+      });
     });
   }
 
+  /* ================= Para quem e: perfil <-> palco ================= */
+  function initPerfis() {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.perfis li[data-perfil]'));
+    var stages = Array.prototype.slice.call(document.querySelectorAll('.palco'));
+    var quem = document.querySelector('.cena--quem');
+    function lit(key) {
+      if (key !== null && quem && quem.rxPlayer && !quem.rxPlayer.busy()) quem.rxPlayer.play(key);
+      items.forEach(function (li) {
+        li.classList.toggle('is-on', li.getAttribute('data-perfil') === key);
+      });
+      stages.forEach(function (p) {
+        p.classList.toggle('is-on', p.getAttribute('data-perfil') === key);
+      });
+    }
+    items.forEach(function (li) {
+      var key = li.getAttribute('data-perfil');
+      li.addEventListener('pointerenter', function () {
+        lit(key);
+      });
+      li.addEventListener('pointerleave', function () {
+        lit(null);
+      });
+      li.addEventListener('focus', function () {
+        lit(key);
+      });
+      li.addEventListener('blur', function () {
+        lit(null);
+      });
+    });
+  }
+
+  /* ================= Reacoes (videos curtos sobre a imagem fiel) =================
+     Cada <video class="rx" data-rx="chave"> cobre so a regiao do personagem; comeca
+     igual a imagem parada e termina perto dela, com fade de 0,3 s nas duas pontas.
+     play(chave, fim) toca uma; sequence() toca todas, uma por vez. */
+  function reactionPlayer(root) {
+    var vids = Array.prototype.slice.call(root.querySelectorAll('video.rx'));
+    var current = null;
+    var onDone = null;
+    var suffix = window.innerWidth < 768 ? '-960' : '';
+    function load(v) {
+      if (!v.getAttribute('src')) v.src = v.getAttribute('data-src') + suffix + '.mp4';
+    }
+    function stop(v) {
+      v.classList.remove('is-on');
+      window.setTimeout(function () {
+        if (!v.classList.contains('is-on')) v.pause();
+      }, 340);
+      if (current === v) {
+        current = null;
+        var cb = onDone;
+        onDone = null;
+        if (cb) cb();
+      }
+    }
+    vids.forEach(function (v) {
+      v.addEventListener('playing', function () {
+        if (current === v) v.classList.add('is-on');
+      });
+      v.addEventListener('timeupdate', function () {
+        var dur = parseFloat(v.getAttribute('data-dur')) || 6;
+        if (current === v && v.currentTime >= dur - 0.35) stop(v);
+      });
+      v.addEventListener('ended', function () {
+        stop(v);
+      });
+    });
+    function find(key) {
+      for (var i = 0; i < vids.length; i += 1) if (vids[i].getAttribute('data-rx') === String(key)) return vids[i];
+      return null;
+    }
+    var api = {
+      count: vids.length,
+      busy: function () {
+        return !!current;
+      },
+      preload: function () {
+        if (!motionOk()) return;
+        vids.forEach(function (v) {
+          v.preload = 'auto';
+          load(v);
+        });
+      },
+      play: function (key, done) {
+        var v = find(key);
+        if (!v || !motionOk()) {
+          if (done) done();
+          return;
+        }
+        if (current && current !== v) stop(current);
+        if (current === v) return;
+        current = v;
+        onDone = done || null;
+        load(v);
+        try {
+          v.currentTime = 0;
+        } catch (e) {
+          /* metadados ainda nao carregados: comeca do inicio de qualquer jeito */
+        }
+        var p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(function () { stop(v); });
+      },
+      sequence: function (gap) {
+        var keys = vids.map(function (v) { return v.getAttribute('data-rx'); });
+        var i = 0;
+        function next() {
+          if (i >= keys.length) return;
+          var k = keys[i];
+          i += 1;
+          api.play(k, function () {
+            window.setTimeout(next, gap || 600);
+          });
+        }
+        next();
+      },
+    };
+    return api;
+  }
+
+  function initVideoBlocks() {
+    var blocks = document.querySelectorAll('[data-video-block]');
+    for (var b = 0; b < blocks.length; b += 1) {
+      (function (block) {
+        var video = block.querySelector('video:not(.rx)');
+        var replay = block.querySelector('[data-replay]');
+        var hint = block.querySelector('.tv-hint');
+        var rx = reactionPlayer(block);
+        block.reactions = rx;
+        if (hint) {
+          hint.textContent = touchMq.matches
+            ? hint.getAttribute('data-hint-touch')
+            : hint.getAttribute('data-hint-mouse');
+        }
+        function rest() {
+          block.classList.add('is-rest');
+          if (!mobileMq.matches) rx.preload();
+        }
+        block.addEventListener('pointerdown', function () {
+          block.classList.add('is-touched');
+        }, { passive: true });
+        block.addEventListener('focusin', function (e) {
+          if (e.target.matches && e.target.matches('.spot, .stage')) block.classList.add('is-touched');
+        });
+        if (reducedMq.matches || !video) {
+          rest();
+          return;
+        }
+        video.src = video.getAttribute('data-src') + (window.innerWidth < 768 ? '-960' : '') + '.mp4';
+        var played = false;
+        video.addEventListener('loadeddata', function () {
+          block.classList.add('is-ready');
+        }, { once: true });
+        video.addEventListener('ended', rest);
+        function play() {
+          block.classList.remove('is-rest');
+          try {
+            video.currentTime = 0;
+          } catch (e) {
+            /* ainda sem metadados */
+          }
+          var p = video.play();
+          if (p && typeof p.catch === 'function') p.catch(rest);
+        }
+        if (replay) replay.addEventListener('click', play);
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (entries) {
+            if (entries[0].intersectionRatio >= 0.5 && !played) {
+              played = true;
+              video.preload = 'auto';
+              play();
+            }
+          }, { threshold: [0, 0.5] }).observe(block);
+        } else {
+          rest();
+        }
+      })(blocks[b]);
+    }
+
+    /* ---- Mapa-ilha: cartao no mouse, foco ou toque ---- */
+    var ta = document.querySelector('.tv.ta');
+    if (ta) {
+      var tip = ta.querySelector('[data-tip-box]');
+      var spots = Array.prototype.slice.call(ta.querySelectorAll('.spot'));
+      var openSpot = null;
+      var placeTip = function (el) {
+        if (mobileMq.matches) return;
+        var r = el.getBoundingClientRect();
+        var R = ta.getBoundingClientRect();
+        var w = tip.offsetWidth;
+        var h = tip.offsetHeight;
+        var left = r.right - R.left + 12;
+        if (left + w > R.width - 14) left = r.left - R.left - w - 12;
+        tip.style.left = left + 'px';
+        tip.style.top = Math.max(14, Math.min(R.height - h - 14, r.top - R.top + r.height / 2 - h / 2)) + 'px';
+      };
+      var showTip = function (el) {
+        var parts = el.getAttribute('data-tip').split('|');
+        while (tip.firstChild) tip.removeChild(tip.firstChild);
+        if (parts[3]) {
+          var img = document.createElement('img');
+          img.src = '/assets/enamed/v2/insignia-' + parts[3] + '.webp';
+          img.alt = '';
+          img.width = 52;
+          img.height = 52;
+          tip.appendChild(img);
+        }
+        var kicker = document.createElement('b');
+        kicker.textContent = parts[1];
+        var title = document.createElement('strong');
+        title.textContent = parts[0];
+        var text = document.createElement('span');
+        text.textContent = parts[2];
+        tip.appendChild(kicker);
+        tip.appendChild(title);
+        tip.appendChild(text);
+        spots.forEach(function (x) {
+          x.classList.toggle('is-open', x === el);
+        });
+        openSpot = el;
+        tip.classList.add('on');
+        placeTip(el);
+      };
+      var hideTip = function () {
+        openSpot = null;
+        spots.forEach(function (x) {
+          x.classList.remove('is-open');
+        });
+        tip.classList.remove('on');
+      };
+      spots.forEach(function (el) {
+        el.setAttribute('aria-label', el.getAttribute('data-tip').split('|')[0]);
+        var viaPointer = false;
+        el.addEventListener('pointerenter', function (e) {
+          if (e.pointerType === 'mouse') showTip(el);
+        });
+        el.addEventListener('pointerleave', function (e) {
+          if (e.pointerType === 'mouse') hideTip();
+        });
+        el.addEventListener('pointerdown', function () {
+          viaPointer = true;
+        });
+        el.addEventListener('focus', function () {
+          if (!viaPointer) showTip(el);
+        });
+        el.addEventListener('blur', function () {
+          viaPointer = false;
+          hideTip();
+        });
+        el.addEventListener('click', function (e) {
+          viaPointer = false;
+          if (e.pointerType === 'mouse') showTip(el);
+          else if (openSpot === el) hideTip();
+          else showTip(el);
+        });
+      });
+      window.addEventListener('resize', function () {
+        if (openSpot) placeTip(openSpot);
+      });
+    }
+
+    /* ---- Jornada: paradas que iluminam a cena e fazem o personagem reagir ---- */
+    var tb = document.querySelector('.tv.tb');
+    if (tb) {
+      var focus = tb.querySelector('[data-focus]');
+      var note = tb.querySelector('[data-note]');
+      var stages = Array.prototype.slice.call(tb.querySelectorAll('.stage'));
+      var NOTES = [
+        ['Caso', 'Você atende o caso', 'Cada etapa é um caso com personagem. Você escolhe a conduta e vê o raciocínio de cada alternativa.'],
+        ['Caso-Chefe', 'A questão de prova', 'No fim do capítulo, a Dra. Helena traz o Caso-Chefe, como a questão 34 do Caderno 1 do ENAMED 2025, que você pode responder aqui embaixo.'],
+        ['Insígnia', 'Medir para decidir', 'Vença o Caso-Chefe e leve a insígnia do capítulo. São 54 para colecionar, uma por capítulo.'],
+      ];
+      var current = -1;
+      var pick = function (i) {
+        if (current === i) {
+          current = -1;
+          stages.forEach(function (x) {
+            x.setAttribute('aria-pressed', 'false');
+          });
+          focus.classList.remove('on');
+          note.classList.remove('on');
+          return;
+        }
+        current = i;
+        var btn = stages[i];
+        stages.forEach(function (x, j) {
+          x.setAttribute('aria-pressed', String(i === j));
+        });
+        focus.style.setProperty('--fx', btn.getAttribute('data-fx'));
+        focus.style.setProperty('--fy', btn.getAttribute('data-fy'));
+        focus.style.setProperty('--cy', btn.getAttribute('data-cy'));
+        focus.classList.add('on');
+        while (note.firstChild) note.removeChild(note.firstChild);
+        var k = document.createElement('b');
+        k.textContent = NOTES[i][0];
+        var t = document.createElement('strong');
+        t.textContent = NOTES[i][1];
+        var x = document.createElement('span');
+        x.textContent = NOTES[i][2];
+        note.appendChild(k);
+        note.appendChild(t);
+        note.appendChild(x);
+        note.style.left = btn.getAttribute('data-nx');
+        note.style.top = btn.getAttribute('data-ny');
+        note.classList.add('on');
+        if (tb.classList.contains('is-rest') && tb.reactions) tb.reactions.play(i);
+      };
+      stages.forEach(function (btn, i) {
+        btn.addEventListener('click', function () {
+          pick(i);
+        });
+      });
+    }
+  }
+
+  /* ================= Desempenho: mapa de exemplo ================= */
+  function initEvid() {
+    var card = document.querySelector('.evid');
+    if (!card) return;
+    var rows = Array.prototype.slice.call(card.querySelectorAll('.evid__row'));
+    var touched = false;
+    function toggle(row, force) {
+      var btn = row.querySelector('.evid__btn');
+      var next = row.querySelector('.evid__next');
+      var open = typeof force === 'boolean' ? force : btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) next.removeAttribute('hidden');
+      else next.setAttribute('hidden', '');
+    }
+    rows.forEach(function (row, i) {
+      var bar = row.querySelector('.evid__bar i');
+      if (bar) bar.style.setProperty('--k', String(i));
+      row.querySelector('.evid__btn').addEventListener('click', function () {
+        touched = true;
+        rows.forEach(function (r) {
+          if (r !== row) toggle(r, false);
+        });
+        toggle(row);
+      });
+    });
+    observeOnce(card, 0.35, function (e) {
+      if (!e.isIntersecting || card.classList.contains('is-in')) return;
+      card.classList.add('is-in');
+      // a primeira lacuna abre sozinha: o bloco se explica sem precisar de toque
+      window.setTimeout(function () {
+        if (!touched && rows[0]) toggle(rows[0], true);
+      }, reducedMq.matches ? 0 : 1500);
+    });
+  }
+
+  /* ================= boot ================= */
+  applyHeroVariant();
+  rewriteCtaHrefs();
   initConsent();
   initSticky();
   initSectionTracking();
-  initReveals();
   initFaq();
   initDemo();
-  initLightbox();
   initHeaderChrome();
-  initVideoBackgrounds();
+  initScenes();
+  initTemas();
+  initPerfis();
+  initEvid();
+  initVideoBlocks();
   updateFixedChrome();
 })();
