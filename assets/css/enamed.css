@@ -530,7 +530,7 @@ h1 em, h2 em { font-style: italic; color: var(--gold-it); }
   .nota-inep__src { font-size: 11.5px; }
 
   .bloco--demo { min-height: 0; padding-bottom: 8px; }
-  .bloco--demo > .cena--demo { position: relative; inset: auto; order: 3; margin: 22px -20px 0; -webkit-mask-image: none; mask-image: none; }
+  .bloco--demo > .cena--demo { position: relative; inset: auto; order: 3; margin: 22px -20px 0; aspect-ratio: calc(var(--cw) * 1.5 / var(--ch)); -webkit-mask-image: none; mask-image: none; }
   .demo__wrap { display: block; padding: 0; }
   .demo__copy { padding-top: 0; }
   .demo__card { margin-top: 24px; padding: 18px 16px 20px; }
