@@ -64,3 +64,29 @@ A página da campanha de 25 dias, que terminou com a prova de 13/09, virou a pá
   - `/meta_tracking.js` intacto (sha256 `ce669f7f…`);
   - `test-enamed-tracking.mjs` contra `https://enamed.auscultoapp.com/`: contrato íntegro;
   - canário sem consentimento em 390 e 1440 px: sem 4xx e sem erro de JS, e todos os links do app com UTM.
+
+## 12/10, correções e lapidação
+
+**Correção rápida:** versão `f55b76027a943a03`, commit `2924274`, rollback `792bd1a1ca6fc683`.
+- Saíram as 14 reações de rosto do LivePortrait; o dono as reprovou ("filme de terror").
+- A cena do Caso-Chefe no celular passou a usar a proporção do recorte.
+
+**Lapidação:** versão `b163495b9583942f`, commit `5fca195`, rollback `f55b76027a943a03`.
+- **Holofote pela silhueta exata:**
+  - recortes do Segment Anything com o objeto acendendo e um véu marfim sobre o resto;
+  - área de clique pelo contorno;
+  - no celular, pinos em pontos vazios de cada objeto.
+- **Cartões novos:** marfim com moldura dourada, a tela real do app, números e linha-guia. A posição evita os outros objetos e o texto.
+- **Stop-motion:** quadros-chave gerados a partir da mesma base; só o corpo muda e o rosto é sempre o da imagem original. São 14 personagens em sprites WebP.
+- **Revisão independente:**
+  - sem halo dourado;
+  - card do Desempenho na paleta;
+  - ritmo vertical do celular;
+  - botão fixo que some quando um botão de seção está na tela;
+  - figura das Perguntas sem fundo.
+- **Desempenho:** recortes e quadros de animação baixam depois do load.
+- **Conferência:**
+  - rastreio íntegro no local e no ar;
+  - 138 de 138 arquivos iguais ao commit, e `meta_tracking.js` intacto;
+  - larguras de 360 a 1920 px sem rolagem lateral;
+  - Lighthouse de celular local: Performance 88 a 89, Acessibilidade 100, CLS 0.
