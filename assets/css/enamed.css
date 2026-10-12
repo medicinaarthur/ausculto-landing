@@ -674,3 +674,76 @@ h1 em, h2 em { font-style: italic; color: var(--gold-it); }
   .sticky-cta__btn { min-height: 48px; padding: 13px 20px; }
 }
 /* ==== /r7 ==== */
+
+/* ==== r8 ==== */
+/* objeto aceso: o recorte fica exatamente no lugar (sem deslocar, sem contorno), só o resto recua */
+.veil { background: rgba(253, 250, 247, .3); }
+.sil.on, .sil.flash { transform: none; filter: none; }
+.sil.on { filter: brightness(1.03) contrast(1.02); }
+.is-touring .veil { opacity: 1; }
+/* linha-guia fina, ponto pequeno na borda do objeto */
+.lead path { stroke-width: 1.25; }
+.lead circle { r: 3.5; stroke-width: 2; }
+
+/* telas largas: as cenas não ficam "encaixotadas" — as bordas se dissolvem no marfim */
+@media (min-width: 1681px) {
+  .hero .cena__frame, .bloco > .cena .cena__frame {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+  }
+  .faq__aus { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); }
+}
+@media (min-width: 1601px) {
+  .tv { background: transparent; }
+  .tv-media {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+}
+/* faixa final: navy de ponta a ponta (a foto se dissolve no navy à direita) */
+.final { box-shadow: 0 0 0 100vmax var(--navy-2); clip-path: inset(0 -100vmax); }
+@media (min-width: 1681px) {
+  .final__scene { -webkit-mask-image: linear-gradient(90deg, #000 0, #000 90%, transparent 100%); mask-image: linear-gradient(90deg, #000 0, #000 90%, transparent 100%); }
+}
+/* ==== /r8 ==== */
+
+/* ==== r9 ==== */
+/* holofote: elipse suave sobre o objeto, o resto recua sob véu marfim; a luz desliza de um
+   objeto para o outro (variáveis registradas) e a câmera se aproxima de leve */
+@property --lx { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --ly { syntax: '<percentage>'; inherits: false; initial-value: 50%; }
+@property --rx { syntax: '<percentage>'; inherits: false; initial-value: 30%; }
+@property --ry { syntax: '<percentage>'; inherits: false; initial-value: 30%; }
+.veil {
+  background: radial-gradient(var(--rx) var(--ry) at var(--lx) var(--ly), rgba(253, 250, 245, 0) 0, rgba(253, 250, 245, 0) 56%, rgba(253, 250, 245, .26) 76%, rgba(253, 250, 245, .52) 100%);
+  transition: opacity .5s ease, --lx .65s cubic-bezier(.2, .8, .2, 1), --ly .65s cubic-bezier(.2, .8, .2, 1), --rx .65s cubic-bezier(.2, .8, .2, 1), --ry .65s cubic-bezier(.2, .8, .2, 1);
+}
+.is-lit .veil { opacity: 1; }
+.is-touring .veil { opacity: .7; }
+.cena__frame { transition: transform .9s cubic-bezier(.2, .8, .2, 1), transform-origin .9s cubic-bezier(.2, .8, .2, 1); }
+.cena__frame.is-pushed { transform: scale(1.022); }
+
+/* cartão: moldura de folha de ouro com fio navy e estrelas nos cantos (arte do Codex, 9 fatias) */
+.card { border: 0; border-radius: 8px; background: none; padding: 26px 28px 26px 26px; box-shadow: 0 34px 60px -32px rgba(42, 29, 8, .55), 0 14px 26px -18px rgba(42, 29, 8, .38); }
+.card::before { content: ''; position: absolute; inset: 0; z-index: 0; border: 25px solid transparent; border-radius: 0; border-image: url("/assets/enamed/v2/card-frame-c.webp") 50 fill / 25px stretch; pointer-events: none; }
+.card > * { position: relative; z-index: 1; }
+.card--compact { padding: 26px 30px 26px 28px; }
+.card__thumb { margin: 0; }
+.card__stats { border-top-color: #e8d6ad; }
+@media (min-width: 1024px) {
+  .card { width: 404px; grid-template-columns: 108px minmax(0, 1fr); gap: 20px; }
+  .card--compact { width: 312px; grid-template-columns: 1fr; }
+}
+@media (max-width: 1023px) {
+  .card { padding: 24px 24px 24px 22px; gap: 16px; }
+  .card--compact { padding: 24px 26px; }
+}
+/* Dr. Aus das Perguntas: o multiply vale para o grupo (imagem + quadros). Quadro por cima da
+   imagem é composição normal; com multiply nele, os braços cruzados apareciam sob o aceno */
+.faq__aus { mix-blend-mode: multiply; }
+.faq__aus img, .faq__aus .sm { mix-blend-mode: normal; }
+@media (prefers-reduced-motion: reduce) {
+  .veil, .cena__frame { transition: none !important; }
+  .cena__frame.is-pushed { transform: none; }
+}
+/* ==== /r9 ==== */

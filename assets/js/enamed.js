@@ -477,16 +477,9 @@
           }
           window.setTimeout(function () {
             cena.classList.add('is-intro', 'is-hinting');
-            var sils = Array.prototype.slice.call(cena.querySelectorAll('.sil'));
-            var step = sils.length > 5 ? 260 : 520;
-            sils.forEach(function (el, i) {
-              window.setTimeout(function () {
-                if (cena.classList.contains('is-lit')) return;
-                el.classList.add('flash');
-                window.setTimeout(function () { el.classList.remove('flash'); }, step + 220);
-              }, i * step);
-            });
-            if (rx.count) window.setTimeout(function () { rx.sequence(650); }, sils.length * step + 300);
+            // o holofote passeia pelos objetos (sem cartao) e depois os personagens reagem
+            var took = cena.litTour ? cena.litTour() : 0;
+            if (rx.count) window.setTimeout(function () { rx.sequence(650); }, took + 300);
           }, 450);
         });
       })(scenes[s]);
@@ -494,10 +487,12 @@
   }
 
   /* ================= Holofote e cartoes =================
-     Cada objeto interativo tem a silhueta exata (recorte com alfa) e a area de clique
-     pelo contorno (path SVG). Mouse/foco/toque acende o objeto, recua o resto sob um
-     veu marfim, abre o cartao com a tela real do app e liga os dois por uma linha-guia.
+     Cada objeto interativo tem a area de clique pelo contorno exato (path SVG). Mouse,
+     foco ou toque acendem o objeto: um holofote eliptico e suave fica sobre ele, o resto
+     recua sob um veu marfim e a camera se aproxima de leve. Abre o cartao com a tela real
+     do app, ligado ao objeto por uma linha-guia. Nada de contorno desenhado.
      No celular o cartao vem logo abaixo da cena e os pinos marcam os objetos. */
+  var PUSH = 1.022;
   var CARD_DATA = {};
   try {
     CARD_DATA = JSON.parse(document.getElementById('cardData').textContent) || {};
@@ -566,17 +561,104 @@
         var hits = Array.prototype.slice.call(root.querySelectorAll('.hit'));
         var pins = Array.prototype.slice.call(root.querySelectorAll('.pin'));
         var links = Array.prototype.slice.call(document.querySelectorAll('[data-link^="' + scene + ':"]'));
-        var sils = {};
-        Array.prototype.forEach.call(root.querySelectorAll('.sil'), function (n) {
-          sils[n.getAttribute('data-k')] = n;
+        var veil = root.querySelector('.veil');
+        // pontos do contorno de cada objeto e a caixa dele (viewBox 0..1000 da cena)
+        var outline = {};
+        var bbox = {};
+        hits.forEach(function (h) {
+          var pts = (h.getAttribute('d') || '').replace(/[MZ]/g, '').split('L').map(function (pair) {
+            var xy = pair.trim().split(',');
+            return [parseFloat(xy[0]), parseFloat(xy[1])];
+          }).filter(function (q) { return !isNaN(q[0]) && !isNaN(q[1]); });
+          var b = [1000, 1000, 0, 0];
+          pts.forEach(function (q) {
+            b[0] = Math.min(b[0], q[0]);
+            b[1] = Math.min(b[1], q[1]);
+            b[2] = Math.max(b[2], q[0]);
+            b[3] = Math.max(b[3], q[1]);
+          });
+          outline[h.getAttribute('data-k')] = pts;
+          bbox[h.getAttribute('data-k')] = b;
         });
+        var keys = Object.keys(bbox);
+        var canPush = frame !== root; // o Mapa (video) nao aproxima
         var minX0 = parseFloat(root.getAttribute('data-card-min-x') || '0');
         var open = null;
         var hideTimer = 0;
+        var touring = false;
 
         function ready() {
           return scene !== 'mapa' || section.classList.contains('is-rest');
         }
+
+        // a cena sem a aproximacao (offset* ignora transform): a conta do cartao e da linha
+        // usa a posicao final, nao a do meio da transicao
+        function frameBox() {
+          var R = root.getBoundingClientRect();
+          if (frame === root) return { left: R.left, top: R.top, width: R.width, height: R.height };
+          return { left: R.left + frame.offsetLeft, top: R.top + frame.offsetTop, width: frame.offsetWidth, height: frame.offsetHeight };
+        }
+        function pushed() {
+          return canPush && open !== null && !reducedMq.matches;
+        }
+        // ponto da cena (0..1000) em px da secao, com a aproximacao centrada no objeto aceso
+        function toSec(F, S, q, k) {
+          var x = q[0];
+          var y = q[1];
+          if (k != null && pushed()) {
+            var b = bbox[k];
+            var cx = (b[0] + b[2]) / 2;
+            var cy = (b[1] + b[3]) / 2;
+            x = cx + (x - cx) * PUSH;
+            y = cy + (y - cy) * PUSH;
+          }
+          return [F.left - S.left + (F.width * x) / 1000, F.top - S.top + (F.height * y) / 1000];
+        }
+
+        // holofote: elipse suave sobre a caixa do objeto (as variaveis deslizam pelo CSS)
+        function spot(k, soft) {
+          if (!veil || !bbox[k]) return;
+          var b = bbox[k];
+          var hw = (b[2] - b[0]) / 20;
+          var hh = (b[3] - b[1]) / 20;
+          veil.style.setProperty('--lx', ((b[0] + b[2]) / 20).toFixed(2) + '%');
+          veil.style.setProperty('--ly', ((b[1] + b[3]) / 20).toFixed(2) + '%');
+          veil.style.setProperty('--rx', (hw * 1.45 + 2.5).toFixed(2) + '%');
+          veil.style.setProperty('--ry', (hh * 1.45 + 3.5).toFixed(2) + '%');
+          root.classList.toggle('is-touring', !!soft);
+        }
+        function push(k) {
+          if (!canPush) return;
+          if (k == null || reducedMq.matches) {
+            frame.classList.remove('is-pushed');
+            return;
+          }
+          var b = bbox[k];
+          frame.style.transformOrigin = ((b[0] + b[2]) / 20).toFixed(2) + '% ' + ((b[1] + b[3]) / 20).toFixed(2) + '%';
+          frame.classList.add('is-pushed');
+        }
+
+        // entrada da cena: a luz passa por cada objeto, sem abrir cartao; devolve a duracao
+        root.litTour = function () {
+          if (!keys.length || !veil || !ready()) return 0;
+          var step = keys.length > 5 ? 380 : 620;
+          touring = true;
+          keys.forEach(function (k, i) {
+            window.setTimeout(function () {
+              if (!touring || open !== null) return;
+              spot(k, true);
+              root.classList.add('is-lit');
+            }, i * step);
+          });
+          window.setTimeout(function () {
+            if (!touring) return;
+            touring = false;
+            if (open === null) {
+              root.classList.remove('is-lit', 'is-touring');
+            }
+          }, keys.length * step + 200);
+          return keys.length * step + 200;
+        };
 
         function place(k, d) {
           if (!box) return;
@@ -587,11 +669,18 @@
             return;
           }
           var S = section.getBoundingClientRect();
-          var F = frame.getBoundingClientRect();
+          var F = frameBox();
           var rel = function (q) { return { l: q.left - S.left, t: q.top - S.top, r: q.right - S.left, b: q.bottom - S.top }; };
-          var o = rel(sils[k] ? sils[k].getBoundingClientRect() : F);
-          var ax = F.left - S.left + (F.width * d.ax) / 100;
-          var ay = F.top - S.top + (F.height * d.ay) / 100;
+          var boxOf = function (key) {
+            var b = bbox[key];
+            var p0 = toSec(F, S, [b[0], b[1]], k);
+            var p1 = toSec(F, S, [b[2], b[3]], k);
+            return { l: p0[0], t: p0[1], r: p1[0], b: p1[1] };
+          };
+          var o = bbox[k] ? boxOf(k) : rel(F);
+          var a0 = toSec(F, S, [d.ax * 10, d.ay * 10], k);
+          var ax = a0[0];
+          var ay = a0[1];
           var w = box.offsetWidth;
           var h = box.offsetHeight;
           var gap = 28;
@@ -600,15 +689,17 @@
           var minX = Math.max(16, S.width * minX0);
           var maxX = S.width - w - 16;
           // o que o cartao nao pode cobrir: os outros objetos (peso 1) e o texto (peso 4)
+          // os outros objetos estao recuados sob o veu: cobri-los pesa pouco; o objeto aceso e o
+          // texto da secao pesam muito
           var avoid = [];
-          Object.keys(sils).forEach(function (key) {
-            if (key !== k) avoid.push([rel(sils[key].getBoundingClientRect()), 1]);
+          keys.forEach(function (key) {
+            if (key !== k) avoid.push([boxOf(key), 0.5]);
           });
           Array.prototype.forEach.call(root.querySelectorAll('.sm, video.rx'), function (n) {
-            avoid.push([rel(n.getBoundingClientRect()), 2]);
+            avoid.push([rel(n.getBoundingClientRect()), 1]);
           });
           Array.prototype.forEach.call(section.querySelectorAll('.hero__copy > *, .bloco__copy > *, .ta-card, .hero__facts'), function (n) {
-            avoid.push([rel(n.getBoundingClientRect()), 4]);
+            avoid.push([rel(n.getBoundingClientRect()), 8]);
           });
           var cx = (o.l + o.r) / 2;
           var cy = (o.t + o.b) / 2;
@@ -628,16 +719,37 @@
               var iy = Math.max(0, Math.min(y + h, q.b) - Math.max(y, q.t));
               cost += (ix * iy * av[1]) / 40;
             });
+            // a linha-guia nao atravessa personagens nem outros objetos
+            var lx = Math.max(x, Math.min(x + w, ax));
+            var ly = Math.max(y, Math.min(y + h, ay));
+            avoid.forEach(function (av) {
+              if (av[1] > 3) return;
+              var q = av[0];
+              for (var t = 0.15; t < 0.9; t += 0.15) {
+                var px2 = lx + (ax - lx) * t;
+                var py2 = ly + (ay - ly) * t;
+                if (px2 > q.l && px2 < q.r && py2 > q.t && py2 < q.b) cost += 900 * av[1];
+              }
+            });
             // o proprio objeto coberto pesa mais ainda
             var ox = Math.max(0, Math.min(x + w, o.r) - Math.max(x, o.l));
             var oy = Math.max(0, Math.min(y + h, o.b) - Math.max(y, o.t));
-            cost += (ox * oy * 3) / 40;
+            cost += (ox * oy * 14) / 40;
             if (!best || cost < best[2]) best = [x, y, cost];
           });
           box.style.left = Math.round(best[0]) + 'px';
           box.style.top = Math.round(best[1]) + 'px';
           if (!lead) return;
-          // linha-guia: do ponto do objeto ao ponto mais proximo da borda do cartao
+          // linha-guia: do contorno do objeto (ponto mais proximo do cartao) ate a borda do cartao
+          var cxm = best[0] + w / 2;
+          var cym = best[1] + h / 2;
+          var pts = outline[k] || [];
+          var bestD = Infinity;
+          pts.forEach(function (q) {
+            var qq = toSec(F, S, q, k);
+            var dd = Math.hypot(qq[0] - cxm, qq[1] - cym);
+            if (dd < bestD) { bestD = dd; ax = qq[0]; ay = qq[1]; }
+          });
           var ex = Math.max(best[0], Math.min(best[0] + w, ax));
           var ey = Math.max(best[1], Math.min(best[1] + h, ay));
           var path = lead.querySelector('path');
@@ -653,15 +765,13 @@
 
         function activate(k) {
           if (!ready()) return;
-          loadSils();
           window.clearTimeout(hideTimer);
           if (open === k) return;
           open = k;
+          touring = false;
           root.classList.add('is-lit');
-          Object.keys(sils).forEach(function (key) {
-            sils[key].classList.remove('flash');
-            sils[key].classList.toggle('on', key === k);
-          });
+          spot(k, false);
+          push(k);
           pins.forEach(function (p) {
             p.classList.toggle('is-on', p.getAttribute('data-k') === k);
           });
@@ -681,10 +791,8 @@
 
         function deactivate() {
           open = null;
-          root.classList.remove('is-lit');
-          Object.keys(sils).forEach(function (key) {
-            sils[key].classList.remove('on');
-          });
+          root.classList.remove('is-lit', 'is-touring');
+          push(null);
           pins.forEach(function (p) { p.classList.remove('is-on'); });
           links.forEach(function (l) { l.classList.remove('is-on'); });
           if (box) box.hidden = true;
@@ -703,13 +811,19 @@
           if (target) target.scrollIntoView({ behavior: reducedMq.matches ? 'auto' : 'smooth', block: 'start' });
         }
 
+        // em tela de toque o navegador simula mouse no ponto do toque; ao rolar, ele "sai" do
+        // objeto e fecharia o cartao. La so o toque abre e fecha.
+        function hover(e) {
+          return e.pointerType === 'mouse' && !touchMq.matches;
+        }
+
         function bind(n, k, opts) {
           var viaPointer = false;
           n.addEventListener('pointerenter', function (e) {
-            if (e.pointerType === 'mouse') activate(k);
+            if (hover(e)) activate(k);
           });
           n.addEventListener('pointerleave', function (e) {
-            if (e.pointerType === 'mouse') soon();
+            if (hover(e)) soon();
           });
           n.addEventListener('pointerdown', function () {
             viaPointer = true;
@@ -771,30 +885,12 @@
         window.addEventListener('load', fitPins);
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPins);
 
-        // os recortes so aparecem na interacao: baixam depois do load, quando a cena chega perto
-        function loadSils() {
-          Object.keys(sils).forEach(function (key) {
-            var im = sils[key];
-            if (!im.getAttribute('src') && im.getAttribute('data-src')) im.src = im.getAttribute('data-src');
-          });
-        }
-        if ('IntersectionObserver' in window) {
-          var silIO = new IntersectionObserver(function (entries) {
-            if (!entries[0].isIntersecting) return;
-            silIO.disconnect();
-            afterSettle(loadSils);
-          }, { rootMargin: '600px 0px' });
-          silIO.observe(root);
-        } else {
-          loadSils();
-        }
-
         hits.forEach(function (h) { bind(h, h.getAttribute('data-k'), { follow: true }); });
         pins.forEach(function (p) { bind(p, p.getAttribute('data-k')); });
         links.forEach(function (l) { bind(l, l.getAttribute('data-link').split(':')[1]); });
         if (box) {
           box.addEventListener('pointerenter', function () { window.clearTimeout(hideTimer); });
-          box.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') soon(); });
+          box.addEventListener('pointerleave', function (e) { if (hover(e)) soon(); });
         }
         document.addEventListener('pointerdown', function (e) {
           if (open === null || e.pointerType === 'mouse') return;
