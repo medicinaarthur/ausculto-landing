@@ -90,3 +90,40 @@ A página da campanha de 25 dias, que terminou com a prova de 13/09, virou a pá
   - 138 de 138 arquivos iguais ao commit, e `meta_tracking.js` intacto;
   - larguras de 360 a 1920 px sem rolagem lateral;
   - Lighthouse de celular local: Performance 88 a 89, Acessibilidade 100, CLS 0.
+
+## 12/10, holofote suave, cartão de folha de ouro e stop-motion com alfa
+
+**Versão `3a7a9bc2599dea8e`**, commit `579fb08`, rollback `b163495b9583942f`.
+
+O dono reprovou três coisas na lapidação anterior:
+- animações que "bugavam o fundo";
+- o contorno desenhado no hover ("falho e amador");
+- o cartão simples. Pediu a arte do cartão feita no Codex.
+
+**O que mudou:**
+- **Destaque sem contorno:**
+  - uma elipse de luz suave fica sobre o objeto e desliza de um para o outro;
+  - o resto recua sob um véu marfim;
+  - a câmera se aproxima 2,2% centrada no objeto;
+  - saíram os recortes de silhueta. O contorno do Segment Anything segue só como área de clique e para posicionar o cartão.
+- **Cartão:**
+  - a moldura é arte do Codex (variação C entre três), com borda de folha de ouro, fio navy e estrelas de quatro pontas;
+  - entra como `border-image` de 9 fatias (`card-frame-c.webp`), no desktop e no celular;
+  - a posição evita sobretudo o objeto aceso e o texto da seção; cobrir objetos recuados pesa pouco.
+- **Stop-motion:**
+  - cada quadro agora é RGBA e só o corpo que mexe é opaco, limitado à silhueta do personagem. Fundo, tela e texto nunca são redesenhados;
+  - os sprites ganharam nomes novos (`sma-*`), porque as imagens têm cache imutável;
+  - o Dr. Aus e o leitor do topo passaram a stop-motion, no lugar dos vídeos do Grok;
+  - a residente do Desempenho ficou parada: o quadro gerado tinha o braço solto atrás da medalha.
+- **Correções:**
+  - Perguntas: o `multiply` passou para o grupo (imagem + quadros). No quadro, ele deixava os braços cruzados aparecendo sob o aceno;
+  - toque: rolar a página não fecha mais o cartão aberto pelo pino. O Chrome simula a saída do mouse no ponto do toque.
+
+**Conferência:**
+- quadros compostos sobre a cena, um a um, antes de subir, e de novo na página em 390 e 1440 px;
+- rastreio íntegro no local e no ar;
+- sem rolagem lateral de 360 a 1920 px;
+- movimento reduzido sem baixar animação, e sem JS todo o texto visível;
+- nenhum 4xx;
+- Lighthouse de celular local: Performance 88 a 89, Acessibilidade 100, CLS 0,002;
+- no ar: página, CSS, JS, moldura e sprites com hash igual ao commit; `meta_tracking.js` intacto (`ce669f7f…`); canário em 390 e 1440 px sem 4xx e sem erro de JS.
